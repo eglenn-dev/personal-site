@@ -1,9 +1,16 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { getProjects } from '@/lib/data'
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { getProjects } from "@/lib/data";
+import { TagIcon } from "@/lib/icons";
 
 export default function ProjectsPage() {
-    const projects = getProjects()
+    const projects = getProjects();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -13,13 +20,22 @@ export default function ProjectsPage() {
                     <Card key={project.id}>
                         <CardHeader>
                             <CardTitle>{project.name}</CardTitle>
-                            <CardDescription>{project.description}</CardDescription>
+                            <CardDescription>
+                                {project.description}
+                            </CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {project.technologies.map((tech) => (
-                                    <Badge key={tech} variant="secondary">
-                                        {tech}
+                                    <Badge
+                                        key={tech}
+                                        variant="secondary"
+                                        className="dark:bg-[#172190]"
+                                    >
+                                        <span className="flex items-center gap-1">
+                                            <TagIcon />
+                                            <span>{tech}</span>
+                                        </span>
                                     </Badge>
                                 ))}
                             </div>
@@ -36,6 +52,5 @@ export default function ProjectsPage() {
                 ))}
             </div>
         </div>
-    )
+    );
 }
-
