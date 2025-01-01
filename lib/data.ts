@@ -1,6 +1,11 @@
-import { FaReact, FaNodeJs, FaPython } from "react-icons/fa";
-import { IconType } from "react-icons";
-import { SiTypescript, SiMongodb, SiPostgresql } from "react-icons/si";
+import {
+    PythonIcon,
+    TypeScriptIcon,
+    ReactIcon,
+    NodeIcon,
+    PostgresIcon,
+    MongoIcon,
+} from "./icons";
 
 interface Project {
     id: number;
@@ -20,7 +25,7 @@ interface Experience {
 
 interface TechStack {
     name: string;
-    icon: IconType;
+    icon: React.ComponentType;
 }
 
 export function getProjects(): Project[] {
@@ -92,11 +97,11 @@ export function getExperiences(): Experience[] {
 
 export function getTechStack(): TechStack[] {
     return [
-        { name: "Python", icon: FaPython },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "React", icon: FaReact },
-        { name: "MongoDB", icon: SiMongodb },
-        { name: "Node.js", icon: FaNodeJs },
-        { name: "PostgreSQL", icon: SiPostgresql },
+        { name: "Python", icon: PythonIcon },
+        { name: "TypeScript", icon: TypeScriptIcon },
+        { name: "React", icon: ReactIcon },
+        { name: "Node.js", icon: NodeIcon },
+        { name: "PostgreSQL", icon: PostgresIcon },
+        { name: "MongoDB", icon: MongoIcon },
     ];
 }
