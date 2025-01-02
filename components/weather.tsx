@@ -1,5 +1,6 @@
 import { use } from "react";
 import styles from "./styles/weather.module.css";
+import Time from "./time";
 
 const weather = async () => {
     "use server";
@@ -35,9 +36,7 @@ export default function WeatherCard() {
                 <span>
                     {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
                     <br />
-                    {date.toLocaleTimeString("en-US", {
-                        timeZone: "America/Denver",
-                    })}
+                    <Time />
                 </span>
             </div>
             <span className={styles.temp}>
