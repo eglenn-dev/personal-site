@@ -5,6 +5,8 @@ import {
     NodeIcon,
     PostgresIcon,
     MongoIcon,
+    MySqlIcon,
+    NextjsIcon,
 } from "./icons";
 
 interface Project {
@@ -101,7 +103,9 @@ export function getTechStack(): TechStack[] {
         { name: "TypeScript", icon: TypeScriptIcon },
         { name: "React", icon: ReactIcon },
         { name: "Node.js", icon: NodeIcon },
+        { name: "Next.js", icon: NextjsIcon },
         { name: "PostgreSQL", icon: PostgresIcon },
         { name: "MongoDB", icon: MongoIcon },
+        { name: "MySQL", icon: MySqlIcon },
     ];
 }
