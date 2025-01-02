@@ -1,9 +1,7 @@
 import { use } from "react";
-import styles from "./styles/weather.module.css";
 import Time from "./time";
 
 const weather = async () => {
-    "use server";
     const latitude = 43.817749;
     const longitude = -111.783011;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=41b040317d7c966d88f7697cb552aba4&units=imperial`;
@@ -18,20 +16,20 @@ export default function WeatherCard() {
     const date = new Date();
 
     return (
-        <div className={styles.card}>
-            <div className={styles.container}>
-                <div className={`${styles.cloud} ${styles.front}`}>
-                    <span className={styles.leftFront} />
-                    <span className={styles.rightFront} />
+        <div className="card">
+            <div className="container">
+                <div className="cloud front">
+                    <span className="leftFront" />
+                    <span className="rightFront" />
                 </div>
-                <span className={`${styles.sun} ${styles.sunshine}`} />
-                <span className={styles.sun} />
-                <div className={`${styles.cloud} ${styles.back}`}>
-                    <span className={styles.leftBack} />
-                    <span className={styles.rightBack} />
+                <span className="sun sunshine" />
+                <span className="sun" />
+                <div className="cloud back">
+                    <span className="leftBack" />
+                    <span className="rightBack" />
                 </div>
             </div>
-            <div className={styles.cardHeader}>
+            <div className="cardHeader">
                 <span>{data.name}</span>
                 <span>
                     {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
@@ -39,10 +37,10 @@ export default function WeatherCard() {
                     <Time />
                 </span>
             </div>
-            <span className={styles.temp}>
+            <span className="temp">
                 {data.main.temp.toString().split(".")[0]}°F
             </span>
-            <div className={styles.tempScale}>
+            <div className="tempScale">
                 <span>{data.weather[0].main}</span>
             </div>
         </div>
@@ -51,8 +49,8 @@ export default function WeatherCard() {
 
 export async function WeatherSkeleton() {
     return (
-        <div className={styles.card}>
-            <div className={styles.cardHeader}>
+        <div className="card">
+            <div className="cardHeader">
                 <span>--</span>
                 <span>
                     --/--/----
@@ -60,8 +58,8 @@ export async function WeatherSkeleton() {
                     --:--
                 </span>
             </div>
-            <span className={styles.temp}>--°F</span>
-            <div className={styles.tempScale}>
+            <span className="temp">--°F</span>
+            <div className="tempScale">
                 <span>-------</span>
             </div>
         </div>
