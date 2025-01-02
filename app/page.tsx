@@ -17,8 +17,7 @@ export default function Home() {
                         Software Engineer
                     </h2>
                     <p className="mb-4">
-                        Web Developer for BYU-Idaho and Computer Science
-                        student.
+                        Currently working for BYU-Idaho as a Web Developer.
                     </p>
                     <Button asChild>
                         <Link href="/experience">View My Experience</Link>

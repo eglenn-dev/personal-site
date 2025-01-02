@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
 
 export default async function Footer() {
     return (
@@ -9,27 +9,27 @@ export default async function Footer() {
                         &copy; {new Date().getFullYear()} Ethan Glenn. All
                         rights reserved.
                     </p>
-                    <div className="flex space-x-6">
+                    <div className="flex space-x-6 align-center justify-center">
                         <a
                             href="https://github.com/yourusername"
                             className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
                         >
                             <span className="sr-only">GitHub</span>
-                            <Github className="h-6 w-6" />
+                            <GithubIcon />
                         </a>
                         <a
                             href="https://linkedin.com/in/yourusername"
                             className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
                         >
                             <span className="sr-only">LinkedIn</span>
-                            <Linkedin className="h-6 w-6" />
+                            <LinkedInIcon />
                         </a>
                         <a
                             href="https://twitter.com/yourusername"
-                            className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
+                            className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2 pt-3"
                         >
                             <span className="sr-only">Twitter</span>
-                            <Twitter className="h-6 w-6" />
+                            <XIcon />
                         </a>
                     </div>
                 </div>
