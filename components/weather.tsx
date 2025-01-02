@@ -1,7 +1,8 @@
-import React, { use } from "react";
+import { use } from "react";
 import styles from "./styles/weather.module.css";
 
 const weather = async () => {
+    "use server";
     const latitude = 43.817749;
     const longitude = -111.783011;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=41b040317d7c966d88f7697cb552aba4&units=imperial`;
@@ -49,7 +50,7 @@ export default function WeatherCard() {
     );
 }
 
-export function WeatherSkeleton() {
+export async function WeatherSkeleton() {
     return (
         <div className={styles.card}>
             <div className={styles.cardHeader}>

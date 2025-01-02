@@ -203,3 +203,44 @@
         color: rgba(255, 255, 255, 0.66);
     }
 }
+
+@media (max-width: 768px) {
+    .card {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+    }
+
+    .container {
+        width: 200px;
+        height: 200px;
+        right: -25px;
+        top: -40px;
+        transform: scale(0.6);
+    }
+
+    .cloud {
+        width: 200px;
+    }
+
+    .sun {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+    }
+
+    .temp {
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    .tempScale {
+        width: 70px;
+        height: 30px;
+        bottom: 20px;
+    }
+
+    .tempScale span {
+        font-size: 12px;
+    }
+}
