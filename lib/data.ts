@@ -82,21 +82,33 @@ export function getExperiences(): Experience[] {
             role: "Team Lead & Web Developer",
             company: "Brigham Young University - Idaho",
             period: "July 2024 - Present",
-            responsibilities: [""],
+            responsibilities: [
+                "Created a full-stack web app for managing 3D print requests from patrons.",
+                "Led a team of employees to ensure timely completion of projects.",
+                "Assisted in maintaining the University Library website.",
+            ],
         },
         {
             id: 2,
             role: "Teaching Assistant",
             company: "Department of Mathematics, BYU-Idaho",
             period: "Apr 2024 - Present",
-            responsibilities: [""],
+            responsibilities: [
+                "Held weekly office hours.",
+                "Assisted students with calculus and R programming.",
+                "Supported students on weekly data analysis project reports.",
+            ],
         },
         {
             id: 3,
             role: "Front-End Developer",
             company: "Brigham Young University - Idaho",
             period: "June 2023 - July 2024",
-            responsibilities: [""],
+            responsibilities: [
+                "Collaborated on University Library website redesign.",
+                "Transitioned library site from Bootstrap to Vanilla JS",
+                "Improved website performance, reducing Largest Contentful Paint by 32%.",
+            ],
         },
     ];
 }
