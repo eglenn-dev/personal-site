@@ -34,27 +34,43 @@ export function getProjects(): Project[] {
     return [
         {
             id: 1,
-            name: "E-commerce Platform",
+            name: "I-Hack Winner",
             description:
-                "A full-stack e-commerce platform with user authentication, product management, and order processing.",
-            technologies: ["React", "Node.js", "Express", "MongoDB"],
-            link: "https://github.com/yourusername/ecommerce-platform",
+                "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. We created a full-stack community watch platform with user authentication, and post management.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://www.linkedin.com/posts/eglenn-dev_mlh-hackathon-byui-activity-7253968115519127552-uleA?utm_source=share&utm_medium=member_desktop",
         },
         {
             id: 2,
-            name: "Task Management App",
+            name: "3D Print Request System",
             description:
-                "A responsive web application for managing tasks and projects with real-time updates.",
-            technologies: ["React", "Firebase", "Material-UI"],
-            link: "https://github.com/yourusername/task-management-app",
+                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://print-backend.onrender.com",
         },
         {
             id: 3,
-            name: "Weather Forecast App",
+            name: "AI Summarizer API",
             description:
-                "A weather forecast application that provides real-time weather data and 5-day forecasts.",
-            technologies: ["React Native", "Redux", "OpenWeatherMap API"],
-            link: "https://github.com/yourusername/weather-forecast-app",
+                "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
+            technologies: ["Python", "Gemini API", "HTML & CSS"],
+            link: "https://eglenn.app/ai",
+        },
+        {
+            id: 4,
+            name: "Projects.now",
+            description:
+                "Created a platform for students to showcase their projects and get feedback from other students. The platform is built with Next.js and Firebase.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://projects.now/",
+        },
+        {
+            id: 5,
+            name: "This Portfolio",
+            description:
+                "My personal portfolio website built with React and Tailwind CSS.",
+            technologies: ["React", "Tailwind CSS", "TypeScript"],
+            link: "https://eglenn.dev/",
         },
     ];
 }
@@ -63,36 +79,24 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Senior Software Engineer",
-            company: "Tech Innovators Inc.",
-            period: "Jan 2020 - Present",
-            responsibilities: [
-                "Lead a team of 5 developers in designing and implementing scalable web applications",
-                "Architected and developed microservices using Node.js and Docker",
-                "Implemented CI/CD pipelines using Jenkins and AWS",
-            ],
+            role: "Team Lead & Web Developer",
+            company: "Brigham Young University - Idaho",
+            period: "July 2024 - Present",
+            responsibilities: [""],
         },
         {
             id: 2,
-            role: "Full Stack Developer",
-            company: "WebSolutions Co.",
-            period: "Jun 2017 - Dec 2019",
-            responsibilities: [
-                "Developed and maintained multiple client websites using React and Django",
-                "Optimized database queries and implemented caching strategies to improve application performance",
-                "Collaborated with UX designers to implement responsive and accessible user interfaces",
-            ],
+            role: "Teaching Assistant",
+            company: "Department of Mathematics, BYU-Idaho",
+            period: "Apr 2024 - Present",
+            responsibilities: [""],
         },
         {
             id: 3,
-            role: "Junior Developer",
-            company: "StartUp Ventures",
-            period: "Sep 2015 - May 2017",
-            responsibilities: [
-                "Assisted in the development of a social media analytics platform using Python and React",
-                "Implemented RESTful APIs and integrated third-party services",
-                "Participated in code reviews and contributed to improving coding standards",
-            ],
+            role: "Front-End Developer",
+            company: "Brigham Young University - Idaho",
+            period: "June 2023 - July 2024",
+            responsibilities: [""],
         },
     ];
 }
