@@ -47,7 +47,6 @@ export async function sendContactEmail(
                 html: `<p>Hey ${safeName},</p><p>Thank you for reaching out to me. I've got your email and will get back to you as soon as possible.</p><p>Reason: ${safeReason}</p><p>- Ethan</p>`,
             },
         };
-        console.log("Sending email...", data);
         await sendEmail(data);
     } else {
         return `Failed to verify captcha token: ${data}`;

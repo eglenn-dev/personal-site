@@ -13,22 +13,18 @@ interface EmailOptions {
 }
 
 export async function sendEmail(data: EmailOptions) {
-    const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-        },
-    });
-
-    transporter.sendMail(
-        data.options,
-        (error: Error | null | undefined, info: nodemailer.SentMessageInfo) => {
-            if (error) {
-                console.error(error);
-            } else {
-                console.log("Email sent: " + info.response);
-            }
-        }
-    );
+    try {
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.MAIL_USER,
+                pass: process.env.MAIL_PASS,
+            },
+        });
+        const info = await transporter.sendMail(data.options);
+        console.log("Email sent: " + info.response);
+    } catch (error) {
+        console.error("Error sending email:", error);
+        throw new Error("Failed to send email");
+    }
 }
