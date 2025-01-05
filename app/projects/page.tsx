@@ -9,6 +9,11 @@ import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/data";
 import { TagIcon } from "@/lib/icons";
 
+export const metadata = {
+    title: "Projects | Ethan Glenn",
+    description: "List of projects I've worked on and contributed to",
+};
+
 export default function ProjectsPage() {
     const projects = getProjects();
 
