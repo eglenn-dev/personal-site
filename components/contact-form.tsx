@@ -28,14 +28,14 @@ export default function ContactForm() {
         const name = formData.get("name")?.toString() || "";
         const email = formData.get("email")?.toString() || "";
         const message = formData.get("message")?.toString() || "";
-        const recaptcha =
+        const responseToken =
             formData.get("g-recaptcha-response")?.toString() || "";
 
-        if (!name || !email || !message || !recaptcha) {
+        if (!name || !email || !message || !responseToken) {
             setIsSubmitting(false);
             return;
         }
-        sendContactEmail(name, email, message, recaptcha);
+        sendContactEmail(name, email, message, responseToken);
         setIsSubmitting(false);
         setSubmitSuccess(true);
     }

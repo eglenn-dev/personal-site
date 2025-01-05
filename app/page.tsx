@@ -29,11 +29,14 @@ export default function Home() {
                     </h2>
                     <div className="bg-muted p-4 rounded-lg">
                         <h3 className="text-xl font-medium mb-2">
-                            Project Name
+                            I-Hack 1<sup>st</sup> Place Winner
                         </h3>
                         <p className="mb-4">
-                            A brief description of your featured project and its
-                            key features.
+                            Placed first in the &#39;Integrity & Might&#39;
+                            category at the BYU-Idaho 2024 hackathon. My team
+                            created a full-stack community watch platform with
+                            custom user authentication, post management, and AI
+                            integration.
                         </p>
                         <Button variant="outline" asChild>
                             <Link href="/projects">View All Projects</Link>

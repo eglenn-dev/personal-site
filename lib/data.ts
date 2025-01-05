@@ -36,7 +36,7 @@ export function getProjects(): Project[] {
             id: 1,
             name: "I-Hack Winner",
             description:
-                "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. We created a full-stack community watch platform with user authentication, and post management.",
+                "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
             link: "https://www.linkedin.com/posts/eglenn-dev_mlh-hackathon-byui-activity-7253968115519127552-uleA?utm_source=share&utm_medium=member_desktop",
         },
