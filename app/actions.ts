@@ -32,10 +32,7 @@ export async function sendContactEmail(
         }
     );
     const data = await response.json();
-    if (
-        data.success &&
-        (data.hostname === "localhost" || data.hostname === "eglenn.dev")
-    ) {
+    if (data.success && data.hostname === process.env.DOMAIN) {
         const safeName = sanitizeHtml(name);
         const safeReason = sanitizeHtml(reason);
 
