@@ -4,6 +4,7 @@ import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import WeatherCard, { WeatherSkeleton } from "@/components/weather";
+import { GithubIcon, LinkedInIcon } from "@/lib/icons";
 
 export default function Home() {
     const techStack = getTechStack();
@@ -19,6 +20,17 @@ export default function Home() {
                     <p className="mb-4">
                         Currently working for BYU-Idaho as a Web Developer.
                     </p>
+                    <div className="flex flex-row gap-4 mb-4">
+                        <a href="https://github.com/eglenn-dev" target="_blank">
+                            <GithubIcon height={30} width={30} />
+                        </a>
+                        <a
+                            href="https://linkedin.com/in/eglenn-dev"
+                            target="_blank"
+                        >
+                            <LinkedInIcon height={30} width={30} />
+                        </a>
+                    </div>
                     <Button asChild>
                         <Link href="/experience">View My Experience</Link>
                     </Button>
