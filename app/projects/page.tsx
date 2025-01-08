@@ -25,7 +25,7 @@ export default function ProjectsPage() {
                     <Card key={project.id}>
                         <CardHeader>
                             <CardTitle>{project.name}</CardTitle>
-                            <CardDescription>
+                            <CardDescription className="text-black dark:text-gray-400">
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
