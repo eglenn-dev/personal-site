@@ -1,7 +1,9 @@
-const height = 40;
-const width = 40;
+interface IconProps {
+    width?: number;
+    height?: number;
+}
 
-export function PythonIcon() {
+export function PythonIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +65,7 @@ export function PythonIcon() {
     );
 }
 
-export function TypeScriptIcon() {
+export function TypeScriptIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +82,7 @@ export function TypeScriptIcon() {
     );
 }
 
-export function ReactIcon() {
+export function ReactIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +98,7 @@ export function ReactIcon() {
     );
 }
 
-export function NodeIcon() {
+export function NodeIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +114,7 @@ export function NodeIcon() {
     );
 }
 
-export function PostgresIcon() {
+export function PostgresIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +136,7 @@ export function PostgresIcon() {
     );
 }
 
-export function MongoIcon() {
+export function MongoIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -205,12 +207,12 @@ export function MongoIcon() {
     );
 }
 
-export function TagIcon() {
+export function TagIcon({ width = 12, height = 12 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={12}
-            height={12}
+            width={width}
+            height={height}
             viewBox="0 0 24 24"
         >
             <path
@@ -221,7 +223,7 @@ export function TagIcon() {
     );
 }
 
-export function MySqlIcon() {
+export function MySqlIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +239,7 @@ export function MySqlIcon() {
     );
 }
 
-export function NextjsIcon() {
+export function NextjsIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -284,12 +286,12 @@ export function NextjsIcon() {
     );
 }
 
-export function GithubIcon() {
+export function GithubIcon({ width = 24, height = 24 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
+            width={width}
+            height={height}
             viewBox="0 0 24 24"
         >
             <path
@@ -300,12 +302,12 @@ export function GithubIcon() {
     );
 }
 
-export function LinkedInIcon() {
+export function LinkedInIcon({ width = 24, height = 24 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={24}
-            height={24}
+            width={width}
+            height={height}
             viewBox="0 0 24 24"
         >
             <path
@@ -318,12 +320,12 @@ export function LinkedInIcon() {
     );
 }
 
-export function XIcon() {
+export function XIcon({ width = 20, height = 20 }: IconProps) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={20}
-            height={20}
+            width={width}
+            height={height}
             viewBox="0 0 14 14"
         >
             <g fill="none">
