@@ -34,19 +34,19 @@ export function getProjects(): Project[] {
     return [
         {
             id: 1,
+            name: "MarkNote.one",
+            description:
+                "Created an online note taking app with markdown support. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://marknote.one/",
+        },
+        {
+            id: 2,
             name: "I-Hack Winner",
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
             link: "https://www.linkedin.com/posts/eglenn-dev_mlh-hackathon-byui-activity-7253968115519127552-uleA?utm_source=share&utm_medium=member_desktop",
-        },
-        {
-            id: 2,
-            name: "3D Print Request System",
-            description:
-                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://print-backend.onrender.com",
         },
         {
             id: 3,
@@ -58,11 +58,11 @@ export function getProjects(): Project[] {
         },
         {
             id: 4,
-            name: "Projects.now",
+            name: "3D Print Request System",
             description:
-                "Created a platform for students to showcase their projects and get feedback from other students. The platform is built with Next.js and Firebase.",
+                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://projects.now/",
+            link: "https://print-backend.onrender.com",
         },
         {
             id: 5,
@@ -106,7 +106,7 @@ export function getExperiences(): Experience[] {
             period: "June 2023 - July 2024",
             responsibilities: [
                 "Collaborated on University Library website redesign.",
-                "Transitioned library site from Bootstrap to Vanilla JS",
+                "Transitioned library site from Bootstrap to Vanilla JS.",
                 "Improved website performance, reducing Largest Contentful Paint by 32%.",
             ],
         },
