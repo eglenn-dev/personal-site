@@ -1,5 +1,6 @@
 import { use } from "react";
 import Time from "./time";
+import CurrentDate from "./date";
 
 const weather = async () => {
     const latitude = 43.817749;
@@ -13,8 +14,6 @@ const weather = async () => {
 
 export default function WeatherCard() {
     const data = use(weather());
-    const date = new Date();
-
     return (
         <div className="card">
             <div className="container">
@@ -32,7 +31,7 @@ export default function WeatherCard() {
             <div className="cardHeader">
                 <span>{data.name}</span>
                 <span>
-                    {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
+                    <CurrentDate />
                     <br />
                     <Time />
                 </span>
