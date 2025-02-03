@@ -1,19 +1,22 @@
-import { use } from "react";
+import { connection } from "next/server";
 import Time from "./time";
 import CurrentDate from "./date";
 
-const weather = async () => {
+async function getWeather() {
+    await connection();
+
     const latitude = 43.817749;
     const longitude = -111.783011;
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=41b040317d7c966d88f7697cb552aba4&units=imperial`;
 
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl, { cache: "no-store" });
     await new Promise((resolve) => setTimeout(resolve, 2000));
     return response.json();
-};
+}
 
-export default function WeatherCard() {
-    const data = use(weather());
+export default async function WeatherCard() {
+    const data = await getWeather();
+
     return (
         <div className="card">
             <div className="container">
@@ -49,17 +52,29 @@ export default function WeatherCard() {
 export async function WeatherSkeleton() {
     return (
         <div className="card">
+            <div className="container">
+                <div className="cloud front">
+                    <span className="leftFront" />
+                    <span className="rightFront" />
+                </div>
+                <span className="sun sunshine" />
+                <span className="sun" />
+                <div className="cloud back">
+                    <span className="leftBack" />
+                    <span className="rightBack" />
+                </div>
+            </div>
             <div className="cardHeader">
-                <span>--</span>
+                <span>----</span>
                 <span>
                     --/--/----
                     <br />
-                    --:--
+                    --:--:--
                 </span>
             </div>
             <span className="temp">--°F</span>
             <div className="tempScale">
-                <span>-------</span>
+                <span>----</span>
             </div>
         </div>
     );
