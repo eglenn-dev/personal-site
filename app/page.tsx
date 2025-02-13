@@ -41,17 +41,19 @@ export default function Home() {
                     </h2>
                     <div className="bg-muted p-4 rounded-lg">
                         <h3 className="text-xl font-medium mb-2">
-                            I-Hack 1<sup>st</sup> Place Winner
+                            MarkNote.one
                         </h3>
                         <p className="mb-4">
-                            Placed first in the &#39;Integrity & Might&#39;
-                            category at the BYU-Idaho 2024 hackathon. My team
-                            created a full-stack community watch platform with
-                            custom user authentication, post management, and AI
-                            integration.
+                            Created an online note taking app with markdown
+                            support, auto-saving, and live previews. With React
+                            server-side component rendering, the app is fast and
+                            responsive. Built initially as a 36 hour coding
+                            challenge.
                         </p>
                         <Button variant="outline" asChild>
-                            <Link href="/projects">View All Projects</Link>
+                            <a href="https://marknote.one" target="_blank">
+                                View Project
+                            </a>
                         </Button>
                     </div>
                 </div>

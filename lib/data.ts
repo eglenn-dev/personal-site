@@ -62,7 +62,7 @@ export function getProjects(): Project[] {
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://print-backend.onrender.com",
+            link: "https://github.com/eglenn-dev/3d-print-queue",
         },
         {
             id: 5,
