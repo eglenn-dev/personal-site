@@ -21,12 +21,17 @@ export default function Home() {
                         Currently working for BYU-Idaho as a Web Developer.
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
-                        <a href="https://github.com/eglenn-dev" target="_blank">
+                        <a
+                            href="https://github.com/eglenn-dev"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <GithubIcon height={30} width={30} />
                         </a>
                         <a
                             href="https://linkedin.com/in/eglenn-dev"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <LinkedInIcon height={30} width={30} />
                         </a>
@@ -41,9 +46,15 @@ export default function Home() {
                     </h2>
                     <div className="bg-muted p-4 rounded-lg">
                         <h3 className="text-xl font-medium mb-2">
+                            {/* eslint-disable @next/next/no-img-element */}
+                            <img
+                                className="h-6 inline align-middle mr-2 mb-1"
+                                src="./marknote.png"
+                                alt="MarkNote.one logo"
+                            />
                             MarkNote.one
                         </h3>
-                        <p className="mb-4">
+                        <p className="text-sm mb-2">
                             Created an online note taking app with markdown
                             support, auto-saving, and live previews. With React
                             server-side component rendering, the app is fast and
