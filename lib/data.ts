@@ -56,19 +56,19 @@ export function getProjects(): Project[] {
         },
         {
             id: 3,
-            name: "3D Print Request System",
-            description:
-                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://github.com/eglenn-dev/3d-print-queue",
-        },
-        {
-            id: 4,
             name: "AI Summarizer API",
             description:
                 "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
             technologies: ["Python", "Gemini API", "JavaScript"],
             link: "https://eglenn.app/ai",
+        },
+        {
+            id: 4,
+            name: "3D Print Request System",
+            description:
+                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://github.com/eglenn-dev/3d-print-queue",
         },
         {
             id: 5,
@@ -85,35 +85,37 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Team Lead & Web Developer",
-            company: "Brigham Young University - Idaho",
+            role: "Lab Manager & Web Developer",
+            company:
+                "David O. McKay Library - Brigham Young University - Idaho",
             period: "July 2024 - Present",
             responsibilities: [
-                "Created a full-stack web app for managing 3D print requests from patrons.",
-                "Led a team of employees to ensure timely completion of projects.",
-                "Assisted in maintaining the University Library website.",
+                "Managed a team of 10+ graphic designers and printer technicians, providing technical support and ensuring smooth lab operation.",
+                "Developed a full-stack web app for managing 3D print requests.",
+                "Developed and maintained web content for the library website.",
             ],
         },
         {
             id: 2,
             role: "Teaching Assistant",
-            company: "Department of Mathematics, BYU-Idaho",
-            period: "Apr 2024 - Present",
+            company:
+                "Department of Mathematics - Brigham Young University - Idaho",
+            period: "April 2024 - Present",
             responsibilities: [
-                "Held weekly office hours.",
-                "Assisted students with calculus and R programming.",
+                "Held weekly office hours to assist students with calculus and R programming.",
                 "Supported students on weekly data analysis project reports.",
             ],
         },
         {
             id: 3,
-            role: "Front-End Developer",
-            company: "Brigham Young University - Idaho",
+            role: "Lab Technician & Front-End Developer",
+            company:
+                "David O. McKay Library - Brigham Young University - Idaho",
             period: "June 2023 - July 2024",
             responsibilities: [
-                "Collaborated on University Library website redesign.",
-                "Transitioned library site from Bootstrap to Vanilla JS.",
-                "Improved website performance, reducing Largest Contentful Paint by 32%.",
+                "Collaborated on University Library website redesign, transitioning from Bootstrap to Vanilla JS.",
+                "Maintained a 3D printing maker lab.",
+                "Taught quarterly 3D printing and intermediate programming workshops.",
             ],
         },
     ];
