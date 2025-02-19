@@ -71,7 +71,6 @@ body {
     }
 }
 
-/* From Uiverse.io by zanina-yassine */
 .card {
     width: 350px;
     height: 235px;
@@ -169,6 +168,20 @@ body {
     animation: sunshines 2s infinite;
 }
 
+.moon {
+    width: 120px;
+    height: 120px;
+    background: -webkit-linear-gradient(to right, #bdc3c7, #e2e2e2);
+    background: linear-gradient(to right, #bdc3c7, #e2e2e2);
+    border-radius: 50%;
+    display: inline;
+    position: absolute;
+}
+
+.moonlight {
+    animation: moonlight 3s infinite;
+}
+
 @keyframes sunshines {
     0% {
         transform: scale(1);
@@ -178,6 +191,21 @@ body {
     100% {
         transform: scale(1.4);
         opacity: 0;
+    }
+}
+
+@keyframes moonlight {
+    0% {
+        transform: scale(1);
+        opacity: 0.4; /* Dimmer initial opacity */
+    }
+    50% {
+        transform: scale(1.1); /* Smaller scale change */
+        opacity: 0.6; /* Slightly brighter */
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
     }
 }
 
@@ -251,7 +279,9 @@ body {
         width: 200px;
     }
 
-    .sun {
+    .sun,
+    .moon {
+        /* Apply to both sun and moon */
         width: 100px;
         height: 100px;
         border-radius: 50px;

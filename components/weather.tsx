@@ -16,6 +16,10 @@ async function getWeather() {
 
 export default async function WeatherCard() {
     const data = await getWeather();
+    const sunrise = new Date(data.sys.sunrise * 1000);
+    const sunset = new Date(data.sys.sunset * 1000);
+    const currentTime = new Date();
+    const isNight = currentTime < sunrise || currentTime > sunset;
 
     return (
         <div className="card">
@@ -24,8 +28,17 @@ export default async function WeatherCard() {
                     <span className="leftFront" />
                     <span className="rightFront" />
                 </div>
-                <span className="sun sunshine" />
-                <span className="sun" />
+                {isNight ? (
+                    <>
+                        <span className="moon moonlight" />
+                        <span className="moon" />
+                    </>
+                ) : (
+                    <>
+                        <span className="sun sunshine" />
+                        <span className="sun" />
+                    </>
+                )}
                 <div className="cloud back">
                     <span className="leftBack" />
                     <span className="rightBack" />
