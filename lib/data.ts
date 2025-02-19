@@ -36,8 +36,14 @@ export function getProjects(): Project[] {
             id: 1,
             name: "MarkNote.one",
             description:
-                "Created an online note taking app with markdown support. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+                "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
+            technologies: [
+                "React",
+                "TypeScript",
+                "Next.js",
+                "Tailwind",
+                "Firebase",
+            ],
             link: "https://marknote.one/",
         },
         {
@@ -50,14 +56,6 @@ export function getProjects(): Project[] {
         },
         {
             id: 3,
-            name: "AI Summarizer API",
-            description:
-                "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
-            technologies: ["Python", "Gemini API", "HTML & CSS"],
-            link: "https://eglenn.app/ai",
-        },
-        {
-            id: 4,
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -65,11 +63,19 @@ export function getProjects(): Project[] {
             link: "https://github.com/eglenn-dev/3d-print-queue",
         },
         {
+            id: 4,
+            name: "AI Summarizer API",
+            description:
+                "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
+            technologies: ["Python", "Gemini API", "JavaScript"],
+            link: "https://eglenn.app/ai",
+        },
+        {
             id: 5,
             name: "This Portfolio",
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",
-            technologies: ["React", "Tailwind CSS", "TypeScript"],
+            technologies: ["React", "Tailwind", "TypeScript"],
             link: "https://eglenn.dev/",
         },
     ];

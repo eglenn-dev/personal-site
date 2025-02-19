@@ -55,7 +55,7 @@ export default function Home() {
                             MarkNote.one
                         </h3>
                         <p className="text-sm mb-2">
-                            Created an online note taking app with markdown
+                            Created an note taking web-app with markdown
                             support, auto-saving, and live previews. With React
                             server-side component rendering, the app is fast and
                             responsive. Built initially as a 36 hour coding
@@ -80,7 +80,7 @@ export default function Home() {
                                 key={tech.name}
                                 className="flex flex-col items-center justify-center p-4 w-28"
                             >
-                                <CardContent className="text-center flex flex-col items-center justify-center">
+                                <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
                                     <h3 className="text-sm font-medium">
                                         {tech.name}
@@ -90,7 +90,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div>
+                <div className="pt-0 sm:pt-8">
                     <Suspense fallback={<WeatherSkeleton />}>
                         <WeatherCard />
                     </Suspense>
