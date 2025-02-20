@@ -85,14 +85,14 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Lab Manager & Web Developer",
+            role: "Manager & Web Developer",
             company:
                 "David O. McKay Library - Brigham Young University - Idaho",
             period: "July 2024 - Present",
             responsibilities: [
-                "Managed a team of 10+ graphic designers and printer technicians, providing technical support and ensuring smooth lab operation.",
-                "Developed a full-stack web app for managing 3D print requests.",
-                "Developed and maintained web content for the library website.",
+                "Manage a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
+                "Proposed, designed, implemented, and deployed a full-stack web app in React with TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
+                "Develop and maintain library website of 30+ pages, writing JavaScript, HTML, and CSS to enhance user experience and maintain site functionality.",
             ],
         },
         {
@@ -102,8 +102,8 @@ export function getExperiences(): Experience[] {
                 "Department of Mathematics - Brigham Young University - Idaho",
             period: "April 2024 - Present",
             responsibilities: [
-                "Held weekly office hours to assist students with calculus and R programming.",
-                "Supported students on weekly data analysis project reports.",
+                "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
+                "Worked with two instructors to offer grading support and tutoring to multiple sections of the course.",
             ],
         },
         {
@@ -113,9 +113,9 @@ export function getExperiences(): Experience[] {
                 "David O. McKay Library - Brigham Young University - Idaho",
             period: "June 2023 - July 2024",
             responsibilities: [
-                "Collaborated on University Library website redesign, transitioning from Bootstrap to Vanilla JS.",
-                "Maintained a 3D printing maker lab.",
-                "Taught quarterly 3D printing and intermediate programming workshops.",
+                "Suggested and implemented changes that would reduce page load time by 0.6 seconds and reduce repository from 10,770 to 1382 files.",
+                "Collaborated with a team of three to remodel the University Library website frontend by transitions from Bootstrap to Vanilla JS and CSS.",
+                "Taught 3D printing and introductory programming workshops twice per semester to classes of 40+ students.",
             ],
         },
     ];

@@ -8,6 +8,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/data";
 import { TagIcon } from "@/lib/icons";
+import { Button } from "@/components/ui/button";
 
 export const metadata = {
     title: "Projects | Ethan Glenn",
@@ -24,8 +25,10 @@ export default function ProjectsPage() {
                 {projects.map((project) => (
                     <Card key={project.id}>
                         <CardHeader>
-                            <CardTitle>{project.name}</CardTitle>
-                            <CardDescription className="text-black dark:text-gray-400">
+                            <CardTitle className="text-lg text-[#0077b6] dark:text-white mb-2">
+                                {project.name}
+                            </CardTitle>
+                            <CardDescription className="text-black dark:text-gray-300 leading-relaxed">
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
@@ -35,7 +38,7 @@ export default function ProjectsPage() {
                                     <Badge
                                         key={tech}
                                         variant="secondary"
-                                        className="dark:bg-[#172190]"
+                                        className="bg-[#0077b659] dark:bg-[#172190]"
                                     >
                                         <span className="flex items-center gap-1">
                                             <TagIcon />
@@ -44,14 +47,17 @@ export default function ProjectsPage() {
                                     </Badge>
                                 ))}
                             </div>
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-primary hover:underline"
-                            >
-                                View Project
-                            </a>
+                            <div className="flex justify-end">
+                                <a
+                                    href={project.link}
+                                    target="_blank"
+                                    className="text-primary"
+                                >
+                                    <Button variant="secondary">
+                                        View Project
+                                    </Button>
+                                </a>
+                            </div>
                         </CardContent>
                     </Card>
                 ))}

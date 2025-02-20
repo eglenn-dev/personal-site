@@ -78,6 +78,7 @@ export default function ContactForm() {
                     id="message"
                     name="message"
                     placeholder="Your Message"
+                    className="h-24"
                     required
                 />
             </div>
