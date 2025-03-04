@@ -2,6 +2,14 @@
     <h1>Ethan Glenn Portfolio Site</h1>
     <img src="public\web-app-manifest-192x192.png" alt="Logo" width="100" height="100">
     <p>Welcome to my personal website project! This site is built to showcase my portfolio, and other personal information.</p>
+    <p>
+        <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
+        <img alt="React" src="https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=white" />
+        <img alt="Next.js" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
+        <img alt="Tailwind CSS" src="https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
+        <img alt="Vercel" src="https://img.shields.io/badge/-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" />
+        <img alt="shadcn/ui" src="https://img.shields.io/badge/-shadcn/ui-000000?style=flat-square&logo=react&logoColor=white" />
+    </p>
 </div>
 
 ## Features
@@ -13,8 +21,11 @@
 
 ## Technologies Used
 
--   **React**: JavaScript library for building user interfaces.
+-   **React w/ TypeScript**: Library for building reactive user interfaces.
 -   **Next.js**: React framework for server-side rendering and file based routing system.
+-   **Tailwind CSS**: Utility-first CSS framework for styling.
+-   **Vercel**: Cloud platform for static sites and serverless functions.
+-   **Shadcn/ui**: React component library.
 
 ## Installation
 
@@ -39,4 +50,4 @@
 
 Feel free to submit issues or pull requests if you have any suggestions or improvements.
 
-&copy; 2025 Ethan Glenn. All rights reserved.
+Copyright &copy; 2025 Ethan Glenn. All rights reserved.
