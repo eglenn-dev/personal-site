@@ -1,6 +1,8 @@
-# New Personal Site
-
-Welcome to my personal website project! This site is built to showcase my portfolio, and other personal information.
+<div align="center">
+    <h1>Ethan Glenn Portfolio Site</h1>
+    <img src="public\web-app-manifest-192x192.png" alt="Logo" width="100" height="100">
+    <p>Welcome to my personal website project! This site is built to showcase my portfolio, and other personal information.</p>
+</div>
 
 ## Features
 
@@ -18,11 +20,11 @@ Welcome to my personal website project! This site is built to showcase my portfo
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/eglenn-dev/
+    git clone https://github.com/eglenn-dev/personal-site.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd new-personal-site
+    cd personal-site
     ```
 3. Install dependencies:
     ```bash
@@ -37,6 +39,4 @@ Welcome to my personal website project! This site is built to showcase my portfo
 
 Feel free to submit issues or pull requests if you have any suggestions or improvements.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+&copy; 2025 Ethan Glenn. All rights reserved.
