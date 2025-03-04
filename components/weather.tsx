@@ -7,7 +7,7 @@ async function getWeather() {
 
     const latitude = 43.817749;
     const longitude = -111.783011;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=41b040317d7c966d88f7697cb552aba4&units=imperial`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=imperial`;
 
     const response = await fetch(apiUrl, { cache: "no-store" });
     await new Promise((resolve) => setTimeout(resolve, 2000));
