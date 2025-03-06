@@ -7,6 +7,10 @@ import {
     MongoIcon,
     MySqlIcon,
     NextjsIcon,
+    JavaScriptIcon,
+    FirebaseIcon,
+    TailWindIcon,
+    GitIcon,
 } from "./icons";
 
 interface Project {
@@ -97,7 +101,7 @@ export function getExperiences(): Experience[] {
         },
         {
             id: 2,
-            role: "Teaching Assistant",
+            role: "Applied Calculus Teaching Assistant",
             company:
                 "Department of Mathematics - Brigham Young University - Idaho",
             period: "April 2024 - Present",
@@ -126,8 +130,12 @@ export function getTechStack(): TechStack[] {
         { name: "Python", icon: PythonIcon },
         { name: "TypeScript", icon: TypeScriptIcon },
         { name: "React", icon: ReactIcon },
+        { name: "JavaScript", icon: JavaScriptIcon },
         { name: "Node.js", icon: NodeIcon },
         { name: "Next.js", icon: NextjsIcon },
+        { name: "Tailwind", icon: TailWindIcon },
+        { name: "Git", icon: GitIcon },
+        { name: "Firebase", icon: FirebaseIcon },
         { name: "PostgreSQL", icon: PostgresIcon },
         { name: "MongoDB", icon: MongoIcon },
         { name: "MySQL", icon: MySqlIcon },

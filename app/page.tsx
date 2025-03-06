@@ -78,7 +78,7 @@ export default function Home() {
                         {techStack.map((tech) => (
                             <Card
                                 key={tech.name}
-                                className="flex flex-col items-center justify-center p-4 w-28"
+                                className="flex flex-col items-center justify-center p-4 w-20"
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
