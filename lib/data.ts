@@ -60,6 +60,14 @@ export function getProjects(): Project[] {
         },
         {
             id: 3,
+            name: "ClipIt.one",
+            description:
+                "Created a link shortening service with custom analytics and user management. The app is built with Next.js and Firebase, and features a dashboard and analytics page for individual link.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://clipit.one/",
+        },
+        {
+            id: 4,
             name: "AI Summarizer API",
             description:
                 "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
@@ -67,7 +75,7 @@ export function getProjects(): Project[] {
             link: "https://eglenn.app/ai",
         },
         {
-            id: 4,
+            id: 5,
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -75,7 +83,7 @@ export function getProjects(): Project[] {
             link: "https://github.com/eglenn-dev/3d-print-queue",
         },
         {
-            id: 5,
+            id: 6,
             name: "This Portfolio",
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",
