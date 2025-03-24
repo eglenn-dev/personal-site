@@ -48,7 +48,7 @@ export function getProjects(): Project[] {
                 "Tailwind",
                 "Firebase",
             ],
-            link: "https://marknote.one/",
+            link: "https://clipit.one/eg-dev-marknote",
         },
         {
             id: 2,
@@ -56,23 +56,23 @@ export function getProjects(): Project[] {
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://www.linkedin.com/posts/eglenn-dev_mlh-hackathon-byui-activity-7253968115519127552-uleA?utm_source=share&utm_medium=member_desktop",
+            link: "https://clipit.one/eg-dev-ihack",
         },
         {
             id: 3,
             name: "ClipIt.one",
             description:
-                "Created a link shortening service with custom analytics and user management. The app is built with Next.js and Firebase, and features a dashboard and analytics page for individual link.",
+                "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://clipit.one/",
+            link: "https://clipit.one/eg-dev-clipit",
         },
         {
             id: 4,
             name: "AI Summarizer API",
             description:
-                "Created an API in Python that uses Python to scrape websites and PDF documents, then it summarizes the content using Google's Gemini AI model and streams it back to the client.",
+                "Built a Python API that scrapes websites and PDFs, summarizes the content using Google's Gemini AI, and streams the results to the client. The API is hosted on Render.com.",
             technologies: ["Python", "Gemini API", "JavaScript"],
-            link: "https://eglenn.app/ai",
+            link: "https://clipit.one/eg-dev-ai",
         },
         {
             id: 5,
@@ -80,7 +80,7 @@ export function getProjects(): Project[] {
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://github.com/eglenn-dev/3d-print-queue",
+            link: "https://clipit.one/eg-dev-3dqueue",
         },
         {
             id: 6,
@@ -88,7 +88,7 @@ export function getProjects(): Project[] {
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",
             technologies: ["React", "Tailwind", "TypeScript"],
-            link: "https://eglenn.dev/",
+            link: "https://clipit.one/eg-dev",
         },
     ];
 }
