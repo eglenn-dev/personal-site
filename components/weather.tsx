@@ -14,11 +14,24 @@ async function getWeather() {
 }
 
 export default async function WeatherCard() {
-    const data = await getWeather();
-    const sunrise = new Date(data.sys.sunrise * 1000);
-    const sunset = new Date(data.sys.sunset * 1000);
-    const currentTime = new Date();
-    const isNight = currentTime < sunrise || currentTime > sunset;
+    let data;
+    let isNight = false;
+
+    try {
+        data = await getWeather();
+        const sunrise = new Date(data.sys.sunrise * 1000);
+        const sunset = new Date(data.sys.sunset * 1000);
+        const currentTime = new Date();
+        isNight = currentTime < sunrise || currentTime > sunset;
+    } catch (error) {
+        console.log("Failed to fetch weather data:", error);
+        data = {
+            name: "Unknown",
+            main: { temp: 0 },
+            weather: [{ main: "Unknown" }],
+            sys: { sunrise: 0, sunset: 0 },
+        };
+    }
 
     return (
         <div className="card">
