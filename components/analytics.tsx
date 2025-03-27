@@ -1,7 +1,7 @@
 "use client";
 import Script from "next/script";
 
-const Analytics = () => {
+const GoogleAnalytics = () => {
     return (
         <div>
             <Script
@@ -27,4 +27,4 @@ const Analytics = () => {
     );
 };
 
-export default Analytics;
+export default GoogleAnalytics;
