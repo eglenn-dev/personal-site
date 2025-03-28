@@ -8,10 +8,10 @@ export const metadata = {
 
 export default function NotFound() {
     return (
-        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] px-4 text-center">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-20rem)] px-4 text-center">
             <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
             <p className="text-xl mb-8">
-                Oops! The page you&#39;re looking for doesn&#39;t exist.
+                The page you are looking for does not exist.
             </p>
             <Button asChild>
                 <Link href="/">Return to Home</Link>

@@ -9,6 +9,7 @@ const navItems = [
     { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
     { href: "/experience", label: "Experience" },
+    { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
 ];
 
@@ -26,7 +27,8 @@ export default function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200 ${
-                                    pathname === item.href
+                                    pathname.split("/")[1] ===
+                                    item.href.split("/")[1]
                                         ? "border-primary text-primary"
                                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300"
                                 }`}
