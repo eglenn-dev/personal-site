@@ -1,0 +1,31 @@
+# Updates to MarkNote.one
+
+I'm excited to share some major updates to MarkNote.one! This past month has been incredibly productive, with a focus on enhancing the user experience. Key improvements include temporary Notes ([Temp.MarkNote.one](https://temp.marknote.one)), an enhanced note editor, and streamlined UI for a cleaner user interface.
+
+### Enhanced Note Editor
+
+The note editor has been completely revamped to provide a more intuitive and user-friendly experience. The new editor includes features such as:
+
+-   Adjustable preview panes for better visibility of your notes. They can simply be resized by dragging the divider between the editor and preview panes.
+-   A new toolbar that allows users to easily format their notes. The toolbar is now more responsive and provides quick access to formatting options, making it easier to create well-structured notes.
+-   Improved keyboard shortcuts for faster note editing. Shortcuts like `Ctrl + B` for bold and `Ctrl + I` for italics now just work.
+-   List layout to see your notes on the home screen. You can how toggle between list and grid.
+-   Archive notes to keep your home screen clean. Archived notes can be accessed in the Account menu.
+
+### Introduction of Temporary Notes
+
+Temporary notes are a new feature that allows users to create notes that can only be viewed once. This is particularly useful for sharing information that should not be stored permanently. The temporary notes are hosted on a separate subdomain, [Temp.MarkNote.one](https://temp.marknote.one), which allows users to create and share notes without cluttering their main account.
+
+In addition, temporary notes are deleted from the database once they are viewed. This ensures that the information is not stored permanently, making it ideal for sharing sensitive or time-sensitive information.
+
+### Why Host on a Separate Subdomain?
+
+The decision to host temporary notes on a separate subdomain was made to keep the main site clean and focused on markdown note-taking. The goal is to provide a simple and efficient user experience without overwhelming users with too many features. Temporary notes are designed for quick sharing of information that should only be viewed once, making them a perfect fit for a separate subdomain.
+
+After a lot of research into how best to integrate this on a subdomain, I found a great solution using middleware in Next.js. I initially thought that I would have to create and maintain a separate project, but I was apprehensive about having to maintain a whole new project. Long term, I knew it wouldn't be sustainable. I was also concerned that I might violate the DRY (Don't repeat yourself) rule.
+
+Basically, in the middleware file, I was able to rewrite temp.marknote.one subdomain to a path in marknote.one. Then I could keep taking advantage of the same codebase and database integrations that I had already written. This was a great solution that I am very happy with!
+
+### Great Feedback
+
+Huge thanks to everyone who provided feedback! Your input is invaluable. Try out the new features at MarkNote.one and let me know what you think!
