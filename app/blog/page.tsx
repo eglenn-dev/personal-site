@@ -36,9 +36,13 @@ export default async function Page() {
                             >
                                 <ArrowRight className="h-8 w-8" />
                                 <div>{post.title}</div>
-                                {" - "}
-                                <div>{post.description}</div>
-                                <div>{post.date}</div>
+                                <div className="hidden sm:block">{" - "}</div>
+                                <div className="hidden sm:block">
+                                    {post.description}
+                                </div>
+                                <div className="hidden sm:block">
+                                    {post.date}
+                                </div>
                             </Button>
                         </Link>
                     ))}
