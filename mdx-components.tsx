@@ -12,6 +12,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     marginTop: "2rem" /* 32px */,
                     marginBottom: "1rem" /* 16px */,
                 }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
             </h1>
@@ -25,6 +26,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     marginTop: "1.5rem" /* 24px */,
                     marginBottom: "0.75rem" /* 12px */,
                 }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
             </h2>
@@ -38,6 +40,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     marginTop: "1.25rem" /* 20px */,
                     marginBottom: "0.5rem" /* 8px */,
                 }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
             </h3>
@@ -51,6 +54,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     marginTop: "1rem" /* 16px */,
                     marginBottom: "0.5rem" /* 8px */,
                 }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
             </h4>
@@ -58,7 +62,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         p: ({ children }) => (
             <p
                 style={{
-                    marginBottom: "1rem" /* 16px */,
+                    marginBottom: "2rem" /* 16px */,
                     fontSize: "1rem" /* 16px */,
                     lineHeight: "1.5rem" /* 24px */,
                 }}
@@ -82,7 +86,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 style={{
                     listStyleType: "decimal",
                     paddingLeft: "1.25rem" /* 20px */,
-                    marginBottom: "1rem" /* 16px */,
+                    marginBottom: "1.75rem" /* 16px */,
                 }}
             >
                 {children}
@@ -93,7 +97,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 style={{
                     marginBottom: "0.5rem" /* 8px */,
                     fontSize: "1rem" /* 16px */,
-                    lineHeight: "1.5rem" /* 24px */,
+                    lineHeight: "1.75rem" /* 24px */,
                 }}
             >
                 {children}
@@ -106,7 +110,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     color: "#3b82f6" /* blue-500 */,
                     textDecoration: "underline",
                 }}
-                target="_blank"
+                target={href.includes("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
             >
                 {children}
