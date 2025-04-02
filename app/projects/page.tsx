@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/data";
-import { TagIcon } from "@/lib/icons";
+import { OpenIcon, TagIcon } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
@@ -54,7 +54,8 @@ export default function ProjectsPage() {
                                     className="text-primary"
                                 >
                                     <Button variant="secondary">
-                                        View Project
+                                        <span>View Project</span>
+                                        <OpenIcon />
                                     </Button>
                                 </a>
                             </div>

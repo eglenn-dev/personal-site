@@ -31,7 +31,7 @@ export default async function Page() {
                             className="text-white"
                         >
                             <Button
-                                className="flex flex-row gap-2 hover:text-gray-300"
+                                className="flex flex-row gap-2"
                                 variant="secondary"
                             >
                                 <ArrowRight className="h-8 w-8" />

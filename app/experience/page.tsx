@@ -22,7 +22,9 @@ export default function ExperiencePage() {
                 {experiences.map((experience) => (
                     <Card key={experience.id}>
                         <CardHeader>
-                            <CardTitle>{experience.role}</CardTitle>
+                            <CardTitle className="text-lg text-[#0077b6] dark:text-white">
+                                {experience.role}
+                            </CardTitle>
                             <CardDescription>
                                 {experience.company} | {experience.period}
                             </CardDescription>

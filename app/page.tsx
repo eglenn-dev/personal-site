@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import { GithubIcon, LinkedInIcon } from "@/lib/icons";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
     const techStack = getTechStack();
@@ -36,9 +37,14 @@ export default function Home() {
                             <LinkedInIcon height={30} width={30} />
                         </a>
                     </div>
-                    <Button asChild>
-                        <Link href="/experience">View My Experience</Link>
-                    </Button>
+                    <div className="flex flex-row gap-4">
+                        <Link href="/experience">
+                            <Button>
+                                <span>My Experience</span>
+                                <ArrowRight className="ml-1" size={16} />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
                 <div>
                     <h2 className="text-2xl font-semibold mb-4">
@@ -61,14 +67,15 @@ export default function Home() {
                             responsive. Built initially as a 36 hour coding
                             challenge.
                         </p>
-                        <Button variant="outline" asChild>
-                            <a
-                                href="https://clipit.one/eg-dev-marknote"
-                                target="_blank"
-                            >
-                                View Project
-                            </a>
-                        </Button>
+                        <a
+                            href="https://clipit.one/eg-dev-marknote"
+                            target="_blank"
+                        >
+                            <Button variant="outline">
+                                <span>View Project</span>
+                                <ArrowRight className="ml-1" size={16} />
+                            </Button>
+                        </a>
                     </div>
                 </div>
             </div>
