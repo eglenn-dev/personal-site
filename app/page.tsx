@@ -62,7 +62,10 @@ export default function Home() {
                             challenge.
                         </p>
                         <Button variant="outline" asChild>
-                            <a href="https://marknote.one" target="_blank">
+                            <a
+                                href="https://clipit.one/eg-dev-marknote"
+                                target="_blank"
+                            >
                                 View Project
                             </a>
                         </Button>
