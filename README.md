@@ -46,8 +46,4 @@
     npm run dev
     ```
 
-## Contributing
-
-Feel free to submit issues or pull requests if you have any suggestions or improvements.
-
 Copyright &copy; 2025 Ethan Glenn. All rights reserved.
