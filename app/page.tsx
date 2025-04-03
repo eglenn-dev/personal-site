@@ -23,14 +23,14 @@ export default function Home() {
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
-                            href="https://github.com/eglenn-dev"
+                            href="https://clipit.one/eg-dev-github"
                             target="_blank"
                             rel="noreferrer"
                         >
                             <GithubIcon height={30} width={30} />
                         </a>
                         <a
-                            href="https://linkedin.com/in/eglenn-dev"
+                            href="https://clipit.one/eg-dev-linkedin"
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -38,9 +38,9 @@ export default function Home() {
                         </a>
                     </div>
                     <div className="flex flex-row gap-4">
-                        <Link href="/experience">
+                        <Link href="/projects">
                             <Button>
-                                <span>My Experience</span>
+                                <span>My Projects</span>
                                 <ArrowRight className="ml-1" size={16} />
                             </Button>
                         </Link>
