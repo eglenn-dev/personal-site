@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React, { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
