@@ -1,0 +1,61 @@
+# ClipIt.one Update
+
+Author: Ethan Glenn - 2025-04-07
+
+I mentioned in my last blog post that I was working on an API for [ClipIt.one](https://clipit.one). I am thrilled to announce that the update has hit production. I have added some documentation and a way to generate an API key that is attached to you account.
+
+I am still working on the API features, and working to expand them. Soon there will be support for managing your links and viewing their analytics. For now, API support is limited to creating links.
+
+Below is the same information that can be found at [clipit.one/home/api-keys](https://clipit.one/home/api-keys)
+
+---
+
+## API Documentation
+
+This is the API documentation for ClipIt. You can use this API to create and manage your links.
+
+Creating a Link
+To create a link, send a POST request to `/api/link` with the following JSON body:
+
+```
+{
+    "url": "https://example.com"
+}
+```
+
+Make sure to include the Authorization header with your API key:
+
+```
+Authorization: Bearer <YOUR_API_KEY>
+```
+
+### Response
+
+On success, you will receive a JSON response with the following structure:
+
+```
+{
+    "destinationUrl": "https://example.com",
+    "linkSlug": "<GENERATED_LINK_SLUG>",
+    "fullUrl": "https://clipit.one/<GENERATED_LINK_SLUG>",
+    "status": "success",
+    "message": "Link created successfully"
+}
+```
+
+If there is an error, you will receive a JSON response with the following structure:
+
+```
+{
+    "status": "error",
+    "message": "Error message"
+}
+```
+
+### Error Codes
+
+400: Bad Request - Invalid URL or missing parameters.
+
+401: Unauthorized - Invalid API key.
+
+500: Internal Server Error - Something went wrong on our end.
