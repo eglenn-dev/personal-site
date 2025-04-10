@@ -28,6 +28,7 @@ export default function Home() {
                             href="https://clipit.one/eg-dev-github"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="GitHub Profile"
                         >
                             <GithubIcon height={30} width={30} />
                         </a>
@@ -35,6 +36,7 @@ export default function Home() {
                             href="https://clipit.one/eg-dev-linkedin"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="LinkedIn Profile"
                         >
                             <LinkedInIcon height={30} width={30} />
                         </a>
