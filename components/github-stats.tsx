@@ -25,7 +25,7 @@ export default async function GithubStats() {
             {language && (
                 <>
                     <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div className="flex items-center gap-1.5 text-violet-600 dark:text-violet-500">
+                    <div className="flex items-center gap-1.5 text-violet-600 dark:text-violet-400">
                         <Code className="h-4 w-4" />
                         <span>{language}</span>
                     </div>
