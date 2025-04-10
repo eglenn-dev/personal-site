@@ -112,7 +112,7 @@ export function getExperiences(): Experience[] {
             role: "Applied Calculus Teaching Assistant",
             company:
                 "Department of Mathematics - Brigham Young University - Idaho",
-            period: "April 2024 - Present",
+            period: "April 2024 - April 2025",
             responsibilities: [
                 "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
                 "Worked with two instructors to offer grading support and tutoring to multiple sections of the course.",
