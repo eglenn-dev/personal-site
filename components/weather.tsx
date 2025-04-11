@@ -73,7 +73,7 @@ export default async function WeatherCard() {
 
 export async function WeatherSkeleton() {
     return (
-        <div className="card">
+        <div className="card animate-pulse">
             <div className="container">
                 <div className="cloud front">
                     <span className="leftFront" />
