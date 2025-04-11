@@ -1,6 +1,6 @@
 import {
     getYearContributions,
-    getMostUsedLanguages,
+    getMostUsedLanguage,
 } from "@/lib/get-github-stats";
 import {
     HoverCard,
@@ -16,7 +16,7 @@ export default async function GithubStats() {
 
     try {
         contributions = await getYearContributions();
-        language = await getMostUsedLanguages();
+        language = await getMostUsedLanguage();
     } catch (error) {
         console.error("Error fetching GitHub stats:", error);
     }
