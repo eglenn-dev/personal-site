@@ -1,3 +1,7 @@
+interface LanguageData {
+    [key: string]: number;
+}
+
 export async function getYearContributions(): Promise<number> {
     try {
         const now = new Date();
@@ -91,20 +95,27 @@ export async function getMostUsedLanguages() {
                 return acc;
             }, {});
 
-        const languageKeys = Object.keys(languages);
-        if (languageKeys.length === 0) {
-            return null;
-        }
-
-        let topLanguage = languageKeys[0];
-        languageKeys.forEach((key) => {
-            if (languages[key] > languages[topLanguage]) {
-                topLanguage = key;
-            }
-        });
-        return topLanguage;
+        return languages;
     } catch (error) {
         console.error("An error occurred:", error);
         return null;
     }
+}
+
+export async function getMostUsedLanguage() {
+    const languages: LanguageData = await getMostUsedLanguages();
+
+    const languageKeys = Object.keys(languages);
+    if (languageKeys.length === 0) {
+        return null;
+    }
+
+    let topLanguage = languageKeys[0];
+    languageKeys.forEach((key) => {
+        if (languages[key] > languages[topLanguage]) {
+            topLanguage = key;
+        }
+    });
+
+    return topLanguage;
 }
