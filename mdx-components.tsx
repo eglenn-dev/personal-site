@@ -137,7 +137,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         pre: ({ children }) => (
-            <pre className="overflow-x-auto text-white p-4 rounded-lg border border-gray-700 bg-gray-800 dark:bg-gray-900 dark:border-gray-700 mb-4">
+            <pre className="overflow-x-auto text-black dark:text-white p-4 rounded-lg border border-gray-700 bg-gray-800 dark:bg-gray-900 dark:border-gray-700 mb-4">
                 {children}
             </pre>
         ),
