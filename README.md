@@ -25,7 +25,7 @@
 -   **Next.js**: React framework for server-side rendering and file based routing system.
 -   **Tailwind CSS**: Utility-first CSS framework for styling.
 -   **Vercel**: Cloud platform for static sites and serverless functions.
--   **Shadcn/ui**: React component library.
+-   **shadcn/ui**: React component library.
 
 ## Installation
 
@@ -42,8 +42,19 @@
     npm install
     ```
 4. Start the development server:
+
     ```bash
     npm run dev
     ```
 
-Copyright &copy; 2025 Ethan Glenn. All rights reserved.
+5. Open your browser and go to `http://localhost:3000`.
+
+## Page Data
+
+-   **Home**: Dynamically generated using react-server-components, and server-side-rendering (SSR) with Next.js.
+-   **Projects**: Generated statically at build time using Next.js.
+-   **Experience**: Generated statically at build time using Next.js.
+-   **Blog**: Page and posts on a dynamic route, and generated at build time using Next.js and `generateStaticParams()`.
+-   **Contact**: Static route with form submission handled with server actions on Vercel.
+
+Copyright &copy; 2025 [Ethan Glenn](http://ethanglenn.dev). All rights reserved.
