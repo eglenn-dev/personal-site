@@ -23,6 +23,17 @@ To create a link, send a POST request to `/api/link` with the following JSON bod
 }
 ```
 
+The `url` field is required and must be a valid URL.
+
+There is an optional `slug` field that can be used to specify a custom slug for the link. If not provided, a random slug will be generated.
+
+```
+{
+    "url": "https://example.com",
+    "slug": "custom-slug"
+}
+```
+
 Make sure to include the Authorization header with your API key:
 
 ```
