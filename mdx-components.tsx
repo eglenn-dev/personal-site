@@ -62,9 +62,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         p: ({ children }) => (
             <p
                 style={{
-                    marginBottom: "2rem" /* 16px */,
+                    marginBottom: "1.5rem" /* 16px */,
                     fontSize: "1rem" /* 16px */,
-                    lineHeight: "1.5rem" /* 24px */,
+                    lineHeight: "1.75rem" /* 24px */,
                 }}
             >
                 {children}
