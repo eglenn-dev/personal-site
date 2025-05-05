@@ -1,5 +1,11 @@
 const slugs: Slug[] = [
     {
+        slug: "senior-project-update",
+        title: "Senior Project Update",
+        description: "An AI-Powered Resume Assistant",
+        date: "2025-05-05",
+    },
+    {
         slug: "clipit-update",
         title: "ClipIt.one API Update",
         description: "New API features ready!",
