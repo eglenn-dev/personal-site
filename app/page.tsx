@@ -8,9 +8,11 @@ import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
 import { GithubIcon, LinkedInIcon } from "@/lib/icons";
 import { ArrowRight } from "lucide-react";
+import { getLatestBlogPost } from "@/posts/blog-list";
 
 export default function Home() {
     const techStack = getTechStack();
+    const latestPost = getLatestBlogPost();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -45,6 +47,12 @@ export default function Home() {
                         <Link href="/projects">
                             <Button>
                                 <span>My Projects</span>
+                                <ArrowRight className="ml-1" size={16} />
+                            </Button>
+                        </Link>
+                        <Link href={`/blog/${latestPost.slug}`}>
+                            <Button variant="outline">
+                                <span>Latest Blog Post</span>
                                 <ArrowRight className="ml-1" size={16} />
                             </Button>
                         </Link>

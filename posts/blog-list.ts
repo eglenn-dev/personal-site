@@ -45,3 +45,7 @@ export function getSlugs() {
 export function getBlogPosts() {
     return slugs;
 }
+
+export function getLatestBlogPost() {
+    return slugs[0];
+}
