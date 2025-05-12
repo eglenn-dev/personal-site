@@ -38,6 +38,22 @@ export function getProjects(): Project[] {
     return [
         {
             id: 1,
+            name: "I-Hack Winner",
+            description:
+                "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
+            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            link: "https://clipit.one/eg-dev-ihack",
+        },
+        {
+            id: 2,
+            name: "AI Resume Builder - In Progress",
+            description:
+                "A full stack web app the generates resumes based on a user provided job description from a URL. The app uses Gemini API to generate the resume, React for the frontend, and Python for the backend.",
+            technologies: ["Python", "TypeScript", "React", "MongoDB"],
+            link: "https://clipit.one/eg-dev-resumly",
+        },
+        {
+            id: 3,
             name: "MarkNote.one",
             description:
                 "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
@@ -49,14 +65,6 @@ export function getProjects(): Project[] {
                 "Firebase",
             ],
             link: "https://clipit.one/eg-dev-marknote",
-        },
-        {
-            id: 2,
-            name: "I-Hack Winner",
-            description:
-                "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://clipit.one/eg-dev-ihack",
         },
         {
             id: 3,
@@ -89,12 +97,12 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Manager & Web Developer",
+            role: "Team Lead & Web Developer",
             company:
                 "David O. McKay Library - Brigham Young University - Idaho",
             period: "July 2024 - Present",
             responsibilities: [
-                "Manage a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
+                "Helped supervise a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
                 "Proposed, designed, implemented, and deployed a full-stack web app in React with TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
                 "Develop and maintain library website of 30+ pages, writing JavaScript, HTML, and CSS to enhance user experience and maintain site functionality.",
             ],
