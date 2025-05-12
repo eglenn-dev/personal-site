@@ -37,16 +37,14 @@ export default async function Page() {
                                         {post.date}
                                     </time>
                                 </div>
-
                                 <div className="space-y-2">
-                                    <h2 className="text-xl font-semibold tracking-tight group-hover:text-primary transition-colors">
+                                    <h2 className="text-lg text-[#0077b6] dark:text-white font-semibold tracking-tight group-hover:text-primary transition-colors">
                                         {post.title}
                                     </h2>
                                     <p className="text-muted-foreground line-clamp-2">
                                         {post.description}
                                     </p>
                                 </div>
-
                                 <div className="pt-2 flex justify-between items-center">
                                     <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
                                         Read more{" "}

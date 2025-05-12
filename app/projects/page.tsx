@@ -38,7 +38,7 @@ export default function ProjectsPage() {
                                     <Badge
                                         key={tech}
                                         variant="secondary"
-                                        className="bg-[#0077b659] dark:bg-[#172190]"
+                                        className="bg-[#0077b659] hover:bg-[#0077b659] dark:bg-[#172190] hover:dark:bg-[#172190]"
                                     >
                                         <span className="flex items-center gap-1">
                                             <TagIcon />
