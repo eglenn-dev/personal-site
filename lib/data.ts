@@ -98,8 +98,7 @@ export function getExperiences(): Experience[] {
         {
             id: 1,
             role: "Team Lead & Web Developer",
-            company:
-                "David O. McKay Library - Brigham Young University - Idaho",
+            company: "David O. McKay Library - BYU-Idaho",
             period: "July 2024 - Present",
             responsibilities: [
                 "Helped supervise a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
@@ -110,8 +109,7 @@ export function getExperiences(): Experience[] {
         {
             id: 2,
             role: "Applied Calculus Teaching Assistant",
-            company:
-                "Department of Mathematics - Brigham Young University - Idaho",
+            company: "Department of Mathematics - BYU-Idaho",
             period: "April 2024 - April 2025",
             responsibilities: [
                 "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
@@ -121,8 +119,7 @@ export function getExperiences(): Experience[] {
         {
             id: 3,
             role: "Lab Technician & Front-End Developer",
-            company:
-                "David O. McKay Library - Brigham Young University - Idaho",
+            company: "David O. McKay Library - BYU-Idaho",
             period: "June 2023 - July 2024",
             responsibilities: [
                 "Suggested and implemented changes that would reduce page load time by 0.6 seconds and reduce repository from 10,770 to 1382 files.",

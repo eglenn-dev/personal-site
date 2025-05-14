@@ -25,8 +25,12 @@ export default function ExperiencePage() {
                             <CardTitle className="text-lg text-[#0077b6] dark:text-white">
                                 {experience.role}
                             </CardTitle>
-                            <CardDescription>
-                                {experience.company} | {experience.period}
+                            <CardDescription className="flex flex-col sm:flex-row sm:gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                <span>{experience.company}</span>
+                                <span className="hidden sm:inline-block">
+                                    |
+                                </span>
+                                <span>{experience.period}</span>
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
