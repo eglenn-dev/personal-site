@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: "/",
             disallow: "/api",
         },
-        sitemap: "https://eglenn.dev/sitemap.xml",
+        sitemap: "https://ethanglenn.dev/sitemap.xml",
     };
 }
