@@ -22,47 +22,44 @@ export default async function GithubStats() {
     }
 
     return (
-        <div>
-            <HoverCard>
-                <HoverCardTrigger>
-                    <div className="mb-4 select-none cursor-help inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
-                        <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                            <GitCommit className="h-5 w-5" />
-                            <span>{contributions} contributions</span>
-                        </div>
-
-                        {language && (
-                            <>
-                                <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                                <div className="flex items-center gap-1.5 text-violet-600 dark:text-violet-400">
-                                    <Code className="h-4 w-4" />
-                                    <span>{language}</span>
-                                </div>
-                            </>
-                        )}
+        <HoverCard>
+            <HoverCardTrigger href="#">
+                <div className="mb-4 select-none cursor-wait inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+                    <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                        <GitCommit className="h-5 w-5" />
+                        <span>{contributions} contributions</span>
                     </div>
-                </HoverCardTrigger>
-                <HoverCardContent>
-                    <div className="flex flex-col gap-2">
-                        <h3 className="text-lg font-semibold flex gap-2 items-center">
-                            <GithubIcon /> GitHub Stats
-                        </h3>
-                        <p className="text-sm">
-                            My commit activity in the last year, and most used
-                            programming language from{" "}
-                            <a
-                                href="https://clipit.one/eg-dev-github"
-                                target="_blank"
-                                className="underline"
-                            >
-                                GitHub
-                            </a>
-                            .
-                        </p>
-                    </div>
-                </HoverCardContent>
-            </HoverCard>
-        </div>
+                    {language && (
+                        <>
+                            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+                            <div className="flex items-center gap-1.5 text-violet-600 dark:text-violet-400">
+                                <Code className="h-4 w-4" />
+                                <span>{language}</span>
+                            </div>
+                        </>
+                    )}
+                </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+                <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-semibold flex gap-2 items-center">
+                        <GithubIcon /> GitHub Stats
+                    </h3>
+                    <p className="text-sm">
+                        My commit activity in the last year, and most used
+                        programming language from{" "}
+                        <a
+                            href="https://clipit.one/eg-dev-github"
+                            target="_blank"
+                            className="underline"
+                        >
+                            GitHub
+                        </a>
+                        .
+                    </p>
+                </div>
+            </HoverCardContent>
+        </HoverCard>
     );
 }
 

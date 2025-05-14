@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Time() {
-    const [currentTime, setCurrentTime] = useState(new Date());
+    const [currentTime, setCurrentTime] = useState<Date | null>(null);
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
@@ -14,9 +14,10 @@ export default function Time() {
 
     return (
         <span>
-            {currentTime.toLocaleTimeString("en-US", {
-                timeZone: "America/Denver",
-            })}
+            {currentTime &&
+                currentTime.toLocaleTimeString("en-US", {
+                    timeZone: "America/Denver",
+                })}
         </span>
     );
 }

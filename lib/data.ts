@@ -67,7 +67,7 @@ export function getProjects(): Project[] {
             link: "https://clipit.one/eg-dev-marknote",
         },
         {
-            id: 3,
+            id: 4,
             name: "ClipIt.one",
             description:
                 "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
@@ -75,7 +75,7 @@ export function getProjects(): Project[] {
             link: "https://clipit.one/eg-dev-clipit",
         },
         {
-            id: 4,
+            id: 5,
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -83,7 +83,7 @@ export function getProjects(): Project[] {
             link: "https://clipit.one/eg-dev-3dqueue",
         },
         {
-            id: 5,
+            id: 6,
             name: "This Portfolio",
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",
