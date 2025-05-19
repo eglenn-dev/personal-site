@@ -59,6 +59,34 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </h4>
         ),
+        h5: ({ children }) => (
+            <h5
+                style={{
+                    fontSize: "1.125rem" /* 18px */,
+                    lineHeight: "1.5rem" /* 24px */,
+                    fontWeight: "500",
+                    marginTop: "0.75rem" /* 12px */,
+                    marginBottom: "0.5rem" /* 8px */,
+                }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
+            >
+                {children}
+            </h5>
+        ),
+        h6: ({ children }) => (
+            <h6
+                style={{
+                    fontSize: "1rem" /* 16px */,
+                    lineHeight: "1.5rem" /* 24px */,
+                    fontWeight: "500",
+                    marginTop: "0.5rem" /* 8px */,
+                    marginBottom: "0.5rem" /* 8px */,
+                }}
+                id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
+            >
+                {children}
+            </h6>
+        ),
         p: ({ children }) => (
             <p
                 style={{
@@ -137,9 +165,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         pre: ({ children }) => (
-            <pre className="overflow-x-auto text-black dark:text-white p-4 rounded-lg border border-gray-700 bg-gray-800 dark:bg-gray-900 dark:border-gray-700 mb-4">
+            <pre className="whitespace-pre-wrap break-words text-black dark:text-white p-4 rounded-lg border border-gray-700 bg-gray-800 dark:bg-gray-900 dark:border-gray-700 mb-4">
                 {children}
             </pre>
+        ),
+        code: ({ children }) => (
+            <code
+                style={{
+                    overflowX: "auto",
+                    maxWidth: "100%",
+                    display: "inline-flex",
+                }}
+            >
+                {children}
+            </code>
         ),
         ...components,
     };
