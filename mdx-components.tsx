@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
+import Link from "next/link";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
@@ -131,19 +132,43 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </li>
         ),
-        a: ({ children, href }) => (
-            <a
-                href={href}
-                style={{
-                    color: "#3b82f6" /* blue-500 */,
-                    textDecoration: "underline",
-                }}
-                target={href.includes("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-            >
-                {children}
-            </a>
-        ),
+        a: ({ children, href }) => {
+            if (
+                href &&
+                (href.startsWith("http") ||
+                    href.startsWith("https") ||
+                    href.startsWith("mailto") ||
+                    href.startsWith("www"))
+            ) {
+                return (
+                    <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            color: "#3b82f6" /* blue-500 */,
+                            textDecoration: "underline",
+                        }}
+                    >
+                        {children}
+                    </a>
+                );
+            } else if ((href && href.startsWith("/")) || href.startsWith("#")) {
+                return (
+                    <Link
+                        href={href}
+                        style={{
+                            color: "#3b82f6" /* blue-500 */,
+                            textDecoration: "underline",
+                        }}
+                        target={href.includes("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                    >
+                        {children}
+                    </Link>
+                );
+            }
+        },
         img: (props) => (
             <Image
                 sizes="100vw"
