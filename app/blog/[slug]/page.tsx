@@ -14,7 +14,7 @@ export default async function Page({
     return (
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="mb-8">
-                <Button variant="outline" asChild className="mb-6 -ml-2">
+                <Button variant="outline" asChild className="mb-1 -ml-2">
                     <Link href="/blog" className="flex items-center gap-1">
                         <ChevronLeft className="h-4 w-4" />
                         Back to all posts
