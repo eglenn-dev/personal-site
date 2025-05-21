@@ -1,10 +1,10 @@
-# Fixing Web Scraping in My Senior Project
+# Implementing Web Scraping: Senior Project Update
 
 _May 22, 2025_
 
 ## Background
 
-If you don't know, my senior project is an AI resume builder. In essence, users give it an old resume or type in their experiences and education, plus a link to a job posting. Then, the app spits out a resume tailored for that specific job. It will match your experience to what the needs of the job posting, without fabricating any information. I go over it in more detail in my [previous post](/blog/senior-project-update).
+If you don't know, my senior project is an AI resume builder. In essence, users give it an old resume or type in their experiences and education, plus a link to a job posting. Then, the app creates a resume tailored for that specific job. It will match your experience to what the needs of the job posting, without fabricating any information. I go over it in more detail in my [previous post](/blog/senior-project-update).
 
 ## The Problem
 
@@ -20,7 +20,7 @@ I immediately jumped on Stack Overflow and Reddit to see how other people solved
 
 So, I changed my backend code to use Selenium instead. I even gave it a three-second delay to make sure slow sites had time to load everything. And boom, it worked great locally. I did some more testing locally, then pushed the changes to my deployed version. And, of course, it immediately broke.
 
-## The Problem Pt. 2
+## The Problem Part 2
 
 I dug into the server logs and quickly figured out that Selenium wasn't working because Chrome wasn't installed on the server. This was a bit tricky because I was hosting my API on Render, and I don't have full control to just install whatever I want on their servers.
 
@@ -30,11 +30,11 @@ I looked into how to do this and was super happy to find out Render would let me
 
 ## The Solution
 
-Turns out, getting Docker set up was easier than I thought it would be. It took me a few tries to get the [`Dockerfile`](#my-dockerfile) (the instruction list for Docker) configured right, mostly because I'd never used Docker before. But soon enough, it was working on my local machine, and then, more importantly, it was working in production on Render! I just had to update my custom domain to point to the new Docker container, and my frontend was good to go. [See Dockerfile below.](#my-dockerfile)
+Turns out, getting Docker set up was easier than I thought it would be. It took me a few tries to get the [`Dockerfile`](#my-dockerfile) (the instruction list for Docker) configured right, mostly because I'd never used Docker before. But soon enough, it was working on my local machine, and then, more importantly, it was working in production on Render! I just had to update my custom domain to point to the new Docker container, and my frontend was good to go.
 
 ## What I Learned
 
-This whole thing was a good learning experience, kind of like what real software development is often like:
+This what a great learning experience for me. It was a good reminder of what real software development is often like. Here are some of the key takeaways:
 
 -   **Modern Websites are Tricky:** Scraping websites that use a lot of JavaScript needs more than just simple tools.
 -   **My Computer vs. The Server:** Just because it works on your machine doesn't mean it'll work everywhere else. Docker is great for fixing this.
