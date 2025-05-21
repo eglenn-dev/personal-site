@@ -1,0 +1,114 @@
+# Fixing Web Scraping in My Senior Project
+
+_May 22, 2025_
+
+## Background
+
+If you don't know, my senior project is an AI resume builder. In essence, users give it an old resume or type in their experiences and education, plus a link to a job posting. Then, the app spits out a resume tailored for that specific job. It will match your experience to what the needs of the job posting, without fabricating any information. I go over it in more detail in my [previous post](/blog/senior-project-update).
+
+## The Problem
+
+Working on my senior project has been a great experience. I've learned a lot, and I'm pretty proud that it's hit over 14,000 lines of code and about 140 files (not counting `node_modules`, of course!). It is my biggest project to date!
+
+Anyway, I wanted to share a problem I ran into and how I fixed it. I was getting to the deployment phase. At first, my tests seemed fine, and getting it online started off okay. I could log in, use the basic features, and then came the web scraping.
+
+This is where my project looks at the job posting URL and grabs the important info. I quickly realized that some URLs just weren't working. I realized the most of my tests were on server-rendered code, so limited client side rendering, which initially was great at first. The problem is that many sites these days load their content using JavaScript _after_ the page first loads. My first try using Beautiful Soup just wasn't cutting it for these sites because it only saw the initial, often empty, HTML.
+
+## Research
+
+I immediately jumped on Stack Overflow and Reddit to see how other people solved this. I found out pretty fast that Selenium was a common fix. It basically uses a real browser (like Chrome) in the background, so all the JavaScript can run, and _then_ you can scrape the page. Sounded perfect!
+
+So, I changed my backend code to use Selenium instead. I even gave it a three-second delay to make sure slow sites had time to load everything. And boom, it worked great locally. I did some more testing locally, then pushed the changes to my deployed version. And, of course, it immediately broke.
+
+## The Problem Pt. 2
+
+I dug into the server logs and quickly figured out that Selenium wasn't working because Chrome wasn't installed on the server. This was a bit tricky because I was hosting my API on Render, and I don't have full control to just install whatever I want on their servers.
+
+I started chatting with Gemini about what to do. It didn't take long for Docker to come up as a possible solution. With Docker, I could basically pack up my app _with_ Chrome and all its other needs into a "container," and then run that. Seemed great, but the idea of containers was completely new to me.
+
+I looked into how to do this and was super happy to find out Render would let me run a Docker container on their platform. So, I didn't have to go hunting for a new place to host my api. Nice!
+
+## The Solution
+
+Turns out, getting Docker set up was easier than I thought it would be. It took me a few tries to get the [`Dockerfile`](#my-dockerfile) (the instruction list for Docker) configured right, mostly because I'd never used Docker before. But soon enough, it was working on my local machine, and then, more importantly, it was working in production on Render! I just had to update my custom domain to point to the new Docker container, and my frontend was good to go. [See Dockerfile below.](#my-dockerfile)
+
+## What I Learned
+
+This whole thing was a good learning experience, kind of like what real software development is often like:
+
+-   **Modern Websites are Tricky:** Scraping websites that use a lot of JavaScript needs more than just simple tools.
+-   **My Computer vs. The Server:** Just because it works on your machine doesn't mean it'll work everywhere else. Docker is great for fixing this.
+-   **Fixing Things Step-by-Step:** My solution went from Beautiful Soup, to Selenium, then to Selenium _inside_ Docker.
+-   **Don't Be Afraid to Ask/Search:** Places like Stack Overflow and Reddit, and even AI tools like Gemini, are invaluable for finding solutions to problems.
+-   **Learning New Stuff is Good:** Docker seemed a bit scary at first, but now I've got another useful skill under my belt.
+
+This whole adventure didn't just fix my project's backend; it also taught me a lot about deploying apps and making sure they run smoothly. If I wasn't deploying my frontend in a serverless enviornment, I might have done this for the whole app.
+
+Stay tuned for more updates on my senior project! I should have a deployment version ready in the next week or two.
+
+On to the next challenge!
+
+---
+
+### My Dockerfile
+
+```dockerfile
+# Use the official Python image from Docker Hub
+FROM python:3.13.3-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Set environment variables to prevent Python from writing .pyc files and to ensure stdout/stderr are flushed
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    gnupg \
+    libnss3 \
+    libgconf-2-4 \
+    libxi6 \
+    libgconf-2-4 \
+    libxrender1 \
+    libxtst6 \
+    libfontconfig1 \
+    libjpeg-dev \
+    libfreetype6 \
+    libpng-dev \
+    zlib1g \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Google Chrome
+# Download the signing key and add it
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    # Add the Google Chrome repository to my sources list
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
+    # Update apt-get sources again after adding the repo
+    apt-get update && \
+    # Install google-chrome-stable
+    apt-get install -y google-chrome-stable --no-install-recommends && \
+    # Clean up apt-get caches again
+    rm -rf /var/lib/apt/lists/*
+
+# Set the environment variable for Python to not write .pyc files
+RUN python -m venv .venv
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Copy the requirements file
+COPY api/requirements.txt .
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY api/ .
+
+# Expose the port the app runs on
+EXPOSE 10000
+
+# Set the environment variable for Flask
+ENV FLASK_APP=app.py
+
+# Run the application
+CMD ["/app/.venv/bin/gunicorn", "--bind", "0.0.0.0:10000", "--timeout", "90", "app:app"]
+```
