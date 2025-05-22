@@ -1,4 +1,4 @@
-import { getSlugs } from "@/posts/blog-list";
+import { getSlugs, getBlogPosts } from "@/posts/blog-list";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -54,15 +54,18 @@ export async function generateMetadata({
 }) {
     const { slug } = await params;
 
-    const formatSlugToTitle = (slug: string) => {
-        return slug
-            .split("-")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
-    };
+    const posts = getBlogPosts();
+    const post = posts.find((post) => post.slug === slug);
+
+    if (!post) {
+        return {
+            title: "Blog | Ethan Glenn",
+            description: "Ethan Glenn's blog",
+        };
+    }
 
     return {
-        title: `${formatSlugToTitle(slug)} | Ethan Glenn`,
-        description: `Read ${formatSlugToTitle(slug)} by Ethan Glenn`,
+        title: post?.title,
+        description: post?.description,
     };
 }
