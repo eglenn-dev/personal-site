@@ -190,7 +190,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         pre: ({ children }) => (
-            <pre className="whitespace-pre-wrap break-words text-black dark:text-white p-4 rounded-lg border border-gray-700 bg-gray-800 dark:bg-gray-900 dark:border-gray-700 mb-4">
+            <pre className="border border-[#7f8081] bg-white dark:bg-[#0a0a0a] p-4 rounded-md">
                 {children}
             </pre>
         ),
@@ -200,6 +200,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                     overflowX: "auto",
                     maxWidth: "100%",
                     display: "inline-flex",
+                    paddingBottom: "0.25rem" /* 4px */,
                 }}
             >
                 {children}

@@ -1,7 +1,7 @@
 const slugs: Slug[] = [
     {
         slug: "implementing-web-scraping",
-        title: "Fixing Web Scraping in My Senior Project",
+        title: "Implementing Web Scraping: Senior Project Update",
         description: "A deep dive into the challenges of web scraping.",
         date: "2025-05-20",
         hidden: false,
