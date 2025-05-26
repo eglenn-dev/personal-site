@@ -5,12 +5,12 @@ import {
     NodeIcon,
     PostgresIcon,
     MongoIcon,
-    MySqlIcon,
     NextjsIcon,
     JavaScriptIcon,
     FirebaseIcon,
     TailWindIcon,
     GitIcon,
+    DockerIcon,
 } from "./icons";
 
 interface Project {
@@ -141,8 +141,8 @@ export function getTechStack(): TechStack[] {
         { name: "Tailwind", icon: TailWindIcon },
         { name: "Git", icon: GitIcon },
         { name: "Firebase", icon: FirebaseIcon },
-        { name: "PostgreSQL", icon: PostgresIcon },
         { name: "MongoDB", icon: MongoIcon },
-        { name: "MySQL", icon: MySqlIcon },
+        { name: "Docker", icon: DockerIcon },
+        { name: "PostgreSQL", icon: PostgresIcon },
     ];
 }
