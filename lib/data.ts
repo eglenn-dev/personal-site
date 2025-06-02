@@ -38,6 +38,20 @@ export function getProjects(): Project[] {
     return [
         {
             id: 1,
+            name: "Resumly.pro",
+            description:
+                "A full stack web app the generates resumes based on a user provided job posting URL. Custom Python backend scraps important data from the job posting, and Gemini API is used to generate a tailored resume.",
+            technologies: [
+                "Python",
+                "TypeScript",
+                "React",
+                "MongoDB",
+                "Docker",
+            ],
+            link: "https://clipit.one/eg-dev-resumly",
+        },
+        {
+            id: 2,
             name: "I-Hack Winner",
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
@@ -45,21 +59,13 @@ export function getProjects(): Project[] {
             link: "https://clipit.one/eg-dev-ihack",
         },
         {
-            id: 2,
-            name: "AI Resume Builder - In Progress",
-            description:
-                "A full stack web app the generates resumes based on a user provided job description from a URL. The app uses Gemini API to generate the resume, React for the frontend, and Python for the backend.",
-            technologies: ["Python", "TypeScript", "React", "MongoDB"],
-            link: "https://clipit.one/eg-dev-resumly",
-        },
-        {
             id: 3,
             name: "MarkNote.one",
             description:
                 "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
             technologies: [
-                "React",
                 "TypeScript",
+                "React",
                 "Next.js",
                 "Tailwind",
                 "Firebase",
@@ -71,7 +77,7 @@ export function getProjects(): Project[] {
             name: "ClipIt.one",
             description:
                 "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
+            technologies: ["TypeScript", "React", "Next.js", "Firebase"],
             link: "https://clipit.one/eg-dev-clipit",
         },
         {

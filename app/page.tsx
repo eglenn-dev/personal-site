@@ -9,6 +9,7 @@ import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
 import { GithubIcon, LinkedInIcon } from "@/lib/icons";
 import { ArrowRight } from "lucide-react";
 import { getLatestBlogPost } from "@/posts/blog-list";
+import { FileText } from "lucide-react";
 
 export default function Home() {
     const techStack = getTechStack();
@@ -18,11 +19,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 className="text-4xl font-bold mb-6">Ethan Glenn</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div>
+                <div id="main">
                     <h2 className="text-2xl font-semibold mb-4">
                         Software Engineer
                     </h2>
-                    <p className="mb-4">
+                    <p className="text-base mb-4">
                         Currently working for BYU-Idaho as a Web Developer.
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
@@ -58,29 +59,27 @@ export default function Home() {
                         </Link>
                     </div>
                 </div>
-                <div>
+                <div id="featured-project">
                     <h2 className="text-2xl font-semibold mb-4">
                         Featured Project
                     </h2>
                     <div className="bg-muted p-4 rounded-lg">
-                        <h3 className="text-xl font-medium mb-2">
-                            {/* eslint-disable @next/next/no-img-element */}
-                            <img
-                                className="h-6 inline align-middle mr-2 mb-1"
-                                src="./marknote.png"
-                                alt="MarkNote.one logo"
-                            />
-                            MarkNote.one
+                        <h3 className="text-xl font-semibold mb-2 flex flex-row items-center gap-2">
+                            <FileText className="inline text-purple-600 dark:text-purple-400" />
+                            Resumly.pro{" "}
+                            <span className="hidden sm:inline-block">
+                                - Your Resume Assistant
+                            </span>
                         </h3>
-                        <p className="text-sm mb-2">
-                            Created an note taking web-app with markdown
-                            support, auto-saving, and live previews. With React
-                            server-side component rendering, the app is fast and
-                            responsive. Built initially as a 36 hour coding
-                            challenge.
+                        <p className="text-base mb-2">
+                            Simplify your job applications with AI-powered
+                            resume tailoring. Just provide the job posting, and
+                            Resumly.pro will highlight your relevant experience
+                            using the information you share. It then delivers a
+                            professionally formatted resume that stands out.
                         </p>
                         <a
-                            href="https://clipit.one/eg-dev-marknote"
+                            href="https://clipit.one/eg-dev-resumly"
                             target="_blank"
                         >
                             <Button variant="outline">
@@ -92,7 +91,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div>
+                <div id="tech-stack">
                     <h2 className="text-2xl font-semibold mb-6">
                         My Tech Stack
                     </h2>
@@ -115,7 +114,7 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div className="pt-0 sm:pt-8">
+                <div id="weather" className="pt-0 sm:pt-8">
                     <Suspense fallback={<WeatherSkeleton />}>
                         <WeatherCard />
                     </Suspense>

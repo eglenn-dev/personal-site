@@ -1,9 +1,16 @@
 const slugs: Slug[] = [
     {
+        slug: "resumly-launch",
+        title: "Introducing Resumly.pro",
+        description: "Your AI Co-Pilot for Crafting Job-Winning Resumes",
+        date: "2025-06-01",
+        hidden: false,
+    },
+    {
         slug: "implementing-web-scraping",
         title: "Implementing Web Scraping: Senior Project Update",
         description: "A deep dive into the challenges of web scraping.",
-        date: "2025-05-20",
+        date: "2025-05-22",
         hidden: false,
     },
     {
