@@ -65,7 +65,7 @@ export async function generateMetadata({
     }
 
     return {
-        title: post?.title,
+        title: `${post?.title} | Ethan Glenn`,
         description: post?.description,
     };
 }

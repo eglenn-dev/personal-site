@@ -145,10 +145,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                            color: "#3b82f6" /* blue-500 */,
-                            textDecoration: "underline",
-                        }}
+                        className="text-blue-500 dark:text-blue-400 underline"
                     >
                         {children}
                     </a>
@@ -157,16 +154,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 return (
                     <Link
                         href={href}
-                        style={{
-                            color: "#3b82f6" /* blue-500 */,
-                            textDecoration: "underline",
-                        }}
+                        className="text-blue-500 dark:text-blue-400 underline"
                         target={href.includes("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
                     >
                         {children}
                     </Link>
                 );
+            } else {
+                return <span></span>;
             }
         },
         img: (props) => (
