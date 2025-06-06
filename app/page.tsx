@@ -72,11 +72,10 @@ export default function Home() {
                             </span>
                         </h3>
                         <p className="text-base mb-2">
-                            Simplify your job applications with AI-powered
-                            resume tailoring. Just provide the job posting, and
-                            Resumly.pro will highlight your relevant experience
-                            using the information you share. It then delivers a
-                            professionally formatted resume that stands out.
+                            Resumly.pro is a resume optimization tool that helps
+                            you create tailored resumes for job applications.
+                            It&apos;s designed to help you get past Applicant
+                            Tracking Systems (ATS) and land more interviews.
                         </p>
                         <a
                             href="https://clipit.one/eg-dev-resumly"

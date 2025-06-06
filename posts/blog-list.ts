@@ -1,8 +1,9 @@
 const slugs: Slug[] = [
     {
         slug: "resumly-launch",
-        title: "Introducing Resumly.pro",
-        description: "AI for Crafting Job-Winning Resumes",
+        title: "My Senior Project",
+        description:
+            "How I Built an AI to Help You Escape the Resume Black Hole",
         date: "2025-06-09",
         hidden: false,
     },

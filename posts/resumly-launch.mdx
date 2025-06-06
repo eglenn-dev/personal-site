@@ -1,56 +1,76 @@
 import Image from "next/image";
 
-# Introducing Resumly.pro: AI for Crafting Job-Winning Resumes
+# My Senior Project
+
+### How I Built an AI to Help You Escape the Resume Black Hole
 
 _2025-06-09_
 
-**TL;DR:** After months of hard work, I'm incredibly excited to introduce [Resumly.pro](https://resumly.pro), a free resume builder that [tailors your resume](#how-does-it-work?) to job postings. It uses AI to analyze job descriptions and generate resumes that will stand out to employers. It's [built](#how-did-i-make-it?) with Python, TypeScript, Next.js, Tailwind CSS, and MongoDB. Try it out at [Resumly.pro](https://resumly.pro)!
+**TL;DR:** For my senior project, I built [Resumly.pro](https://resumly.pro), a free AI-powered resume builder. It analyzes job descriptions and tailors your resume to match, helping you beat the bots and stand out to recruiters. It's built with Next.js, Python, and MongoDB. [Give it a try!](https://resumly.pro)
 
-See my last post about how I implemented [web scraping](/blog/implementing-web-scraping).
+---
 
-## Why Resumly.pro?
+As a student preparing to enter the job market, I've heard the horror stories and seen them firsthand. Talented friends sending out dozens of applications only to hear nothing back. Their expertly crafted resumes were disappearing into the "black hole" of online applications, likely filtered out by an Applicant Tracking System (ATS) before a human ever saw them.
 
-I started Resumly.pro to help people create better resumes. I've seen countless talented individuals struggle to articulate their value on paper, sending resumes into the 'black hole' of online applications. The job market isn't just competitive; it's now navigating a [flood of AI-generated applications](https://www.cbsnews.com/news/fake-job-seekers-flooding-market-artificial-intelligence/), making it even harder for genuine candidates to break through. I realized that if AI is part of the problem, it can also be a powerful part of the solution, for real people.
+The problem is getting worse. The job market is now navigating a [flood of low-effort, AI-generated applications](https://www.cbsnews.com/news/fake-job-seekers-flooding-market-artificial-intelligence/), making it even harder for genuine candidates to get noticed.
 
-[<Image
-    src="/blog/resumly-landing.png"
-    alt="Resumly.pro landing page screenshot"
-    width={600}
-    height={300}
-    className="my-4 mx-auto rounded-lg shadow-lg max-w-full h-auto"
-/>](https://resumly.pro)
+I realized that if AI was part of the problem, it could also be the solution. That’s why I built **Resumly.pro**.
 
-## How does it work?
+<a href="https://resumly.pro" target="_blank" rel="noopener noreferrer">
+    <Image
+        src="/blog/resumly-landing.png"
+        alt="Resumly.pro landing page screenshot"
+        width={1200}
+        height={630}
+        className="my-8 rounded-lg shadow-lg max-w-full h-auto border"
+    />
+</a>
 
-Resumly.pro simplifies the often daunting task of resume tailoring. Our goal is to get you from job description to application-ready resume in minutes, for free. Here’s the magic:
+## How It Works: Your 2-Minute Resume Tailor
 
-1. **Provide Your Information:** You start by uploading a previous resume or filling out a form with your details. You only need to do this once and keep it updated, and Resumly.pro worries about storing the information.
-2. **Provide a Job Posting URL:** You paste a link to a job posting that you want to apply for. Resumly.pro will analyze the job description and extract the key requirements.
-3. **Generate a Tailored Resume:** Based on the job description, Resumly.pro will generate a tailored resume that highlights your skills and experiences relevant to the job. It will focus on keywords and phrases that are important for the position, ensuring that your resume stands out to both ATS (Applicant Tracking Systems) and human recruiters. You can also make changes to the generated resume if needed.
-4. **Download and Apply:** You can download your tailored resume in PDF format and use it to apply for the job.
+My goal was to create a tool that gets you from job description to tailored resume in minutes.
 
-## How did I make it?
+1.  **Create Your Master Profile:** First, you provide your career information by uploading an existing resume or filling out a simple form. This becomes your central profile, which you can update anytime.
+2.  **Paste the Job URL:** Grab the link to a job you're excited about and paste it into Resumly.pro.
+3.  **Let the AI Do the Work:** Behind the scenes, the app scrapes the job description and uses AI to identify the most critical keywords, skills, and qualifications. It then intelligently rewrites your resume summary and highlights your most relevant experiences to match what the employer is looking for.
+4.  **Review, Edit, and Download:** You get a fully-tailored resume draft. You can make final tweaks in the editor and then download a professional, ATS-friendly PDF, ready to submit.
 
-Resumly.pro is a platform I developed leveraging a modern technology stack including Python, TypeScript, Next.js, Tailwind CSS, and MongoDB Atlas. Its robust backend, powered by Flask, efficiently handles resume generation and job description analysis. The user-friendly frontend is built with Next.js and styled with Tailwind CSS for a responsive and contemporary design. Deployment is optimized across Render (Flask backend) and Vercel (Next.js frontend), with data managed on MongoDB Atlas.
+## How I Built It: The Tech Stack and Architecture
 
-This robust setup means Resumly.pro is fast, reliable, and can grow with our users, ensuring a smooth experience even during peak job hunting seasons.
+Building a full-stack AI application was a fantastic challenge. Here are the technologies I chose and why:
 
-Here is a simple diagram of the architecture:
+-   **Frontend: Next.js & Tailwind CSS**: I chose **Next.js** for its powerful features like server-side rendering (SSR) and static site generation (SSG), which lead to a faster user experience and better SEO. The component-based architecture of React made it easy to build a modular and maintainable UI. **Tailwind CSS** allowed me to design a modern, responsive interface rapidly without leaving my JSX.
+
+-   **Backend: Python, Flask, and Gemini:** Python was the natural choice for the backend due to its incredible ecosystem for AI and web scraping. I used **Flask**, a lightweight web framework, to build the API that powers the application. Key libraries included `Selenium`, and `BeautifulSoup` for parsing job descriptions (which I wrote about in my [previous post](/blog/implementing-web-scraping)), and Google **Gemini API** for extracting key content.
+
+-   **Database: MongoDB Atlas:** Resume data is inherently unstructured. One person's experience section looks completely different from another's. **MongoDB**'s flexible document-based model was a perfect fit, allowing me to store complex, nested user data without a rigid schema. Using **MongoDB Atlas** made deployment, scaling, and management a breeze.
+
+-   **Deployment: Vercel & Render:** I adopted a split-deployment strategy for optimal performance. The Next.js frontend is deployed on **Vercel**, which is purpose-built for it and offers incredible speed and a seamless CI/CD workflow. The Python/Flask backend is hosted on **Render**, which provides a simple and scalable environment for running services and background workers.
+
+Here’s a high-level look at how these pieces fit together:
 
 <Image
     src="/blog/resumly-chart.png"
     alt="Resumly.pro Architecture Diagram"
     width={600}
     height={300}
-    className="my-4 mx-auto rounded-lg shadow-lg max-w-full h-auto"
+    className="my-4 mx-auto rounded-lg shadow-lg max-w-full h-auto border"
 />
 
-## Who is it for?
+## Key Challenges and Learnings
 
-Whether you're a recent graduate, a career changer, or a seasoned professional looking for your next challenge, Resumly.pro is designed to give you an edge.
+This project taught me more than any single class could have.
 
-## Testing and Feedback
+-   **The Scraping Problem:** Reliably scraping data from diverse job sites (like Indeed, LinkedIn, etc.) was incredibly difficult. Each has a different structure. I solved this by using Gemini to extract key content from the job posting, which significantly reduced the complexity of my scraping logic.
 
-I've held private recorded testing session with about 10 individuals to observe how they interact with the platform. This has provided invaluable insights into areas that need improvement, such as the user interface and the resume generation process.
+-   **Prompt Engineering:** Getting the AI to generate high-quality, relevant resume text that didn't sound robotic was an iterative process. I spent dozens of hours refining my prompts, learning how to give the model the right context and constraints to produce useful output.
 
-I am still open to feedback, so if you have any suggestions or encounter any issues, please reach out to me through [LinkedIn](https://www.linkedin.com/in/eglenn-dev/), or my [contact form](/contact).
+-   **User Feedback is Gold:** The most valuable insights came from my 10 user testing sessions. Watching someone use my app revealed friction points I never would have noticed on my own. For example, I learned that users wanted more control over the final generated text, which led me to build a more robust inline editor.
+
+## Try It and Let Me Know What You Think!
+
+Whether you're a recent graduate, a career changer, or just tired of customizing your resume by hand for every single application, **Resumly.pro** is for you.
+
+This project has been a massive undertaking, and I'm incredibly proud of the result. It's still a work in progress, and I'm eager for feedback.
+
+If you have any suggestions or find a bug, please don't hesitate to reach out on [LinkedIn](https://www.linkedin.com/in/eglenn-dev/) or via my [contact form](/contact).
