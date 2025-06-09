@@ -4,7 +4,7 @@ const slugs: Slug[] = [
         title: "My Senior Project",
         description:
             "How I Built an AI to Help You Escape the Resume Black Hole",
-        date: "2025-06-09",
+        date: "2025-06-10",
         hidden: false,
     },
     {
