@@ -138,8 +138,8 @@ export function getExperiences(): Experience[] {
 
 export function getTechStack(): TechStack[] {
     return [
-        { name: "Python", icon: PythonIcon },
         { name: "TypeScript", icon: TypeScriptIcon },
+        { name: "Python", icon: PythonIcon },
         { name: "React", icon: ReactIcon },
         { name: "JavaScript", icon: JavaScriptIcon },
         { name: "Node.js", icon: NodeIcon },
