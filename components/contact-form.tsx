@@ -8,6 +8,7 @@ import { sendContactEmail } from "@/app/actions";
 export default function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [error, setError] = useState<boolean>(false);
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -18,7 +19,7 @@ export default function ContactForm() {
         return () => {
             document.head.removeChild(script);
         };
-    }, []);
+    }, [error]);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -35,9 +36,31 @@ export default function ContactForm() {
             setIsSubmitting(false);
             return;
         }
-        await sendContactEmail(name, email, message, responseToken);
+        const response = await sendContactEmail(
+            name,
+            email,
+            message,
+            responseToken
+        );
+        if (!response) {
+            setError(true);
+            setIsSubmitting(false);
+            setTimeout(() => setError(false), 5000);
+            return;
+        }
         setIsSubmitting(false);
         setSubmitSuccess(true);
+    }
+
+    if (error) {
+        return (
+            <div>
+                <p className="text-red-600 mt-4">
+                    An error occurred while sending your message. Please try
+                    again later.
+                </p>
+            </div>
+        );
     }
 
     if (submitSuccess) {

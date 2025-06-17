@@ -7,8 +7,11 @@ export async function sendContactEmail(
     userEmail: string,
     reason: string,
     responseToken: string
-) {
-    if (responseToken === "") return "";
+): Promise<boolean> {
+    if (responseToken === "") {
+        console.error("Captcha token is empty");
+        return false;
+    }
     const response = await fetch(
         "https://www.google.com/recaptcha/api/siteverify",
         {
@@ -41,7 +44,10 @@ Best regards,
 
 Ethan Glenn`,
         });
+        console.log("Email sent successfully to ", userEmail);
+        return true;
     } else {
-        return `Failed to verify captcha token: ${data}`;
+        console.error("Captcha verification failed", data);
+        return false;
     }
 }
