@@ -1,18 +1,6 @@
 "use server";
 import sanitizeHtml from "sanitize-html";
-import { sendEmail } from "@/lib/email";
-
-interface EmailOptions {
-    options: {
-        from: string;
-        to: string;
-        bcc: string;
-        replyTo?: string;
-        subject: string;
-        text: string;
-        html: string;
-    };
-}
+import { Resend } from "resend";
 
 export async function sendContactEmail(
     name: string,
@@ -36,18 +24,23 @@ export async function sendContactEmail(
         const safeName = sanitizeHtml(name);
         const safeReason = sanitizeHtml(reason);
 
-        const data: EmailOptions = {
-            options: {
-                from: "no-reply@eglenn.dev",
-                to: userEmail,
-                bcc: "ethansglenn@gmail.com",
-                replyTo: "no-reply@eglenn.dev",
-                subject: "Thanks for Reaching Out!",
-                text: `Hey ${safeName}, Thank you for reaching out to me. I've got your email and will get back to you as soon as possible. Reason: ${safeReason}`,
-                html: `<p>Hey ${safeName},</p><p>Thank you for reaching out to me. I've got your email and will get back to you as soon as possible.</p><p>Reason: ${safeReason}</p><p>- Ethan</p>`,
-            },
-        };
-        await sendEmail(data);
+        const resend = new Resend(process.env.RESEND_API_KEY);
+
+        await resend.emails.send({
+            from: "Ethan Glenn <ethan@hello.eglenn.dev>",
+            to: userEmail,
+            bcc: "ethan@eglenn.dev",
+            subject: `Thanks for reaching out!`,
+            text: `Hey ${safeName},
+
+Thank you for reaching out! I received your message and will get back to you as soon as possible.
+
+Reason for contact: ${safeReason}
+
+Best regards,
+
+Ethan Glenn`,
+        });
     } else {
         return `Failed to verify captcha token: ${data}`;
     }

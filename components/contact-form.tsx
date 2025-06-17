@@ -20,7 +20,7 @@ export default function ContactForm() {
         };
     }, []);
 
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitSuccess(false);
@@ -35,7 +35,7 @@ export default function ContactForm() {
             setIsSubmitting(false);
             return;
         }
-        sendContactEmail(name, email, message, responseToken);
+        await sendContactEmail(name, email, message, responseToken);
         setIsSubmitting(false);
         setSubmitSuccess(true);
     }
