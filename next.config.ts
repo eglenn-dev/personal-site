@@ -3,11 +3,12 @@ import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
     pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
-    async rewrites() {
+    async redirects() {
         return [
             {
                 source: "/home",
                 destination: "/",
+                permanent: false,
             },
         ];
     },
