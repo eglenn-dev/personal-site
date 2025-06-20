@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         .filter((post) => post.hidden === false)
         .map((post) => ({
             url: `https://ethanglenn.dev/blog/${post.slug}`,
-            lastModified: new Date(),
+            lastModified: new Date(post.date),
             changeFrequency: "monthly" as const,
             priority: 0.5,
         }));
