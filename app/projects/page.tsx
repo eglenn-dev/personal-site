@@ -7,8 +7,9 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/data";
-import { OpenIcon, TagIcon } from "@/lib/icons";
+import { OpenIcon, TagIcon, ArticleIcon } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata = {
     title: "Projects | Ethan Glenn",
@@ -47,17 +48,37 @@ export default function ProjectsPage() {
                                     </Badge>
                                 ))}
                             </div>
-                            <div className="flex justify-end">
-                                <a
-                                    href={project.link}
-                                    target="_blank"
-                                    className="text-primary"
-                                >
-                                    <Button variant="secondary">
-                                        <span>View Project</span>
-                                        <OpenIcon />
-                                    </Button>
-                                </a>
+                            <div className="flex flex-row gap-2 justify-end">
+                                {project.article && (
+                                    <Link
+                                        href={project.article}
+                                        target={
+                                            project.article.startsWith("http")
+                                                ? "_blank"
+                                                : "_self"
+                                        }
+                                    >
+                                        <Button variant="outline">
+                                            <span>Read</span>
+                                            <ArticleIcon />
+                                        </Button>
+                                    </Link>
+                                )}
+                                {project.link && (
+                                    <Link
+                                        href={project.link}
+                                        target={
+                                            project.link.startsWith("http")
+                                                ? "_blank"
+                                                : "_self"
+                                        }
+                                    >
+                                        <Button variant="secondary">
+                                            <span>View</span>
+                                            <OpenIcon />
+                                        </Button>
+                                    </Link>
+                                )}
                             </div>
                         </CardContent>
                     </Card>

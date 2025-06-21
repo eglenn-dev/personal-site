@@ -18,7 +18,8 @@ interface Project {
     name: string;
     description: string;
     technologies: string[];
-    link: string;
+    link?: string;
+    article?: string;
 }
 
 interface Experience {
@@ -49,6 +50,7 @@ export function getProjects(): Project[] {
                 "Docker",
             ],
             link: "https://clipit.one/eg-dev-resumly",
+            article: "/blog/resumly-launch",
         },
         {
             id: 2,
@@ -56,7 +58,7 @@ export function getProjects(): Project[] {
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            link: "https://clipit.one/eg-dev-ihack",
+            article: "https://clipit.one/eg-dev-ihack",
         },
         {
             id: 3,
@@ -71,6 +73,7 @@ export function getProjects(): Project[] {
                 "Firebase",
             ],
             link: "https://clipit.one/eg-dev-marknote",
+            article: "/blog/marknote-update",
         },
         {
             id: 4,
@@ -79,6 +82,7 @@ export function getProjects(): Project[] {
                 "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
             technologies: ["TypeScript", "React", "Next.js", "Firebase"],
             link: "https://clipit.one/eg-dev-clipit",
+            article: "/blog/clipit-launch",
         },
         {
             id: 5,
