@@ -6,10 +6,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
-import { GithubIcon, LinkedInIcon } from "@/lib/icons";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
 import { getLatestBlogPost } from "@/posts/blog-list";
-import { FileText } from "lucide-react";
+import {
+    GithubIcon,
+    LinkedInIcon,
+    ReactIcon,
+    TypeScriptIcon,
+    PythonIcon,
+    DockerIcon,
+    MongoIcon,
+} from "@/lib/icons";
 
 export default function Home() {
     const techStack = getTechStack();
@@ -64,26 +71,33 @@ export default function Home() {
                         Featured Project
                     </h2>
                     <div className="bg-muted p-4 rounded-lg">
-                        <h3 className="text-xl font-semibold mb-2 flex flex-row items-center gap-2">
-                            <FileText className="inline text-purple-600 dark:text-purple-400" />
-                            Resumly.pro{" "}
-                            <span className="hidden sm:inline-block">
-                                - Your Resume Assistant
-                            </span>
-                        </h3>
+                        <div className="flex flex-row items-center justify-between mb-2">
+                            <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
+                                <FileText className="inline text-purple-600 dark:text-purple-400" />
+                                Resumly.pro
+                            </h3>
+                            <div className="flex flex-row gap-2">
+                                <TypeScriptIcon width={20} height={20} />
+                                <ReactIcon width={20} height={20} />
+                                <PythonIcon width={20} height={20} />
+                                <DockerIcon width={20} height={20} />
+                                <MongoIcon width={20} height={20} />
+                            </div>
+                        </div>
                         <p className="text-base mb-2">
-                            Resumly.pro is a resume optimization tool that helps
-                            you create tailored resumes for job applications.
-                            It&apos;s designed to help you get past Applicant
-                            Tracking Systems (ATS) and land more interviews.
+                            For my senior project, I built Resumly.pro, a free
+                            AI-powered resume builder. It analyzes job
+                            descriptions and tailors your resume to match,
+                            helping you beat the bots and stand out to
+                            recruiters.
                         </p>
                         <a
                             href="https://clipit.one/eg-dev-resumly"
                             target="_blank"
                         >
                             <Button variant="outline">
-                                <span>View Project</span>
-                                <ArrowRight className="ml-1" size={16} />
+                                <span>View</span>
+                                <ExternalLinkIcon className="ml-1" size={16} />
                             </Button>
                         </a>
                     </div>
