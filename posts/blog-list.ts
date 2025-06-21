@@ -43,6 +43,13 @@ const slugs: Slug[] = [
         hidden: false,
     },
     {
+        slug: "3d-print-queue",
+        title: "3D Print Queue",
+        description: "Created for the BYU-Idaho David O. McKay McKay Library",
+        date: "2025-02-13",
+        hidden: false,
+    },
+    {
         slug: "marknote-launch",
         title: "Simple Markdown Note Taking",
         description: "MarkNote.one is live!",

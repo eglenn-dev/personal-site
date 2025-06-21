@@ -1,0 +1,54 @@
+import Image from "next/image";
+
+# 3D Print Request System
+
+### Created for the BYU-Idaho David O. McKay McKay Library
+
+_2025-02-13_
+
+## Stats 📊
+
+Stats about the project from the 2024-2025 school year:
+
+- Lines of code: 5,693
+- Requests submitted: 1,100+
+
+## Background 📓
+
+BYU-Idaho has a 3D print lab that allows students to submit prints through a web form. The lab has a limited number of printers and a large number of requests, so the lab assistants need a way to prioritize the requests. This project is a web application that allows students to submit 3D print requests and allows lab assistants to manage the requests. The project is built using React, TypeScript, and Firebase (Realtime Database and Cloud Storage).
+
+<Image
+    src="/blog/3d-home.png"
+    alt="3D Print Request System"
+    width={800}
+    height={450}
+/>
+
+## Features ✅
+
+- **User Authentication**: Lab employees can log in using their own credentials.
+- **Print Request Submission**: Students can submit 3D print requests through a web form. This includes the upload of a 3D model file. Requests are stored in the Firebase Realtime Database and can be managed by lab assistants.
+- **Request Management**: Lab assistants can view, edit, and delete print requests. They can also mark requests as completed and upload information of the finished prints.
+- **File Storage**: 3D model files are stored in Firebase Cloud Storage.
+- **Status Updates**: Students can view the status of their print requests using their confirmation number.
+
+<Image
+    src="/blog/3d-request.png"
+    alt="3D Print Queue"
+    width={800}
+    height={450}
+/>
+
+## Technologies Used 🛠️
+
+- **React w/ TypeScript**: The frontend is built using React and TypeScript. React is a JavaScript library for building user interfaces, and TypeScript is a superset of JavaScript that adds static types.
+- **Next.js**: The frontend is built using Next.js, a React framework that enables server-side rendering and static site generation. This was also used as the backend API management for Auth, File Uploads, and Database interactions.
+- **Firebase**: The project uses Firebase Realtime Database to store print requests and Firebase Cloud Storage to store 3D model files. Firebase Authentication is used for user authentication.
+
+## Hosting Environment ☁️
+
+- **Render.com**: The web application is hosted on Render.com, a cloud platform that provides hosting for web applications. Render.com offers a simple and cost-effective way to deploy and scale web applications.
+
+## Disclaimer ⚠️
+
+This project was a work product and the code is owned by BYU-Idaho. I am not at liberty to post the code publicly. If you would like to use this project as a reference for your own work, please [contact me](/contact).
