@@ -58,7 +58,7 @@ const slugs: Slug[] = [
     },
 ];
 
-interface Slug {
+export interface Slug {
     slug: string;
     title: string;
     date: string;
@@ -75,5 +75,6 @@ export function getBlogPosts() {
 }
 
 export function getLatestBlogPost() {
-    return slugs[0];
+    const publicPosts = slugs.filter((slug) => !slug.hidden);
+    return publicPosts[0];
 }
