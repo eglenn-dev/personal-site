@@ -4,13 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/app/actions";
+import { useTheme } from "next-themes";
 
 export default function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [error, setError] = useState<boolean>(false);
+    const [mounted, setMounted] = useState(false);
+    const { theme } = useTheme();
 
     useEffect(() => {
+        setMounted(true);
         const script = document.createElement("script");
         script.src = "https://www.google.com/recaptcha/api.js";
         script.async = true;
@@ -105,10 +109,13 @@ export default function ContactForm() {
                     required
                 />
             </div>
-            <div
-                className="g-recaptcha rounded-md"
-                data-sitekey="6LeyQHUqAAAAAKBc193G987C3kL40yFHwAmg-LQ5"
-            ></div>
+            {mounted && (
+                <div
+                    className="g-recaptcha rounded-md"
+                    data-sitekey="6LeyQHUqAAAAAKBc193G987C3kL40yFHwAmg-LQ5"
+                    data-theme={theme === "dark" ? "dark" : "light"}
+                ></div>
+            )}
             <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
