@@ -31,7 +31,7 @@ export default function Home() {
                         Software Engineer
                     </h2>
                     <p className="text-base mb-4">
-                        Currently working for BYU-Idaho as a Web Developer.
+                        Team Lead & Web Developer at BYU-Idaho
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
@@ -70,7 +70,7 @@ export default function Home() {
                     <h2 className="text-2xl font-semibold mb-4">
                         Featured Project
                     </h2>
-                    <div className="bg-muted p-4 rounded-lg">
+                    <div className="bg-zinc-200 dark:bg-muted p-4 rounded-lg">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
                                 <FileText className="inline text-purple-600 dark:text-purple-400" />
