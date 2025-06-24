@@ -156,3 +156,35 @@ export function getTechStack(): TechStack[] {
         { name: "PostgreSQL", icon: PostgresIcon },
     ];
 }
+
+export function getJsonLdData() {
+    return `{
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Ethan Glenn",
+      "jobTitle": "Full Stack Developer",
+      "description": "Full Stack Developer specializing in TypeScript, React, Next.js, and Python. I create efficient, scalable web applications and have experience leading development teams.",
+      "url": "https://ethanglenn.dev",
+      "sameAs": [
+        "https://github.com/eglenn-dev",
+        "https://linkedin.com/in/eglenn-dev"
+      ],
+      "knowsAbout": [
+        "TypeScript",
+        "Python",
+        "React",
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "Firebase",
+        "Docker",
+        "Web Development",
+        "Full Stack Development"
+      ],
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ethanglenn.dev"
+      }
+    }
+  `;
+}

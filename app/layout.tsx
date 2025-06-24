@@ -6,12 +6,14 @@ import Footer from "@/components/footer";
 import GoogleAnalytics from "@/components/analytics";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getJsonLdData } from "@/lib/data";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "Ethan Glenn",
-    description: "Portfolio website showcasing my projects and experience",
+    description:
+        "Full Stack Developer specializing in TypeScript, React, Next.js, and Python. I create efficient, scalable web applications and have experience leading development teams.",
 };
 
 export default function RootLayout({
@@ -37,6 +39,11 @@ export default function RootLayout({
                 <GoogleAnalytics />
                 <Analytics />
                 <SpeedInsights />
+                <script
+                    type="application/ld+json"
+                    key="product-jsonld"
+                    dangerouslySetInnerHTML={{ __html: getJsonLdData() }}
+                ></script>
             </body>
         </html>
     );
