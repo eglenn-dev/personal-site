@@ -186,7 +186,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         pre: ({ children }) => (
-            <pre className="border border-[#7f8081] bg-white dark:bg-[#0a0a0a] p-4 rounded-md">
+            <pre className="border border-[#7f8081] bg-white dark:bg-[#0a0a0a] p-4 rounded-md mb-4">
                 {children}
             </pre>
         ),
