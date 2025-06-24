@@ -66,12 +66,21 @@ export interface Slug {
     hidden: boolean;
 }
 
-export function getSlugs() {
+export function getAllSlugs() {
     return slugs.map(({ slug }) => slug);
 }
 
-export function getBlogPosts() {
+export function getSlugs() {
+    return slugs.filter((slug) => !slug.hidden).map(({ slug }) => slug);
+}
+
+export function getAllBlogPosts() {
     return slugs;
+}
+
+export function getBlogPosts() {
+    const publicPosts = slugs.filter((slug) => !slug.hidden);
+    return publicPosts;
 }
 
 export function getLatestBlogPost() {

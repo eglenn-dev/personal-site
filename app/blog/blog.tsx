@@ -20,7 +20,8 @@ export default function BlogPage({ posts }: BlogPageProps) {
         const results = posts.filter(
             (post) =>
                 post.title.toLowerCase().includes(lowerSearchTerm) ||
-                post.description.toLowerCase().includes(lowerSearchTerm)
+                post.description.toLowerCase().includes(lowerSearchTerm) ||
+                post.slug.toLowerCase().includes(lowerSearchTerm)
         );
         setFilteredPosts(results);
     }, [posts, searchTerm]);

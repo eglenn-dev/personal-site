@@ -1,4 +1,4 @@
-import { getSlugs, getBlogPosts } from "@/posts/blog-list";
+import { getAllSlugs, getAllBlogPosts } from "@/posts/blog-list";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,7 +39,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-    const slugs = getSlugs();
+    const slugs = getAllSlugs();
     return slugs.map((slug) => ({
         slug,
     }));
@@ -54,7 +54,7 @@ export async function generateMetadata({
 }) {
     const { slug } = await params;
 
-    const posts = getBlogPosts();
+    const posts = getAllBlogPosts();
     const post = posts.find((post) => post.slug === slug);
 
     if (!post) {
