@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface BlogPageProps {
     posts: Slug[];
@@ -19,9 +20,10 @@ export default function BlogPage({ posts }: BlogPageProps) {
         const lowerSearchTerm = searchTerm.toLowerCase();
         const results = posts.filter(
             (post) =>
-                post.title.toLowerCase().includes(lowerSearchTerm) ||
-                post.description.toLowerCase().includes(lowerSearchTerm) ||
-                post.slug.toLowerCase().includes(lowerSearchTerm)
+                (post.title.toLowerCase().includes(lowerSearchTerm) ||
+                    post.description.toLowerCase().includes(lowerSearchTerm) ||
+                    post.slug.toLowerCase().includes(lowerSearchTerm)) &&
+                post.hidden === false
         );
         setFilteredPosts(results);
     }, [posts, searchTerm]);
@@ -80,9 +82,8 @@ export default function BlogPage({ posts }: BlogPageProps) {
                 </div>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {filteredPosts
-                    .filter((post) => post.hidden === false)
-                    .map((post) => (
+                {filteredPosts.length > 0 ? (
+                    filteredPosts.map((post) => (
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
@@ -113,7 +114,22 @@ export default function BlogPage({ posts }: BlogPageProps) {
                                 </div>
                             </article>
                         </Link>
-                    ))}
+                    ))
+                ) : (
+                    <div className="col-span-full text-center text-muted-foreground">
+                        <p className="text-lg">No posts found.</p>
+                        <p className="text-sm">
+                            Try adjusting your search term.
+                        </p>
+                        <Button
+                            className="mt-4"
+                            variant="secondary"
+                            onClick={() => setSearchTerm("")}
+                        >
+                            View All Posts
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     );
