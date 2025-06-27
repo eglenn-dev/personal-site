@@ -5,6 +5,8 @@ import {
     CardDescription,
     CardContent,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { TagIcon } from "lucide-react";
 import { getExperiences } from "@/lib/data";
 
 export const metadata = {
@@ -32,6 +34,22 @@ export default function ExperiencePage() {
                                 </span>
                                 <span>{experience.period}</span>
                             </CardDescription>
+                            <div className="flex flex-wrap gap-2 pt-2 mb-2">
+                                {experience.skills.map((skill, index) => (
+                                    <Badge
+                                        key={`${index}-${skill}`}
+                                        variant="secondary"
+                                        className="bg-[#0077b659] hover:bg-[#0077b659] dark:bg-[#172190] hover:dark:bg-[#172190]"
+                                    >
+                                        <span className="flex items-center gap-1">
+                                            <TagIcon className="w-3 h-3" />
+                                            <span className="text-xs">
+                                                {skill}
+                                            </span>
+                                        </span>
+                                    </Badge>
+                                ))}
+                            </div>
                         </CardHeader>
                         <CardContent>
                             <ul className="list-disc pl-5 space-y-2">

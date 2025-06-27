@@ -27,6 +27,7 @@ interface Experience {
     role: string;
     company: string;
     period: string;
+    skills: string[];
     responsibilities: string[];
 }
 
@@ -110,10 +111,17 @@ export function getExperiences(): Experience[] {
             role: "Team Lead & Web Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "July 2024 - Present",
+            skills: [
+                "Team Leadership",
+                "Project Management",
+                "React",
+                "TypeScript",
+                "JavaScript",
+            ],
             responsibilities: [
                 "Helped supervise a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
-                "Proposed, designed, implemented, and deployed a full-stack web app in React with TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
-                "Develop and maintain library website of 30+ pages, writing JavaScript, HTML, and CSS to enhance user experience and maintain site functionality.",
+                "Proposed, designed, implemented, and deployed a full-stack web app in React, Next.js, and TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
+                "Develop and maintain library websites of 30+ pages, including developing a new search bar experience for improved user experience.",
             ],
         },
         {
@@ -121,6 +129,7 @@ export function getExperiences(): Experience[] {
             role: "Applied Calculus Teaching Assistant",
             company: "Department of Mathematics - BYU-Idaho",
             period: "April 2024 - April 2025",
+            skills: ["R", "RStudio", "Data Analysis", "Calculus", "Teaching"],
             responsibilities: [
                 "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
                 "Worked with two instructors to offer grading support and tutoring to multiple sections of the course.",
@@ -131,9 +140,16 @@ export function getExperiences(): Experience[] {
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "June 2023 - July 2024",
+            skills: [
+                "Front-End Development",
+                "3D Printing",
+                "HTML",
+                "CSS",
+                "JavaScript",
+            ],
             responsibilities: [
-                "Suggested and implemented changes that would reduce page load time by 0.6 seconds and reduce repository from 10,770 to 1382 files.",
-                "Collaborated with a team of three to remodel the University Library website frontend by transitions from Bootstrap to Vanilla JS and CSS.",
+                "Suggested and implemented changes that would reduce page load time by 0.6 seconds and reduce CSS by 78% by removing unused and duplicate styles.",
+                "Collaborated with a team of three to remodel the University Library website frontend by transitions from jQuery and Bootstrap to Vanilla JS and CSS.",
                 "Taught 3D printing and introductory programming workshops twice per semester to classes of 40+ students.",
             ],
         },
