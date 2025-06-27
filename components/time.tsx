@@ -16,7 +16,7 @@ export default function Time() {
         <span>
             {currentTime &&
                 currentTime.toLocaleTimeString("en-US", {
-                    timeZone: "America/Denver",
+                    timeZone: process.env.NEXT_PUBLIC_TIMEZONE,
                 })}
         </span>
     );
