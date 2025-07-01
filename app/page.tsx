@@ -8,6 +8,9 @@ import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
 import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
 import { getLatestBlogPost } from "@/posts/blog-list";
+import ProjectStatus, {
+    ProjectStatusSkeleton,
+} from "@/components/project-status";
 import {
     GithubIcon,
     LinkedInIcon,
@@ -108,9 +111,14 @@ export default function Home() {
                     <h2 className="text-2xl font-semibold mb-6">
                         My Tech Stack
                     </h2>
-                    <Suspense fallback={<GithubStatsSkeleton />}>
-                        <GithubStats />
-                    </Suspense>
+                    <div className="flex flex-row gap-2">
+                        <Suspense fallback={<GithubStatsSkeleton />}>
+                            <GithubStats />
+                        </Suspense>
+                        <Suspense fallback={<ProjectStatusSkeleton />}>
+                            <ProjectStatus />
+                        </Suspense>
+                    </div>
                     <div className="flex flex-row flex-wrap gap-4">
                         {techStack.map((tech) => (
                             <Card
