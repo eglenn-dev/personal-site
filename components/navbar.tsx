@@ -21,7 +21,7 @@ export default function Navbar() {
         <nav className="border-b">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex gap-4">
+                    <div className="flex gap-2 sm:gap-4">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}

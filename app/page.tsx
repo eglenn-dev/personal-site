@@ -1,5 +1,5 @@
 export const dynamic = "force-dynamic";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
@@ -111,7 +111,7 @@ export default function Home() {
                     <h2 className="text-2xl font-semibold mb-6">
                         My Tech Stack
                     </h2>
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-row gap-6 sm:gap-2 justify-center md:justify-start">
                         <Suspense fallback={<GithubStatsSkeleton />}>
                             <GithubStats />
                         </Suspense>
@@ -119,15 +119,15 @@ export default function Home() {
                             <ProjectStatus />
                         </Suspense>
                     </div>
-                    <div className="flex flex-row flex-wrap gap-4">
+                    <div className="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
                         {techStack.map((tech) => (
                             <Card
                                 key={tech.name}
-                                className="flex flex-col items-center justify-center p-4 w-20"
+                                className="flex flex-col items-center justify-center p-4 w-[4.75rem] sm:w-20"
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
-                                    <h3 className="text-sm font-medium">
+                                    <h3 className="text-xs sm:text-sm font-medium">
                                         {tech.name}
                                     </h3>
                                 </CardContent>
