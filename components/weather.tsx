@@ -1,6 +1,11 @@
-import Time from "./time";
-import CurrentDate from "./date";
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import { getWeather } from "@/lib/weather";
+import { Cloud, Sun, Moon, Clock } from "lucide-react";
+import Time from "./time";
 
 export default async function WeatherCard() {
     let data;
@@ -22,74 +27,59 @@ export default async function WeatherCard() {
         };
     }
 
+    const weatherIcon = isNight ? (
+        <Moon className="h-5 w-5 text-blue-500 dark:text-blue-400" />
+    ) : (
+        <Sun className="h-5 w-5 text-yellow-500 dark:text-yellow-400" />
+    );
+
     return (
-        <div className="card">
-            <div className="container">
-                <div className="cloud front">
-                    <span className="leftFront" />
-                    <span className="rightFront" />
-                </div>
-                {isNight ? (
-                    <>
-                        <span className="moon moonlight" />
-                        <span className="moon" />
-                    </>
-                ) : (
-                    <>
-                        <span className="sun sunshine" />
-                        <span className="sun" />
-                    </>
-                )}
-                <div className="cloud back">
-                    <span className="leftBack" />
-                    <span className="rightBack" />
-                </div>
-            </div>
-            <div className="cardHeader">
-                <span>{data.name}</span>
-                <span>
-                    <CurrentDate />
-                    <br />
+        <HoverCard>
+            <HoverCardTrigger href="#stats" className="w-fit">
+                <div className="mb-4 select-none cursor-help inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+                    <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400">
+                        {weatherIcon}
+                        {data.main.temp.toString().split(".")[0]}°F
+                    </div>
+                    <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+                    <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
+                        <Cloud className="h-4 w-4" />
+                        {data.weather[0].main}
+                    </div>
+                    <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
                     <Time />
-                </span>
-            </div>
-            <span className="temp">
-                {data.main.temp.toString().split(".")[0]}°F
-            </span>
-            <div className="tempScale">
-                <span>{data.weather[0].main}</span>
-            </div>
-        </div>
+                </div>
+            </HoverCardTrigger>
+            <HoverCardContent>
+                <div className="flex flex-col gap-2">
+                    <h3 className="text-lg font-semibold flex gap-2 items-center">
+                        {weatherIcon} Weather in {data.name}
+                    </h3>
+                    <p className="text-sm">
+                        Current weather conditions in my local area.
+                    </p>
+                </div>
+            </HoverCardContent>
+        </HoverCard>
     );
 }
 
 export function WeatherSkeleton() {
     return (
-        <div className="card animate-pulse">
-            <div className="container">
-                <div className="cloud front">
-                    <span className="leftFront" />
-                    <span className="rightFront" />
-                </div>
-                <span className="sun sunshine" />
-                <span className="sun" />
-                <div className="cloud back">
-                    <span className="leftBack" />
-                    <span className="rightBack" />
-                </div>
+        <div className="w-fit mb-4 inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-full border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+            <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
+                <Sun className="h-5 w-5" />
+                <span>...</span>
             </div>
-            <div className="cardHeader">
-                <span>----</span>
-                <span>
-                    --/--/----
-                    <br />
-                    --:--:--
-                </span>
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
+                <Cloud className="h-4 w-4" />
+                <span>...</span>
             </div>
-            <span className="temp">--°F</span>
-            <div className="tempScale">
-                <span>----</span>
-            </div>
+            <span className="flex flex-row text-zinc-400 items-center gap-1.5">
+                <Clock className="inline-block h-4 w-4" />
+                <span>...</span>
+            </span>
         </div>
     );
 }

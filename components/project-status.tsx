@@ -27,7 +27,9 @@ export default async function ProjectStatus() {
         <HoverCard>
             <HoverCardTrigger
                 href="https://status.eglenn.dev"
+                target="_blank"
                 rel="noreferrer noopener"
+                className="w-fit"
             >
                 <div className="mb-4 select-none cursor-pointer inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
                     <div
@@ -45,11 +47,7 @@ export default async function ProjectStatus() {
                                 }`}
                             />
                         </div>
-                        <span className="hidden lg:inline-block">
-                            {allOnline
-                                ? "All projects online"
-                                : "Service issues"}
-                        </span>
+                        {allOnline ? "All projects online" : "Service issues"}
                     </div>
                 </div>
             </HoverCardTrigger>
@@ -82,7 +80,7 @@ export default async function ProjectStatus() {
 
 export function ProjectStatusSkeleton() {
     return (
-        <div className="mb-4 inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+        <div className="w-fit mb-4 inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
             <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
                 <div className="relative">
                     <Globe className="h-5 w-5" />

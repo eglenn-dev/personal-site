@@ -111,14 +111,6 @@ export default function Home() {
                     <h2 className="text-2xl font-semibold mb-6">
                         My Tech Stack
                     </h2>
-                    <div className="flex flex-row gap-6 sm:gap-2 justify-center md:justify-start">
-                        <Suspense fallback={<GithubStatsSkeleton />}>
-                            <GithubStats />
-                        </Suspense>
-                        <Suspense fallback={<ProjectStatusSkeleton />}>
-                            <ProjectStatus />
-                        </Suspense>
-                    </div>
                     <div className="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
                         {techStack.map((tech) => (
                             <Card
@@ -135,10 +127,19 @@ export default function Home() {
                         ))}
                     </div>
                 </div>
-                <div id="weather" className="pt-0 sm:pt-8">
-                    <Suspense fallback={<WeatherSkeleton />}>
-                        <WeatherCard />
-                    </Suspense>
+                <div id="stats">
+                    <h2 className="text-2xl font-semibold mb-6">Stats</h2>
+                    <div className="flex flex-col ml-2">
+                        <Suspense fallback={<GithubStatsSkeleton />}>
+                            <GithubStats />
+                        </Suspense>
+                        <Suspense fallback={<WeatherSkeleton />}>
+                            <WeatherCard />
+                        </Suspense>
+                        <Suspense fallback={<ProjectStatusSkeleton />}>
+                            <ProjectStatus />
+                        </Suspense>
+                    </div>
                 </div>
             </div>
         </div>

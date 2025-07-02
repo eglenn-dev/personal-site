@@ -52,6 +52,54 @@ export async function getYearContributions(): Promise<number> {
     }
 }
 
+export async function getMonthContributions(): Promise<number> {
+    try {
+        const now = new Date();
+        const oneMonthAgo = new Date(now);
+        oneMonthAgo.setMonth(now.getMonth() - 1);
+
+        const query = `
+            query($from: DateTime!, $to: DateTime!) {
+                viewer {
+                    contributionsCollection(from: $from, to: $to) {
+                        contributionCalendar {
+                            totalContributions
+                        }
+                    }
+                }
+            }
+        `;
+        const variables = {
+            from: oneMonthAgo.toISOString(),
+            to: now.toISOString(),
+        };
+        const response = await fetch("https://api.github.com/graphql", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ query, variables }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error fetching GitHub contributions:", errorData);
+            return 0;
+        }
+
+        const data = await response.json();
+        const totalContributions =
+            data.data.viewer.contributionsCollection.contributionCalendar
+                .totalContributions;
+
+        return totalContributions;
+    } catch (error) {
+        console.error("An error occurred:", error);
+        return 0;
+    }
+}
+
 export async function getMostUsedLanguages() {
     try {
         const query = `
