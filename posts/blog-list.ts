@@ -1,5 +1,12 @@
 const slugs: Slug[] = [
     {
+        slug: "prompt-engineering-resumly",
+        title: "Prompt Engineering for Perfect Resumes",
+        description: "What I learned building Resumly.pro",
+        date: "2025-07-08",
+        hidden: false,
+    },
+    {
         slug: "resumly-launch",
         title: "My Senior Project",
         description:
