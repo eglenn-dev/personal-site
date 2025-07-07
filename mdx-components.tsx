@@ -202,6 +202,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 {children}
             </code>
         ),
+        blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-[#7f8081] dark:border-[#333] pl-4 my-6 italic text-[#4a4a4a] dark:text-[#bdbdbd]">
+                {children}
+            </blockquote>
+        ),
         ...components,
     };
 }
