@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/posts/blog-list";
+import { getPublicPosts } from "@/posts/blog-list";
 import BlogPage from "./blog";
 
 export const metadata = {
@@ -8,6 +8,6 @@ export const metadata = {
 };
 
 export default async function Page() {
-    const posts = getBlogPosts();
+    const posts = getPublicPosts();
     return <BlogPage posts={posts} />;
 }

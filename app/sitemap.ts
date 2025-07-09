@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts } from "@/posts/blog-list";
+import { getAllPosts } from "@/posts/blog-list";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const postSlugs = getBlogPosts();
+    const postSlugs = getAllPosts();
     const blogPosts = postSlugs
         .filter((post) => post.hidden === false)
         .map((post) => ({

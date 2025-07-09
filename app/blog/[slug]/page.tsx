@@ -1,4 +1,4 @@
-import { getAllSlugs, getAllBlogPosts } from "@/posts/blog-list";
+import { getAllSlugs, getAllPosts } from "@/posts/blog-list";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -54,7 +54,7 @@ export async function generateMetadata({
 }) {
     const { slug } = await params;
 
-    const posts = getAllBlogPosts();
+    const posts = getAllPosts();
     const post = posts.find((post) => post.slug === slug);
 
     if (!post) {

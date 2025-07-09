@@ -7,7 +7,7 @@ import Link from "next/link";
 import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
 import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
-import { getLatestBlogPost } from "@/posts/blog-list";
+import { getLatestPost } from "@/posts/blog-list";
 import ProjectStatus, {
     ProjectStatusSkeleton,
 } from "@/components/project-status";
@@ -23,7 +23,7 @@ import {
 
 export default function Home() {
     const techStack = getTechStack();
-    const latestPost = getLatestBlogPost();
+    const latestPost = getLatestPost();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

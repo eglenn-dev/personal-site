@@ -3,7 +3,7 @@ const slugs: Slug[] = [
         slug: "prompt-engineering-resumly",
         title: "Prompt Engineering",
         description: "What I learned building Resumly.pro",
-        date: "2025-07-08",
+        date: "2025-07-11",
         hidden: false,
     },
     {
@@ -73,24 +73,24 @@ export interface Slug {
     hidden: boolean;
 }
 
-export function getAllSlugs() {
+export function getAllSlugs(): string[] {
     return slugs.map(({ slug }) => slug);
 }
 
-export function getSlugs() {
+export function getPublicSlugs(): string[] {
     return slugs.filter((slug) => !slug.hidden).map(({ slug }) => slug);
 }
 
-export function getAllBlogPosts() {
+export function getAllPosts(): Slug[] {
     return slugs;
 }
 
-export function getBlogPosts() {
+export function getPublicPosts(): Slug[] {
     const publicPosts = slugs.filter((slug) => !slug.hidden);
     return publicPosts;
 }
 
-export function getLatestBlogPost() {
+export function getLatestPost(): Slug {
     const publicPosts = slugs.filter((slug) => !slug.hidden);
     return publicPosts[0];
 }
