@@ -121,7 +121,7 @@ export function getExperiences(): Experience[] {
             responsibilities: [
                 "Helped supervise a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
                 "Proposed, designed, implemented, and deployed a full-stack web app in React, Next.js, and TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
-                "Develop and maintain library websites of 30+ pages, including developing a new search bar experience for improved user experience.",
+                "Develop and maintain library website of 30+ pages, including a new search bar experience that improved user experience for over 154,000 users in 2024.",
             ],
         },
         {
