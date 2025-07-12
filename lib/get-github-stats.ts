@@ -32,6 +32,7 @@ export async function getYearContributions(): Promise<number> {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ query, variables }),
+            next: { revalidate: 900 },
         });
 
         if (!response.ok) {
@@ -80,6 +81,7 @@ export async function getMonthContributions(): Promise<number> {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ query, variables }),
+            next: { revalidate: 3600 },
         });
 
         if (!response.ok) {
@@ -123,6 +125,7 @@ export async function getMostUsedLanguages() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ query }),
+            next: { revalidate: 3600 },
         });
 
         if (!response.ok) {

@@ -25,7 +25,9 @@ type MonitorData = {
 };
 
 export async function getProjectStatus(): Promise<ProjectStatus> {
-    const response = await fetch("https://status.eglenn.dev/api/data");
+    const response = await fetch("https://status.eglenn.dev/api/data", {
+        next: { revalidate: 900 },
+    });
     if (!response.ok) {
         return {
             allOnline: false,
