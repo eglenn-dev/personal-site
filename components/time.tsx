@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 
 export default function Time() {
-    const [currentTime, setCurrentTime] = useState<Date | null>(null);
+    const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
     useEffect(() => {
         const intervalId = setInterval(() => {
