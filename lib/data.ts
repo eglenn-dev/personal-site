@@ -51,7 +51,7 @@ export function getProjects(): Project[] {
                 "Docker",
             ],
             link: "https://clipit.one/eg-dev-resumly",
-            article: "/blog/resumly-launch",
+            article: "/blog/resumly",
         },
         {
             id: 2,
