@@ -32,7 +32,7 @@ export async function getYearContributions(): Promise<number> {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ query, variables }),
-            next: { revalidate: 900 },
+            next: { revalidate: 3600 },
         });
 
         if (!response.ok) {
