@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "gemini-tic-tac-toe",
+        title: "Vibe Coding with Gemini",
+        description:
+            "Building Tic Tac Toe with The Gemini CLI, and analyzing the results.",
+        date: "2025-07-16",
+        hidden: false,
+    },
+    {
         slug: "resumly",
         title: "Resumly.pro Blog Posts",
         description: "Compilation of blog posts related to Resumly.pro",
