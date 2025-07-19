@@ -22,7 +22,7 @@ export default async function WeatherCard() {
         data = {
             name: "Unknown",
             main: { temp: 0 },
-            weather: [{ main: "Unknown" }],
+            weather: [{ main: "Unknown", description: "Unknown" }],
             sys: { sunrise: 0, sunset: 0 },
         };
     }
@@ -44,7 +44,8 @@ export default async function WeatherCard() {
                     <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
                     <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
                         <Cloud className="h-4 w-4" />
-                        {data.weather[0].main}
+                        {data.weather[0].description.charAt(0).toUpperCase() +
+                            data.weather[0].description.slice(1)}
                     </div>
                     <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
                     <Time />
