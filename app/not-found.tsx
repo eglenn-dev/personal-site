@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { Home } from "lucide-react";
 
 export const metadata = {
     title: "Page Not Found | Ethan Glenn",
@@ -25,7 +26,10 @@ export default function NotFound() {
                 className="mb-8 select-none pointer-events-none"
             />
             <Link href="/">
-                <Button>Return to Home</Button>
+                <Button>
+                    <Home className="mr-1" />
+                    Return to Home
+                </Button>
             </Link>
         </div>
     );

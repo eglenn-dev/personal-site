@@ -3,14 +3,12 @@ import { getAllPosts } from "@/posts/blog-list";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const postSlugs = getAllPosts();
-    const blogPosts = postSlugs
-        .filter((post) => post.hidden === false)
-        .map((post) => ({
-            url: `https://ethanglenn.dev/blog/${post.slug}`,
-            lastModified: new Date(post.date),
-            changeFrequency: "monthly" as const,
-            priority: 0.5,
-        }));
+    const blogPosts = postSlugs.map((post) => ({
+        url: `https://ethanglenn.dev/blog/${post.slug}`,
+        lastModified: new Date(post.date),
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+    }));
     const main = [
         {
             url: "https://ethanglenn.dev",
