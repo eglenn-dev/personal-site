@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "mckay-db-search",
+        title: "McKay Library AI Database Search",
+        description:
+            "Building a database search tool for the McKay Library using AI.",
+        date: "2025-07-21",
+        hidden: true,
+    },
+    {
         slug: "gemini-tic-tac-toe",
         title: "Vibe Coding with Gemini",
         description:
@@ -69,7 +77,7 @@ const slugs: Slug[] = [
         title: "3D Print Queue",
         description: "Created for the BYU-Idaho David O. McKay McKay Library",
         date: "2025-02-13",
-        hidden: false,
+        hidden: true,
     },
     {
         slug: "marknote-launch",

@@ -78,6 +78,14 @@ export function getProjects(): Project[] {
         },
         {
             id: 4,
+            name: "Library Database Search",
+            description:
+                "Implemented a search tool for the McKay Library databases, allowing users to find relevant resources using natural language queries.",
+            technologies: ["TypeScript", "React", "Next.js", "Gemini API"],
+            article: "/blog/mckay-db-search",
+        },
+        {
+            id: 5,
             name: "ClipIt.one",
             description:
                 "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
@@ -86,7 +94,7 @@ export function getProjects(): Project[] {
             article: "/blog/clipit-launch",
         },
         {
-            id: 5,
+            id: 6,
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -94,7 +102,7 @@ export function getProjects(): Project[] {
             article: "/blog/3d-print-queue",
         },
         {
-            id: 6,
+            id: 7,
             name: "This Portfolio",
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",

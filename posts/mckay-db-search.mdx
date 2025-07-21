@@ -1,0 +1,55 @@
+import Image from "next/image";
+
+# McKay Library AI Database Search
+
+_2025-07-21_
+
+> Because this was developed for [BYU-Idaho McKay Library](https://library.byui.edu), I am not able to share the code, so I talk about the process here.
+
+## Overview
+
+We had a problem at the McKay library at BYU-Idaho where students had access to over 500 databases and didn't know how to search them. The only way to search was by name in an A-Z list. This was not user-friendly, especially for students who were not familiar with the databases. We needed a way to help students find the right database for their research needs.
+
+The real advantage of this tool will be the ability to search the databases using natural language. This means that students can ask questions in a way that is more intuitive and similar to how they would ask a librarian for help.
+
+<Image
+    src="/blog/mckay-db-search/app-homepage.png"
+    alt="McKay Library Database Search"
+    width={700}
+    height={400}
+    className="mx-auto my-4 rounded-lg shadow-lg"
+/>
+
+## The Process
+
+Because there are over 500 databases, we can't just put a list into an LLM and expect it to work. I mean technically we could, but it would be slow, and we would use so many tokens that it would be impractical and expensive.
+
+Instead, we used keyword matches and a simple search algorithm to narrow down the list of databases. Then we pass this narrowed list to the LLM to generate a response, and pick the best databases based on the users input.
+
+This approach allows us to leverage the power of the LLM while minimizing the number of tokens used and improving the overall user experience.
+
+One important case we had to handle was when the LLM was not working. In this case, we needed a fallback mechanism to ensure that students could still find relevant databases. We implemented a simple keyword match algorithm that would return the top 5 databases based on the user's input when the LLM was not available.
+
+## The Result
+
+We are able to provide students with a more efficient way to find the databases they need for their research.
+
+On average we were able to return a **result in ~5 seconds**. This is a significant improvement over the previous method of searching through an A-Z list of databases. One top of that, a reason why result meets the users query is provided, which helps students understand why a particular database is relevant to their research.
+
+## Example
+
+> Query: world war two stories
+
+In our regular A-Z database search I used the above query and got 0 results. In our new search, with the exact same query, I got the below results. This was just the first two, but there were many more that were relevant.
+
+<Image
+    src="/blog/mckay-db-search/query-results.png"
+    alt="McKay Library Database Search"
+    width={500}
+    height={300}
+    className="mx-auto my-4 rounded-lg shadow-lg"
+/>
+
+## Conclusion
+
+This project was a great opportunity to apply my skills in full-stack web development. It was also a great chance to make a real world tool that will help students at BYU-Idaho find the resources they need for their research, in an easy and modern way. So many students are already using LLMs to help with their studies, and this helps us bring the resources to them in a way that is familiar and easy to use.
