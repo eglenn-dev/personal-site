@@ -226,7 +226,7 @@ export default function ContactForm() {
             {mounted && (
                 <div
                     className="g-recaptcha rounded-md"
-                    data-sitekey="6LeyQHUqAAAAAKBc193G987C3kL40yFHwAmg-LQ5"
+                    data-sitekey={process.env.NEXT_PUBLIC_CAPTCHA}
                     data-theme={theme === "dark" ? "dark" : "light"}
                 ></div>
             )}

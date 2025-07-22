@@ -21,7 +21,7 @@ import {
     MongoIcon,
 } from "@/lib/icons";
 
-export default function Home() {
+export default async function Home() {
     const techStack = getTechStack();
     const latestPost = getLatestPost();
 
@@ -56,15 +56,15 @@ export default function Home() {
                     </div>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
-                            <Button>
+                            <Button className="group">
                                 <span>My Projects</span>
-                                <ArrowRight className="ml-1" size={16} />
+                                <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
                             </Button>
                         </Link>
                         <Link href={`/blog/${latestPost.slug}`}>
-                            <Button variant="outline">
+                            <Button variant="outline" className="group">
                                 <span>Latest Blog Post</span>
-                                <ArrowRight className="ml-1" size={16} />
+                                <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
                             </Button>
                         </Link>
                     </div>
