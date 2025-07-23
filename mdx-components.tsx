@@ -6,7 +6,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: ({ children }) => (
             <h1
-                className="mt-8 mb-4 text-4xl font-bold leading-10"
+                className="mt-10 mb-4 text-4xl font-bold leading-10"
                 id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
@@ -14,7 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h2: ({ children }) => (
             <h2
-                className="mt-6 mb-3 text-3xl font-semibold leading-9"
+                className="mt-12 mb-3 text-3xl font-semibold leading-9"
                 id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
@@ -22,7 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h3: ({ children }) => (
             <h3
-                className="mt-5 mb-2 text-2xl font-medium leading-8"
+                className="mt-6 mb-2 text-2xl font-medium leading-8"
                 id={children?.toString().toLowerCase().replace(/\s+/g, "-")}
             >
                 {children}
