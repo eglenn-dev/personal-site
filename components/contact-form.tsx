@@ -174,7 +174,7 @@ export default function ContactForm() {
                             Privacy Policy
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-lg">
+                    <DialogContent className="max-w-[90vw] rounded-lg sm:max-w-lg">
                         <DialogHeader>
                             <DialogTitle>Privacy Policy</DialogTitle>
                         </DialogHeader>
