@@ -1,0 +1,67 @@
+# My Stack
+
+_2025-08-01_
+
+My stack where I feel the most productive. I am sure this will change over time, but I wanted to document it for myself and others.
+
+## Frameworks (React and Next.js)
+
+I've been enjoying React since I started learning web development. Next.js is a natural development for me, as it provides a great developer experience and powerful features like server-side rendering and static site generation. The app router has also made routing simple (as it should be) and intuitive, as well as providing an easy way to use React Server Components.
+
+That being said, if I don't need the features of Next.js, I just use React with Vite. Vite is really fast, even in dev mode.
+
+One pattern I love with React and Next.js that makes life easier is fetching data in the `page.tsx` or `layout.tsx` server components. Then I am able to pass the data down to the client components as props. This keeps my components clean and focused on rendering. Of course, I also data fetch outside of the server components, but I find that this pattern works well for most of my use cases.
+
+I also always use TypeScript with React.
+
+## Data Analysis (Python, Pandas, and Jupyter)
+
+Python has been my go-to language for data analysis, as I know it is for many. The Pandas library is incredibly powerful for manipulating and analyzing data. I love how it allows me to work with data in a way that feels natural and intuitive, especially with its data frame structure.
+
+Jupyter notebooks are a fantastic tool for data analysis. I love being able to code, visualize data, and document my thought process all in one place. I usually run mine in Google Colab, as it provides a great environment for running Jupyter notebooks without needing to set up anything locally. I can also buy credits and get the power of their A100 GPUs for more intensive computations and model training.
+
+I'll also do backend development in Python (Flask & FastAPI), especially for data-heavy applications. See [Resumly.pro](/blog/resumly).
+
+## Database (MongoDB and Firebase)
+
+I've long appreciated Firebase for its real-time capabilities and ease of use, which make rapid application development a breeze by abstracting away server management. More recently, however, I've been increasingly leveraging MongoDB. I find it to be fast, user-friendly, and highly compatible with my existing tech stack.
+
+What draws me to MongoDB is its flexibility and scalability. Its JSON-like document model is a natural fit for my JavaScript-focused development, and its powerful aggregation framework simplifies complex queries and data transformations.
+
+While I have experience with SQL databases like PostgreSQL and MySQL, I've found that for most of my projects, NoSQL solutions like MongoDB and Firebase better suit my needs. They enable faster iteration by minimizing the overhead of schema design and migrations.
+
+## Styling and UI (Tailwind CSS and shadcn/ui)
+
+There is no question, if you need to build UI fast, Tailwind CSS is the way to go. It is easy to add to Next.js, or a Vite app, and it provides a great utility-first approach to styling. I also enjoy using [shadcn/ui](https://ui.shadcn.com) for its pre-built components and design system. They are all based of Radix UI primitives, which is a great foundation for accessability.
+
+## AI (Gemini and Claude)
+
+I like the sentiment that AI is a tool, not a replacement. I read on LinkedIn one time that AI won't replace developers, but developers who use AI will replace developers who don't. With that in mind I try hard not to rely too much on AI, but I do use it to help me with coding, writing, and brainstorming.
+
+I've tried Cursor, but I think I prefer using VS Code with Copilot. With the recent update, you can choose between ChatGPT, Claude, and Gemini. You are also able to switch between _Ask_, and _Agent_ modes, which is really nice.
+
+I am not married to one AI. They are all good at different tasks. I switch between them often depending on what I need. That being said, I probably favor Claude for coding, and Gemini for the API.
+
+## Principles and Patterns
+
+### Principles
+
+- Listen, build, ship, and tell the customer.
+- Landings over launches.
+
+Both professionally, and on personal projects, I can't stress enough that people like to see incremental progress. It is better to ship something small and get feedback, than spend inordinate amounts of time on a feature that nobody is going to use. Get feedback, implement it, ship, and let the customers know. I went through an iterative feedback process building [Resumly.pro](/blog/resumly-launch#key-challenges-and-learnings), and while working on different web apps at BYU-Idaho.
+
+In today's AI market, where the barrier to entry it far lower, speed it your ally.
+
+### Patterns
+
+- Reusable components > Master components
+- Server render components when possible
+
+I would rather have have to change a few files to implement a feature or fix, than be deciphering a monolithic 1000+ line function/component that does everything. Also, it's 2025, fetch data on the server, and hydrate components, don't wait for the initial render on a massive React app to then _start_ fetching data.
+
+## Conclusion
+
+I said at the start, but this is where _I feel most productive_. I am sure, and hoping, that this will change over time as I learn more. That being said, I love building with this stack, and I hope it helps you in your own projects.
+
+If you have any questions or want to discuss further, feel free to [reach out](/contact)!

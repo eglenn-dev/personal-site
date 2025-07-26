@@ -1,5 +1,19 @@
 const slugs: Slug[] = [
     {
+        slug: "my-stack",
+        title: "My Stack",
+        description: "A list of the tools I use to build my projects.",
+        date: "2025-07-25",
+        hidden: false,
+    },
+    {
+        slug: "bible-search",
+        title: "Bible Search",
+        description: "A tool for searching the Bible using natural language.",
+        date: "2025-07-26",
+        hidden: true,
+    },
+    {
         slug: "mckay-db-search",
         title: "McKay Library AI Database Search",
         description:

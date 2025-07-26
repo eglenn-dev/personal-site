@@ -1,0 +1,102 @@
+# Bible Search
+
+### From Hours to Milliseconds: Building a Blazing-Fast Semantic Bible Search Engine
+
+_2025-07-26_
+
+About a year ago I had an idea to use some query text, and find similar text. All using Natural Language processing (NLP). I thought the bible would be a great place to start because of it's size and the fact that it is public domain.
+
+My first attempt was straightforward. I wrote a script using Python and the NLP library spaCy. It worked by taking a verse, comparing it to _every single other verse_ in the Bible, and ranking them by a similarity score. The results were fascinating, but the process was agonizingly slow. With over 31,000 verses, the number of comparisons was nearly half a billion. A single query was taking about _six minutes_ (on average) to return results.
+
+To me this was a classic computer science problem from my classes: brute-force works, but it doesn’t scale. I knew there had to be a better way. The solution wasn’t about making the comparisons faster; it was about not having to do them at query time at all.
+
+This is the story of how we can transform that slow, clunky tool into a web app that feels instantaneous, using the power of **Vector Embeddings** and **Approximate Nearest Neighbor (ANN) search**.
+
+## The Problem: Making 500,000,000 Comparisons
+
+The old method’s flaw was its O(N²) complexity. For every search, we were essentially doing this:
+
+1.  Take the user's query verse.
+2.  Compare it to Verse 1.
+3.  Compare it to Verse 2.
+4.  ...
+5.  Compare it to Verse 31,102.
+6.  Sort the results.
+
+It’s like trying to find a book in a library by picking up the first book and comparing its theme to every other book on every shelf. It’s exhaustive and wildly inefficient, but eventually returned decent results.
+
+## The Solution: Thinking Like a Librarian
+
+A great librarian doesn’t do that. When you ask for a book "about courageous leaders," they don't start reading every book. They have an internal mental map of the library. They know that books on history, biography, and leadership are clustered together. They instinctively know where to look.
+
+> Fun fact: The name "Bible" comes from the Greek word "biblia," meaning "the books."
+
+We can teach our application to do the same thing. The core idea is to create a "map of meaning" for the entire Bible **before** any user ever asks a question.
+
+This "map" is a high-dimensional vector space, and the process is called **Semantic Search**.
+
+## The Three-Step Recipe for Speed
+
+The entire process boils down to a one-time "heavy lifting" phase and a permanent, blazing-fast "query" phase.
+
+### Step 1: The Great Translation (Generating Vector Embeddings)
+
+First, we need to convert the text of every verse into a set of numbers that represents its meaning. This list of numbers is called a **vector embedding**. Verses with similar meanings will have mathematically "close" vectors.
+
+Instead of spaCy's default similarity, we use a specialized tool called **Sentence-Transformers**. These models are trained specifically to read a sentence and output a high-quality vector that captures its semantic essence.
+
+**The Process (Done Once, Offline):**
+
+1.  We feed all 31,102 verses into a model like `paraphrase-MiniLM-L3-v2`.
+2.  The model processes each verse and outputs a vector (in this case, a list of 384 numbers).
+3.  We save this giant array of vectors to a file (`bible_embeddings.npy`).
+
+> Ideally a larger model would be used instead of `paraphrase-MiniLM-L3-v2`, but this one is small enough I could spin it up in a backend server without needing a GPU.
+
+```
+"In the beginning God created the heaven and the earth."
+       |
+[SentenceTransformer Model]
+       |
+[0.02, -0.45, 0.18, ..., 0.81]  <- A 384-dimension vector
+```
+
+This is our one-time computational cost. It might take a few minutes on a good machine, but once it's done, it's done forever.
+
+### Step 2: Building the FAISS Index
+
+Now we have ~31,000 vectors, but searching through them is still slow. We need to store them in a way that’s optimized for finding the "nearest neighbors."
+
+This is where FAISS comes in. It's an incredible library that builds a special index for our vectors. Think of it as a GPS for our map of meaning. Instead of a slow, linear scan, it can jump almost directly to the right neighborhood.
+
+> FAISS stands for Facebook AI Similarity Search. It’s a library designed to handle large-scale similarity search efficiently.
+
+**The Process (Done Once, Offline):**
+
+1.  We load our saved embeddings.
+2.  We tell FAISS to build an index from these vectors.
+3.  FAISS analyzes the vectors, groups them into clusters, and creates a highly compressed, searchable structure.
+4.  We save this index to a tiny file (`bible_verse_index.faiss` ~2.22 MB).
+
+We now have all the intelligence of our system pre-computed and stored in two files.
+
+### Step 3: The Query - A Needle in a Haystack, Found Instantly
+
+This is the magic that the user sees. When a user submits a query like "God is love," our web application does the following:
+
+1.  **Encode the Query:** It takes the string "God created man in his image" and uses the same Sentence-Transformer model to convert _only that one phrase_ into a vector.
+2.  **Search the Index:** It hands this new vector to our FAISS index as a query and asks for the 10 nearest neighbors.
+3.  **Retrieve and Return:** FAISS returns the IDs of the 10 most similar verses in milliseconds. We use these IDs to look up the verse text from our original JSON file and send it back to the user.
+
+The 500,000,000 comparisons to 31,000 other verses is no longer happening. The search is a single, highly optimized lookup. The result is a response time measured in milliseconds, not minutes.
+
+## The Takeaway
+
+The secret to a fast AI application isn't always a faster computer; it's smarter pre-computation. By shifting the heavy work of comparison to an offline indexing step, we can build applications that deliver powerful semantic insights with astonishing speed.
+
+This architecture is the backbone of modern recommendation engines, search systems, and countless other AI-powered tools.
+
+If you have questions or thoughts, feel free to [reach out](/contact)!
+
+- [GitHub Repo](https://github.com/eglenn-dev/bible-search)
+- [Live Demo](https://bible.eglenn.dev)
