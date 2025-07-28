@@ -1,10 +1,11 @@
 const slugs: Slug[] = [
     {
         slug: "bible-search",
-        title: "Bible Search",
-        description: "A tool for searching the Bible using natural language.",
-        date: "2025-07-26",
-        hidden: true,
+        title: "Bible Semantic Search Engine",
+        description:
+            "Building a semantic search engine for the Bible to search it easily, and with natural language.",
+        date: "2025-07-28",
+        hidden: false,
     },
     {
         slug: "my-stack",

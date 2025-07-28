@@ -1,18 +1,32 @@
-# Bible Search
+import Image from "next/image";
+
+# Bible Semantic Search Engine
 
 ### From Hours to Milliseconds: Building a Blazing-Fast Semantic Bible Search Engine
 
-_2025-07-26_
+_2025-07-28_
 
-About a year ago I had an idea to use some query text, and find similar text. All using Natural Language processing (NLP). I thought the bible would be a great place to start because of it's size and the fact that it is public domain.
+<Image
+    src="/blog/other/bible-search.png"
+    alt="Bible Search"
+    className="rounded-lg mx-auto mb-2"
+    width={600}
+    height={200}
+/>
 
-My first attempt was straightforward. I wrote a script using Python and the NLP library spaCy. It worked by taking a verse, comparing it to _every single other verse_ in the Bible, and ranking them by a similarity score. The results were fascinating, but the process was agonizingly slow. With over 31,000 verses, the number of comparisons was nearly half a billion. A single query was taking about _six minutes_ (on average) to return results.
+<p className="text-center text-sm text-gray-500">Generated with Imagen 4</p>
+
+---
+
+About a year ago I had an idea to use some query text, and find similar text using Natural Language processing (NLP). I thought the bible would be a great place to start because of it's size and the fact that it is public domain, as well as the fact that it is already broken down into books, chapters, and verses.
+
+My first attempt was straightforward. I wrote a script using Python and the NLP library spaCy. It worked by taking a verse, comparing it to _every single other verse_ in the Bible, and ranking them by a similarity score. The results were fascinating, but the process was agonizingly slow. With over 31,000 verses, the number of comparisons was nearly half a billion. A single query was taking about _ten minutes_ (on average) to return results.
 
 To me this was a classic computer science problem from my classes: brute-force works, but it doesn’t scale. I knew there had to be a better way. The solution wasn’t about making the comparisons faster; it was about not having to do them at query time at all.
 
 This is the story of how we can transform that slow, clunky tool into a web app that feels instantaneous, using the power of **Vector Embeddings** and **Approximate Nearest Neighbor (ANN) search**.
 
-## The Problem: Making 500,000,000 Comparisons
+## The Problem: Making Too Many Comparisons
 
 The old method’s flaw was its O(N²) complexity. For every search, we were essentially doing this:
 
@@ -39,7 +53,7 @@ This "map" is a high-dimensional vector space, and the process is called **Seman
 
 The entire process boils down to a one-time "heavy lifting" phase and a permanent, blazing-fast "query" phase.
 
-### Step 1: The Great Translation (Generating Vector Embeddings)
+### Step 1: Generating Vector Embeddings
 
 First, we need to convert the text of every verse into a set of numbers that represents its meaning. This list of numbers is called a **vector embedding**. Verses with similar meanings will have mathematically "close" vectors.
 
@@ -80,9 +94,9 @@ This is where FAISS comes in. It's an incredible library that builds a special i
 
 We now have all the intelligence of our system pre-computed and stored in two files.
 
-### Step 3: The Query - A Needle in a Haystack, Found Instantly
+### Step 3: The Query
 
-This is the magic that the user sees. When a user submits a query like "God is love," our web application does the following:
+This is the magic that the user sees. When a user submits a query like "God created man in his image" our web application does the following:
 
 1.  **Encode the Query:** It takes the string "God created man in his image" and uses the same Sentence-Transformer model to convert _only that one phrase_ into a vector.
 2.  **Search the Index:** It hands this new vector to our FAISS index as a query and asks for the 10 nearest neighbors.
