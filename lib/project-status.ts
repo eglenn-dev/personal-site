@@ -1,6 +1,4 @@
 "use server";
-import { after } from "next/server";
-import { sendAlertEmail } from "./send-email";
 
 interface ProjectStatus {
     allOnline: boolean;
@@ -64,31 +62,6 @@ export async function getProjectStatus(): Promise<ProjectStatus> {
             updatedAt: new Date(data.updatedAt * 1000).toISOString(),
         };
     }
-
-    after(() => {
-        const timezone = process.env.NEXT_PUBLIC_TIMEZONE || "UTC";
-        const updatedAt = new Date(data.updatedAt * 1000).toLocaleString(
-            "en-US",
-            { timeZone: timezone }
-        );
-
-        sendAlertEmail(
-            "ethan@eglenn.dev",
-            "Project Status Alert",
-            `Alert: ${data.down} of ${totalProjects} projects are down.
-
-Updated at: ${updatedAt}
-
-Details:
-
-${Object.entries(data.monitors)
-    .map(
-        ([name, details]) =>
-            `- **${name}**: ${details.up ? "Up" : "Down"} - ${details.message}`
-    )
-    .join("\n\n")}`
-        );
-    });
 
     return {
         allOnline: false,
