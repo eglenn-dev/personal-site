@@ -63,6 +63,20 @@ export function getProjects(): Project[] {
         },
         {
             id: 3,
+            name: "Bible Search",
+            description:
+                "Build a API that allows users to search the Bible using natural language queries. The API uses a vector database to store and retrieve verses based on their semantic meaning.",
+            technologies: [
+                "Python",
+                "Sentence Transformers",
+                "FAISS (vector database)",
+                "FastAPI",
+            ],
+            link: "https://clipit.one/eg-dev-bible",
+            article: "/blog/bible-search",
+        },
+        {
+            id: 4,
             name: "MarkNote.one",
             description:
                 "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
@@ -75,20 +89,6 @@ export function getProjects(): Project[] {
             ],
             link: "https://clipit.one/eg-dev-marknote",
             article: "/blog/marknote-update",
-        },
-        {
-            id: 4,
-            name: "Bible Search",
-            description:
-                "Build a API that allows users to search the Bible using natural language queries. The API uses a vector database to store and retrieve verses based on their semantic meaning.",
-            technologies: [
-                "Python",
-                "Sentence Transformers",
-                "FAISS (vector database)",
-                "FastAPI",
-            ],
-            link: "https://clipit.one/eg-dev-bible",
-            article: "/blog/bible-search",
         },
         {
             id: 5,
