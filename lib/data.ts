@@ -130,7 +130,7 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Full-Stack Developer",
+            role: "Full-stack Developer",
             company: "DataThink",
             period: "August 2025 - Present",
             skills: ["React", "TypeScript", "FastAPI", "Jira", "Google Cloud"],

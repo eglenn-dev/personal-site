@@ -35,9 +35,12 @@ export default async function Home() {
                         Software Engineer
                     </h2>
                     <p className="text-base mb-4 flex flex-row items-center gap-1">
-                        <span>Full-Stack Developer at</span>
+                        <span>Full-stack Developer at</span>
                         <span className="flex flex-row items-center gap-1">
-                            <BrainIcon /> DataThink
+                            <span className="mb-[2px]">
+                                <BrainIcon />
+                            </span>{" "}
+                            DataThink
                         </span>
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
