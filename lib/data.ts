@@ -3,7 +3,6 @@ import {
     TypeScriptIcon,
     ReactIcon,
     NodeIcon,
-    PostgresIcon,
     MongoIcon,
     NextjsIcon,
     JavaScriptIcon,
@@ -11,6 +10,7 @@ import {
     TailWindIcon,
     GitIcon,
     DockerIcon,
+    FastApiIcon,
 } from "./icons";
 
 interface Project {
@@ -28,7 +28,7 @@ interface Experience {
     company: string;
     period: string;
     skills: string[];
-    responsibilities: string[];
+    responsibilities?: string[];
 }
 
 interface TechStack {
@@ -130,9 +130,16 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
+            role: "Full-Stack Developer",
+            company: "DataThink",
+            period: "August 2025 - Present",
+            skills: ["React", "TypeScript", "FastAPI", "Jira", "Google Cloud"],
+        },
+        {
+            id: 2,
             role: "Team Lead & Web Developer",
             company: "David O. McKay Library - BYU-Idaho",
-            period: "July 2024 - Present",
+            period: "July 2024 - August 2025",
             skills: [
                 "Team Leadership",
                 "Project Management",
@@ -147,7 +154,7 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
-            id: 2,
+            id: 3,
             role: "Applied Calculus Teaching Assistant",
             company: "Department of Mathematics - BYU-Idaho",
             period: "April 2024 - April 2025",
@@ -158,7 +165,7 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
-            id: 3,
+            id: 4,
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "June 2023 - July 2024",
@@ -191,7 +198,7 @@ export function getTechStack(): TechStack[] {
         { name: "Firebase", icon: FirebaseIcon },
         { name: "MongoDB", icon: MongoIcon },
         { name: "Docker", icon: DockerIcon },
-        { name: "PostgreSQL", icon: PostgresIcon },
+        { name: "FastAPI", icon: FastApiIcon },
     ];
 }
 

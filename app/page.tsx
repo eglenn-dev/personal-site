@@ -19,6 +19,7 @@ import {
     PythonIcon,
     DockerIcon,
     MongoIcon,
+    BrainIcon,
 } from "@/lib/icons";
 
 export default async function Home() {
@@ -33,8 +34,11 @@ export default async function Home() {
                     <h2 className="text-2xl font-semibold mb-4">
                         Software Engineer
                     </h2>
-                    <p className="text-base mb-4">
-                        Team Lead & Web Developer at BYU-Idaho
+                    <p className="text-base mb-4 flex flex-row items-center gap-1">
+                        <span>Full-Stack Developer at</span>
+                        <span className="flex flex-row items-center gap-1">
+                            <BrainIcon /> DataThink
+                        </span>
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
@@ -58,13 +62,19 @@ export default async function Home() {
                         <Link href="/projects">
                             <Button className="group">
                                 <span>My Projects</span>
-                                <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
                             </Button>
                         </Link>
                         <Link href={`/blog/${latestPost.slug}`}>
                             <Button variant="outline" className="group">
                                 <span>Latest Blog Post</span>
-                                <ArrowRight className="ml-1 transition-transform group-hover:translate-x-1" size={16} />
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
                             </Button>
                         </Link>
                     </div>
@@ -119,7 +129,7 @@ export default async function Home() {
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
-                                    <h3 className="text-xs sm:text-sm font-medium">
+                                    <h3 className="text-xs sm:text-sm font-medium mt-0.5">
                                         {tech.name}
                                     </h3>
                                 </CardContent>

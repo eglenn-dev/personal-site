@@ -77,7 +77,7 @@ export function WeatherSkeleton() {
                 <Cloud className="h-4 w-4" />
                 <span>...</span>
             </div>
-            <span className="flex flex-row text-zinc-400 items-center gap-1.5">
+            <span className="flex flex-row text-zinc-400 items-center gap-1.5 animate-pulse">
                 <Clock className="inline-block h-4 w-4" />
                 <span>...</span>
             </span>

@@ -51,15 +51,20 @@ export default function ExperiencePage() {
                                 ))}
                             </div>
                         </CardHeader>
-                        <CardContent>
-                            <ul className="list-disc pl-5 space-y-2">
-                                {experience.responsibilities.map(
-                                    (responsibility, index) => (
-                                        <li key={index}>{responsibility}</li>
-                                    )
-                                )}
-                            </ul>
-                        </CardContent>
+                        {experience.responsibilities &&
+                            experience.responsibilities.length > 0 && (
+                                <CardContent>
+                                    <ul className="list-disc pl-5 space-y-2">
+                                        {experience.responsibilities.map(
+                                            (responsibility, index) => (
+                                                <li key={index}>
+                                                    {responsibility}
+                                                </li>
+                                            )
+                                        )}
+                                    </ul>
+                                </CardContent>
+                            )}
                     </Card>
                 ))}
             </div>
