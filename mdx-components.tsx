@@ -63,10 +63,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <ul className="mb-4 list-disc pl-5">{children}</ul>
         ),
         ol: ({ children }) => (
-            <ol className="mb-7 list-decimal pl-5">{children}</ol>
+            <ol className="mb-0.5 list-decimal pl-5">{children}</ol>
         ),
         li: ({ children }) => (
-            <li className="mb-2 text-base leading-7">{children}</li>
+            <li className="mb-0.5 text-base leading-7">{children}</li>
         ),
         a: ({ children, href }) => {
             if (

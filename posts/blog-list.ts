@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "git-rewind",
+        title: "Git Rewind",
+        description:
+            "A web application that provides users with a summary of their GitHub activity over the past year, including contributions, daily streaks, and more.",
+        date: "2025-08-15",
+        hidden: true,
+    },
+    {
         slug: "bible-search",
         title: "Bible Semantic Search Engine",
         description:

@@ -1,0 +1,49 @@
+import Image from "next/image";
+
+# Building Git Rewind
+
+_2025-08-15_
+
+<Image
+    src="/blog/git-rewind/home-page.png"
+    alt="Landing page for Git Rewind"
+    width={600}
+    height={400}
+    className="mx-auto rounded-lg mb-8"
+/>
+
+> Inspired by Spotify Wrapped, Git Rewind is a web application that provides users with a summary of their GitHub activity over the past year, including contributions, repositories, and more. It allows users to visualize their coding journey and share it with others.
+
+Building Git Rewind was a fun project that allowed me to explore the GitHub API and GraphQL, which I had never used before. The project is built with Next.js, TypeScript, and Tailwind CSS, and it leverages the GitHub API to fetch user data and contributions.
+
+## Data Fetching
+
+Data is fetched on the server from a server component. The GitHub API is called using a GraphQL query to retrieve the user's contributions and repository information. The data is then processed and passed to the client for rendering.
+
+One of my main reasons for starting this project was to learn more about GraphQL and how to use it effectively. I found it to be a powerful tool for querying data, and it made the process of fetching and manipulating data much more efficient. I also wanted a way to see cool stats about my GitHub activity.
+
+## Features
+
+<Image
+    src="/blog/git-rewind/example-rewind.png"
+    alt="Example Rewind for Ethan Glenn"
+    width={600}
+    height={400}
+    className="mx-auto rounded-lg mb-8 mt-4"
+/>
+
+This is a very simple project, and only took me a hand full of hours to build over the course of a weekend. The main features include:
+
+- The users total contributions for the year.
+- The users most active day of the week for commits.
+- The users most active month of the year for commits.
+- The users longest daily commit streak for the year.
+- The users most used languages by repository.
+- The time of day the user is most active for commits.
+- Finally, a GitHub inspired commit heat map for the year.
+
+### Other Additions
+
+- A short guide on how to make private contributions public, without making the repositories public.
+- A share button for sharing the link to the user's Git Rewind summary.
+- Getting the users profile picture from GitHub to make the summary more visually appealing.
