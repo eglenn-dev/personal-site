@@ -37,7 +37,7 @@ export default async function Home() {
                     <p className="text-base mb-4 flex flex-row items-center gap-1">
                         <span>Full-stack Developer at</span>
                         <span className="flex flex-row items-center gap-1">
-                            <span className="mb-[2px]">
+                            <span className="mb-[1px]">
                                 <BrainIcon />
                             </span>{" "}
                             DataThink
