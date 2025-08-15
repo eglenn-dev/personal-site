@@ -8,24 +8,25 @@
         <img alt="Next.js" src="https://img.shields.io/badge/-Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
         <img alt="Tailwind CSS" src="https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
         <img alt="Vercel" src="https://img.shields.io/badge/-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" />
-        <img alt="shadcn/ui" src="https://img.shields.io/badge/-shadcn/ui-000000?style=flat-square&logo=react&logoColor=white" />
+        <img alt="shadcn/ui" src="https://img.shields.io/badge/-shadcn%2Fui-111827?style=flat-square&logo=shadcnui&logoColor=white" />
     </p>
 </div>
 
 ## Features
 
--   **Home Page**: Introduction and latest updates.
--   **Portfolio**: Display of my projects and achievements.
--   **Experience**: List of my work experience.
--   **Contact**: Form to get in touch with me.
+- **Home Page**: Introduction and latest updates.
+- **Portfolio**: Display of my projects and achievements.
+- **Experience**: List of my work experience.
+- **Blog**: Articles and posts on various topics.
+- **Contact**: Form to get in touch with me.
 
 ## Technologies Used
 
--   **React w/ TypeScript**: Library for building reactive user interfaces.
--   **Next.js**: React framework for server-side rendering and file based routing system.
--   **Tailwind CSS**: Utility-first CSS framework for styling.
--   **Vercel**: Cloud platform for static sites and serverless functions.
--   **shadcn/ui**: React component library.
+- **React w/ TypeScript**: Library for building reactive user interfaces.
+- **Next.js**: React framework for server-side rendering and file based routing system.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Vercel**: Cloud platform for static sites and serverless functions.
+- **shadcn/ui**: React component library.
 
 ## Installation
 
@@ -49,12 +50,8 @@
 
 5. Open your browser and go to `http://localhost:3000`.
 
-## Page Data
+---
 
--   **Home**: Dynamically generated using react-server-components, and server-side-rendering (SSR) with Next.js.
--   **Projects**: Generated statically at build time using Next.js.
--   **Experience**: Generated statically at build time using Next.js.
--   **Blog**: Page and posts on a dynamic route, and generated at build time using Next.js and `generateStaticParams()`.
--   **Contact**: Static route with form submission handled with server actions on Vercel.
-
-Copyright &copy; 2025 [Ethan Glenn](http://ethanglenn.dev). All rights reserved.
+<div align="center">
+    <p>Copyright &copy; 2025 <a href="http://ethanglenn.dev">Ethan Glenn</a>. All rights reserved.</p>
+</div>
