@@ -1,16 +1,12 @@
 export const dynamic = "force-dynamic";
-import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import WeatherCard, { WeatherSkeleton } from "@/components/weather";
-import GithubStats, { GithubStatsSkeleton } from "@/components/github-stats";
 import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
 import { getLatestPost } from "@/posts/blog-list";
-import ProjectStatus, {
-    ProjectStatusSkeleton,
-} from "@/components/project-status";
+import { Suspense } from "react";
+import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import {
     GithubIcon,
     LinkedInIcon,
@@ -143,14 +139,8 @@ export default async function Home() {
                 <div id="stats">
                     <h2 className="text-2xl font-semibold mb-6">Stats</h2>
                     <div className="flex flex-col ml-2">
-                        <Suspense fallback={<GithubStatsSkeleton />}>
-                            <GithubStats />
-                        </Suspense>
-                        <Suspense fallback={<WeatherSkeleton />}>
-                            <WeatherCard />
-                        </Suspense>
-                        <Suspense fallback={<ProjectStatusSkeleton />}>
-                            <ProjectStatus />
+                        <Suspense fallback={<HomeStatsSkeleton />}>
+                            <HomeStats />
                         </Suspense>
                     </div>
                 </div>
