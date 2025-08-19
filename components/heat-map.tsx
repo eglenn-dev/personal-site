@@ -33,9 +33,9 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
         return <></>;
     }
 
-    const sorted = [...data].sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-    );
+    const sorted = [...data]
+        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        .slice(1);
 
     const DAYS_PER_WEEK = 7;
     const firstDate = new Date(sorted[0].date);
@@ -54,35 +54,17 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
     });
 
     const weekIndices = Array.from(weeksMap.keys()).sort((a, b) => a - b);
-    let firstFullWeekIdx = 0;
-    while (firstFullWeekIdx < weekIndices.length) {
-        const days = weeksMap.get(weekIndices[firstFullWeekIdx])!;
-        const present = new Set(days.map((d) => d.weekday));
-        if (present.size === DAYS_PER_WEEK) break;
-        firstFullWeekIdx++;
-    }
-    let lastFullWeekIdx = weekIndices.length - 1;
-    while (lastFullWeekIdx >= 0) {
-        const days = weeksMap.get(weekIndices[lastFullWeekIdx])!;
-        const present = new Set(days.map((d) => d.weekday));
-        if (present.size === DAYS_PER_WEEK) break;
-        lastFullWeekIdx--;
-    }
-    const trimmedWeekIndices = weekIndices.slice(
-        firstFullWeekIdx,
-        lastFullWeekIdx + 1
-    );
 
-    if (trimmedWeekIndices.length === 0) {
+    if (weekIndices.length === 0) {
         return <></>;
     }
 
     const gridData: (ContributionWeekday | null)[][] = Array.from(
         { length: DAYS_PER_WEEK },
-        () => new Array(trimmedWeekIndices.length).fill(null)
+        () => new Array(weekIndices.length).fill(null)
     );
 
-    trimmedWeekIndices.forEach((weekIdx, col) => {
+    weekIndices.forEach((weekIdx, col) => {
         const days = weeksMap.get(weekIdx)!;
         days.forEach((day) => {
             const row = day.weekday;
@@ -116,9 +98,7 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
                                                     </p>
                                                 </TooltipContent>
                                             </Tooltip>
-                                        ) : (
-                                            <div className="w-3 h-3 bg-gray-100 dark:bg-zinc-800 rounded-sm" />
-                                        )}
+                                        ) : null}
                                     </div>
                                 ))}
                             </div>

@@ -22,67 +22,54 @@ export async function getCombinedGitHubStats(
     username: string
 ): Promise<CombinedStats | null> {
     try {
-        const now = new Date();
-        const to = now.toISOString();
+        const today = new Date();
+        today.setUTCHours(0, 0, 0, 0);
 
-        const oneYearAgo = new Date(now);
-        oneYearAgo.setFullYear(now.getFullYear() - 1);
+        const oneYearAgo = new Date(today);
+        oneYearAgo.setFullYear(today.getFullYear() - 1);
+
+        const sixtyDaysAgo = new Date(today);
+        sixtyDaysAgo.setUTCDate(today.getUTCDate() - 59);
+
         const fromYear = oneYearAgo.toISOString();
-
-        const oneMonthAgo = new Date(now);
-        oneMonthAgo.setMonth(now.getMonth() - 1);
-        const fromMonth = oneMonthAgo.toISOString();
-
-        // Rolling 60-day window
-        const sixtyDaysAgo = new Date(now);
-        sixtyDaysAgo.setDate(now.getDate() - 60);
         const from60Days = sixtyDaysAgo.toISOString();
+        const to = new Date(
+            today.getTime() + (24 * 60 * 60 * 1000 - 1)
+        ).toISOString();
 
         const query = `
-            query($username: String!, $fromYear: DateTime!, $fromMonth: DateTime!, $from60Days: DateTime!, $to: DateTime!) {
-              viewer {
-                # Alias for yearly contributions
-                yearContributions: contributionsCollection(from: $fromYear, to: $to) {
-                  contributionCalendar {
-                    totalContributions
-                  }
-                }
-                # Alias for monthly contributions
-                monthContributions: contributionsCollection(from: $fromMonth, to: $to) {
-                  contributionCalendar {
-                    totalContributions
-                  }
-                }
-                # Repositories for language stats
-                repositories(first: 100, isFork: false, ownerAffiliations: OWNER) {
-                  nodes {
-                    primaryLanguage {
-                      name
+            query($username: String!, $fromYear: DateTime!, $from60Days: DateTime!, $to: DateTime!) {
+                user(login: $username) {
+                    yearContributions: contributionsCollection(from: $fromYear, to: $to) {
+                        contributionCalendar {
+                            totalContributions
+                        }
                     }
-                  }
-                }
-              }
-              user(login: $username) {
-                # Alias for last 60 days contributions
-                last60DaysContributions: contributionsCollection(from: $from60Days, to: $to) {
-                  contributionCalendar {
-                    weeks {
-                      contributionDays {
-                        date
-                        contributionCount
-                        weekday
-                      }
+                    last60DaysContributions: contributionsCollection(from: $from60Days, to: $to) {
+                        contributionCalendar {
+                            weeks {
+                                contributionDays {
+                                    date
+                                    contributionCount
+                                    weekday
+                                }
+                            }
+                        }
                     }
-                  }
+                    repositories(first: 100, isFork: false, ownerAffiliations: OWNER) {
+                        nodes {
+                            primaryLanguage {
+                                name
+                            }
+                        }
+                    }
                 }
-              }
             }
         `;
 
         const variables = {
             username,
             fromYear,
-            fromMonth,
             from60Days,
             to,
         };
@@ -107,10 +94,14 @@ export async function getCombinedGitHubStats(
             );
         }
 
-        const { viewer, user } = json.data;
+        const { user } = json.data;
+        const {
+            yearContributions,
+            last60DaysContributions: sixtyDaysCollection,
+            repositories,
+        } = user;
 
-        // Process language data
-        const languages: LanguageData = viewer.repositories.nodes
+        const languages: LanguageData = repositories.nodes
             .map(
                 (repo: { primaryLanguage: { name: string } | null }) =>
                     repo.primaryLanguage
@@ -129,47 +120,27 @@ export async function getCombinedGitHubStats(
         }
 
         const rawDays: ContributionWeekday[] =
-            user.last60DaysContributions.contributionCalendar.weeks
-                .flatMap(
-                    (week: { contributionDays: ContributionWeekday[] }) =>
-                        week.contributionDays
-                )
-                .map((day: ContributionWeekday) => ({
-                    date: day.date,
-                    contributionCount: day.contributionCount,
-                    weekday: day.weekday,
-                }));
+            sixtyDaysCollection.contributionCalendar.weeks.flatMap(
+                (week: { contributionDays: ContributionWeekday[] }) =>
+                    week.contributionDays
+            );
 
-        // Build an exact rolling 60 day window inclusive of 'today'
-        const todayUTC = new Date();
-        const endUTC = new Date(
-            Date.UTC(
-                todayUTC.getUTCFullYear(),
-                todayUTC.getUTCMonth(),
-                todayUTC.getUTCDate()
-            )
-        );
-        const startUTC = new Date(endUTC);
-        startUTC.setUTCDate(endUTC.getUTCDate() - 59); // 60 days including today
-
-        // Index raw days by yyyy-mm-dd for quick lookup (truncate to date part)
         const dayMap = new Map<string, ContributionWeekday>();
         rawDays.forEach((d) => {
             const key = d.date.substring(0, 10);
             dayMap.set(key, {
                 date: key,
                 contributionCount: d.contributionCount,
-                weekday: new Date(d.date).getUTCDay(),
+                weekday: new Date(`${d.date}T00:00:00Z`).getUTCDay(),
             });
         });
 
         const last60DaysContributions: ContributionWeekday[] = [];
-        for (
-            let dt = new Date(startUTC);
-            dt <= endUTC;
-            dt.setUTCDate(dt.getUTCDate() + 1)
-        ) {
+        for (let i = 0; i < 60; i++) {
+            const dt = new Date(today);
+            dt.setUTCDate(today.getUTCDate() - i);
             const key = dt.toISOString().substring(0, 10);
+
             if (dayMap.has(key)) {
                 last60DaysContributions.push(dayMap.get(key)!);
             } else {
@@ -181,16 +152,23 @@ export async function getCombinedGitHubStats(
             }
         }
 
+        const oneMonthAgo = new Date(today);
+        oneMonthAgo.setUTCDate(today.getUTCDate() - 29);
+
+        const monthContributions = last60DaysContributions
+            .filter((c) => {
+                const day = new Date(c.date);
+                return day >= oneMonthAgo && day <= today;
+            })
+            .reduce((sum, c) => sum + c.contributionCount, 0);
+
         return {
             yearContributions:
-                viewer.yearContributions.contributionCalendar
-                    .totalContributions,
-            monthContributions:
-                viewer.monthContributions.contributionCalendar
-                    .totalContributions,
+                yearContributions.contributionCalendar.totalContributions,
+            monthContributions,
             mostUsedLanguages: languages,
             topLanguage,
-            last60DaysContributions,
+            last60DaysContributions: last60DaysContributions.reverse(),
         };
     } catch (error) {
         console.error("An error occurred in getCombinedGitHubStats:", error);
