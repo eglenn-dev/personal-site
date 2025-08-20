@@ -12,11 +12,10 @@ export default function Error() {
                 <span>There was an error</span>
             </h1>
             <p className="text-md sm:text-lg mb-2">
-                There was a server side error while loading this page.
+                There was an error while loading this page.
             </p>
             <p className="text-md sm:text-lg max-w-96 mb-8">
-                Please try again in a minute once the debugging duck has had a
-                chance to look at the problem.
+                Please try again later.
             </p>
             <Image
                 src="/duck.webp"

@@ -80,7 +80,7 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
                 <div className="flex">
                     <div className="flex flex-col space-y-1 max-w-fit">
                         {gridData.map((row, rowIndex) => (
-                            <div key={rowIndex} className="flex space-x-1">
+                            <div key={rowIndex} className="flex gap-1">
                                 {row.map((day, colIndex) => (
                                     <div key={`${rowIndex}-${colIndex}`}>
                                         {day ? (
@@ -98,7 +98,9 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
                                                     </p>
                                                 </TooltipContent>
                                             </Tooltip>
-                                        ) : null}
+                                        ) : (
+                                            <div className="w-3 h-3 rounded-sm bg-gray-200 dark:bg-zinc-800" />
+                                        )}
                                     </div>
                                 ))}
                             </div>
