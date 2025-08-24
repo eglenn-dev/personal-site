@@ -57,7 +57,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             </h6>
         ),
         p: ({ children }) => (
-            <p className="mb-5 text-base leading-7">{children}</p>
+            <p className="mb-5 mt-4 text-base leading-7">{children}</p>
         ),
         ul: ({ children }) => (
             <ul className="mb-4 list-disc pl-5">{children}</ul>

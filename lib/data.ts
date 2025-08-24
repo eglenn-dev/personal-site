@@ -87,7 +87,6 @@ export function getProjects(): Project[] {
                 "FAISS (vector database)",
                 "FastAPI",
             ],
-            link: "https://clipit.one/eg-dev-bible",
             article: "/blog/bible-search",
         },
         {
@@ -145,7 +144,7 @@ export function getExperiences(): Experience[] {
     return [
         {
             id: 1,
-            role: "Full-stack Developer",
+            role: "Full-Stack Developer",
             company: "DataThink",
             period: "August 2025 - Present",
             skills: [
@@ -161,7 +160,6 @@ export function getExperiences(): Experience[] {
             responsibilities: [
                 "Developed and maintained a robust order management platform, processing 100+ weekly orders, leveraging React, Next.js, Python, FastAPI, and PostgreSQL.",
                 "Contributed daily production-ready code as part of an agile team, utilizing Jira for sprint planning and task management to deliver client solutions efficiently.",
-                "Designed and implemented scalable full-stack solutions, demonstrating expertise in data pipeline integration with PostgreSQL and advanced ORM techniques.",
             ],
         },
         {
