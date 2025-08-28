@@ -12,29 +12,7 @@ import {
     DockerIcon,
     FastApiIcon,
 } from "./icons";
-
-interface Project {
-    id: number;
-    name: string;
-    description: string;
-    technologies: string[];
-    link?: string;
-    article?: string;
-}
-
-interface Experience {
-    id: number;
-    role: string;
-    company: string;
-    period: string;
-    skills: string[];
-    responsibilities?: string[];
-}
-
-interface TechStack {
-    name: string;
-    icon: React.ComponentType;
-}
+import type { Project, Experience, TechStack } from "./types";
 
 export function getProjects(): Project[] {
     return [
@@ -153,7 +131,6 @@ export function getExperiences(): Experience[] {
                 "Python",
                 "PostgreSQL",
                 "FastAPI",
-                "Jira",
                 "Agile",
                 "ORM",
             ],

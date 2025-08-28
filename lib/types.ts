@@ -15,3 +15,26 @@ export interface CombinedStats {
     mostUsedLanguages: LanguageData;
     topLanguage: string | null;
 }
+
+export interface Project {
+    id: number;
+    name: string;
+    description: string;
+    technologies: string[];
+    link?: string;
+    article?: string;
+}
+
+export interface Experience {
+    id: number;
+    role: string;
+    company: string;
+    period: string;
+    skills: string[];
+    responsibilities?: string[];
+}
+
+export interface TechStack {
+    name: string;
+    icon: React.ComponentType;
+}
