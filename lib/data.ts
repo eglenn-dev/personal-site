@@ -40,6 +40,20 @@ export function getProjects(): Project[] {
             article: "https://clipit.one/eg-dev-ihack",
         },
         {
+            id: 2.5,
+            name: "Legrande Health Web App",
+            description:
+                "Full-stack health services web application servicing over 100 medical practices across the mainland U.S. Built in an Agile environment with a team of seven developers.",
+            technologies: [
+                "TypeScript",
+                "React",
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "Docker",
+            ],
+        },
+        {
             id: 3,
             name: "Git Rewind",
             description:
@@ -123,7 +137,7 @@ export function getExperiences(): Experience[] {
         {
             id: 1,
             role: "Full-Stack Developer",
-            company: "DataThink",
+            company: "DataThink.io",
             period: "August 2025 - Present",
             skills: [
                 "React",
