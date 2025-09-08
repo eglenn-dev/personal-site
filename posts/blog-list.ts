@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "legrande-health",
+        title: "Legrande Health Web App",
+        description:
+            "A web application for Legrande Health, an order management platform for medical practices and suppliers.",
+        date: "2025-09-09",
+        hidden: false,
+    },
+    {
         slug: "git-rewind",
         title: "Git Rewind",
         description:
