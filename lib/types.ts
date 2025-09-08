@@ -17,7 +17,6 @@ export interface CombinedStats {
 }
 
 export interface Project {
-    id: number;
     name: string;
     description: string;
     technologies: string[];
@@ -26,7 +25,6 @@ export interface Project {
 }
 
 export interface Experience {
-    id: number;
     role: string;
     company: string;
     period: string;

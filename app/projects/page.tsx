@@ -23,8 +23,8 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 className="text-4xl font-bold mb-6">My Projects</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects.map((project) => (
-                    <Card key={project.id}>
+                {projects.map((project, index) => (
+                    <Card key={index}>
                         <CardHeader>
                             <CardTitle className="text-lg text-[#0077b6] dark:text-white mb-2">
                                 {project.name}

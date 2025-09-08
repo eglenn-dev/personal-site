@@ -17,7 +17,20 @@ import type { Project, Experience, TechStack } from "./types";
 export function getProjects(): Project[] {
     return [
         {
-            id: 1,
+            name: "Legrande Health Web App",
+            description:
+                "Full-stack health services web application servicing over 100 medical practices across the mainland U.S. Built in an Agile environment with a team of seven developers.",
+            technologies: [
+                "TypeScript",
+                "React",
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "Docker",
+            ],
+            article: "/blog/legrande-health",
+        },
+        {
             name: "Resumly.pro",
             description:
                 "A full stack web app the generates resumes based on a user provided job posting URL. Custom Python backend scraps important data from the job posting, and Gemini API is used to generate a tailored resume.",
@@ -32,7 +45,6 @@ export function getProjects(): Project[] {
             article: "/blog/resumly",
         },
         {
-            id: 2,
             name: "I-Hack Winner",
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
@@ -40,21 +52,6 @@ export function getProjects(): Project[] {
             article: "https://clipit.one/eg-dev-ihack",
         },
         {
-            id: 2.5,
-            name: "Legrande Health Web App",
-            description:
-                "Full-stack health services web application servicing over 100 medical practices across the mainland U.S. Built in an Agile environment with a team of seven developers.",
-            technologies: [
-                "TypeScript",
-                "React",
-                "Python",
-                "FastAPI",
-                "PostgreSQL",
-                "Docker",
-            ],
-        },
-        {
-            id: 3,
             name: "Git Rewind",
             description:
                 "A web application that provides users with a summary of their GitHub activity over the past year, including contributions, daily streaks, and more.",
@@ -69,7 +66,6 @@ export function getProjects(): Project[] {
             article: "/blog/git-rewind",
         },
         {
-            id: 4,
             name: "Bible Search",
             description:
                 "Build a API that allows users to search the Bible using natural language queries. The API uses a vector database to store and retrieve verses based on their semantic meaning.",
@@ -82,7 +78,6 @@ export function getProjects(): Project[] {
             article: "/blog/bible-search",
         },
         {
-            id: 5,
             name: "MarkNote.one",
             description:
                 "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
@@ -97,7 +92,6 @@ export function getProjects(): Project[] {
             article: "/blog/marknote-update",
         },
         {
-            id: 6,
             name: "Library Database Search",
             description:
                 "Implemented a search tool for the McKay Library databases, allowing users to find relevant resources using natural language queries.",
@@ -105,7 +99,6 @@ export function getProjects(): Project[] {
             article: "/blog/mckay-db-search",
         },
         {
-            id: 7,
             name: "ClipIt.one",
             description:
                 "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
@@ -114,7 +107,6 @@ export function getProjects(): Project[] {
             article: "/blog/clipit-launch",
         },
         {
-            id: 8,
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -122,7 +114,6 @@ export function getProjects(): Project[] {
             article: "/blog/3d-print-queue",
         },
         {
-            id: 9,
             name: "This Portfolio",
             description:
                 "My personal portfolio website built with React and Tailwind CSS.",
@@ -135,7 +126,6 @@ export function getProjects(): Project[] {
 export function getExperiences(): Experience[] {
     return [
         {
-            id: 1,
             role: "Full-Stack Developer",
             company: "DataThink.io",
             period: "August 2025 - Present",
@@ -154,7 +144,6 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
-            id: 2,
             role: "Team Lead & Web Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "July 2024 - August 2025",
@@ -172,7 +161,6 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
-            id: 3,
             role: "Applied Calculus Teaching Assistant",
             company: "Department of Mathematics - BYU-Idaho",
             period: "April 2024 - April 2025",
@@ -183,7 +171,6 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
-            id: 4,
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "June 2023 - July 2024",

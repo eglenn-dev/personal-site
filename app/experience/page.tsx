@@ -21,8 +21,8 @@ export default function ExperiencePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 className="text-4xl font-bold mb-6">Work Experience</h1>
             <div className="space-y-6">
-                {experiences.map((experience) => (
-                    <Card key={experience.id}>
+                {experiences.map((experience, index) => (
+                    <Card key={index}>
                         <CardHeader>
                             <CardTitle className="text-lg text-[#0077b6] dark:text-white">
                                 {experience.role}

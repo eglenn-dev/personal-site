@@ -72,15 +72,16 @@ export function WeatherSkeleton() {
                 <Sun className="h-5 w-5" />
                 <span>...</span>
             </div>
-            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700" />
             <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
                 <Cloud className="h-4 w-4" />
                 <span>...</span>
             </div>
-            <span className="flex flex-row text-zinc-400 items-center gap-1.5 animate-pulse">
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700" />
+            <div className="flex flex-row text-zinc-400 items-center gap-1.5 animate-pulse">
                 <Clock className="inline-block h-4 w-4" />
                 <span>...</span>
-            </span>
+            </div>
         </div>
     );
 }
