@@ -81,7 +81,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                     </span>
                 </div>
             </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-6">
                 {filteredPosts.length > 0 ? (
                     filteredPosts.map((post) => (
                         <Link
@@ -89,34 +89,38 @@ export default function BlogPage({ posts }: BlogPageProps) {
                             href={`/blog/${post.slug}`}
                             className="group block"
                         >
-                            <article className="h-full overflow-hidden rounded-lg border bg-card transition-all duration-200 hover:shadow-md">
-                                <div className="p-6 space-y-4">
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                        <Calendar className="h-4 w-4" />
-                                        <time dateTime={post.date}>
-                                            {post.date}
-                                        </time>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h2 className="text-lg text-[#0077b6] dark:text-white font-semibold tracking-tight group-hover:text-primary transition-colors">
-                                            {post.title}
-                                        </h2>
-                                        <p className="text-muted-foreground line-clamp-2">
-                                            {post.description}
-                                        </p>
-                                    </div>
-                                    <div className="pt-2 flex justify-between items-center">
-                                        <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
-                                            Read more{" "}
-                                            <ArrowRight className="h-4 w-4" />
-                                        </span>
+                            <article className="overflow-hidden rounded-lg border bg-card transition-all duration-200 hover:shadow-md hover:border-primary/50">
+                                <div className="p-6">
+                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                                        <div className="flex-1 space-y-3">
+                                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                                <Calendar className="h-4 w-4" />
+                                                <time dateTime={post.date}>
+                                                    {post.date}
+                                                </time>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <h2 className="text-xl text-[#0077b6] dark:text-white font-semibold tracking-tight group-hover:text-primary transition-colors">
+                                                    {post.title}
+                                                </h2>
+                                                <p className="text-muted-foreground text-base leading-relaxed">
+                                                    {post.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex-shrink-0 self-start sm:self-center">
+                                            <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all whitespace-nowrap">
+                                                Read more{" "}
+                                                <ArrowRight className="h-4 w-4" />
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </article>
                         </Link>
                     ))
                 ) : (
-                    <div className="col-span-full text-center text-muted-foreground">
+                    <div className="text-center text-muted-foreground py-12">
                         <p className="text-lg">No posts found.</p>
                         <p className="text-sm">
                             Try adjusting your search term.
