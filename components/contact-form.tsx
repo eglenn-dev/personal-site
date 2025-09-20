@@ -194,10 +194,6 @@ export default function ContactForm() {
                                     responding to your inquiry.
                                 </li>
                                 <li>
-                                    I will not share your information with third
-                                    parties.
-                                </li>
-                                <li>
                                     Your email will only be saved in server
                                     logs, and my personal email inbox for the
                                     purpose of responding to your inquiry.

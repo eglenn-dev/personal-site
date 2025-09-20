@@ -1,6 +1,7 @@
 "use server";
 import sanitizeHtml from "sanitize-html";
 import { Resend } from "resend";
+import ContactFormEmail from "../react-email/emails/contact-form";
 
 export async function sendContactEmail(
     name: string,
@@ -32,17 +33,13 @@ export async function sendContactEmail(
         await resend.emails.send({
             from: "Ethan Glenn <ethan@hello.eglenn.dev>",
             to: userEmail,
-            bcc: "ethan@eglenn.dev",
+            bcc: "ethan@ethanglenn.dev",
             subject: `Thanks for reaching out!`,
-            text: `Hey ${safeName},
-
-Thank you for reaching out! I received your message and will get back to you as soon as possible.
-
-Reason for contact: ${safeReason}
-
-Best regards,
-
-Ethan Glenn`,
+            react: ContactFormEmail({
+                name: safeName,
+                email: userEmail,
+                message: safeReason,
+            }),
         });
         console.log("Email sent successfully to ", userEmail);
         return true;
