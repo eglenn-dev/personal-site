@@ -29,6 +29,11 @@ export default function ContactForm() {
 
     useEffect(() => {
         setMounted(true);
+        const storedSuccess = sessionStorage.getItem("contactFormSuccess");
+        if (storedSuccess === "true") {
+            setSubmitSuccess(true);
+        }
+
         const script = document.createElement("script");
         script.src = "https://www.google.com/recaptcha/api.js";
         script.async = true;
@@ -71,6 +76,7 @@ export default function ContactForm() {
 
         setIsSubmitting(false);
         setSubmitSuccess(true);
+        sessionStorage.setItem("contactFormSuccess", "true");
     }
 
     if (error) {
