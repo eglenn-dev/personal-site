@@ -31,7 +31,7 @@ export async function sendContactEmail(
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-            from: "Ethan Glenn <ethan@hello.eglenn.dev>",
+            from: "Ethan Glenn <ethan@hi.ethanglenn.dev>",
             to: userEmail,
             bcc: "ethan@ethanglenn.dev",
             subject: `Thanks for reaching out!`,
