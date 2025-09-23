@@ -31,9 +31,9 @@ export async function sendContactEmail(
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-            from: "Ethan Glenn <ethan@hi.ethanglenn.dev>",
+            from: `Ethan Glenn <${process.env.FROM_EMAIL}>`,
             to: userEmail,
-            bcc: "ethan@ethanglenn.dev",
+            bcc: process.env.BCC_EMAIL,
             subject: `Thanks for reaching out!`,
             react: ContactFormEmail({
                 name: safeName,
