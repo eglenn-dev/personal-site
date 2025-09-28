@@ -57,7 +57,7 @@ export default function ContactFormEmail({
                                     target="_blank"
                                     href="https://ethanglenn.dev/blog"
                                 >
-                                    my thoughts
+                                    my articles
                                 </Link>
                                 .
                             </Text>
