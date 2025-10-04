@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "pr-dashboard",
+        title: "Pull Request Dashboard",
+        description:
+            "A dashboard to track assigned pull requests to users and teams on a specific GitHub repository.",
+        date: "2025-10-06",
+        hidden: true,
+    },
+    {
         slug: "legrande-health",
         title: "Legrande Health Web App",
         description:

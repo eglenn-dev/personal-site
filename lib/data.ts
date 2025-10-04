@@ -52,6 +52,14 @@ export function getProjects(): Project[] {
             article: "https://clipit.one/eg-dev-ihack",
         },
         {
+            name: "Pull Request Dashboard",
+            description:
+                "A dashboard to track contributors to a GitHub repo, and show how many pull-requests they have assigned to them, and how many they have reviewed in the last week.",
+            technologies: ["Next.js", "Tailwind", "GitHub API", "shadcn/ui"],
+            link: "https://clipit.one/eg-dev-pr-dashboard",
+            article: "/blog/pr-dashboard",
+        },
+        {
             name: "Git Rewind",
             description:
                 "A web application that provides users with a summary of their GitHub activity over the past year, including contributions, daily streaks, and more.",
