@@ -31,9 +31,20 @@ export async function sendContactEmail(
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-            from: `Ethan Glenn <${process.env.FROM_EMAIL}>`,
+            from: `${safeName} <${process.env.FROM_EMAIL || ""}>`,
+            to: process.env.OWNER_EMAIL || "",
+            replyTo: userEmail,
+            subject: `Contact from ${safeName}`,
+            react: ContactFormEmail({
+                name: safeName,
+                email: userEmail,
+                message: safeReason,
+            }),
+        });
+
+        await resend.emails.send({
+            from: `Ethan Glenn <${process.env.FROM_EMAIL || ""}>`,
             to: userEmail,
-            bcc: process.env.BCC_EMAIL,
             subject: `Thanks for reaching out!`,
             react: ContactFormEmail({
                 name: safeName,
@@ -41,7 +52,7 @@ export async function sendContactEmail(
                 message: safeReason,
             }),
         });
-        console.log("Email sent successfully to ", userEmail);
+
         return true;
     } else {
         console.error("Captcha verification failed", data);

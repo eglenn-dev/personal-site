@@ -129,7 +129,7 @@ export default function ContactForm() {
     }
 
     return (
-        <form className="space-y-8" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Name</label>
                 <Input
