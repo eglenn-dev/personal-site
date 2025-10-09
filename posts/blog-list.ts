@@ -95,21 +95,21 @@ const slugs: Slug[] = [
         title: "ClipIt.one API Update",
         description: "New API features ready!",
         date: "2025-04-07",
-        hidden: false,
+        hidden: true,
     },
     {
         slug: "clipit-launch",
         title: "Link Shortening Made Easy",
         description: "A new easy and fast way to share links.",
         date: "2025-03-31",
-        hidden: false,
+        hidden: true,
     },
     {
         slug: "marknote-update",
         title: "MarkNote.one Update",
         description: "Things just keep getting better!",
         date: "2025-02-29",
-        hidden: false,
+        hidden: true,
     },
     {
         slug: "3d-print-queue",
@@ -123,7 +123,7 @@ const slugs: Slug[] = [
         title: "Simple Markdown Note Taking",
         description: "MarkNote.one is live!",
         date: "2025-01-28",
-        hidden: false,
+        hidden: true,
     },
 ];
 

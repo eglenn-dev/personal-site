@@ -5,12 +5,12 @@ import {
     PostgresIcon,
     MongoIcon,
     NextjsIcon,
-    JavaScriptIcon,
     FirebaseIcon,
     TailWindIcon,
     GitIcon,
     DockerIcon,
     FastApiIcon,
+    GcpIcon,
 } from "./icons";
 import type { Project, Experience, TechStack } from "./types";
 
@@ -100,21 +100,6 @@ export function getProjects(): Project[] {
             article: "/blog/marknote-update",
         },
         {
-            name: "Library Database Search",
-            description:
-                "Implemented a search tool for the McKay Library databases, allowing users to find relevant resources using natural language queries.",
-            technologies: ["TypeScript", "React", "Next.js", "Gemini API"],
-            article: "/blog/mckay-db-search",
-        },
-        {
-            name: "ClipIt.one",
-            description:
-                "Developed a streamlined link shortening application with custom analytics and user accounts, leveraging Next.js and Firebase to provide a dashboard and detailed insights for each link.",
-            technologies: ["TypeScript", "React", "Next.js", "Firebase"],
-            link: "https://clipit.one/eg-dev-clipit",
-            article: "/blog/clipit-launch",
-        },
-        {
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
@@ -124,8 +109,14 @@ export function getProjects(): Project[] {
         {
             name: "This Portfolio",
             description:
-                "My personal portfolio website built with React and Tailwind CSS.",
-            technologies: ["React", "Tailwind", "TypeScript"],
+                "My personal portfolio website built with Next.js, TypeScript, and Tailwind CSS. Third party services include Vercel for serverless hosting, and Resend for email handling.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Vercel",
+                "Resend",
+                "Tailwind",
+            ],
             link: "https://clipit.one/eg-dev",
         },
     ];
@@ -135,7 +126,7 @@ export function getExperiences(): Experience[] {
     return [
         {
             role: "Full-Stack Developer",
-            company: "DataThink.io",
+            company: "DataThink",
             period: "August 2025 - Present",
             skills: [
                 "React",
@@ -144,11 +135,10 @@ export function getExperiences(): Experience[] {
                 "PostgreSQL",
                 "FastAPI",
                 "Agile",
-                "ORM",
             ],
             responsibilities: [
-                "Developed and maintained a robust order management platform, processing 100+ weekly orders, leveraging React, Next.js, Python, FastAPI, and PostgreSQL.",
-                "Contributed daily production-ready code as part of an agile team, utilizing Jira for sprint planning and task management to deliver client solutions efficiently.",
+                "Developed and maintained a robust order management platform, processing 100+ weekly orders, leveraging React, Python, FastAPI, and PostgreSQL.",
+                "Contributed daily production-ready code as part of an agile team, utilizing Linear for sprint planning and task management to deliver high-quality software solutions.",
             ],
         },
         {
@@ -203,7 +193,7 @@ export function getTechStack(): TechStack[] {
         { name: "TypeScript", icon: TypeScriptIcon },
         { name: "Python", icon: PythonIcon },
         { name: "React", icon: ReactIcon },
-        { name: "JavaScript", icon: JavaScriptIcon },
+        { name: "FastAPI", icon: FastApiIcon },
         { name: "Next.js", icon: NextjsIcon },
         { name: "Tailwind", icon: TailWindIcon },
         { name: "Git", icon: GitIcon },
@@ -211,7 +201,7 @@ export function getTechStack(): TechStack[] {
         { name: "MongoDB", icon: MongoIcon },
         { name: "Postgres", icon: PostgresIcon },
         { name: "Docker", icon: DockerIcon },
-        { name: "FastAPI", icon: FastApiIcon },
+        { name: "GCP", icon: GcpIcon },
     ];
 }
 
