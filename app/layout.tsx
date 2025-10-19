@@ -6,7 +6,6 @@ import Footer from "@/components/footer";
 import GoogleAnalytics from "@/components/analytics";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { getJsonLdData } from "@/lib/data";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -40,11 +39,6 @@ export default function RootLayout({
                 <GoogleAnalytics />
                 <Analytics />
                 <SpeedInsights />
-                <script
-                    type="application/ld+json"
-                    key="product-jsonld"
-                    dangerouslySetInnerHTML={{ __html: getJsonLdData() }}
-                ></script>
                 <Toaster richColors position="bottom-left" />
             </body>
         </html>

@@ -5,6 +5,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Kbd } from "@/components/ui/kbd";
 
 interface BlogPageProps {
     posts: Slug[];
@@ -77,7 +78,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                         className="flex-1 border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none bg-transparent"
                     />
                     <span className="mr-2 text-muted-foreground hidden md:inline-block">
-                        Ctrl + F
+                        <Kbd>⌘ + F</Kbd>
                     </span>
                 </div>
             </div>
