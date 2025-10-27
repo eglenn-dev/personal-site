@@ -1,0 +1,56 @@
+import Image from "next/image";
+
+# Building Olin at I-Hack 2025
+
+_2025-10-27_
+
+BYU-Idaho does a annual hackathon called I-Hack, where students from all over the school come together to build projects in a 24-hour period. Thanks to my team, we won first place this year! I am thrilled that I was able to win for my second year in a row.
+
+<Image
+    src="/blog/i-hack-25/winner-image.jpg"
+    alt="My team and I holding our first place award at I-Hack 2025"
+    width={400}
+    height={200}
+    className="my-4 mx-auto rounded-lg shadow-lg"
+/>
+
+A huge shout out to my teammates [Patrick O'Neill](https://github.com/patoneill24), and [Oscar Ramos](https://github.com/Elchamos64)!
+
+## Meet Olin
+
+<Image
+    src="/blog/i-hack-25/olin-homepage.png"
+    alt="Olin"
+    width={600}
+    height={400}
+    className="my-4 mx-auto rounded-lg shadow-lg"
+/>
+
+My team and I built Olin, an AI-powered mock interviewer. Olin uses Google's Gemini 2.5 Flash TTS model to generate realistic interview questions and responses. The goal of Olin is to help users prepare for interviews by simulating a real interview experience where they can speak their answers out loud and receive feedback. At the end of the interview, Olin provides a summary of strengths and areas for improvement, as well as a score out of 100.
+
+## Technologies Used
+
+Because this was a 24 hour hackathon, we had to choose technologies that would allow us to build quickly and efficiently, plus ones that we had some familiarity with. Here are the main technologies we used:
+
+- Frontend: Next.js, Tailwind CSS, TypeScript, shadcn/ui
+- Backend: Next.js, TypeScript, MongoDB
+- AI: Google Gemini 2.5 Flash
+- Hosting: Vercel
+
+View the [source code on GitHub](https://github.com/eglenn-dev/i-hack-2025)
+
+## Engineering Challenges
+
+One of the main challenges that we encountered was latency, and background tasks.
+
+Since we were using a text-to-speech model, there was a noticeable delay between when the user spoke their answer and when Olin responded. To mitigate this, we implemented a loading indicator to let the user know that Olin was processing their answer, this also included a pre-loaded audio clip that played while waiting for the response to generate. This and a serverless deployment allowed us to process many requests in parallel, reducing the overall wait time for users.
+
+Another challenge was managing post interview processing and tasks such as generating the summary and score. To handle this, we used background tasks to process the interview data after the user had completed the interview, and without blocking the user interface. Next.js has some nice built in methods to engineer around returning a result to the client, while still processing in the background. This allowed us to provide a seamless experience for the user without making them wait for the processing to complete.
+
+## Conclusion
+
+Overall, building Olin was a challenging but rewarding experience. We were able to leverage our skills and knowledge to create a functional and user-friendly AI-powered mock interviewer in just 24 hours. I am proud of what we accomplished and excited to see how Olin can help users prepare for their interviews.
+
+## Questions
+
+Interested in learning more about Olin or have any questions? Feel free to reach out to me on my [contact page](/contact), or [LinkedIn](https://www.linkedin.com/in/eglenn-dev/)!

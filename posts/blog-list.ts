@@ -1,5 +1,12 @@
 const slugs: Slug[] = [
     {
+        slug: "i-hack-25",
+        title: "Building Olin at I-Hack 2025",
+        description: "Learn about how my team and I won I-Hack 2025!",
+        date: "2025-10-27",
+        hidden: false,
+    },
+    {
         slug: "pr-dashboard",
         title: "Pull Request Dashboard",
         description:

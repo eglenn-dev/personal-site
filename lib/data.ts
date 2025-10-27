@@ -31,6 +31,19 @@ export function getProjects(): Project[] {
             article: "/blog/legrande-health",
         },
         {
+            name: "I-Hack Winner 2025",
+            description:
+                "My team placed first in the 'Human Progress' category at the BYU-Idaho 2025 hackathon. We created a full-stack mock interview platform called 'Olin'. ",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Tailwind",
+                "MongoDB",
+                "Google Gemini",
+            ],
+            article: "/blog/i-hack-25",
+        },
+        {
             name: "Resumly.pro",
             description:
                 "A full stack web app the generates resumes based on a user provided job posting URL. Custom Python backend scraps important data from the job posting, and Gemini API is used to generate a tailored resume.",
@@ -45,7 +58,7 @@ export function getProjects(): Project[] {
             article: "/blog/resumly",
         },
         {
-            name: "I-Hack Winner",
+            name: "I-Hack Winner 2024",
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
