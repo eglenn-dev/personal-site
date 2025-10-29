@@ -99,20 +99,6 @@ export function getProjects(): Project[] {
             article: "/blog/bible-search",
         },
         {
-            name: "MarkNote.one",
-            description:
-                "Created an note taking web-app with markdown support, auto-saving, and live previews. With React server-side component rendering, the app is fast and responsive. Built initially as a 36 hour coding challenge.",
-            technologies: [
-                "TypeScript",
-                "React",
-                "Next.js",
-                "Tailwind",
-                "Firebase",
-            ],
-            link: "https://clipit.one/eg-dev-marknote",
-            article: "/blog/marknote-update",
-        },
-        {
             name: "3D Print Request System",
             description:
                 "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
