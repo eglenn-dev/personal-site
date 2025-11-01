@@ -24,57 +24,31 @@ export default async function ProjectStatus() {
     }
 
     return (
-        <HoverCard>
-            <HoverCardTrigger
-                href="https://status.eglenn.dev"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="w-fit"
-            >
-                <div className="mb-4 select-none cursor-pointer inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
-                    <div
-                        className={`flex items-center gap-1.5 ${
-                            allOnline
-                                ? "text-emerald-700 dark:text-emerald-400"
-                                : "text-orange-600 dark:text-orange-400"
-                        }`}
-                    >
-                        <div className="relative">
-                            <Globe className="h-5 w-5" />
-                            <div
-                                className={`absolute -top-1 -right-1 h-2 w-2 rounded-full ${
-                                    allOnline ? "bg-emerald-500" : "bg-red-500"
-                                }`}
-                            />
-                        </div>
-                        {allOnline ? "All projects online" : "Service issues"}
-                    </div>
-                </div>
-            </HoverCardTrigger>
-            <HoverCardContent>
-                <div className="flex flex-col gap-2">
-                    <h3 className="text-lg font-semibold flex gap-2 items-center">
+        <a
+            href="https://status.eglenn.dev"
+            target="_blank"
+            rel="noreferrer noopener"
+        >
+            <div className="mb-4 select-none cursor-pointer inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+                <div
+                    className={`flex items-center gap-1.5 ${
+                        allOnline
+                            ? "text-emerald-700 dark:text-emerald-400"
+                            : "text-orange-600 dark:text-orange-400"
+                    }`}
+                >
+                    <div className="relative">
                         <Globe className="h-5 w-5" />
-                        Project Status
-                    </h3>
-                    {allOnline ? (
-                        <p className="text-sm text-emerald-600 dark:text-emerald-400">
-                            All projects are online and accessible.
-                        </p>
-                    ) : (
-                        <div className="space-y-2">
-                            <p className="text-sm text-orange-600 dark:text-orange-400 flex items-center gap-2">
-                                {errorMessage}
-                            </p>
-                        </div>
-                    )}
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                        <span className="font-semibold">Last updated:</span>{" "}
-                        {message}
-                    </p>
+                        <div
+                            className={`absolute -top-1 -right-1 h-2 w-2 rounded-full ${
+                                allOnline ? "bg-emerald-500" : "bg-red-500"
+                            }`}
+                        />
+                    </div>
+                    {allOnline ? "All projects online" : "Service issues"}
                 </div>
-            </HoverCardContent>
-        </HoverCard>
+            </div>
+        </a>
     );
 }
 

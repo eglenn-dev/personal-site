@@ -5,8 +5,11 @@ import { GitHubHeatmap, GitHubHeatmapSkeleton } from "./heat-map";
 import ProjectStatus, {
     ProjectStatusSkeleton,
 } from "@/components/project-status";
+import { cacheLife } from "next/cache";
 
 export async function HomeStats() {
+    "use cache";
+    cacheLife("minutes");
     const githubStats = await getCombinedGitHubStats("eglenn-dev");
 
     return (

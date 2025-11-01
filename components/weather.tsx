@@ -34,34 +34,20 @@ export default async function WeatherCard() {
     );
 
     return (
-        <HoverCard>
-            <HoverCardTrigger href="#stats" className="w-fit">
-                <div className="mb-4 select-none cursor-help inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
-                    <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400">
-                        {weatherIcon}
-                        {data.main.temp.toString().split(".")[0]}°F
-                    </div>
-                    <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
-                        <Cloud className="h-4 w-4" />
-                        {data.weather[0].description.charAt(0).toUpperCase() +
-                            data.weather[0].description.slice(1)}
-                    </div>
-                    <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <Time />
-                </div>
-            </HoverCardTrigger>
-            <HoverCardContent>
-                <div className="flex flex-col gap-2">
-                    <h3 className="text-lg font-semibold flex gap-2 items-center">
-                        {weatherIcon} Weather in {data.name}
-                    </h3>
-                    <p className="text-sm">
-                        Current weather conditions in my local area.
-                    </p>
-                </div>
-            </HoverCardContent>
-        </HoverCard>
+        <div className="mb-4 select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+            <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400">
+                {weatherIcon}
+                {data.main.temp.toString().split(".")[0]}°F
+            </div>
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
+                <Cloud className="h-4 w-4" />
+                {data.weather[0].description.charAt(0).toUpperCase() +
+                    data.weather[0].description.slice(1)}
+            </div>
+            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+            <Time />
+        </div>
     );
 }
 
