@@ -75,33 +75,29 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
     });
 
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={400}>
             <div className="space-y-2">
                 <div className="flex">
-                    <div className="flex flex-col space-y-1 max-w-fit">
+                    <div className="flex flex-col gap-1 max-w-fit">
                         {gridData.map((row, rowIndex) => (
                             <div key={rowIndex} className="flex gap-1">
                                 {row.map((day, colIndex) => (
-                                    <div key={`${rowIndex}-${colIndex}`}>
-                                        {day ? (
-                                            <Tooltip>
-                                                <TooltipTrigger asChild>
-                                                    <div
-                                                        className={`w-3 h-3 rounded-sm ${colorScale(day.contributionCount)} transition-colors`}
-                                                    />
-                                                </TooltipTrigger>
-                                                <TooltipContent>
-                                                    <p>
-                                                        {day.contributionCount}{" "}
-                                                        commits on{" "}
-                                                        {formatDate(day.date)}
-                                                    </p>
-                                                </TooltipContent>
-                                            </Tooltip>
-                                        ) : (
-                                            <div className="w-3 h-3 rounded-sm bg-gray-200 dark:bg-zinc-800" />
+                                    <Tooltip key={`${rowIndex}-${colIndex}`}>
+                                        <TooltipTrigger asChild>
+                                            <div
+                                                className={`w-3 h-3 rounded-sm ${day ? colorScale(day.contributionCount) : "bg-gray-200 dark:bg-zinc-800"} transition-colors`}
+                                            />
+                                        </TooltipTrigger>
+                                        {day && (
+                                            <TooltipContent>
+                                                <p>
+                                                    {day.contributionCount}{" "}
+                                                    commits on{" "}
+                                                    {formatDate(day.date)}
+                                                </p>
+                                            </TooltipContent>
                                         )}
-                                    </div>
+                                    </Tooltip>
                                 ))}
                             </div>
                         ))}
@@ -123,9 +119,9 @@ export function GitHubHeatmapSkeleton() {
     return (
         <div className="space-y-2 animate-pulse">
             <div className="flex">
-                <div className="flex flex-col space-y-1 max-w-fit">
+                <div className="flex flex-col gap-1 max-w-fit">
                     {grid.map((row, rowIndex) => (
-                        <div key={rowIndex} className="flex space-x-1">
+                        <div key={rowIndex} className="flex gap-1">
                             {row.map((_, colIndex) => (
                                 <div
                                     key={`${rowIndex}-${colIndex}`}
