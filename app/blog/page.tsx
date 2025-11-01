@@ -1,5 +1,6 @@
 import { getPublicPosts } from "@/posts/blog-list";
 import BlogPage from "./blog";
+import { Suspense } from "react";
 
 export const metadata = {
     title: "Blog | Ethan Glenn",
@@ -9,5 +10,9 @@ export const metadata = {
 
 export default async function Page() {
     const posts = getPublicPosts();
-    return <BlogPage posts={posts} />;
+    return (
+        <Suspense>
+            <BlogPage posts={posts} />
+        </Suspense>
+    );
 }

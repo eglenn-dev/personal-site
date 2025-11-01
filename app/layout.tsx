@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,24 +26,26 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <div className="flex flex-col min-h-screen">
-                        <Navbar />
-                        <main className="flex-grow">{children}</main>
-                        <Suspense fallback={<FooterSkeleton />}>
-                            <Footer />
-                        </Suspense>
-                    </div>
-                </ThemeProvider>
-                <GoogleAnalytics />
-                <Analytics />
-                <SpeedInsights />
-                <Toaster richColors position="bottom-left" />
+                <NuqsAdapter>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <div className="flex flex-col min-h-screen">
+                            <Navbar />
+                            <main className="flex-grow">{children}</main>
+                            <Suspense fallback={<FooterSkeleton />}>
+                                <Footer />
+                            </Suspense>
+                        </div>
+                    </ThemeProvider>
+                    <GoogleAnalytics />
+                    <Analytics />
+                    <SpeedInsights />
+                    <Toaster richColors position="bottom-left" />
+                </NuqsAdapter>
             </body>
         </html>
     );

@@ -6,19 +6,24 @@ import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
+import { useQueryState } from "nuqs";
 
 interface BlogPageProps {
     posts: Slug[];
 }
 
 export default function BlogPage({ posts }: BlogPageProps) {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useQueryState("search");
     const [filteredPosts, setFilteredPosts] = useState<Slug[]>(posts);
     const [isFocused, setIsFocused] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        const lowerSearchTerm = searchTerm.toLowerCase();
+        const lowerSearchTerm = searchTerm?.toLowerCase();
+        if (!lowerSearchTerm || lowerSearchTerm.length === 0) {
+            setFilteredPosts(posts.filter((post) => post.hidden === false));
+            return;
+        }
         const results = posts.filter(
             (post) =>
                 (post.title.toLowerCase().includes(lowerSearchTerm) ||
@@ -70,7 +75,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                     <Input
                         type="text"
                         placeholder="Search posts..."
-                        value={searchTerm}
+                        value={searchTerm ?? ""}
                         ref={searchInputRef}
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
