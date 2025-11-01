@@ -28,6 +28,7 @@ export default async function ProjectStatus() {
             href="https://status.eglenn.dev"
             target="_blank"
             rel="noreferrer noopener"
+            className="w-fit"
         >
             <div className="mb-4 select-none cursor-pointer inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
                 <div

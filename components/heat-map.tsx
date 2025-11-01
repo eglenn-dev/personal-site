@@ -2,7 +2,6 @@ import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
-    TooltipProvider,
 } from "@/components/ui/tooltip";
 import { ContributionWeekday } from "@/lib/types";
 
@@ -75,36 +74,33 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
     });
 
     return (
-        <TooltipProvider delayDuration={400}>
-            <div className="space-y-2">
-                <div className="flex">
-                    <div className="flex flex-col gap-1 max-w-fit">
-                        {gridData.map((row, rowIndex) => (
-                            <div key={rowIndex} className="flex gap-1">
-                                {row.map((day, colIndex) => (
-                                    <Tooltip key={`${rowIndex}-${colIndex}`}>
-                                        <TooltipTrigger asChild>
-                                            <div
-                                                className={`w-3 h-3 rounded-sm ${day ? colorScale(day.contributionCount) : "bg-gray-200 dark:bg-zinc-800"} transition-colors`}
-                                            />
-                                        </TooltipTrigger>
-                                        {day && (
-                                            <TooltipContent>
-                                                <p>
-                                                    {day.contributionCount}{" "}
-                                                    commits on{" "}
-                                                    {formatDate(day.date)}
-                                                </p>
-                                            </TooltipContent>
-                                        )}
-                                    </Tooltip>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
+        <div className="space-y-2">
+            <div className="flex">
+                <div className="flex flex-col gap-1 max-w-fit">
+                    {gridData.map((row, rowIndex) => (
+                        <div key={rowIndex} className="flex gap-1">
+                            {row.map((day, colIndex) => (
+                                <Tooltip key={`${rowIndex}-${colIndex}`}>
+                                    <TooltipTrigger asChild>
+                                        <div
+                                            className={`w-3 h-3 rounded-sm ${day ? colorScale(day.contributionCount) : "bg-gray-200 dark:bg-zinc-800"} transition-colors`}
+                                        />
+                                    </TooltipTrigger>
+                                    {day && (
+                                        <TooltipContent>
+                                            <p>
+                                                {day.contributionCount} commits
+                                                on {formatDate(day.date)}
+                                            </p>
+                                        </TooltipContent>
+                                    )}
+                                </Tooltip>
+                            ))}
+                        </div>
+                    ))}
                 </div>
             </div>
-        </TooltipProvider>
+        </div>
     );
 }
 

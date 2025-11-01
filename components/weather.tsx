@@ -34,7 +34,7 @@ export default async function WeatherCard() {
     );
 
     return (
-        <div className="mb-4 select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+        <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
             <div className="flex items-center gap-1.5 text-blue-700 dark:text-blue-400">
                 {weatherIcon}
                 {data.main.temp.toString().split(".")[0]}°F

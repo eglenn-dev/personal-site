@@ -1,5 +1,5 @@
-import { GitCommit, Code } from "lucide-react";
 import type { CombinedStats } from "@/lib/types";
+import { GitCommit, Code } from "lucide-react";
 
 interface GithubStatsProps {
     data: CombinedStats | null;
@@ -9,7 +9,7 @@ export default async function GithubStats({ data }: GithubStatsProps) {
     if (!data) return <></>;
 
     return (
-        <div className="mb-4 select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+        <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
             <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
                 <GitCommit className="h-5 w-5" />
                 {data.yearContributions} contributions
