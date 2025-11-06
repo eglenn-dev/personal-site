@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CopyUrlButton } from "@/components/copy-url-button";
+import { TextHighlightButton } from "@/components/text-highlight-button";
 
 export default async function Page({
     params,
@@ -34,6 +35,7 @@ export default async function Page({
                     </Button>
                 </Link>
             </div>
+            <TextHighlightButton />
         </article>
     );
 }
