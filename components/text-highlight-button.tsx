@@ -242,13 +242,19 @@ export function TextHighlightButton() {
 
         // Find word boundary at start (go backwards)
         let expandedStartOffset = startOffset;
-        while (expandedStartOffset > 0 && /\w/.test(startText[expandedStartOffset - 1])) {
+        while (
+            expandedStartOffset > 0 &&
+            /\w/.test(startText[expandedStartOffset - 1])
+        ) {
             expandedStartOffset--;
         }
 
         // Find word boundary at end (go forwards)
         let expandedEndOffset = endOffset;
-        while (expandedEndOffset < endText.length && /\w/.test(endText[expandedEndOffset])) {
+        while (
+            expandedEndOffset < endText.length &&
+            /\w/.test(endText[expandedEndOffset])
+        ) {
             expandedEndOffset++;
         }
 
@@ -308,7 +314,6 @@ export function TextHighlightButton() {
             <Tooltip open={copied ? true : undefined}>
                 <TooltipTrigger asChild>
                     <Button
-                        variant="outline"
                         size="sm"
                         onClick={handleCopy}
                         className="shadow-lg"
