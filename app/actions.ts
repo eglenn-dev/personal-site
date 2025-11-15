@@ -31,7 +31,7 @@ export async function sendContactEmail(
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         await resend.emails.send({
-            from: `${safeName} <${process.env.FROM_EMAIL || ""}>`,
+            from: `${safeName} Form Submission <${process.env.FROM_EMAIL || ""}>`,
             to: process.env.OWNER_EMAIL || "",
             replyTo: userEmail,
             subject: `Contact from ${safeName}`,

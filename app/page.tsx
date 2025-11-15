@@ -27,10 +27,10 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div id="main">
                     <h2 className="text-2xl font-semibold mb-4">
-                        Software Engineer
+                        Full-Stack Developer
                     </h2>
                     <p className="text-base mb-4 flex flex-row items-center gap-1">
-                        <span>Full-stack developer at</span>
+                        <span>Working at</span>
                         <span className="flex flex-row items-center gap-1">
                             <span className="mb-[1px]">
                                 <BrainIcon />

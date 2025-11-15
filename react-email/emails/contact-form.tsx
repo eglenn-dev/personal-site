@@ -50,16 +50,7 @@ export default function ContactFormEmail({
                             <Text>
                                 Thanks for reaching out! I&apos;ve received your
                                 message and will get back to you as soon as
-                                possible. In the meantime, feel free to explore
-                                some of{" "}
-                                <Link
-                                    className="text-white underline"
-                                    target="_blank"
-                                    href="https://ethanglenn.dev/blog"
-                                >
-                                    my articles
-                                </Link>
-                                .
+                                possible.
                             </Text>
                             <Text>- Ethan</Text>
                         </Section>

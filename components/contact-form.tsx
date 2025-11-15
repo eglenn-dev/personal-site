@@ -1,5 +1,4 @@
 "use client";
-import type React from "react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +14,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/app/actions";
 import { useTheme } from "next-themes";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactForm() {
@@ -233,7 +232,13 @@ export default function ContactForm() {
                 ></div>
             )}
             <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (
+                    "Sending..."
+                ) : (
+                    <span className="flex items-center gap-1">
+                        Send Message <Send />
+                    </span>
+                )}
             </Button>
         </form>
     );
