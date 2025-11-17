@@ -15,16 +15,16 @@ export default function NotFound() {
                 <span className="text-xl text-gray-400 sm:text-2xl">404</span>
                 <span>Page Not Found</span>
             </h1>
-            <p className="text-md sm:text-xl mb-8">
-                The page you are looking for does not exist.
-            </p>
             <Image
                 src="/duck.webp"
                 alt="404 page duck"
-                width={150}
-                height={150}
-                className="mb-8 select-none pointer-events-none"
+                width={100}
+                height={100}
+                className="my-4 select-none pointer-events-none"
             />
+            <p className="text-md sm:text-xl mb-8">
+                The page you are looking for does not exist.
+            </p>
             <Link href="/">
                 <Button>
                     <Home className="mr-1" />

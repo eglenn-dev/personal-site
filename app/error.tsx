@@ -11,25 +11,22 @@ export default function Error() {
                 <span className="text-xl text-gray-400 sm:text-2xl">500</span>
                 <span>There was an error</span>
             </h1>
-            <p className="text-md sm:text-lg mb-2">
-                There was an error while loading this page.
-            </p>
-            <p className="text-md sm:text-lg max-w-96 mb-8">
-                Please try again later.
-            </p>
             <Image
                 src="/duck.webp"
                 alt="404 page duck"
-                width={150}
-                height={150}
-                className="mb-8 select-none pointer-events-none"
+                width={100}
+                height={100}
+                className="my-4 select-none pointer-events-none"
             />
-            <Link href="/">
+            <p className="text-md sm:text-lg mb-4">
+                Sorry, something went wrong on our end.
+            </p>
+            <a href="/">
                 <Button>
                     <Home className="mr-1" />
                     Return to Home
                 </Button>
-            </Link>
+            </a>
         </div>
     );
 }

@@ -1,5 +1,6 @@
 import type { CombinedStats } from "@/lib/types";
 import { GitCommit, Code } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent } from "./ui/tooltip";
 
 interface GithubStatsProps {
     data: CombinedStats | null;
@@ -9,21 +10,28 @@ export default async function GithubStats({ data }: GithubStatsProps) {
     if (!data) return <></>;
 
     return (
-        <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
-            <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
-                <GitCommit className="h-5 w-5" />
-                {data.yearContributions} contributions
-            </div>
-            {data.topLanguage && (
-                <>
-                    <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
-                        <Code className="h-4 w-4" />
-                        {data.topLanguage}
+        <Tooltip>
+            <TooltipTrigger className="cursor-default w-fit">
+                <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+                    <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                        <GitCommit className="h-5 w-5" />
+                        {data.yearContributions} contributions
                     </div>
-                </>
-            )}
-        </div>
+                    {data.topLanguage && (
+                        <>
+                            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+                            <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
+                                <Code className="h-4 w-4" />
+                                {data.topLanguage}
+                            </div>
+                        </>
+                    )}
+                </div>
+            </TooltipTrigger>
+            <TooltipContent>
+                My contributions and top language for the last year
+            </TooltipContent>
+        </Tooltip>
     );
 }
 
