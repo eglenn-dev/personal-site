@@ -27,11 +27,13 @@ export default function ContactForm() {
     const { theme } = useTheme();
 
     useEffect(() => {
-        setMounted(true);
-        const storedSuccess = sessionStorage.getItem("contactFormSuccess");
-        if (storedSuccess === "true") {
-            setSubmitSuccess(true);
-        }
+        queueMicrotask(() => {
+            setMounted(true);
+            const storedSuccess = sessionStorage.getItem("contactFormSuccess");
+            if (storedSuccess === "true") {
+                setSubmitSuccess(true);
+            }
+        });
 
         const script = document.createElement("script");
         script.src = "https://www.google.com/recaptcha/api.js";

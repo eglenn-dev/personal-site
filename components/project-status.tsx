@@ -1,27 +1,8 @@
-import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { Globe } from "lucide-react";
 import { getProjectStatus } from "@/lib/project-status";
 
 export default async function ProjectStatus() {
-    const { allOnline, errorMessage, updatedAt } = await getProjectStatus();
-
-    const date = new Date(updatedAt);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffMinutes = Math.floor(diffMs / 60000);
-
-    let message: string;
-    if (diffMinutes < 1) {
-        message = "just now";
-    } else if (diffMinutes === 1) {
-        message = "1 minute ago";
-    } else {
-        message = `${diffMinutes} minutes ago`;
-    }
+    const { allOnline } = await getProjectStatus();
 
     return (
         <a

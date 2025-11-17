@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import type { Slug } from "@/posts/blog-list";
@@ -14,24 +14,21 @@ interface BlogPageProps {
 
 export default function BlogPage({ posts }: BlogPageProps) {
     const [searchTerm, setSearchTerm] = useQueryState("search");
-    const [filteredPosts, setFilteredPosts] = useState<Slug[]>(posts);
     const [isFocused, setIsFocused] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
+    const filteredPosts = useMemo(() => {
         const lowerSearchTerm = searchTerm?.toLowerCase();
         if (!lowerSearchTerm || lowerSearchTerm.length === 0) {
-            setFilteredPosts(posts.filter((post) => post.hidden === false));
-            return;
+            return posts.filter((post) => post.hidden === false);
         }
-        const results = posts.filter(
+        return posts.filter(
             (post) =>
                 (post.title.toLowerCase().includes(lowerSearchTerm) ||
                     post.description.toLowerCase().includes(lowerSearchTerm) ||
                     post.slug.toLowerCase().includes(lowerSearchTerm)) &&
                 post.hidden === false
         );
-        setFilteredPosts(results);
     }, [posts, searchTerm]);
 
     useEffect(() => {

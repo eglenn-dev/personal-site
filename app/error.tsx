@@ -21,12 +21,12 @@ export default function Error() {
             <p className="text-md sm:text-lg mb-4">
                 Sorry, something went wrong on our end.
             </p>
-            <a href="/">
+            <Link href="/">
                 <Button>
                     <Home className="mr-1" />
                     Return to Home
                 </Button>
-            </a>
+            </Link>
         </div>
     );
 }

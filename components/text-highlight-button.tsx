@@ -39,7 +39,7 @@ export function TextHighlightButton() {
             }
 
             // Function to find text in the document
-            const findTextRange = (text: string, isStart: boolean = true) => {
+            const findTextRange = (text: string) => {
                 const normalizedSearch = text.replace(/\s+/g, " ").trim();
                 const walker = document.createTreeWalker(
                     article,
@@ -81,7 +81,7 @@ export function TextHighlightButton() {
                 return { node: startNode, offset: startOffset };
             };
 
-            const startResult = findTextRange(startText, true);
+            const startResult = findTextRange(startText);
             if (!startResult || !startResult.node) return;
 
             // Create a range for highlighting
@@ -89,7 +89,7 @@ export function TextHighlightButton() {
             range.setStart(startResult.node, startResult.offset);
 
             if (endText) {
-                const endResult = findTextRange(endText, false);
+                const endResult = findTextRange(endText);
                 if (endResult && endResult.node) {
                     const endOffset =
                         endResult.offset + endText.replace(/\s+/g, " ").length;
@@ -120,7 +120,7 @@ export function TextHighlightButton() {
                         block: "center",
                     });
                 }, 100);
-            } catch (error) {
+            } catch {
                 // If surroundContents fails (crosses element boundaries),
                 // fall back to using Selection API
                 const selection = window.getSelection();
@@ -295,8 +295,8 @@ export function TextHighlightButton() {
             copyTimeoutRef.current = setTimeout(() => {
                 setCopied(false);
             }, 2000);
-        } catch (error) {
-            console.error("Failed to copy to clipboard:", error);
+        } catch {
+            // Silently fail if clipboard API is not available
         }
     };
 
