@@ -2,7 +2,14 @@ import { NextResponse } from "next/server";
 import { getCanvasAssignments } from "@/lib/canvas";
 import { sendCanvasAssignmentsEmail } from "@/lib/send-canvas-email";
 
-export const GET = async () => {
+export const GET = async (request: Request) => {
+    const authHeader = request.headers.get("authorization");
+    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+        return new Response("Unauthorized", {
+            status: 401,
+        });
+    }
+
     try {
         // Get today's date in MST
         const today = new Date();
