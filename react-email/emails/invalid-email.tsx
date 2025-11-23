@@ -31,15 +31,15 @@ export default function InvalidEmail() {
                         <Section>
                             <Text className="text-zinc-50">
                                 If you are trying to reach me, and you think
-                                this was a mistake, please contact me via my
-                                website:{" "}
+                                this was a mistake, please contact me via my{" "}
                                 <Link
                                     className="text-white underline"
                                     href="https://ethanglenn.dev"
                                     target="_blank"
                                 >
-                                    ethanglenn.dev
+                                    website
                                 </Link>
+                                , and I will reply as soon as I can.
                             </Text>
                             <Text>- Ethan</Text>
                         </Section>

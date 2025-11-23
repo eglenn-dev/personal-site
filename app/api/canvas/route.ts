@@ -1,96 +1,70 @@
 import { NextResponse } from "next/server";
 import { getCanvasAssignments } from "@/lib/canvas";
+import { sendCanvasAssignmentsEmail } from "@/lib/send-canvas-email";
 
-export const GET = async (request: Request) => {
+export const GET = async () => {
     try {
-        // Parse query parameters for optional date filtering
-        const { searchParams } = new URL(request.url);
-        const dateParam = searchParams.get("date");
+        // Get today's date in MST
+        const today = new Date();
+        const todayMST = today.toLocaleDateString("en-US", {
+            timeZone: "America/Denver",
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+        });
 
-        let specificDate: Date | undefined;
-        if (dateParam) {
-            // Parse the date string as a local date (not UTC)
-            // This ensures "2025-11-15" is treated as Nov 15 in MST, not UTC
-            const dateParts = dateParam.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-            if (!dateParts) {
-                return NextResponse.json(
-                    {
-                        success: false,
-                        error: "Invalid date parameter. Use ISO format (YYYY-MM-DD)",
-                    },
-                    { status: 400 }
-                );
-            }
+        // Fetch assignments due today
+        const assignments = await getCanvasAssignments(today);
 
-            const [, year, month, day] = dateParts;
-            specificDate = new Date(
-                parseInt(year),
-                parseInt(month) - 1,
-                parseInt(day)
-            );
-
-            if (isNaN(specificDate.getTime())) {
-                return NextResponse.json(
-                    {
-                        success: false,
-                        error: "Invalid date parameter. Use ISO format (YYYY-MM-DD)",
-                    },
-                    { status: 400 }
-                );
-            }
-        }
-
-        const rangeDescription = specificDate
-            ? `on ${specificDate.toLocaleDateString("en-US", { timeZone: "America/Denver" })}`
-            : "in the next 7 days";
-
-        console.log(
-            `\nFetching Canvas assignments due ${rangeDescription}...`
-        );
-
-        const assignments = await getCanvasAssignments(specificDate);
-
-        console.log(
-            `\n========== CANVAS ASSIGNMENTS (${assignments.length}) ==========`
-        );
-
+        // If no assignments, don't send email
         if (assignments.length === 0) {
-            console.log(`No assignments found ${rangeDescription}!`);
-        } else {
-            assignments.forEach((assignment, index) => {
-                console.log(`\n${index + 1}. ${assignment.name}`);
-                console.log(`   Course: ${assignment.course_name}`);
-                console.log(`   Due: ${assignment.due_at}`);
-                console.log(`   Points: ${assignment.points_possible}`);
-                console.log(`   URL: ${assignment.html_url}`);
+            return NextResponse.json({
+                success: true,
+                sent: false,
+                count: 0,
+                message: "No assignments due today",
+                date: todayMST,
             });
         }
 
-        console.log("\n" + "=".repeat(60) + "\n");
+        // Send email with today's assignments
+        const emailResult = await sendCanvasAssignmentsEmail(assignments);
+
+        if (!emailResult.success) {
+            console.error("❌ Failed to send email:", emailResult.error);
+            return NextResponse.json(
+                {
+                    success: false,
+                    sent: false,
+                    count: assignments.length,
+                    error: emailResult.error || "Failed to send email",
+                    date: todayMST,
+                },
+                { status: 500 }
+            );
+        }
 
         return NextResponse.json({
             success: true,
+            sent: true,
             count: assignments.length,
-            range: rangeDescription,
+            emailId: emailResult.emailId,
+            date: todayMST,
             assignments: assignments.map((a) => ({
                 name: a.name,
                 course: a.course_name,
                 due_at: a.due_at,
-                points: a.points_possible,
-                url: a.html_url,
-                description: a.description,
             })),
         });
     } catch (error) {
-        console.error("Failed to fetch Canvas assignments:", error);
-
         return NextResponse.json(
             {
                 success: false,
+                sent: false,
                 error:
                     error instanceof Error
                         ? error.message
-                        : "Failed to fetch assignments",
+                        : "Unknown error occurred",
             },
             { status: 500 }
         );

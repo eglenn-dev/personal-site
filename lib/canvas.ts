@@ -58,11 +58,7 @@ function getSpecificDateRange(targetDate: Date) {
 /**
  * Check if an assignment is due within the given date range
  */
-function isDueInRange(
-    dueAt: string | null,
-    start: Date,
-    end: Date
-): boolean {
+function isDueInRange(dueAt: string | null, start: Date, end: Date): boolean {
     if (!dueAt) return false;
 
     // Convert Canvas due date to MST
@@ -156,42 +152,10 @@ export async function getCanvasAssignments(
             ? getSpecificDateRange(specificDate)
             : getNext7DaysRange();
 
-        const rangeType = specificDate
-            ? `Specific Date: ${specificDate.toLocaleDateString("en-US", { timeZone: MST_TIMEZONE })}`
-            : "Next 7 Days";
-
-        console.log(`\n📅 Fetching assignments - ${rangeType}`);
-        console.log(
-            `   Start: ${start.toLocaleString("en-US", { timeZone: MST_TIMEZONE })} MST`
-        );
-        console.log(
-            `   End: ${end.toLocaleString("en-US", { timeZone: MST_TIMEZONE })} MST`
-        );
-
         const courses = await fetchCourses();
-        console.log(`\n📚 Found ${courses.length} active courses`);
 
         const assignmentsPromises = courses.map(async (course) => {
             const assignments = await fetchCourseAssignments(course.id);
-            console.log(
-                `\n   Course: ${course.name} - ${assignments.length} total assignments`
-            );
-
-            // Log all assignments with due dates to help debug
-            assignments.forEach((a) => {
-                if (a.due_at) {
-                    const dueDate = new Date(a.due_at);
-                    const dueDateMST = new Date(
-                        dueDate.toLocaleString("en-US", {
-                            timeZone: MST_TIMEZONE,
-                        })
-                    );
-                    const isInRange = isDueInRange(a.due_at, start, end);
-                    console.log(
-                        `      ${isInRange ? "✅" : "❌"} ${a.name} - Due: ${dueDateMST.toLocaleString("en-US", { timeZone: MST_TIMEZONE })} MST`
-                    );
-                }
-            });
 
             const matchingAssignments = assignments.filter((assignment) =>
                 isDueInRange(assignment.due_at, start, end)
@@ -205,8 +169,6 @@ export async function getCanvasAssignments(
 
         const assignmentArrays = await Promise.all(assignmentsPromises);
         const results = assignmentArrays.flat();
-
-        console.log(`\n✨ Found ${results.length} matching assignments`);
 
         return results;
     } catch (error) {
