@@ -36,3 +36,24 @@ export interface TechStack {
     name: string;
     icon: React.ComponentType;
 }
+
+export interface CanvasAssignment {
+    id: number;
+    name: string;
+    description: string;
+    due_at: string | null;
+    points_possible: number;
+    course_id: number;
+    html_url: string;
+    submission_types: string[];
+}
+
+export interface CanvasCourse {
+    id: number;
+    name: string;
+    course_code: string;
+}
+
+export interface CanvasAssignmentWithCourse extends CanvasAssignment {
+    course_name: string;
+}
