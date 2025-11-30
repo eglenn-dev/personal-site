@@ -63,14 +63,14 @@ export default function CanvasAssignmentsEmail({
         <Html>
             <Head />
             <Tailwind>
-                <Body className="bg-zinc-950 font-sans text-zinc-50">
+                <Body className="bg-white font-sans text-zinc-900">
                     <Container className="mx-auto max-w-2xl px-4 py-6">
                         {/* Header */}
                         <Section className="mb-6">
-                            <Heading className="mb-1 text-2xl font-semibold text-white">
+                            <Heading className="mb-1 text-2xl font-semibold text-zinc-950">
                                 Assignments Due Today
                             </Heading>
-                            <Text className="text-sm text-zinc-400">
+                            <Text className="text-sm text-zinc-600">
                                 {date}
                             </Text>
                         </Section>
@@ -79,11 +79,11 @@ export default function CanvasAssignmentsEmail({
                         {assignments.map((assignment, index) => (
                             <div key={index}>
                                 <Section className="mb-6">
-                                    <Heading className="mb-2 text-lg font-semibold text-white">
+                                    <Heading className="mb-2 text-lg font-semibold text-zinc-950">
                                         {assignment.name}
                                     </Heading>
 
-                                    <Text className="mb-2 text-sm text-zinc-300">
+                                    <Text className="mb-2 text-sm text-zinc-700">
                                         {assignment.course_name} • Due{" "}
                                         {formatDueTime(assignment.due_at)} MST •{" "}
                                         {assignment.points_possible} pts
@@ -91,7 +91,7 @@ export default function CanvasAssignmentsEmail({
 
                                     <div className="mt-3">
                                         <Link
-                                            className="inline-block rounded-md bg-white px-2 py-1 text-sm font-semibold text-black no-underline"
+                                            className="inline-block rounded-md bg-zinc-900 px-2 py-1 text-sm font-semibold text-white no-underline"
                                             href={assignment.html_url}
                                             target="_blank"
                                         >
@@ -100,14 +100,14 @@ export default function CanvasAssignmentsEmail({
                                     </div>
                                 </Section>
                                 {index < assignments.length - 1 && (
-                                    <Hr className="my-4 border-zinc-800" />
+                                    <Hr className="my-4 border-zinc-200" />
                                 )}
                             </div>
                         ))}
 
                         {/* Footer */}
                         <Section className="mt-8 text-center">
-                            <Text className="text-xs text-zinc-600">
+                            <Text className="text-xs text-zinc-500">
                                 Daily Canvas reminder • &copy;{" "}
                                 {new Date().getFullYear()} Ethan Glenn
                             </Text>
