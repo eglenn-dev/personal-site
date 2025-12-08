@@ -38,7 +38,7 @@ export async function sendCanvasAssignmentsEmail(
         });
 
         const { data, error } = await resend.emails.send({
-            from: `Canvas Assignments <${fromEmail}>`,
+            from: `Canvas Bot <${fromEmail}>`,
             to: ownerEmail,
             subject: `Canvas Assignments Due Today - ${dateString}`,
             react: CanvasAssignmentsEmail({
