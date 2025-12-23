@@ -13,9 +13,12 @@ interface BlogPageProps {
 }
 
 export default function BlogPage({ posts }: BlogPageProps) {
-    const [searchTerm, setSearchTerm] = useQueryState("search");
     const [isFocused, setIsFocused] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
+    const [searchTerm, setSearchTerm] = useQueryState("search", {
+        defaultValue: "",
+        clearOnDefault: true,
+    });
 
     const filteredPosts = useMemo(() => {
         const lowerSearchTerm = searchTerm?.toLowerCase();

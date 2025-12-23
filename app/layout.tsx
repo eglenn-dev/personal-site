@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
 import { Footer, FooterSkeleton } from "@/components/footer";
+import { CommandPaletteProvider } from "@/components/command-palette-provider";
 import GoogleAnalytics from "@/components/analytics";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -37,6 +38,7 @@ export default function RootLayout({
                         >
                             <div className="flex flex-col min-h-screen">
                                 <Navbar />
+                                <CommandPaletteProvider />
                                 <main className="flex-grow">{children}</main>
                                 <Suspense fallback={<FooterSkeleton />}>
                                     <Footer />

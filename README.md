@@ -53,5 +53,5 @@
 ---
 
 <div align="center">
-    <p>Copyright &copy; 2025 <a href="http://ethanglenn.dev">Ethan Glenn</a>. All rights reserved.</p>
+    <p>Copyright &copy; 2026 <a href="http://ethanglenn.dev">Ethan Glenn</a>. All rights reserved.</p>
 </div>

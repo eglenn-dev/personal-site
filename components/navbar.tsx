@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Search } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { Kbd } from "@/components/ui/kbd";
 
 const navItems = [
     { href: "/", label: "Home" },
@@ -37,7 +38,26 @@ export default function Navbar() {
                             </Link>
                         ))}
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-1">
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            aria-label="Open command palette"
+                            className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                            onClick={() => {
+                                window.dispatchEvent(
+                                    new KeyboardEvent("keydown", {
+                                        key: "k",
+                                        metaKey: true,
+                                        bubbles: true,
+                                    })
+                                );
+                            }}
+                        >
+                            <Search className="h-4 w-4" />
+                            <span className="text-sm">Search</span>
+                            <Kbd>⌘K</Kbd>
+                        </Button>
                         <Button
                             variant="ghost"
                             size="icon"
