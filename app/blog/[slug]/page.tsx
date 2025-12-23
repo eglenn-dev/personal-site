@@ -1,5 +1,6 @@
 import { getAllSlugs, getAllPosts } from "@/posts/blog-list";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CopyUrlButton } from "@/components/copy-url-button";
@@ -11,6 +12,12 @@ export default async function Page({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
+
+    const validSlugs = getAllSlugs();
+    if (!validSlugs.includes(slug)) {
+        notFound();
+    }
+
     const { default: Post } = await import(`@/posts/${slug}.mdx`);
 
     return (
