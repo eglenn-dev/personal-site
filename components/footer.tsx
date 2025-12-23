@@ -40,7 +40,7 @@ export function FooterSkeleton() {
             <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-muted-foreground">
-                        &copy; 2025 Ethan Glenn
+                        &copy; 2026 Ethan Glenn
                     </p>
                     <div className="flex space-x-6 align-center justify-center">
                         <a
