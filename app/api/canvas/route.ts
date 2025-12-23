@@ -38,7 +38,7 @@ export const GET = async (request: Request) => {
         const emailResult = await sendCanvasAssignmentsEmail(assignments);
 
         if (!emailResult.success) {
-            console.error("❌ Failed to send email:", emailResult.error);
+            console.error("Failed to send email:", emailResult.error);
             return NextResponse.json(
                 {
                     success: false,

@@ -19,12 +19,12 @@ export async function sendCanvasAssignmentsEmail(
     assignments: CanvasAssignmentWithCourse[]
 ): Promise<SendCanvasEmailResult> {
     try {
-        const fromEmail = process.env.FROM_EMAIL;
+        const fromEmail = process.env.CANVAS_EMAIL;
         const ownerEmail = process.env.OWNER_EMAIL;
 
         if (!fromEmail || !ownerEmail) {
             throw new Error(
-                "FROM_EMAIL or OWNER_EMAIL environment variables not configured"
+                "CANVAS_EMAIL or OWNER_EMAIL environment variables not configured"
             );
         }
 
