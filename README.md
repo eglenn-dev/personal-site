@@ -40,12 +40,12 @@
     ```
 3. Install dependencies:
     ```bash
-    npm install
+    bun install
     ```
 4. Start the development server:
 
     ```bash
-    npm run dev
+    bun run dev
     ```
 
 5. Open your browser and go to `http://localhost:3000`.

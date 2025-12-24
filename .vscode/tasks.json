@@ -4,7 +4,7 @@
         {
             "label": "dev emails",
             "type": "shell",
-            "command": "npm run dev",
+            "command": "bun run dev",
             "options": {
                 "cwd": "${workspaceFolder}/react-email"
             }
@@ -12,7 +12,7 @@
         {
             "label": "start dev",
             "type": "shell",
-            "command": "npm run dev",
+            "command": "bun run dev",
         },
     ]
 }
