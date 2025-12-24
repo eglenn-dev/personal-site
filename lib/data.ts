@@ -10,12 +10,25 @@ import {
     GitIcon,
     DockerIcon,
     FastApiIcon,
-    NodeIcon,
+    GcpIcon,
 } from "./icons";
 import type { Project, Experience, TechStack } from "./types";
 
 export function getProjects(): Project[] {
     return [
+        {
+            name: "I-Hack Winner 2025",
+            description:
+                "My team placed first in the 'Human Progress' category at the BYU-Idaho 2025 hackathon. We created a full-stack mock interview platform called 'Olin'. ",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Tailwind",
+                "MongoDB",
+                "Google Gemini",
+            ],
+            article: "/blog/i-hack-25",
+        },
         {
             name: "Legrande Health Web App",
             description:
@@ -29,19 +42,6 @@ export function getProjects(): Project[] {
                 "Docker",
             ],
             article: "/blog/legrande-health",
-        },
-        {
-            name: "I-Hack Winner 2025",
-            description:
-                "My team placed first in the 'Human Progress' category at the BYU-Idaho 2025 hackathon. We created a full-stack mock interview platform called 'Olin'. ",
-            technologies: [
-                "Next.js",
-                "TypeScript",
-                "Tailwind",
-                "MongoDB",
-                "Google Gemini",
-            ],
-            article: "/blog/i-hack-25",
         },
         {
             name: "Resumly.pro",
@@ -63,14 +63,6 @@ export function getProjects(): Project[] {
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
             article: "https://clipit.one/eg-dev-ihack",
-        },
-        {
-            name: "Pull Request Dashboard",
-            description:
-                "A dashboard to track contributors to a GitHub repo, and show how many pull-requests they have assigned to them, and how many they have reviewed in the last week.",
-            technologies: ["Next.js", "Tailwind", "GitHub API", "shadcn/ui"],
-            link: "https://clipit.one/eg-dev-pr-dashboard",
-            article: "/blog/pr-dashboard",
         },
         {
             name: "Git Rewind",
@@ -97,6 +89,14 @@ export function getProjects(): Project[] {
                 "FastAPI",
             ],
             article: "/blog/bible-search",
+        },
+        {
+            name: "Pull Request Dashboard",
+            description:
+                "A dashboard to track contributors to a GitHub repo, and show how many pull-requests they have assigned to them, and how many they have reviewed in the last week.",
+            technologies: ["Next.js", "Tailwind", "GitHub API", "shadcn/ui"],
+            link: "https://clipit.one/eg-dev-pr-dashboard",
+            article: "/blog/pr-dashboard",
         },
         {
             name: "3D Print Request System",
@@ -194,6 +194,6 @@ export function getTechStack(): TechStack[] {
         { name: "MongoDB", icon: MongoIcon },
         { name: "Postgres", icon: PostgresIcon },
         { name: "Docker", icon: DockerIcon },
-        { name: "Node.js", icon: NodeIcon },
+        { name: "GCP", icon: GcpIcon },
     ];
 }
