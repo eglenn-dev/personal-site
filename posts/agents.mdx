@@ -1,0 +1,40 @@
+# My AGENTS.md file
+
+_2026-01-15_
+
+I have been using `AGENTS.md` in my project for a bit now and I have found that simply but easy to follow rules are best. This is one that I use for my React and TypeScript projects.
+
+I usually tweak it slightly between projects. I am testing some rules for Python projects as well that I'll share later.
+
+I use Claude Code for most projects, so in those it's called `CLAUDE.md`.
+
+```
+## Development Rules
+
+Please follow these rules when contributing code:
+
+### General
+
+- Only create an abstraction when it's actually needed.
+- Prefer clear function/variable names over inline comments.
+- Avoid helper functions when a simple inline expression would suffice.
+- Don't use emojis.
+- The `gh` cli is installed, use it.
+
+### React
+
+- Avoid massive JSX blocks and compose smaller components.
+- Colocate code that changes together.
+- Avoid `useEffect` unless absolutely necessary.
+
+### Tailwind
+
+- Mostly use built-in values, occasionally allow dynamic values, rarely globals.
+- Always use v4 + global CSS file format + shadcn/ui
+
+### TypeScript
+
+- Don't unnecessarily add `try`/`catch` blocks.
+- Don't cast `any`
+
+```
