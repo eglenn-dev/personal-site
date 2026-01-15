@@ -68,7 +68,7 @@ export default function CanvasAssignmentsEmail({
                         {/* Header */}
                         <Section className="mb-6">
                             <Heading className="mb-1 text-2xl font-semibold text-zinc-950">
-                                Assignments Due Today
+                                Assignments Due Today: {assignments.length}
                             </Heading>
                             <Text className="text-sm text-zinc-600">
                                 {date}

@@ -10,7 +10,7 @@
         "dev": "email dev"
     },
     "devDependencies": {
-        "@react-email/preview-server": "^4.2.11",
+        "@react-email/preview-server": "4.2.11",
         "react-email": "4.2.11"
     },
     "dependencies": {
