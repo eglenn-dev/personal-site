@@ -1,11 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { getTechStack } from "@/lib/data";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
-import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
-import { getLatestPost } from "@/posts/blog-list";
-import { Suspense } from "react";
-import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import {
     GithubIcon,
     LinkedInIcon,
@@ -16,10 +8,16 @@ import {
     MongoIcon,
     BrainIcon,
 } from "@/lib/icons";
+import { Button } from "@/components/ui/button";
+import { getTechStack } from "@/lib/data";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
+import { Suspense } from "react";
+import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
+import Link from "next/link";
 
 export default async function Home() {
     const techStack = getTechStack();
-    const latestPost = getLatestPost();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -66,9 +64,9 @@ export default async function Home() {
                                 />
                             </Button>
                         </Link>
-                        <Link href={`/blog/${latestPost.slug}`}>
+                        <Link href={`/blog/2025-review`}>
                             <Button variant="outline" className="group">
-                                <span>Latest Blog Post</span>
+                                <span>Featured Article</span>
                                 <ArrowRight
                                     className="ml-1 transition-transform group-hover:translate-x-1"
                                     size={16}

@@ -4,7 +4,7 @@ const slugs: Slug[] = [
         title: "My Agents.md",
         description: "What my Agents.md file looks like.",
         date: "2026-01-15",
-        hidden: true,
+        hidden: false,
     },
     {
         slug: "2025-review",
