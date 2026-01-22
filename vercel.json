@@ -4,6 +4,10 @@
         {
             "path": "/api/canvas",
             "schedule": "0 15 * * *"
+        },
+        {
+            "path": "/api/canvas",
+            "schedule": "0 2 * * *"
         }
     ]
 }
