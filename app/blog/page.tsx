@@ -3,7 +3,7 @@ import BlogPage from "./blog";
 import { Suspense } from "react";
 
 export const metadata = {
-    title: "Blog | Ethan Glenn",
+    title: "Blog",
     description:
         "Insights, lessons, and discoveries from my projects and interests.",
 };

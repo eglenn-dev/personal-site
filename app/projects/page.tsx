@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata = {
-    title: "Projects | Ethan Glenn",
+    title: "Projects",
     description: "List of projects I've worked on and contributed to",
 };
 

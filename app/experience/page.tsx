@@ -10,7 +10,7 @@ import { TagIcon } from "lucide-react";
 import { getExperiences } from "@/lib/data";
 
 export const metadata = {
-    title: "Experience | Ethan Glenn",
+    title: "Experience",
     description: "My work experience as a software engineer and developer",
 };
 
@@ -60,7 +60,7 @@ export default function ExperiencePage() {
                                                 <li key={index}>
                                                     {responsibility}
                                                 </li>
-                                            )
+                                            ),
                                         )}
                                     </ul>
                                 </CardContent>

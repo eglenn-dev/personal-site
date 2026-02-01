@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
 export const metadata = {
-    title: "Page Not Found | Ethan Glenn",
+    title: "Not Found",
     description: "We couldn't find the page you're looking for",
 };
 

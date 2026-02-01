@@ -15,7 +15,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Ethan Glenn",
+    title: {
+        default: "Ethan Glenn",
+        template: "%s | Ethan Glenn",
+    },
     description:
         "Full Stack Developer specializing in TypeScript, React, Next.js, and Python. I create efficient, scalable web applications and have experience leading development teams.",
 };

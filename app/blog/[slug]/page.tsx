@@ -58,13 +58,13 @@ export async function generateMetadata({
 
     if (!post) {
         return {
-            title: "Blog | Ethan Glenn",
+            title: "Blog",
             description: "Ethan Glenn's blog",
         };
     }
 
     return {
-        title: `${post?.title} | Ethan Glenn`,
+        title: `${post?.title}`,
         description: post?.description,
     };
 }

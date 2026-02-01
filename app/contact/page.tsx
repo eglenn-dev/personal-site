@@ -1,7 +1,7 @@
 import ContactForm from "@/components/contact-form";
 
 export const metadata = {
-    title: "Contact | Ethan Glenn",
+    title: "Contact",
     description:
         "Get in touch with me for new opportunities and collaborations",
 };
