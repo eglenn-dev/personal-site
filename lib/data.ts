@@ -54,7 +54,7 @@ export function getProjects(): Project[] {
                 "MongoDB",
                 "Docker",
             ],
-            link: "https://clipit.one/eg-dev-resumly",
+            link: "https://resumly.pro/",
             article: "/blog/resumly",
         },
         {
@@ -62,7 +62,8 @@ export function getProjects(): Project[] {
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
             technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            article: "https://clipit.one/eg-dev-ihack",
+            article:
+                "https://www.linkedin.com/posts/eglenn-dev_mlh-hackathon-byui-activity-7253968115519127552-uleA/?utm_source=share&utm_medium=member_desktop",
         },
         {
             name: "Git Rewind",
@@ -75,7 +76,7 @@ export function getProjects(): Project[] {
                 "GraphQL",
                 "GitHub API",
             ],
-            link: "https://clipit.one/eg-dev-rewind",
+            link: "https://git-rewind.com/",
             article: "/blog/git-rewind",
         },
         {
@@ -95,7 +96,7 @@ export function getProjects(): Project[] {
             description:
                 "A dashboard to track contributors to a GitHub repo, and show how many pull-requests they have assigned to them, and how many they have reviewed in the last week.",
             technologies: ["Next.js", "Tailwind", "GitHub API", "shadcn/ui"],
-            link: "https://clipit.one/eg-dev-pr-dashboard",
+            link: "https://pr-dash.eglenn.dev/",
             article: "/blog/pr-dashboard",
         },
         {
@@ -116,7 +117,7 @@ export function getProjects(): Project[] {
                 "Resend",
                 "Tailwind",
             ],
-            link: "https://clipit.one/eg-dev",
+            link: "https://github.com/eglenn-dev/personal-site",
         },
     ];
 }

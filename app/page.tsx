@@ -38,7 +38,7 @@ export default async function Home() {
                     </p>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
-                            href="https://clipit.one/eg-dev-github"
+                            href="https://github.com/eglenn-dev"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="GitHub Profile"
@@ -46,7 +46,7 @@ export default async function Home() {
                             <GithubIcon height={30} width={30} />
                         </a>
                         <a
-                            href="https://clipit.one/eg-dev-linkedin"
+                            href="https://www.linkedin.com/in/eglenn-dev/"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="LinkedIn Profile"
@@ -100,10 +100,7 @@ export default async function Home() {
                             helping you beat the bots and stand out to
                             recruiters.
                         </p>
-                        <a
-                            href="https://clipit.one/eg-dev-resumly"
-                            target="_blank"
-                        >
+                        <a href="https://resumly.pro/" target="_blank">
                             <Button variant="outline">
                                 <span>View</span>
                                 <ExternalLinkIcon className="ml-1" size={16} />
