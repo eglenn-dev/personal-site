@@ -11,7 +11,7 @@ export interface ContributionWeekday {
 export interface CombinedStats {
     yearContributions: number;
     monthContributions: number;
-    last60DaysContributions: ContributionWeekday[];
+    last120DaysContributions: ContributionWeekday[];
     mostUsedLanguages: LanguageData;
     topLanguage: string | null;
 }

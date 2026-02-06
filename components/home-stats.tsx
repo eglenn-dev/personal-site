@@ -10,13 +10,13 @@ export async function HomeStats() {
     const githubStats = await getCombinedGitHubStats("eglenn-dev");
 
     return (
-        <div className="flex flex-col gap-8 sm:flex-row">
+        <div className="flex flex-col gap-8">
             <div className="flex flex-col ml-2">
                 <GithubStats data={githubStats} />
                 <WeatherCard />
             </div>
             <div className="w-fit mx-auto sm:mx-0">
-                <GitHubHeatmap data={githubStats?.last60DaysContributions} />
+                <GitHubHeatmap data={githubStats?.last120DaysContributions} />
             </div>
         </div>
     );
@@ -24,7 +24,7 @@ export async function HomeStats() {
 
 export function HomeStatsSkeleton() {
     return (
-        <div className="flex flex-col gap-8 sm:flex-row">
+        <div className="flex flex-col gap-8">
             <div className="flex flex-col ml-2">
                 <GithubStatsSkeleton />
                 <WeatherSkeleton />

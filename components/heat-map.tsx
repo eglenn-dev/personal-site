@@ -105,7 +105,7 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
 }
 
 export function GitHubHeatmapSkeleton() {
-    const WEEKS = 9;
+    const WEEKS = 18;
     const DAYS_PER_WEEK = 7;
 
     const grid = Array.from({ length: DAYS_PER_WEEK }, () =>
