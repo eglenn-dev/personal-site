@@ -2,9 +2,6 @@ import { getCombinedGitHubStats } from "@/lib/github-stats";
 import WeatherCard, { WeatherSkeleton } from "@/components/weather";
 import GithubStats, { GithubStatsSkeleton } from "@/components/github";
 import { GitHubHeatmap, GitHubHeatmapSkeleton } from "./heat-map";
-import ProjectStatus, {
-    ProjectStatusSkeleton,
-} from "@/components/project-status";
 import { cacheLife } from "next/cache";
 
 export async function HomeStats() {
@@ -17,7 +14,6 @@ export async function HomeStats() {
             <div className="flex flex-col ml-2">
                 <GithubStats data={githubStats} />
                 <WeatherCard />
-                <ProjectStatus />
             </div>
             <div className="w-fit mx-auto sm:mx-0">
                 <GitHubHeatmap data={githubStats?.last60DaysContributions} />
@@ -32,7 +28,6 @@ export function HomeStatsSkeleton() {
             <div className="flex flex-col ml-2">
                 <GithubStatsSkeleton />
                 <WeatherSkeleton />
-                <ProjectStatusSkeleton />
             </div>
             <div className="w-fit mx-auto sm:mx-0">
                 <GitHubHeatmapSkeleton />
