@@ -11,7 +11,7 @@ export async function HomeStats() {
 
     return (
         <div className="flex flex-col gap-8">
-            <div className="flex flex-col ml-2">
+            <div className="flex flex-col">
                 <GithubStats data={githubStats} />
                 <WeatherCard />
             </div>
@@ -25,7 +25,7 @@ export async function HomeStats() {
 export function HomeStatsSkeleton() {
     return (
         <div className="flex flex-col gap-8">
-            <div className="flex flex-col ml-2">
+            <div className="flex flex-col">
                 <GithubStatsSkeleton />
                 <WeatherSkeleton />
             </div>
