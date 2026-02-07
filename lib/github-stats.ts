@@ -28,25 +28,17 @@ export async function getCombinedGitHubStats(
         const oneYearAgo = new Date(today);
         oneYearAgo.setFullYear(today.getFullYear() - 1);
 
-        const sixtyDaysAgo = new Date(today);
-        sixtyDaysAgo.setUTCDate(today.getUTCDate() - 59);
-
         const fromYear = oneYearAgo.toISOString();
-        const from60Days = sixtyDaysAgo.toISOString();
         const to = new Date(
             today.getTime() + (24 * 60 * 60 * 1000 - 1)
         ).toISOString();
 
         const query = `
-            query($username: String!, $fromYear: DateTime!, $from60Days: DateTime!, $to: DateTime!) {
+            query($username: String!, $fromYear: DateTime!, $to: DateTime!) {
                 user(login: $username) {
-                    yearContributions: contributionsCollection(from: $fromYear, to: $to) {
+                    contributionsCollection(from: $fromYear, to: $to) {
                         contributionCalendar {
                             totalContributions
-                        }
-                    }
-                    last60DaysContributions: contributionsCollection(from: $from60Days, to: $to) {
-                        contributionCalendar {
                             weeks {
                                 contributionDays {
                                     date
@@ -70,7 +62,6 @@ export async function getCombinedGitHubStats(
         const variables = {
             username,
             fromYear,
-            from60Days,
             to,
         };
 
@@ -95,11 +86,8 @@ export async function getCombinedGitHubStats(
         }
 
         const { user } = json.data;
-        const {
-            yearContributions,
-            last60DaysContributions: sixtyDaysCollection,
-            repositories,
-        } = user;
+        const { contributionsCollection, repositories } = user;
+        const { contributionCalendar } = contributionsCollection;
 
         const languages: LanguageData = repositories.nodes
             .map(
@@ -120,7 +108,7 @@ export async function getCombinedGitHubStats(
         }
 
         const rawDays: ContributionWeekday[] =
-            sixtyDaysCollection.contributionCalendar.weeks.flatMap(
+            contributionCalendar.weeks.flatMap(
                 (week: { contributionDays: ContributionWeekday[] }) =>
                     week.contributionDays
             );
@@ -135,16 +123,16 @@ export async function getCombinedGitHubStats(
             });
         });
 
-        const last60DaysContributions: ContributionWeekday[] = [];
-        for (let i = 0; i < 60; i++) {
+        const contributionHistory: ContributionWeekday[] = [];
+        for (let i = 0; i < 365; i++) {
             const dt = new Date(today);
             dt.setUTCDate(today.getUTCDate() - i);
             const key = dt.toISOString().substring(0, 10);
 
             if (dayMap.has(key)) {
-                last60DaysContributions.push(dayMap.get(key)!);
+                contributionHistory.push(dayMap.get(key)!);
             } else {
-                last60DaysContributions.push({
+                contributionHistory.push({
                     date: key,
                     contributionCount: 0,
                     weekday: dt.getUTCDay(),
@@ -155,7 +143,7 @@ export async function getCombinedGitHubStats(
         const oneMonthAgo = new Date(today);
         oneMonthAgo.setUTCDate(today.getUTCDate() - 29);
 
-        const monthContributions = last60DaysContributions
+        const monthContributions = contributionHistory
             .filter((c) => {
                 const day = new Date(c.date);
                 return day >= oneMonthAgo && day <= today;
@@ -164,11 +152,11 @@ export async function getCombinedGitHubStats(
 
         return {
             yearContributions:
-                yearContributions.contributionCalendar.totalContributions,
+                contributionCalendar.totalContributions,
             monthContributions,
             mostUsedLanguages: languages,
             topLanguage,
-            last60DaysContributions: last60DaysContributions.reverse(),
+            contributionHistory: contributionHistory.reverse(),
         };
     } catch (error) {
         console.error("An error occurred in getCombinedGitHubStats:", error);

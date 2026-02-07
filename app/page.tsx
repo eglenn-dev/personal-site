@@ -132,7 +132,7 @@ export default async function Home() {
                 </div>
                 <div id="stats">
                     <h2 className="text-2xl font-semibold mb-6">Stats</h2>
-                    <div className="flex flex-col ml-2">
+                    <div className="flex flex-col">
                         <Suspense fallback={<HomeStatsSkeleton />}>
                             <HomeStats />
                         </Suspense>

@@ -1,8 +1,12 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { ContributionWeekday } from "@/lib/types";
 
 const colorScale = (count: number) => {
@@ -17,8 +21,21 @@ interface GitHubHeatmapProps {
     data: ContributionWeekday[] | undefined;
 }
 
-export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
-    if (!data) return <></>;
+export function GitHubHeatmap({ data }: GitHubHeatmapProps) {
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const viewport = scrollRef.current?.querySelector(
+            "[data-radix-scroll-area-viewport]"
+        );
+        if (viewport) {
+            viewport.scrollLeft = viewport.scrollWidth;
+        }
+    }, [data]);
+
+    if (!data || data.length === 0) {
+        return <></>;
+    }
 
     const formatDate = (date: string) => {
         const d = new Date(date);
@@ -27,10 +44,6 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
             timeZone: "UTC",
         })} ${d.getUTCDate().toString().padStart(2, "0")}`;
     };
-
-    if (!data || data.length === 0) {
-        return <></>;
-    }
 
     const sorted = [...data]
         .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
@@ -74,9 +87,9 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
     });
 
     return (
-        <div className="space-y-2">
-            <div className="flex">
-                <div className="flex flex-col gap-1 max-w-fit">
+        <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+            <ScrollArea ref={scrollRef} className="w-full">
+                <div className="flex flex-col gap-1 w-fit">
                     {gridData.map((row, rowIndex) => (
                         <div key={rowIndex} className="flex gap-1">
                             {row.map((day, colIndex) => (
@@ -99,13 +112,14 @@ export async function GitHubHeatmap({ data }: GitHubHeatmapProps) {
                         </div>
                     ))}
                 </div>
-            </div>
+                <ScrollBar orientation="horizontal" />
+            </ScrollArea>
         </div>
     );
 }
 
 export function GitHubHeatmapSkeleton() {
-    const WEEKS = 9;
+    const WEEKS = 52;
     const DAYS_PER_WEEK = 7;
 
     const grid = Array.from({ length: DAYS_PER_WEEK }, () =>
@@ -113,9 +127,9 @@ export function GitHubHeatmapSkeleton() {
     );
 
     return (
-        <div className="space-y-2 animate-pulse">
-            <div className="flex">
-                <div className="flex flex-col gap-1 max-w-fit">
+        <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm animate-pulse">
+            <div className="overflow-hidden w-full">
+                <div className="flex flex-col gap-1 w-fit ml-auto">
                     {grid.map((row, rowIndex) => (
                         <div key={rowIndex} className="flex gap-1">
                             {row.map((_, colIndex) => (
