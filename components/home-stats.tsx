@@ -15,9 +15,7 @@ export async function HomeStats() {
                 <GithubStats data={githubStats} />
                 <WeatherCard />
             </div>
-            <div className="w-fit mx-auto sm:mx-0">
-                <GitHubHeatmap data={githubStats?.last120DaysContributions} />
-            </div>
+            <GitHubHeatmap data={githubStats?.contributionHistory} />
         </div>
     );
 }
@@ -29,9 +27,7 @@ export function HomeStatsSkeleton() {
                 <GithubStatsSkeleton />
                 <WeatherSkeleton />
             </div>
-            <div className="w-fit mx-auto sm:mx-0">
-                <GitHubHeatmapSkeleton />
-            </div>
+            <GitHubHeatmapSkeleton />
         </div>
     );
 }
