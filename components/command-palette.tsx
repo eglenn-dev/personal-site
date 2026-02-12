@@ -23,7 +23,7 @@ import {
     Sun,
     ExternalLink,
 } from "lucide-react";
-import { GithubIcon, LinkedInIcon } from "@/lib/icons";
+import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
 import type { Project } from "@/lib/types";
 import type { Slug } from "@/posts/blog-list";
 
@@ -45,6 +45,11 @@ const externalLinks = [
         href: "https://linkedin.com/in/eglenn-dev",
         label: "LinkedIn",
         icon: LinkedInIcon,
+    },
+    {
+        href: "https://x.com/eglenn_dev",
+        label: "X",
+        icon: XIcon,
     },
 ];
 
@@ -75,7 +80,7 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
             setOpen(false);
             router.push(href);
         },
-        [router]
+        [router],
     );
 
     const handleExternalLink = useCallback((href: string) => {
