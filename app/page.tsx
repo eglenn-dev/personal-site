@@ -3,15 +3,16 @@ import {
     LinkedInIcon,
     ReactIcon,
     TypeScriptIcon,
-    PythonIcon,
-    DockerIcon,
     MongoIcon,
     BrainIcon,
+    NextjsIcon,
+    AwardIcon,
+    XIcon,
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
@@ -53,6 +54,15 @@ export default async function Home() {
                         >
                             <LinkedInIcon height={30} width={30} />
                         </a>
+                        <a
+                            href="https://x.com/eglenn_dev"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="X Profile"
+                            className="mt-0.5"
+                        >
+                            <XIcon height={30} width={30} />
+                        </a>
                     </div>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
@@ -64,7 +74,7 @@ export default async function Home() {
                                 />
                             </Button>
                         </Link>
-                        <Link href={`/blog/2025-review`}>
+                        <Link href={`/blog/ai-and-engineering`}>
                             <Button variant="outline" className="group">
                                 <span>Featured Article</span>
                                 <ArrowRight
@@ -76,36 +86,36 @@ export default async function Home() {
                     </div>
                 </div>
                 <div id="featured-project">
-                    <h2 className="text-2xl font-semibold mb-4">
-                        Featured Project
-                    </h2>
+                    <h2 className="text-2xl font-semibold mb-4">Featured</h2>
                     <div className="bg-zinc-200 dark:bg-muted p-4 rounded-lg">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
-                                <FileText className="inline text-purple-600 dark:text-purple-400" />
-                                Resumly.pro
+                                <span className="text-yellow-500">
+                                    <AwardIcon width={25} height={25} />
+                                </span>
+                                1st Place Hackathon Winner x2
                             </h3>
                             <div className="flex flex-row gap-2">
                                 <TypeScriptIcon width={20} height={20} />
                                 <ReactIcon width={20} height={20} />
-                                <PythonIcon width={20} height={20} />
-                                <DockerIcon width={20} height={20} />
+                                <NextjsIcon width={20} height={20} />
                                 <MongoIcon width={20} height={20} />
                             </div>
                         </div>
                         <p className="text-base mb-2">
-                            For my senior project, I built Resumly.pro, a free
-                            AI-powered resume builder. It analyzes job
-                            descriptions and tailors your resume to match,
-                            helping you beat the bots and stand out to
-                            recruiters.
+                            I placed first at the 2024 and 2025 BYU-Idaho
+                            hackathons! Two different teams, two different
+                            projects, and two different solutions.
                         </p>
-                        <a href="https://resumly.pro/" target="_blank">
-                            <Button variant="outline">
-                                <span>View</span>
-                                <ExternalLinkIcon className="ml-1" size={16} />
+                        <Link href="/blog/i-hack-25">
+                            <Button variant="outline" className="group">
+                                <span>More </span>
+                                <ChevronRight
+                                    size={16}
+                                    className="transition-transform group-hover:translate-x-1"
+                                />
                             </Button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

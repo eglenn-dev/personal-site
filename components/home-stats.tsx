@@ -14,8 +14,8 @@ export async function HomeStats() {
             <div className="flex flex-col">
                 <GithubStats data={githubStats} />
                 <WeatherCard />
+                <GitHubHeatmap data={githubStats?.contributionHistory} />
             </div>
-            <GitHubHeatmap data={githubStats?.contributionHistory} />
         </div>
     );
 }
@@ -26,8 +26,8 @@ export function HomeStatsSkeleton() {
             <div className="flex flex-col">
                 <GithubStatsSkeleton />
                 <WeatherSkeleton />
+                <GitHubHeatmapSkeleton />
             </div>
-            <GitHubHeatmapSkeleton />
         </div>
     );
 }
