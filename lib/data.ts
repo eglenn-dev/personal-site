@@ -5,12 +5,12 @@ import {
     PostgresIcon,
     MongoIcon,
     NextjsIcon,
-    FirebaseIcon,
+    PrismaIcon,
     TailWindIcon,
     GitIcon,
-    DockerIcon,
     FastApiIcon,
     GcpIcon,
+    ClaudeIcon,
 } from "./icons";
 import type { Project, Experience, TechStack } from "./types";
 
@@ -125,7 +125,7 @@ export function getProjects(): Project[] {
 export function getExperiences(): Experience[] {
     return [
         {
-            role: "Full-Stack Developer",
+            role: "Full-Stack Engineer",
             company: "DataThink",
             period: "August 2025 - Present",
             skills: ["React", "TypeScript", "Python", "PostgreSQL", "FastAPI"],
@@ -191,10 +191,10 @@ export function getTechStack(): TechStack[] {
         { name: "Next.js", icon: NextjsIcon },
         { name: "Tailwind", icon: TailWindIcon },
         { name: "Git", icon: GitIcon },
-        { name: "Firebase", icon: FirebaseIcon },
-        { name: "MongoDB", icon: MongoIcon },
         { name: "Postgres", icon: PostgresIcon },
-        { name: "Docker", icon: DockerIcon },
+        { name: "Prisma", icon: PrismaIcon },
+        { name: "MongoDB", icon: MongoIcon },
         { name: "GCP", icon: GcpIcon },
+        { name: "Claude", icon: ClaudeIcon },
     ];
 }

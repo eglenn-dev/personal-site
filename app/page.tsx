@@ -3,15 +3,16 @@ import {
     LinkedInIcon,
     ReactIcon,
     TypeScriptIcon,
-    PythonIcon,
-    DockerIcon,
     MongoIcon,
     BrainIcon,
+    NextjsIcon,
+    AwardIcon,
+    XIcon,
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, FileText, ExternalLinkIcon } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
@@ -21,13 +22,13 @@ export default async function Home() {
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-4xl font-bold mb-6">Ethan Glenn</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div id="main">
-                    <h2 className="text-2xl font-semibold mb-4">
-                        Full-Stack Developer
+                <div id="main" className="flex flex-col gap-4">
+                    <h1 className="text-4xl font-bold">Ethan Glenn</h1>
+                    <h2 className="text-2xl font-semibold">
+                        Full-Stack Engineer
                     </h2>
-                    <p className="text-base mb-4 flex flex-row items-center gap-1">
+                    <p className="text-base flex flex-row items-center gap-1">
                         <span>Working at</span>
                         <span className="flex flex-row items-center gap-1">
                             <span className="mb-[1px]">
@@ -36,6 +37,26 @@ export default async function Home() {
                             DataThink
                         </span>
                     </p>
+                    <div className="flex flex-row gap-4">
+                        <Link href="/projects">
+                            <Button className="group">
+                                <span>My Projects</span>
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
+                            </Button>
+                        </Link>
+                        <Link href={`/blog/what-ai-cant-build`}>
+                            <Button variant="outline" className="group">
+                                <span>Featured Article</span>
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
+                            </Button>
+                        </Link>
+                    </div>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
                             href="https://github.com/eglenn-dev"
@@ -53,59 +74,48 @@ export default async function Home() {
                         >
                             <LinkedInIcon height={30} width={30} />
                         </a>
-                    </div>
-                    <div className="flex flex-row gap-4">
-                        <Link href="/projects">
-                            <Button className="group">
-                                <span>My Projects</span>
-                                <ArrowRight
-                                    className="ml-1 transition-transform group-hover:translate-x-1"
-                                    size={16}
-                                />
-                            </Button>
-                        </Link>
-                        <Link href={`/blog/2025-review`}>
-                            <Button variant="outline" className="group">
-                                <span>Featured Article</span>
-                                <ArrowRight
-                                    className="ml-1 transition-transform group-hover:translate-x-1"
-                                    size={16}
-                                />
-                            </Button>
-                        </Link>
+                        <a
+                            href="https://x.com/eglenn_dev"
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label="X Profile"
+                            className="mt-0.5"
+                        >
+                            <XIcon height={30} width={30} />
+                        </a>
                     </div>
                 </div>
                 <div id="featured-project">
-                    <h2 className="text-2xl font-semibold mb-4">
-                        Featured Project
-                    </h2>
+                    <h2 className="text-2xl font-semibold mb-4">Featured</h2>
                     <div className="bg-zinc-200 dark:bg-muted p-4 rounded-lg">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
-                                <FileText className="inline text-purple-600 dark:text-purple-400" />
-                                Resumly.pro
+                                <span className="text-yellow-500">
+                                    <AwardIcon width={25} height={25} />
+                                </span>
+                                1st Place Hackathon Winner
                             </h3>
                             <div className="flex flex-row gap-2">
                                 <TypeScriptIcon width={20} height={20} />
                                 <ReactIcon width={20} height={20} />
-                                <PythonIcon width={20} height={20} />
-                                <DockerIcon width={20} height={20} />
+                                <NextjsIcon width={20} height={20} />
                                 <MongoIcon width={20} height={20} />
                             </div>
                         </div>
                         <p className="text-base mb-2">
-                            For my senior project, I built Resumly.pro, a free
-                            AI-powered resume builder. It analyzes job
-                            descriptions and tailors your resume to match,
-                            helping you beat the bots and stand out to
-                            recruiters.
+                            I placed first at the 2024 and 2025 BYU-Idaho
+                            hackathons! Two different teams, two different
+                            projects, and two different solutions.
                         </p>
-                        <a href="https://resumly.pro/" target="_blank">
-                            <Button variant="outline">
-                                <span>View</span>
-                                <ExternalLinkIcon className="ml-1" size={16} />
+                        <Link href="/blog/i-hack-25">
+                            <Button variant="outline" className="group">
+                                <span>More </span>
+                                <ChevronRight
+                                    size={16}
+                                    className="transition-transform group-hover:translate-x-1"
+                                />
                             </Button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -132,7 +142,7 @@ export default async function Home() {
                 </div>
                 <div id="stats">
                     <h2 className="text-2xl font-semibold mb-6">Stats</h2>
-                    <div className="flex flex-col ml-2">
+                    <div className="flex flex-col">
                         <Suspense fallback={<HomeStatsSkeleton />}>
                             <HomeStats />
                         </Suspense>

@@ -1,6 +1,6 @@
 "use client";
 
-import { GithubIcon, LinkedInIcon } from "@/lib/icons";
+import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
 
 export function Footer() {
     return (
@@ -10,7 +10,7 @@ export function Footer() {
                     <p className="text-sm text-muted-foreground">
                         &copy; {new Date().getFullYear()} Ethan Glenn
                     </p>
-                    <div className="flex space-x-6 align-center justify-center">
+                    <div className="flex space-x-6 align-center items-center justify-center">
                         <a
                             href="https://github.com/eglenn-dev"
                             target="_blank"
@@ -26,6 +26,14 @@ export function Footer() {
                         >
                             <span className="sr-only">LinkedIn</span>
                             <LinkedInIcon />
+                        </a>
+                        <a
+                            href="https://x.com/eglenn_dev"
+                            target="_blank"
+                            className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
+                        >
+                            <span className="sr-only">X</span>
+                            <XIcon />
                         </a>
                     </div>
                 </div>

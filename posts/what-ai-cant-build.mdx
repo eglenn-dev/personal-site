@@ -1,0 +1,55 @@
+import { AuthorCard } from "@/components/author-card";
+
+# What AI Can't Build
+
+<AuthorCard />
+
+_2026-02-13_
+
+> TL;DR: AI is making code cheap, but figuring out what to build and why is still a human problem. The engineers who thrive will be the ones who solve business problems, not just write code.
+
+I've been talking a lot recently with my co-workers about how AI is going to change software engineering. For a while I started wondering if getting my degree in computer science was worth it. Here's what I've come to realize: AI is making code cheap, but the skill of turning ambiguous business problems into the right solution is more valuable than ever. We're witnessing a shift from "software engineering" to "solution engineering."
+
+## Building the right product vs. building the product right
+
+I was listening to a clip from a product manager at Instagram. He raised the question of building the _right_ product vs. building the product _right_. [Lee Robinson](https://leerob.com/beliefs) makes a similar point — product adoption matters more than shipping code.
+
+With AI-enabled engineering, we've all seen an efficiency increase. Software engineers who know what they are doing — mainly because they could build the same product or feature without AI — are becoming vastly more efficient because they can articulate the solution to an AI agent in a way that allows quick execution from the model.
+
+So if building the product _right_ is easier than ever before, where does this leave us? Building the _right_ product is now the central question. Code is becoming a commodity. The barrier for building custom software is lower than ever before. This is an amazing accomplishment and represents [183 years of refinement](https://x.com/rauchg/status/2021662676817195500?s=20) from some of the best minds of our time.
+
+## This has happened before
+
+My dad, a portfolio manager, pointed out that his industry went through this same shift years ago. When platforms like Robinhood came along, anyone could open an account and start investing. Stock trades became essentially free. The "code" of his industry — executing a trade — became a commodity overnight.
+
+But that didn't eliminate portfolio managers. It eliminated the ones who were only executing trades. My dad's value comes from understanding a client's full financial picture, identifying risks they haven't considered, building a strategy that accounts for tax implications, estate planning, and market conditions all at once. Robinhood can't do that. It can execute the trade, but it can't tell you _which_ trade to make or _why_.
+
+It's a pretty direct parallel. AI can write the code, but it can't tell you what to build or why. Engineers who only translate specs into code are in the same position as brokers who only executed trades. Engineers who define problems, navigate constraints, and architect solutions are the ones whose value is growing.
+
+## Code is cheap, but solutions aren't
+
+I always see tutorials online for "Build Your Own X (Twitter)." If you think about it, the key foundations of X are just CRUD operations on a database. You make posts, share, like, and chat about them. This is very easily recreated locally. But those doing this will quickly run into the problem of engineering infrastructure — if they can even jump the massive hurdle of getting users. X, like every other social media platform, is more than just a way to upload and post text or media. Serving 500+ million monthly active users is a completely different engineering question than building a platform where those things _can_ be done.
+
+Scale is one thing, but security and compliance are a whole other problem. AI is getting better at writing code, but the [security mistakes](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys#:~:text=post%20in%20Moltbook.-,How%20the%20Moltbook%20Database%20Was%20Exposed,-Discovery%20of%20Exposed) it makes are telling. Gal Nagli recently discovered a publicly exposed database containing millions of API keys and secrets — the kind of vulnerability that comes from building fast without understanding the security implications. These are the same mistakes I made when I was starting out. AI writes code like a junior developer: fast and functional, but often blind to the broader consequences of its choices. Someone still needs to understand threat models, compliance requirements, and system-level tradeoffs.
+
+My work consulting for DataThink has been a great exposure to this. Our engineering team does far more than just commit diffs. A large part of our time is spent problem solving. We get direction from executives, and often they ask for a solution to an ill-defined problem — it is what they _think_ they need rather than what actually addresses the business problem (see the [XY Problem](https://xyproblem.info/)). We talk through the engineering implications of what they need. We push back. We redefine the scope. We consider HIPAA compliance, infrastructure constraints, and how a feature fits into the broader system.
+
+Only after we've defined the problem and identified the right solution are we able to use AI to build it. AI can sprint the last stretch, but someone still has to figure out where we're running.
+
+## The honest concern
+
+I'd be dishonest if I didn't acknowledge that this shift is genuinely threatening for some roles. Junior engineering positions — the ones that primarily involve translating well-defined tickets into code — are [shrinking](https://www.vox.com/politics/478794/ai-economy-claude-code-jobs-openai-anthropic#:~:text=Why%20agentic%20AI%20is%20a%20game%2Dchanger). Not every CS graduate ends up doing high-level solution design, especially early in their career. The traditional ladder of "write code, get experience, grow into architecture" is being compressed, and the entry points are narrowing.
+
+This is a real problem, and I don't have a complete answer. But the engineers who thrive will be the ones who can do what AI can't: define the problem, talk to stakeholders, and make judgment calls. Those skills come from study and experience — not from a weekend tutorial.
+
+## Is my degree worth it?
+
+Yes, but not for the reasons I would have said two years ago.
+
+When I started my CS degree, I thought I was learning to write code. And I did. But looking back, the real value was learning how to think about systems. Courses on algorithms, security, and software architecture didn't just teach me syntax; they taught me how to reason about tradeoffs, and break down ambiguous problems into solvable pieces. That's exactly the skill set that matters _more_ now, not less.
+
+I wouldn't be where I am today without my degree. The hackathons I won, the consulting work I do, the way I approach problems at DataThink — all of it is built on foundations I developed in school. AI made me faster, but my education made me effective.
+
+The engineers who will be replaced aren't the ones with degrees or without them. They're the ones who stop at writing code. The ones who stick around will be the people who can figure out what to build, why it matters, and how to make it actually work — not just locally, but in the real world with real constraints. AI is getting really good at the rest.
+
+_Written by a human, for the record. AI could've done it faster, but it wouldn't have called its dad for an analogy._
