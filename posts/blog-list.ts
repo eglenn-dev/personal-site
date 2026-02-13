@@ -3,7 +3,7 @@ const slugs: Slug[] = [
         slug: "what-ai-cant-build",
         title: "What AI Can't Build",
         description:
-            "How AI is changing the way we approach engineering problems.",
+            "AI is making code cheap, but figuring out what to build and why is still a human problem. The engineers who thrive will be the ones who solve business problems, not just write code.",
         date: "2026-02-13",
         hidden: false,
     },
