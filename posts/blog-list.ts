@@ -1,7 +1,7 @@
 const slugs: Slug[] = [
     {
-        slug: "ai-and-engineering",
-        title: "AI and Engineering",
+        slug: "what-ai-cant-build",
+        title: "What AI Can't Build",
         description:
             "How AI is changing the way we approach engineering problems.",
         date: "2026-02-13",

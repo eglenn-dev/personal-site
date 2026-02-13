@@ -20,7 +20,7 @@ export const metadata = {
         template: "%s | Ethan Glenn",
     },
     description:
-        "Full Stack Developer specializing in TypeScript, React, Next.js, and Python. I create efficient, scalable web applications and have experience leading development teams.",
+        "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.",
 };
 
 export default function RootLayout({

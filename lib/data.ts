@@ -125,7 +125,7 @@ export function getProjects(): Project[] {
 export function getExperiences(): Experience[] {
     return [
         {
-            role: "Full-Stack Developer",
+            role: "Full-Stack Engineer",
             company: "DataThink",
             period: "August 2025 - Present",
             skills: ["React", "TypeScript", "Python", "PostgreSQL", "FastAPI"],

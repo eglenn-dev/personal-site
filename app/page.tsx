@@ -24,11 +24,11 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h1 className="text-4xl font-bold mb-6">Ethan Glenn</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div id="main">
-                    <h2 className="text-2xl font-semibold mb-4">
-                        Full-Stack Developer
+                <div id="main" className="flex flex-col gap-4">
+                    <h2 className="text-2xl font-semibold">
+                        Full-Stack Engineer
                     </h2>
-                    <p className="text-base mb-4 flex flex-row items-center gap-1">
+                    <p className="text-base flex flex-row items-center gap-1">
                         <span>Working at</span>
                         <span className="flex flex-row items-center gap-1">
                             <span className="mb-[1px]">
@@ -37,6 +37,26 @@ export default async function Home() {
                             DataThink
                         </span>
                     </p>
+                    <div className="flex flex-row gap-4">
+                        <Link href="/projects">
+                            <Button className="group">
+                                <span>My Projects</span>
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
+                            </Button>
+                        </Link>
+                        <Link href={`/blog/what-ai-cant-build`}>
+                            <Button variant="outline" className="group">
+                                <span>Featured Article</span>
+                                <ArrowRight
+                                    className="ml-1 transition-transform group-hover:translate-x-1"
+                                    size={16}
+                                />
+                            </Button>
+                        </Link>
+                    </div>
                     <div className="flex flex-row gap-4 mb-4">
                         <a
                             href="https://github.com/eglenn-dev"
@@ -64,26 +84,6 @@ export default async function Home() {
                             <XIcon height={30} width={30} />
                         </a>
                     </div>
-                    <div className="flex flex-row gap-4">
-                        <Link href="/projects">
-                            <Button className="group">
-                                <span>My Projects</span>
-                                <ArrowRight
-                                    className="ml-1 transition-transform group-hover:translate-x-1"
-                                    size={16}
-                                />
-                            </Button>
-                        </Link>
-                        <Link href={`/blog/ai-and-engineering`}>
-                            <Button variant="outline" className="group">
-                                <span>Featured Article</span>
-                                <ArrowRight
-                                    className="ml-1 transition-transform group-hover:translate-x-1"
-                                    size={16}
-                                />
-                            </Button>
-                        </Link>
-                    </div>
                 </div>
                 <div id="featured-project">
                     <h2 className="text-2xl font-semibold mb-4">Featured</h2>
@@ -93,7 +93,7 @@ export default async function Home() {
                                 <span className="text-yellow-500">
                                     <AwardIcon width={25} height={25} />
                                 </span>
-                                1st Place Hackathon Winner x2
+                                1st Place Hackathon Winner
                             </h3>
                             <div className="flex flex-row gap-2">
                                 <TypeScriptIcon width={20} height={20} />
