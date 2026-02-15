@@ -1,11 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Not Found",
     description: "We couldn't find the page you're looking for",
+    robots: {
+        index: false,
+        follow: false,
+    },
 };
 
 export default function NotFound() {

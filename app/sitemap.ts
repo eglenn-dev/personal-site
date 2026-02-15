@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/posts/blog-list";
+import { getPublicPosts } from "@/posts/blog-list";
 
 const BUILD_DATE = new Date().toISOString();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const postSlugs = getAllPosts();
+    const postSlugs = getPublicPosts();
     const blogPosts = postSlugs.map((post) => ({
         url: `https://ethanglenn.dev/blog/${post.slug}`,
         lastModified: post.date,
