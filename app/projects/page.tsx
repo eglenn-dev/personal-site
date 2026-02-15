@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
     Card,
     CardHeader,
@@ -11,9 +12,23 @@ import { OpenIcon, TagIcon, ArticleIcon } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Projects",
     description: "List of projects I've worked on and contributed to",
+    openGraph: {
+        title: "Projects",
+        description: "List of projects I've worked on and contributed to",
+        url: "https://ethanglenn.dev/projects",
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+        title: "Projects | Ethan Glenn",
+        description: "List of projects I've worked on and contributed to",
+    },
+    alternates: {
+        canonical: "https://ethanglenn.dev/projects",
+    },
 };
 
 export default function ProjectsPage() {

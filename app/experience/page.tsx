@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import {
     Card,
     CardHeader,
@@ -9,9 +10,25 @@ import { Badge } from "@/components/ui/badge";
 import { TagIcon } from "lucide-react";
 import { getExperiences } from "@/lib/data";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Experience",
     description: "My work experience as a software engineer and developer",
+    openGraph: {
+        title: "Experience",
+        description:
+            "My work experience as a software engineer and developer",
+        url: "https://ethanglenn.dev/experience",
+        type: "website",
+    },
+    twitter: {
+        card: "summary",
+        title: "Experience | Ethan Glenn",
+        description:
+            "My work experience as a software engineer and developer",
+    },
+    alternates: {
+        canonical: "https://ethanglenn.dev/experience",
+    },
 };
 
 export default function ExperiencePage() {

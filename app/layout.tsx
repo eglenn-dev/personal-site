@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -11,16 +12,63 @@ import { Toaster } from "@/components/ui/sonner";
 import { Suspense } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { PersonJsonLd, WebSiteJsonLd } from "@/components/json-ld";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
+const SITE_URL = "https://ethanglenn.dev";
+const SITE_NAME = "Ethan Glenn";
+const SITE_DESCRIPTION =
+    "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.";
+
+export const metadata: Metadata = {
+    metadataBase: new URL(SITE_URL),
     title: {
-        default: "Ethan Glenn",
-        template: "%s | Ethan Glenn",
+        default: SITE_NAME,
+        template: `%s | ${SITE_NAME}`,
     },
-    description:
-        "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.",
+    description: SITE_DESCRIPTION,
+    keywords: [
+        "Ethan Glenn",
+        "Full Stack Engineer",
+        "Software Engineer",
+        "Web Developer",
+        "TypeScript",
+        "React",
+        "Python",
+        "Next.js",
+        "Portfolio",
+    ],
+    authors: [{ name: "Ethan Glenn", url: SITE_URL }],
+    creator: "Ethan Glenn",
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: SITE_URL,
+        siteName: SITE_NAME,
+        title: SITE_NAME,
+        description: SITE_DESCRIPTION,
+    },
+    twitter: {
+        card: "summary",
+        title: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        creator: "@eglenn_dev",
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+    alternates: {
+        canonical: SITE_URL,
+    },
 };
 
 export default function RootLayout({
@@ -30,6 +78,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <PersonJsonLd />
+                <WebSiteJsonLd />
+            </head>
             <body className={inter.className}>
                 <NuqsAdapter>
                     <TooltipProvider delayDuration={400}>
