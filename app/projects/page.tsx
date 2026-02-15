@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Projects",
         description: "List of projects I've worked on and contributed to",
-        url: "https://ethanglenn.dev/projects",
+        url: "/projects",
         type: "website",
     },
     twitter: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         description: "List of projects I've worked on and contributed to",
     },
     alternates: {
-        canonical: "https://ethanglenn.dev/projects",
+        canonical: "/projects",
     },
 };
 

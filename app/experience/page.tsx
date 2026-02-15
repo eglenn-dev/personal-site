@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         title: "Experience",
         description:
             "My work experience as a software engineer and developer",
-        url: "https://ethanglenn.dev/experience",
+        url: "/experience",
         type: "website",
     },
     twitter: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
             "My work experience as a software engineer and developer",
     },
     alternates: {
-        canonical: "https://ethanglenn.dev/experience",
+        canonical: "/experience",
     },
 };
 

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         title: "Blog",
         description:
             "Insights, lessons, and discoveries from my projects and interests.",
-        url: "https://ethanglenn.dev/blog",
+        url: "/blog",
         type: "website",
     },
     twitter: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
             "Insights, lessons, and discoveries from my projects and interests.",
     },
     alternates: {
-        canonical: "https://ethanglenn.dev/blog",
+        canonical: "/blog",
     },
 };
 

@@ -1,19 +1,24 @@
+import {
+    SITE_URL,
+    SITE_NAME,
+    SITE_DESCRIPTION,
+    JOB_TITLE,
+    ORGANIZATION,
+    SOCIAL_LINKS,
+} from "@/lib/site-config";
+
 export function PersonJsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Ethan Glenn",
-        url: "https://ethanglenn.dev",
-        jobTitle: "Full Stack Engineer",
+        name: SITE_NAME,
+        url: SITE_URL,
+        jobTitle: JOB_TITLE,
         worksFor: {
             "@type": "Organization",
-            name: "DataThink",
+            name: ORGANIZATION,
         },
-        sameAs: [
-            "https://github.com/eglenn-dev",
-            "https://www.linkedin.com/in/eglenn-dev/",
-            "https://x.com/eglenn_dev",
-        ],
+        sameAs: Object.values(SOCIAL_LINKS),
         knowsAbout: [
             "TypeScript",
             "React",
@@ -40,13 +45,12 @@ export function WebSiteJsonLd() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "Ethan Glenn",
-        url: "https://ethanglenn.dev",
-        description:
-            "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.",
+        name: SITE_NAME,
+        url: SITE_URL,
+        description: SITE_DESCRIPTION,
         author: {
             "@type": "Person",
-            name: "Ethan Glenn",
+            name: SITE_NAME,
         },
     };
 
@@ -74,22 +78,22 @@ export function BlogPostingJsonLd({
         "@type": "BlogPosting",
         headline: title,
         description: description,
-        datePublished: date,
-        dateModified: date,
-        url: `https://ethanglenn.dev/blog/${slug}`,
+        datePublished: `${date}T00:00:00Z`,
+        dateModified: `${date}T00:00:00Z`,
+        url: `${SITE_URL}/blog/${slug}`,
         author: {
             "@type": "Person",
-            name: "Ethan Glenn",
-            url: "https://ethanglenn.dev",
+            name: SITE_NAME,
+            url: SITE_URL,
         },
         publisher: {
             "@type": "Person",
-            name: "Ethan Glenn",
-            url: "https://ethanglenn.dev",
+            name: SITE_NAME,
+            url: SITE_URL,
         },
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://ethanglenn.dev/blog/${slug}`,
+            "@id": `${SITE_URL}/blog/${slug}`,
         },
     };
 

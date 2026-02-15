@@ -13,13 +13,14 @@ import { Suspense } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PersonJsonLd, WebSiteJsonLd } from "@/components/json-ld";
+import {
+    SITE_URL,
+    SITE_NAME,
+    SITE_DESCRIPTION,
+    TWITTER_HANDLE,
+} from "@/lib/site-config";
 
 const inter = Inter({ subsets: ["latin"] });
-
-const SITE_URL = "https://ethanglenn.dev";
-const SITE_NAME = "Ethan Glenn";
-const SITE_DESCRIPTION =
-    "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.";
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
         card: "summary",
         title: SITE_NAME,
         description: SITE_DESCRIPTION,
-        creator: "@eglenn_dev",
+        creator: TWITTER_HANDLE,
     },
     robots: {
         index: true,

@@ -1,4 +1,12 @@
 import { getPublicPosts } from "@/posts/blog-list";
+import {
+    SITE_URL,
+    SITE_NAME,
+    SITE_DESCRIPTION,
+    JOB_TITLE,
+    ORGANIZATION,
+    SOCIAL_LINKS,
+} from "@/lib/site-config";
 
 export function GET() {
     const posts = getPublicPosts();
@@ -6,32 +14,32 @@ export function GET() {
     const blogEntries = posts
         .map(
             (post) =>
-                `- [${post.title}](https://ethanglenn.dev/blog/${post.slug}): ${post.description}`,
+                `- [${post.title}](${SITE_URL}/blog/${post.slug}): ${post.description}`,
         )
         .join("\n");
 
-    const content = `# Ethan Glenn
+    const content = `# ${SITE_NAME}
 
-> Full Stack Engineer specializing in TypeScript, React, and Python
+> ${SITE_DESCRIPTION}
 
 ## About
 
-Ethan Glenn is a Full Stack Engineer at DataThink, specializing in building efficient, scalable web applications. He has experience leading development teams and works primarily with TypeScript, React, Python, Next.js, PostgreSQL, and FastAPI.
+${SITE_NAME} is a ${JOB_TITLE} at ${ORGANIZATION}, specializing in building efficient, scalable web applications. He has experience leading development teams and works primarily with TypeScript, React, Python, Next.js, PostgreSQL, and FastAPI.
 
 ## Links
 
-- Website: https://ethanglenn.dev
-- GitHub: https://github.com/eglenn-dev
-- LinkedIn: https://www.linkedin.com/in/eglenn-dev/
-- X/Twitter: https://x.com/eglenn_dev
+- Website: ${SITE_URL}
+- GitHub: ${SOCIAL_LINKS.github}
+- LinkedIn: ${SOCIAL_LINKS.linkedin}
+- X/Twitter: ${SOCIAL_LINKS.twitter}
 
 ## Pages
 
-- [Home](https://ethanglenn.dev): Portfolio and overview
-- [Projects](https://ethanglenn.dev/projects): List of projects worked on and contributed to
-- [Experience](https://ethanglenn.dev/experience): Work experience as a software engineer
-- [Blog](https://ethanglenn.dev/blog): Technical blog with insights on software engineering
-- [Contact](https://ethanglenn.dev/contact): Get in touch for opportunities and collaborations
+- [Home](${SITE_URL}): Portfolio and overview
+- [Projects](${SITE_URL}/projects): List of projects worked on and contributed to
+- [Experience](${SITE_URL}/experience): Work experience as a software engineer
+- [Blog](${SITE_URL}/blog): Technical blog with insights on software engineering
+- [Contact](${SITE_URL}/contact): Get in touch for opportunities and collaborations
 
 ## Blog Posts
 

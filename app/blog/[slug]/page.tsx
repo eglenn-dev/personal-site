@@ -7,8 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CopyUrlButton } from "@/components/copy-url-button";
 import { TextHighlightButton } from "@/components/text-highlight-button";
 import { BlogPostingJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
-
-const SITE_URL = "https://ethanglenn.dev";
+import { SITE_URL, SITE_NAME, TWITTER_HANDLE } from "@/lib/site-config";
 
 export default async function Page({
     params,
@@ -24,30 +23,29 @@ export default async function Page({
 
     const posts = getAllPosts();
     const post = posts.find((p) => p.slug === slug);
+    if (!post) {
+        notFound();
+    }
     const { default: Post } = await import(`@/posts/${slug}.mdx`);
 
     return (
         <>
-            {post && (
-                <>
-                    <BlogPostingJsonLd
-                        title={post.title}
-                        description={post.description}
-                        date={post.date}
-                        slug={post.slug}
-                    />
-                    <BreadcrumbJsonLd
-                        items={[
-                            { name: "Home", url: SITE_URL },
-                            { name: "Blog", url: `${SITE_URL}/blog` },
-                            {
-                                name: post.title,
-                                url: `${SITE_URL}/blog/${post.slug}`,
-                            },
-                        ]}
-                    />
-                </>
-            )}
+            <BlogPostingJsonLd
+                title={post.title}
+                description={post.description}
+                date={post.date}
+                slug={post.slug}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Home", url: SITE_URL },
+                    { name: "Blog", url: `${SITE_URL}/blog` },
+                    {
+                        name: post.title,
+                        url: `${SITE_URL}/blog/${post.slug}`,
+                    },
+                ]}
+            />
             <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
                 <div className="mb-8 flex items-center justify-between">
                     <Link href="/blog" className="group">
@@ -91,27 +89,27 @@ export async function generateMetadata({
         };
     }
 
-    const postUrl = `${SITE_URL}/blog/${post.slug}`;
+    const postUrl = `/blog/${post.slug}`;
 
     return {
         title: post.title,
         description: post.description,
-        authors: [{ name: "Ethan Glenn", url: SITE_URL }],
+        authors: [{ name: SITE_NAME, url: SITE_URL }],
         openGraph: {
             type: "article",
             title: post.title,
             description: post.description,
             url: postUrl,
-            siteName: "Ethan Glenn",
+            siteName: SITE_NAME,
             publishedTime: post.date,
             modifiedTime: post.date,
-            authors: ["Ethan Glenn"],
+            authors: [SITE_NAME],
         },
         twitter: {
             card: "summary",
             title: post.title,
             description: post.description,
-            creator: "@eglenn_dev",
+            creator: TWITTER_HANDLE,
         },
         alternates: {
             canonical: postUrl,

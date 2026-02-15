@@ -9,7 +9,7 @@ export const metadata: Metadata = {
         title: "Contact",
         description:
             "Get in touch with me for new opportunities and collaborations",
-        url: "https://ethanglenn.dev/contact",
+        url: "/contact",
         type: "website",
     },
     twitter: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
             "Get in touch with me for new opportunities and collaborations",
     },
     alternates: {
-        canonical: "https://ethanglenn.dev/contact",
+        canonical: "/contact",
     },
 };
 
