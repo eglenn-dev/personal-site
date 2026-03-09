@@ -19,12 +19,23 @@ export const metadata: Metadata = {
             "My work experience as a software engineer and developer",
         url: "/experience",
         type: "website",
+        images: [
+            {
+                url: "/og?title=Experience&description=My+work+experience+as+a+software+engineer+and+developer",
+                width: 1200,
+                height: 630,
+                alt: "Experience | Ethan Glenn",
+            },
+        ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: "Experience | Ethan Glenn",
         description:
             "My work experience as a software engineer and developer",
+        images: [
+            "/og?title=Experience&description=My+work+experience+as+a+software+engineer+and+developer",
+        ],
     },
     alternates: {
         canonical: "/experience",
