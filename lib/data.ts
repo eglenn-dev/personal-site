@@ -58,6 +58,13 @@ export function getProjects(): Project[] {
             article: "/blog/resumly",
         },
         {
+            name: "Skills CLI",
+            description:
+                "A command-line interface for managing and installing AI Agent skills locally inside your local repo. No need to install anything new, just use `npx` to run the CLI and manage your skills.",
+            technologies: ["TypeScript", "Node.js", "npm"],
+            link: "https://eglenn-dev.github.io/dt-skills/",
+        },
+        {
             name: "I-Hack Winner 2024",
             description:
                 "Placed first in the 'Integrity & Might' category at the BYU-Idaho 2024 hackathon. My team created a full-stack community watch platform with custom user authentication, post management, and AI integration.",
