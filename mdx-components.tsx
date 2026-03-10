@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
+import { CodeBlock } from "@/components/code-block";
 
 function generateID(text: string): string {
     return text.toLowerCase().replace(/\s+/g, "-").replace(/[()]/g, "");
@@ -112,13 +113,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         hr: () => (
             <hr className="my-6 border-t border-gray-300 dark:border-gray-700" />
         ),
-        pre: ({ children }) => (
-            <pre className="mb-4 rounded-md border border-gray-300 bg-gray-50 p-4 dark:border-gray-700 dark:bg-zinc-900">
-                {children}
-            </pre>
-        ),
+        pre: (props) => <CodeBlock {...props} />,
         code: ({ children }) => (
-            <code className="inline-flex max-w-full overflow-x-auto pb-1">
+            <code className="inline-flex max-w-full overflow-x-auto rounded-sm border border-gray-300 px-1.5 py-0.5 text-sm dark:border-gray-700">
                 {children}
             </code>
         ),
