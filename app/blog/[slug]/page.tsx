@@ -90,6 +90,7 @@ export async function generateMetadata({
     }
 
     const postUrl = `/blog/${post.slug}`;
+    const ogImageUrl = `/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description)}`;
 
     return {
         title: post.title,
@@ -104,12 +105,21 @@ export async function generateMetadata({
             publishedTime: post.date,
             modifiedTime: post.date,
             authors: [SITE_NAME],
+            images: [
+                {
+                    url: ogImageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
         },
         twitter: {
-            card: "summary",
+            card: "summary_large_image",
             title: post.title,
             description: post.description,
             creator: TWITTER_HANDLE,
+            images: [ogImageUrl],
         },
         alternates: {
             canonical: postUrl,

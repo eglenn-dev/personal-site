@@ -11,12 +11,23 @@ export const metadata: Metadata = {
             "Get in touch with me for new opportunities and collaborations",
         url: "/contact",
         type: "website",
+        images: [
+            {
+                url: "/og?title=Contact&description=Get+in+touch+with+me+for+new+opportunities+and+collaborations",
+                width: 1200,
+                height: 630,
+                alt: "Contact | Ethan Glenn",
+            },
+        ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: "Contact | Ethan Glenn",
         description:
             "Get in touch with me for new opportunities and collaborations",
+        images: [
+            "/og?title=Contact&description=Get+in+touch+with+me+for+new+opportunities+and+collaborations",
+        ],
     },
     alternates: {
         canonical: "/contact",
