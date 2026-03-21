@@ -20,11 +20,22 @@ export const metadata: Metadata = {
         description: "List of projects I've worked on and contributed to",
         url: "/projects",
         type: "website",
+        images: [
+            {
+                url: "/og?title=Projects&description=List+of+projects+I've+worked+on+and+contributed+to",
+                width: 1200,
+                height: 630,
+                alt: "Projects | Ethan Glenn",
+            },
+        ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: "Projects | Ethan Glenn",
         description: "List of projects I've worked on and contributed to",
+        images: [
+            "/og?title=Projects&description=List+of+projects+I've+worked+on+and+contributed+to",
+        ],
     },
     alternates: {
         canonical: "/projects",

@@ -49,12 +49,21 @@ export const metadata: Metadata = {
         siteName: SITE_NAME,
         title: SITE_NAME,
         description: SITE_DESCRIPTION,
+        images: [
+            {
+                url: "/og",
+                width: 1200,
+                height: 630,
+                alt: SITE_NAME,
+            },
+        ],
     },
     twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: SITE_NAME,
         description: SITE_DESCRIPTION,
         creator: TWITTER_HANDLE,
+        images: ["/og"],
     },
     robots: {
         index: true,
@@ -78,7 +87,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
             <head>
                 <PersonJsonLd />
                 <WebSiteJsonLd />
@@ -95,7 +104,7 @@ export default function RootLayout({
                             <div className="flex flex-col min-h-screen">
                                 <Navbar />
                                 <CommandPaletteProvider />
-                                <main className="flex-grow">{children}</main>
+                                <main className="grow">{children}</main>
                                 <Suspense fallback={<FooterSkeleton />}>
                                     <Footer />
                                 </Suspense>
