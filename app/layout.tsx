@@ -110,8 +110,12 @@ export default function RootLayout({
                                 </Suspense>
                             </div>
                         </ThemeProvider>
-                        <GoogleAnalytics />
-                        <Analytics />
+                        {process.env.NODE_ENV === "production" && (
+                            <>
+                                <GoogleAnalytics />
+                                <Analytics />
+                            </>
+                        )}
                         <SpeedInsights />
                         <Toaster richColors position="bottom-left" />
                     </TooltipProvider>

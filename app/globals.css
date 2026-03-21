@@ -1,14 +1,34 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-html {
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+    --color-chart-1: hsl(var(--chart-1));
+    --color-chart-2: hsl(var(--chart-2));
+    --color-chart-3: hsl(var(--chart-3));
+    --color-chart-4: hsl(var(--chart-4));
+    --color-chart-5: hsl(var(--chart-5));
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
 }
 
 @layer base {
@@ -67,13 +87,19 @@ body {
     }
 }
 
-@layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
+html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+* {
+    border-color: hsl(var(--border));
 }
 
 .g-recaptcha {
@@ -212,11 +238,11 @@ iframe {
 @keyframes moonlight {
     0% {
         transform: scale(1);
-        opacity: 0.4; /* Dimmer initial opacity */
+        opacity: 0.4;
     }
     50% {
-        transform: scale(1.1); /* Smaller scale change */
-        opacity: 0.6; /* Slightly brighter */
+        transform: scale(1.1);
+        opacity: 0.6;
     }
     100% {
         transform: scale(1);
@@ -296,7 +322,6 @@ iframe {
 
     .sun,
     .moon {
-        /* Apply to both sun and moon */
         width: 100px;
         height: 100px;
         border-radius: 50px;
@@ -318,7 +343,6 @@ iframe {
     }
 }
 
-/* Text fragment highlighting */
 ::target-text {
     background-color: #ffeb3b;
     color: #000;
