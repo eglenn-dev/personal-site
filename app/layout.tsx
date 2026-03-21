@@ -87,7 +87,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
             <head>
                 <PersonJsonLd />
                 <WebSiteJsonLd />
@@ -104,7 +104,7 @@ export default function RootLayout({
                             <div className="flex flex-col min-h-screen">
                                 <Navbar />
                                 <CommandPaletteProvider />
-                                <main className="flex-grow">{children}</main>
+                                <main className="grow">{children}</main>
                                 <Suspense fallback={<FooterSkeleton />}>
                                     <Footer />
                                 </Suspense>

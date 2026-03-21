@@ -77,6 +77,9 @@ export async function GET(request: NextRequest) {
                     <img
                         src="https://github.com/eglenn-dev.png"
                         alt="Ethan Glenn"
+                        width={40}
+                        height={40}
+                        style={{ borderRadius: "50%" }}
                     />
                 </div>
                 <div
