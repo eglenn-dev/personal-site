@@ -1,4 +1,5 @@
 export const SITE_URL = "https://ethanglenn.dev";
+export const CLEAN_SITE_URL = "ethanglenn.dev";
 export const SITE_NAME = "Ethan Glenn";
 export const SITE_DESCRIPTION =
     "Full Stack Engineer specializing in TypeScript, React, and Python. I create efficient, scalable web applications and have experience leading development teams.";
