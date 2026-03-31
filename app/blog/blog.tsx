@@ -1,19 +1,25 @@
 "use client";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar } from "lucide-react";
 import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Kbd } from "@/components/ui/kbd";
 import { useQueryState } from "nuqs";
+
+function formatDate(dateString: string) {
+    const [year, month, day] = dateString.split("-").map(Number);
+    return new Date(year, month - 1, day).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+    });
+}
 
 interface BlogPageProps {
     posts: Slug[];
 }
 
 export default function BlogPage({ posts }: BlogPageProps) {
-    const [isFocused, setIsFocused] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
     const [searchTerm, setSearchTerm] = useQueryState("search", {
         defaultValue: "",
@@ -30,7 +36,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                 (post.title.toLowerCase().includes(lowerSearchTerm) ||
                     post.description.toLowerCase().includes(lowerSearchTerm) ||
                     post.slug.toLowerCase().includes(lowerSearchTerm)) &&
-                post.hidden === false
+                post.hidden === false,
         );
     }, [posts, searchTerm]);
 
@@ -55,85 +61,54 @@ export default function BlogPage({ posts }: BlogPageProps) {
     }, []);
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="space-y-4 mb-12">
-                <h1 className="text-4xl font-bold tracking-tight">
-                    Blog Posts
-                </h1>
-                <p className="text-muted-foreground text-lg max-w-2xl">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
+            <div className="mb-10">
+                <h1 className="text-3xl font-bold tracking-tight mb-2">Blog</h1>
+                <p className="text-muted-foreground mb-6">
                     Insights, lessons, and discoveries from my projects and
                     interests.
                 </p>
-                <div
-                    className={`flex flex-row items-center w-[500px] max-w-full cursor-pointer transition-all ${
-                        isFocused
-                            ? "border border-primary shadow-md"
-                            : "border border-input"
-                    } rounded-md p-1`}
-                    onClick={() => searchInputRef.current?.focus()}
-                >
-                    <Input
-                        type="text"
-                        placeholder="Search posts..."
-                        value={searchTerm ?? ""}
-                        ref={searchInputRef}
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="flex-1 border-none focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none bg-transparent"
-                    />
-                    <span className="mr-2 text-muted-foreground hidden md:inline-block">
-                        <Kbd>⌘ + F</Kbd>
-                    </span>
-                </div>
+                <Input
+                    type="text"
+                    placeholder="Search posts..."
+                    value={searchTerm ?? ""}
+                    ref={searchInputRef}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
             </div>
-            <div className="space-y-6">
+            <div className="divide-y divide-border">
                 {filteredPosts.length > 0 ? (
                     filteredPosts.map((post) => (
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className="group block"
+                            className="group block py-5 first:pt-0"
                         >
-                            <article className="overflow-hidden rounded-lg border bg-card transition-all duration-200 hover:shadow-md hover:border-primary/50">
-                                <div className="p-6">
-                                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                                        <div className="flex-1 space-y-3">
-                                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                                <Calendar className="h-4 w-4" />
-                                                <time dateTime={post.date}>
-                                                    {post.date}
-                                                </time>
-                                            </div>
-                                            <div className="space-y-2">
-                                                <h2 className="text-xl text-[#0077b6] dark:text-white font-semibold tracking-tight group-hover:text-primary transition-colors">
-                                                    {post.title}
-                                                </h2>
-                                                <p className="text-muted-foreground text-base leading-relaxed">
-                                                    {post.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="flex-shrink-0 self-start sm:self-center">
-                                            <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all whitespace-nowrap">
-                                                Read more{" "}
-                                                <ArrowRight className="h-4 w-4" />
-                                            </span>
-                                        </div>
-                                    </div>
+                            <article>
+                                <div className="flex items-baseline justify-between gap-4 mb-1">
+                                    <h2 className="font-medium group-hover:text-primary transition-colors">
+                                        {post.title}
+                                    </h2>
+                                    <time
+                                        dateTime={post.date}
+                                        className="text-sm text-muted-foreground shrink-0"
+                                    >
+                                        {formatDate(post.date)}
+                                    </time>
                                 </div>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    {post.description}
+                                </p>
                             </article>
                         </Link>
                     ))
                 ) : (
                     <div className="text-center text-muted-foreground py-12">
-                        <p className="text-lg">No posts found.</p>
-                        <p className="text-sm">
-                            Try adjusting your search term.
-                        </p>
+                        <p>No posts found.</p>
                         <Button
                             className="mt-4"
                             variant="secondary"
+                            size="sm"
                             onClick={() => setSearchTerm("")}
                         >
                             View All Posts

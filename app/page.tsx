@@ -31,7 +31,7 @@ export default async function Home() {
                     <p className="text-base flex flex-row items-center gap-1">
                         <span>Working at</span>
                         <span className="flex flex-row items-center gap-1">
-                            <span className="mb-[1px]">
+                            <span className="mb-px">
                                 <BrainIcon />
                             </span>{" "}
                             DataThink
@@ -93,7 +93,7 @@ export default async function Home() {
                                 <span className="text-yellow-500">
                                     <AwardIcon width={25} height={25} />
                                 </span>
-                                1st Place Hackathon Winner
+                                2x Hackathon Winner
                             </h3>
                             <div className="flex flex-row gap-2">
                                 <TypeScriptIcon width={20} height={20} />
@@ -128,7 +128,7 @@ export default async function Home() {
                         {techStack.map((tech) => (
                             <Card
                                 key={tech.name}
-                                className="flex flex-col items-center justify-center p-4 w-[4.75rem] sm:w-20"
+                                className="flex flex-col items-center justify-center p-4 w-19 sm:w-20"
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />

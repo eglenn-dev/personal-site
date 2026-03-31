@@ -14,7 +14,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/app/actions";
 import { useTheme } from "next-themes";
-import { ArrowRight, CheckCircle, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactForm() {
@@ -65,7 +64,7 @@ export default function ContactForm() {
             name,
             email,
             message,
-            responseToken
+            responseToken,
         );
 
         if (!response) {
@@ -93,82 +92,71 @@ export default function ContactForm() {
 
     if (submitSuccess) {
         return (
-            <div className="flex flex-col items-center text-center space-y-6 py-8">
-                <div className="flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full">
-                    <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
-                </div>
-                <div className="space-y-2">
-                    <h3 className="text-2xl font-semibold text-green-600 dark:text-green-400">
-                        Message Sent Successfully!
-                    </h3>
-                    <p className="text-muted-foreground max-w-md">
-                        Thank you for reaching out! I&apos;ve received your
-                        message and will get back to you as soon as possible.
-                    </p>
-                </div>
-                <div className="space-y-3 flex gap-4 flex-col">
-                    <p className="text-sm text-muted-foreground">
-                        In the meantime, feel free to explore my other work
-                    </p>
-                    <div className="flex gap-2 items-center justify-center">
-                        <Link href="/blog">
-                            <Button className="group">
-                                View Blog
-                                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                        </Link>
-                        <Link href="/projects">
-                            <Button className="group" variant="secondary">
-                                View Projects
-                                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                        </Link>
-                    </div>
+            <div className="py-8">
+                <h3 className="text-lg font-semibold mb-2">Message sent</h3>
+                <p className="text-muted-foreground mb-6">
+                    Thanks for reaching out. I&apos;ll get back to you as soon
+                    as possible.
+                </p>
+                <div className="flex gap-3">
+                    <Link href="/blog">
+                        <Button size="sm">View Blog</Button>
+                    </Link>
+                    <Link href="/projects">
+                        <Button size="sm" variant="secondary">
+                            View Projects
+                        </Button>
+                    </Link>
                 </div>
             </div>
         );
     }
 
     return (
-        <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="name">Name</label>
+        <form className="space-y-5" onSubmit={handleSubmit}>
+            <div className="space-y-1.5">
+                <label htmlFor="name" className="text-sm font-medium">
+                    Name
+                </label>
                 <Input
                     type="text"
                     id="name"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder="Your name"
                     required
                 />
             </div>
-            <div>
-                <label htmlFor="email">Email</label>
+            <div className="space-y-1.5">
+                <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                </label>
                 <Input
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder="Your email"
                     required
                 />
             </div>
-            <div>
-                <label htmlFor="message">Message</label>
+            <div className="space-y-1.5">
+                <label htmlFor="message" className="text-sm font-medium">
+                    Message
+                </label>
                 <Textarea
                     id="message"
                     name="message"
-                    placeholder="Your Message"
-                    className="h-24"
+                    placeholder="Your message"
+                    className="h-32"
                     required
                 />
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 text-sm">
                 <Checkbox
                     id="privacy"
                     name="privacy"
                     required
                     checked={acceptTerms}
                     onClick={() => setAcceptTerms((prev) => !prev)}
-                    className="w-5 h-5"
                 />
                 <span>I agree to the</span>
                 <Dialog open={termsOpen} onOpenChange={setTermsOpen}>
@@ -176,7 +164,7 @@ export default function ContactForm() {
                         <Button
                             variant="link"
                             type="button"
-                            className="p-0 h-auto underline"
+                            className="p-0 h-auto underline text-sm"
                         >
                             Privacy Policy
                         </Button>
@@ -234,13 +222,7 @@ export default function ContactForm() {
                 ></div>
             )}
             <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? (
-                    "Sending..."
-                ) : (
-                    <span className="flex items-center gap-1">
-                        Send Message <Send />
-                    </span>
-                )}
+                {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
         </form>
     );
