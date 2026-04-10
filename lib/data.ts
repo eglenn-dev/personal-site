@@ -134,7 +134,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Full-Stack Engineer",
             company: "DataThink",
-            period: "August 2025 - Present",
+            period: "Aug 2025 - Present",
             skills: ["React", "TypeScript", "Python", "PostgreSQL", "FastAPI"],
             responsibilities: [
                 "Built and maintain an order management platform processing 200+ weekly orders for 115+ medical practices using React, Python, FastAPI, and PostgreSQL.",
@@ -145,7 +145,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Team Lead & Web Developer",
             company: "David O. McKay Library - BYU-Idaho",
-            period: "July 2024 - August 2025",
+            period: "Jul 2024 - Aug 2025",
             skills: [
                 "Team Leadership",
                 "Project Management",
@@ -162,7 +162,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Applied Calculus Teaching Assistant",
             company: "Department of Mathematics - BYU-Idaho",
-            period: "April 2024 - April 2025",
+            period: "Apr 2024 - Apr 2025",
             skills: ["R", "RStudio", "Data Analysis", "Calculus", "Teaching"],
             responsibilities: [
                 "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
@@ -172,7 +172,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
-            period: "June 2023 - July 2024",
+            period: "Jun 2023 - Jul 2024",
             skills: [
                 "Front-End Development",
                 "3D Printing",
