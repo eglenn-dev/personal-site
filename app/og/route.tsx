@@ -74,6 +74,7 @@ export async function GET(request: NextRequest) {
                         color: "#ffffff",
                     }}
                 >
+                    {/* eslint-disable-next-line */}
                     <img
                         src="https://github.com/eglenn-dev.png"
                         alt="Ethan Glenn"
