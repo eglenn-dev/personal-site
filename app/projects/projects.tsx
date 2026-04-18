@@ -78,43 +78,9 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                             key={project.name}
                             className="py-5 first:pt-0"
                         >
-                            <div className="flex items-baseline justify-between gap-4 mb-1">
-                                <h2 className="font-semibold text-[#0077b6] dark:text-white">
-                                    {project.name}
-                                </h2>
-                                <div className="flex items-center gap-3 shrink-0 text-sm">
-                                    {project.article && (
-                                        <Link
-                                            href={project.article}
-                                            target={
-                                                project.article.startsWith(
-                                                    "http",
-                                                )
-                                                    ? "_blank"
-                                                    : "_self"
-                                            }
-                                            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
-                                        >
-                                            <span>Read</span>
-                                            <ArticleIcon />
-                                        </Link>
-                                    )}
-                                    {project.link && (
-                                        <Link
-                                            href={project.link}
-                                            target={
-                                                project.link.startsWith("http")
-                                                    ? "_blank"
-                                                    : "_self"
-                                            }
-                                            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
-                                        >
-                                            <span>View</span>
-                                            <OpenIcon />
-                                        </Link>
-                                    )}
-                                </div>
-                            </div>
+                            <h2 className="font-semibold text-[#0077b6] dark:text-white mb-1">
+                                {project.name}
+                            </h2>
                             <p className="text-sm text-muted-foreground leading-relaxed">
                                 {project.description}
                             </p>
@@ -129,6 +95,40 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                                             {tech}
                                         </Badge>
                                     ))}
+                                </div>
+                            )}
+                            {(project.link || project.article) && (
+                                <div className="flex flex-wrap items-center gap-4 mt-3 text-sm">
+                                    {project.link && (
+                                        <Link
+                                            href={project.link}
+                                            target={
+                                                project.link.startsWith("http")
+                                                    ? "_blank"
+                                                    : "_self"
+                                            }
+                                            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+                                        >
+                                            <OpenIcon />
+                                            <span>View site</span>
+                                        </Link>
+                                    )}
+                                    {project.article && (
+                                        <Link
+                                            href={project.article}
+                                            target={
+                                                project.article.startsWith(
+                                                    "http",
+                                                )
+                                                    ? "_blank"
+                                                    : "_self"
+                                            }
+                                            className="inline-flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+                                        >
+                                            <ArticleIcon />
+                                            <span>Read article</span>
+                                        </Link>
+                                    )}
                                 </div>
                             )}
                         </article>
