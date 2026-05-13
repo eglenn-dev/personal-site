@@ -4,7 +4,7 @@ const slugs: Slug[] = [
         title: "Reading List",
         description:
             "My reading list of articles, books, and papers related to software engineering.",
-        date: "2026-05-12",
+        date: "2026-05-13",
         hidden: false,
     },
     {
