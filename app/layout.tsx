@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
@@ -20,7 +20,15 @@ import {
     TWITTER_HANDLE,
 } from "@/lib/site-config";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+    subsets: ["latin"],
+    variable: "--font-inter",
+});
+const display = Instrument_Serif({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-display",
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -87,18 +95,23 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+        <html
+            lang="en"
+            suppressHydrationWarning
+            data-scroll-behavior="smooth"
+            className={`${inter.variable} ${display.variable}`}
+        >
             <head>
                 <PersonJsonLd />
                 <WebSiteJsonLd />
             </head>
-            <body className={inter.className}>
+            <body className={`${inter.className} bg-background text-foreground`}>
                 <NuqsAdapter>
                     <TooltipProvider delayDuration={400}>
                         <ThemeProvider
                             attribute="class"
-                            defaultTheme="system"
-                            enableSystem
+                            defaultTheme="dark"
+                            enableSystem={false}
                             disableTransitionOnChange
                         >
                             <div className="flex flex-col min-h-screen">

@@ -23,14 +23,20 @@
     --color-border: hsl(var(--border));
     --color-input: hsl(var(--input));
     --color-ring: hsl(var(--ring));
+    --color-lime: hsl(var(--lime));
+    --color-lime-foreground: hsl(var(--lime-foreground));
+    --color-surface: hsl(var(--surface));
+    --color-surface-2: hsl(var(--surface-2));
     --color-chart-1: hsl(var(--chart-1));
     --color-chart-2: hsl(var(--chart-2));
     --color-chart-3: hsl(var(--chart-3));
     --color-chart-4: hsl(var(--chart-4));
     --color-chart-5: hsl(var(--chart-5));
     --radius-lg: var(--radius);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 4px);
+    --radius-sm: calc(var(--radius) - 8px);
+    --font-serif: var(--font-display), "Instrument Serif", Georgia, serif;
+    --font-sans: var(--font-inter), Inter, system-ui, sans-serif;
 }
 
 @layer base {
@@ -39,69 +45,127 @@
     }
 
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
+        --background: 0 0% 0%;
+        --foreground: 0 0% 100%;
+        --card: 36 22% 5%;
+        --card-foreground: 0 0% 100%;
+        --popover: 36 22% 5%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 0 0% 100%;
+        --primary-foreground: 0 0% 0%;
+        --secondary: 36 18% 11%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 36 18% 9%;
+        --muted-foreground: 0 0% 72%;
+        --accent: 72 100% 50%;
+        --accent-foreground: 36 38% 4%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 36 12% 18%;
+        --input: 36 12% 18%;
+        --ring: 72 100% 50%;
+        --lime: 72 100% 50%;
+        --lime-foreground: 36 38% 4%;
+        --surface: 36 22% 5%;
+        --surface-2: 36 18% 11%;
+        --chart-1: 72 100% 50%;
         --chart-2: 173 58% 39%;
         --chart-3: 197 37% 24%;
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
+        --radius: 1.5rem;
     }
-    .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+    .light {
+        --background: 0 0% 100%;
+        --foreground: 0 0% 7%;
+        --card: 36 16% 96%;
+        --card-foreground: 0 0% 7%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 7%;
+        --primary: 0 0% 7%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 36 16% 94%;
+        --secondary-foreground: 0 0% 7%;
+        --muted: 36 16% 94%;
+        --muted-foreground: 0 0% 36%;
+        --accent: 72 100% 50%;
+        --accent-foreground: 36 38% 4%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 36 10% 88%;
+        --input: 36 10% 88%;
+        --ring: 72 100% 50%;
+        --lime: 72 100% 50%;
+        --lime-foreground: 36 38% 4%;
+        --surface: 36 16% 96%;
+        --surface-2: 36 10% 92%;
     }
 }
 
 html {
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+    background-color: hsl(var(--background));
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+    font-family: var(--font-display), "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 0.95;
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-display), "Instrument Serif", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+}
+
+.prose h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.prose h2 {
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.prose h3 {
+    font-size: 1.5rem;
+}
+
+.prose a {
+    color: hsl(var(--lime));
+    text-decoration: none;
+}
+
+.prose a:hover {
+    text-decoration: underline;
+}
+
+.prose blockquote {
+    border-left-color: hsl(var(--lime));
+    font-style: normal;
+}
+
+.prose code {
+    color: hsl(var(--lime));
+}
+
+.prose code::before,
+.prose code::after {
+    content: "";
 }
 
 .g-recaptcha {
@@ -114,114 +178,65 @@ iframe {
     margin: -1px 0px 0px -2px;
 }
 
-.card {
-    width: 350px;
-    height: 235px;
-    margin: 0 auto;
-    position: relative;
-    padding: 25px;
-    background: #415a77;
-    border-radius: 0.5rem;
-    transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
+::target-text {
+    background-color: hsl(var(--lime));
+    color: hsl(var(--lime-foreground));
 }
 
-.container {
-    width: 250px;
-    height: 250px;
+mark.text-highlight {
+    background-color: hsl(var(--lime));
+    color: hsl(var(--lime-foreground));
+    padding: 0.1em 0;
+    border-radius: 2px;
+}
+
+.weather-card {
+    width: 100%;
+    max-width: 380px;
+    height: 220px;
+    position: relative;
+    padding: 24px;
+    background: linear-gradient(135deg, hsl(var(--surface)) 0%, hsl(var(--surface-2)) 100%);
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.5rem;
+    overflow: hidden;
+}
+
+.weather-card .sky {
+    width: 200px;
+    height: 200px;
     position: absolute;
-    right: -35px;
-    top: -50px;
+    right: -30px;
+    top: -30px;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: scale(0.7);
 }
 
-.cloud {
-    width: 250px;
-}
-
-.front {
-    padding-top: 45px;
-    margin-left: 25px;
-    display: inline;
-    position: absolute;
-    z-index: 11;
-    animation: clouds 8s infinite;
-    animation-timing-function: ease-in-out;
-}
-
-.back {
-    margin-top: -30px;
-    margin-left: 150px;
-    z-index: 12;
-    animation: clouds 12s infinite;
-    animation-timing-function: ease-in-out;
-}
-
-.rightFront {
-    width: 45px;
-    height: 45px;
-    border-radius: 50% 50% 50% 0%;
-    background-color: #4c9beb;
-    display: inline-block;
-    margin-left: -25px;
-    z-index: 5;
-}
-
-.leftFront {
-    width: 65px;
-    height: 65px;
-    border-radius: 50% 50% 0% 50%;
-    background-color: #4c9beb;
-    display: inline-block;
-    z-index: 5;
-}
-
-.rightBack {
-    width: 50px;
-    height: 50px;
-    border-radius: 50% 50% 50% 0%;
-    background-color: #4c9beb;
-    display: inline-block;
-    margin-left: -20px;
-    z-index: 5;
-}
-
-.leftBack {
-    width: 30px;
-    height: 30px;
-    border-radius: 50% 50% 0% 50%;
-    background-color: #4c9beb;
-    display: inline-block;
-    z-index: 5;
-}
-
-.sun {
-    width: 120px;
-    height: 120px;
-    background: -webkit-linear-gradient(to right, #fcbb04, #fffc00);
+.weather-card .sun {
+    width: 110px;
+    height: 110px;
     background: linear-gradient(to right, #fcbb04, #fffc00);
-    border-radius: 60px;
+    border-radius: 50%;
     display: inline;
     position: absolute;
 }
 
-.sunshine {
-    animation: sunshines 2s infinite;
-}
-
-.moon {
-    width: 120px;
-    height: 120px;
-    background: -webkit-linear-gradient(to right, #bdc3c7, #e2e2e2);
+.weather-card .moon {
+    width: 110px;
+    height: 110px;
     background: linear-gradient(to right, #bdc3c7, #e2e2e2);
     border-radius: 50%;
     display: inline;
     position: absolute;
 }
 
-.moonlight {
+.weather-card .sunshine {
+    animation: sunshines 2s infinite;
+}
+
+.weather-card .moonlight {
     animation: moonlight 3s infinite;
 }
 
@@ -252,117 +267,66 @@ iframe {
     }
 }
 
-@keyframes clouds {
-    0% {
-        transform: translateX(15px);
-    }
-
-    50% {
-        transform: translateX(0px);
-    }
-
-    100% {
-        transform: translateX(15px);
-    }
-}
-
-.cardHeader {
+.weather-card .label {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    position: relative;
+    z-index: 1;
 }
 
-.cardHeader span:first-child {
-    word-break: break-all;
-    font-weight: 800;
-    font-size: 15px;
-    line-height: 135%;
-    color: white;
+.weather-card .label span:first-child {
+    font-weight: 600;
+    font-size: 14px;
+    color: hsl(var(--muted-foreground));
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
-.cardHeader span:last-child {
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 135%;
-    color: white;
+.weather-card .label span:last-child {
+    font-weight: 500;
+    font-size: 14px;
+    color: hsl(var(--foreground));
 }
 
-.temp {
+.weather-card .temp {
     position: absolute;
-    left: 25px;
-    bottom: 12px;
-    font-weight: 700;
+    left: 24px;
+    bottom: 16px;
+    font-weight: 400;
     font-size: 64px;
-    line-height: 77px;
-    color: white;
+    line-height: 1;
+    color: hsl(var(--foreground));
+    font-family: var(--font-display), "Instrument Serif", Georgia, serif;
 }
 
-.tempScale {
-    width: 80px;
-    height: 36px;
+.weather-card .tempScale {
     position: absolute;
-    right: 25px;
-    bottom: 25px;
+    right: 24px;
+    bottom: 24px;
+    padding: 6px 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(123, 123, 123, 0.66);
-    border-radius: 9px;
+    background: hsl(var(--surface-2));
+    border: 1px solid hsl(var(--border));
+    border-radius: 999px;
 }
 
-.tempScale span {
-    font-weight: 700;
+.weather-card .tempScale span {
+    font-weight: 600;
     font-size: 13px;
-    line-height: 134.49%;
-    color: white;
+    color: hsl(var(--foreground));
 }
 
 @media (max-width: 768px) {
-    .cloud {
-        width: 200px;
+    .weather-card .sun,
+    .weather-card .moon {
+        width: 90px;
+        height: 90px;
     }
 
-    .sun,
-    .moon {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+    .weather-card .temp {
+        font-size: 52px;
     }
-
-    .temp {
-        font-size: 48px;
-        line-height: 60px;
-    }
-
-    .tempScale {
-        width: 70px;
-        height: 30px;
-        bottom: 20px;
-    }
-
-    .tempScale span {
-        font-size: 12px;
-    }
-}
-
-::target-text {
-    background-color: #ffeb3b;
-    color: #000;
-}
-
-.dark ::target-text {
-    background-color: #ffd700;
-    color: #000;
-}
-
-mark.text-highlight {
-    background-color: #ffeb3b;
-    color: #000;
-    padding: 0.1em 0;
-    border-radius: 2px;
-}
-
-.dark mark.text-highlight {
-    background-color: #ffd700;
-    color: #000;
 }

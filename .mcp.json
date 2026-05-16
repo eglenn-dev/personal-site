@@ -3,6 +3,10 @@
         "next-devtools": {
             "command": "bunx",
             "args": ["--bun", "next-devtools-mcp@latest"]
+        },
+        "playwright": {
+            "command": "npx",
+            "args": ["@playwright/mcp@0.0.68"]
         }
     }
 }

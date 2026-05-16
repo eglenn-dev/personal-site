@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import type { Experience } from "@/lib/types";
 
 interface TimelineEntryProps {
@@ -8,55 +7,54 @@ interface TimelineEntryProps {
 
 export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
     return (
-        <div className="grid grid-cols-[1fr] md:grid-cols-[140px_1fr] gap-x-8">
-            <div className="hidden md:block pt-1 text-right">
-                <span className="text-sm font-medium text-muted-foreground">
+        <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-x-10">
+            <div className="hidden md:block pt-2 text-right">
+                <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
                     {experience.period}
                 </span>
             </div>
 
-            <div className={`relative pl-8 ${isLast ? "" : "pb-10"}`}>
+            <div className={`relative pl-8 ${isLast ? "" : "pb-12"}`}>
                 {!isLast && (
-                    <div className="absolute left-[7px] top-3 bottom-0 w-px bg-border" />
+                    <div className="absolute left-[7px] top-4 bottom-0 w-px bg-border" />
                 )}
 
-                <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-[#0077b6] bg-background dark:border-white" />
+                <div className="absolute left-0 top-2 h-[15px] w-[15px] rounded-full bg-lime ring-4 ring-surface" />
 
-                <p className="md:hidden text-sm font-medium text-muted-foreground mb-1">
+                <p className="md:hidden text-xs uppercase tracking-[0.14em] text-muted-foreground mb-2">
                     {experience.period}
                 </p>
 
-                <h3 className="text-lg font-semibold text-[#0077b6] dark:text-white">
+                <h3 className="font-display text-3xl md:text-4xl leading-[1.05]">
                     {experience.role}
                 </h3>
-                <p className="text-sm text-muted-foreground mt-0.5">
+                <p className="text-sm text-muted-foreground mt-1.5">
                     {experience.company}
                 </p>
 
-                <div className="flex flex-wrap gap-1.5 mt-3">
+                <div className="flex flex-wrap gap-1.5 mt-4">
                     {experience.skills.map((skill) => (
-                        <Badge
+                        <span
                             key={skill}
-                            variant="secondary"
-                            className="bg-[#0077b659] hover:bg-[#0077b659] dark:bg-[#172190] hover:dark:bg-[#172190] text-xs"
+                            className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-surface-2 text-muted-foreground border border-border/40"
                         >
                             {skill}
-                        </Badge>
+                        </span>
                     ))}
                 </div>
 
                 {experience.responsibilities &&
                     experience.responsibilities.length > 0 && (
-                        <ul className="mt-3 space-y-1.5">
+                        <ul className="mt-4 space-y-2.5">
                             {experience.responsibilities.map(
                                 (responsibility, index) => (
                                     <li
                                         key={index}
-                                        className="text-sm text-muted-foreground leading-relaxed"
+                                        className="text-sm text-muted-foreground leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:size-1 before:rounded-full before:bg-lime/60"
                                     >
                                         {responsibility}
                                     </li>
-                                )
+                                ),
                             )}
                         </ul>
                     )}

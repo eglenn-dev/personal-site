@@ -11,7 +11,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: ({ children }) => (
             <h1
-                className="mt-10 mb-4 text-4xl font-bold leading-10"
+                className="font-display text-5xl md:text-6xl tracking-tight leading-[1.02] mt-12 mb-6"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
@@ -19,7 +19,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h2: ({ children }) => (
             <h2
-                className="mt-10 mb-3 text-3xl font-semibold leading-9"
+                className="font-display text-3xl md:text-4xl tracking-tight leading-[1.1] mt-12 mb-4"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
@@ -27,7 +27,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h3: ({ children }) => (
             <h3
-                className="mt-6 mb-2 text-2xl font-medium leading-8"
+                className="font-display text-2xl md:text-3xl tracking-tight leading-[1.15] mt-8 mb-3"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
@@ -35,7 +35,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h4: ({ children }) => (
             <h4
-                className="mt-4 mb-2 text-xl font-medium leading-7"
+                className="font-display text-xl md:text-2xl tracking-tight leading-tight mt-6 mb-2"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
@@ -43,7 +43,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h5: ({ children }) => (
             <h5
-                className="mt-3 mb-2 text-lg font-medium leading-6"
+                className="font-display text-lg md:text-xl tracking-tight mt-4 mb-2"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
@@ -51,23 +51,29 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h6: ({ children }) => (
             <h6
-                className="mt-2 mb-2 text-base font-medium leading-6"
+                className="font-semibold text-base mt-3 mb-2"
                 id={generateID(children?.toString() || "")}
             >
                 {children}
             </h6>
         ),
         p: ({ children }) => (
-            <p className="mb-5 mt-4 text-base leading-7">{children}</p>
+            <p className="mb-5 mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                {children}
+            </p>
         ),
         ul: ({ children }) => (
-            <ul className="mb-4 list-disc pl-5">{children}</ul>
+            <ul className="mb-6 list-disc pl-5 space-y-2 text-muted-foreground marker:text-lime">
+                {children}
+            </ul>
         ),
         ol: ({ children }) => (
-            <ol className="mb-0.5 list-decimal pl-5">{children}</ol>
+            <ol className="mb-6 list-decimal pl-5 space-y-2 text-muted-foreground marker:text-lime marker:font-semibold">
+                {children}
+            </ol>
         ),
         li: ({ children }) => (
-            <li className="mb-0.5 text-base leading-7">{children}</li>
+            <li className="text-base md:text-lg leading-relaxed">{children}</li>
         ),
         a: ({ children, href }) => {
             if (
@@ -82,7 +88,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="text-lime underline underline-offset-4 decoration-lime/50 hover:decoration-lime transition-colors"
                     >
                         {children}
                     </a>
@@ -91,7 +97,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 return (
                     <Link
                         href={href}
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="text-lime underline underline-offset-4 decoration-lime/50 hover:decoration-lime transition-colors"
                         target={href.includes("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
                     >
@@ -105,22 +111,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         img: (props) => (
             <Image
                 sizes="100vw"
-                className="h-auto w-full"
+                className="h-auto w-full rounded-2xl my-8 border border-border/40"
                 {...(props as ImageProps)}
                 alt={props.alt || "Image"}
             />
         ),
-        hr: () => (
-            <hr className="my-6 border-t border-gray-300 dark:border-gray-700" />
-        ),
+        hr: () => <hr className="my-10 border-t border-border" />,
         pre: (props) => <CodeBlock {...props} />,
         code: ({ children }) => (
-            <code className="inline-flex max-w-full overflow-x-auto rounded-sm border border-gray-300 px-1.5 py-0.5 text-sm dark:border-gray-700">
+            <code className="inline-flex max-w-full overflow-x-auto rounded-md bg-surface-2 border border-border/40 px-1.5 py-0.5 text-sm text-lime">
                 {children}
             </code>
         ),
         blockquote: ({ children }) => (
-            <blockquote className="my-6 border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-600 dark:text-gray-400">
+            <blockquote className="my-8 border-l-2 border-lime pl-6 text-foreground/80 text-lg md:text-xl leading-relaxed">
                 {children}
             </blockquote>
         ),

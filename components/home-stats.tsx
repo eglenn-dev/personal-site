@@ -10,24 +10,20 @@ export async function HomeStats() {
     const githubStats = await getCombinedGitHubStats("eglenn-dev");
 
     return (
-        <div className="flex flex-col gap-8">
-            <div className="flex flex-col">
-                <GithubStats data={githubStats} />
-                <WeatherCard />
-                <GitHubHeatmap data={githubStats?.contributionHistory} />
-            </div>
+        <div className="flex flex-col gap-6">
+            <GithubStats data={githubStats} />
+            <WeatherCard />
+            <GitHubHeatmap data={githubStats?.contributionHistory} />
         </div>
     );
 }
 
 export function HomeStatsSkeleton() {
     return (
-        <div className="flex flex-col gap-8">
-            <div className="flex flex-col">
-                <GithubStatsSkeleton />
-                <WeatherSkeleton />
-                <GitHubHeatmapSkeleton />
-            </div>
+        <div className="flex flex-col gap-6">
+            <GithubStatsSkeleton />
+            <WeatherSkeleton />
+            <GitHubHeatmapSkeleton />
         </div>
     );
 }

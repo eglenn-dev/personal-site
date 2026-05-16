@@ -46,17 +46,17 @@ export default async function Page({
                     },
                 ]}
             />
-            <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-                <div className="mb-8 flex items-center justify-between">
+            <article className="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-20">
+                <div className="mb-10 flex items-center justify-between">
                     <Link href="/blog" className="group">
-                        <Button variant="outline" className="mb-1 -ml-2">
+                        <Button variant="outline" size="sm">
                             <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
                             <span>Back</span>
                         </Button>
                     </Link>
                     <CopyUrlButton />
                 </div>
-                <div className="prose prose-lg dark:prose-invert max-w-none">
+                <div className="max-w-none">
                     <Post />
                 </div>
                 <TextHighlightButton />
