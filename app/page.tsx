@@ -29,7 +29,7 @@ export default async function Home() {
                         Full-Stack Engineer
                     </h2>
                     <p className="text-base flex flex-row items-center gap-1">
-                        <span>Working at</span>
+                        <span>Building at</span>
                         <span className="flex flex-row items-center gap-1">
                             <span className="mb-px">
                                 <BrainIcon />
