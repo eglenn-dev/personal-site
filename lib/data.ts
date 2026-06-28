@@ -169,6 +169,16 @@ export function getExperiences(): Experience[] {
             ],
         },
         {
+            role: "Applied Calculus Teaching Assistant",
+            company: "Department of Mathematics - BYU-Idaho",
+            period: "Apr 2024 - Apr 2025",
+            skills: ["R", "RStudio", "Data Analysis", "Calculus", "Teaching"],
+            responsibilities: [
+                "Met with 6-10 students weekly to troubleshoot R code and help them implement calculus one concepts to data analysis projects.",
+                "Worked with two instructors to offer grading support and tutoring to multiple sections of the course.",
+            ],
+        },
+        {
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
             period: "Jun 2023 - Jul 2024",
