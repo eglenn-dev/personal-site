@@ -134,7 +134,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Full-Stack Engineer",
             company: "DataThink",
-            period: "Aug 2025 - Present",
+            period: "Dec 2025 - Present",
             skills: [
                 "React",
                 "TypeScript",
@@ -149,6 +149,17 @@ export function getExperiences(): Experience[] {
                 "Designed and shipped an in-platform telephony system letting practices call and text patients and partners directly, with HIPAA/PCI-compliant encrypted call recordings, call transferring, a custom call routing algorithm, and analytics for managing patient relationships.",
                 "Developed an internal contractor management tool for time tracking, invoicing, and client tracking, giving leadership clear visibility into the performance of 74 contractors. (Next.js, Postgres, GCP)",
                 "Used AI coding agents (Claude Code, Codex) daily to accelerate feature delivery while maintaining a high standard of code quality.",
+            ],
+        },
+        {
+            role: "Software Engineer Intern",
+            company: "DataThink",
+            period: "Aug 2025 - Dec 2025",
+            skills: ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL"],
+            responsibilities: [
+                "Triaged incoming bug reports and support tickets, diagnosing issues and resolving or routing them to keep the platform running smoothly.",
+                "Designed and implemented an extension to the inventory management system to support new tracking and fulfillment workflows.",
+                "Contributed to ongoing feature development and delivered client requests across the platform.",
             ],
         },
         {
