@@ -159,7 +159,7 @@ export function getExperiences(): Experience[] {
             responsibilities: [
                 "Triaged incoming bug reports and support tickets, diagnosing issues and resolving or routing them to keep the platform running smoothly.",
                 "Designed and implemented an extension to the inventory management system to support new tracking and fulfillment workflows.",
-                "Contributed to ongoing feature development and delivered client requests across the platform.",
+                "Validated changes with unit and end-to-end testing, deploying to production multiple times per week.",
             ],
         },
         {
