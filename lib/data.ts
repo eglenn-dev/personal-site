@@ -134,12 +134,32 @@ export function getExperiences(): Experience[] {
         {
             role: "Full-Stack Engineer",
             company: "DataThink",
-            period: "Aug 2025 - Present",
-            skills: ["React", "TypeScript", "Python", "PostgreSQL", "FastAPI"],
+            period: "Dec 2025 - Present",
+            skills: [
+                "React",
+                "TypeScript",
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "Next.js",
+                "GCP",
+            ],
             responsibilities: [
-                "Built and maintain an order management platform processing 200+ weekly orders for 115+ medical practices using React, Python, FastAPI, and PostgreSQL.",
-                "Collaborate directly with users and stakeholders to gather requirements, resolve critical issues, and deliver features that streamline ordering, and patient management workflows.",
-                "Monitor production systems in real-time, rapidly deploy fixes, and manage weekly production releases ensuring 99%+ uptime for critical healthcare operations.",
+                "Built and maintained an order management platform serving 115 medical practices and processing ~900 orders per month and over $4 million in annual order volume, including custom ecommerce and shipment fulfillment workflows for each practice. (React, Python, FastAPI, Postgres)",
+                "Designed and shipped an in-platform telephony system letting practices call and text patients and partners directly, with HIPAA/PCI-compliant encrypted call recordings, call transferring, a custom call routing algorithm, and analytics for managing patient relationships.",
+                "Developed an internal contractor management tool for time tracking, invoicing, and client tracking, giving leadership clear visibility into the performance of 74 contractors. (Next.js, Postgres, GCP)",
+                "Used AI coding agents (Claude Code, Codex) daily to accelerate feature delivery while maintaining a high standard of code quality.",
+            ],
+        },
+        {
+            role: "Software Engineer Intern",
+            company: "DataThink",
+            period: "Aug 2025 - Dec 2025",
+            skills: ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL"],
+            responsibilities: [
+                "Triaged incoming bug reports and support tickets, diagnosing issues and resolving or routing them to keep the platform running smoothly.",
+                "Designed and implemented an extension to the inventory management system to support new tracking and fulfillment workflows.",
+                "Validated changes with unit and end-to-end testing, deploying to production multiple times per week.",
             ],
         },
         {
@@ -150,13 +170,13 @@ export function getExperiences(): Experience[] {
                 "Team Leadership",
                 "Project Management",
                 "React",
+                "Next.js",
                 "TypeScript",
-                "JavaScript",
             ],
             responsibilities: [
-                "Helped supervise a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
+                "Led a lab supporting over 1,200 students and faculty monthly, while overseeing a team of 10+ graphic designers and 3D printer technicians.",
                 "Proposed, designed, implemented, and deployed a full-stack web app in React, Next.js, and TypeScript for managing 3D print requests from library patrons, replacing a dated excel spreadsheet.",
-                "Develop and maintain library website of 30+ pages, including a new search bar experience that improved user experience for over 154,000 users in 2024.",
+                "Developed and maintained library websites of 30+ pages, including a new search bar experience that improved user experience for over 154,000 users in 2024.",
             ],
         },
         {
@@ -181,9 +201,8 @@ export function getExperiences(): Experience[] {
                 "JavaScript",
             ],
             responsibilities: [
-                "Suggested and implemented changes that would reduce page load time by 0.6 seconds and reduce CSS by 78% by removing unused and duplicate styles.",
-                "Collaborated with a team of three to remodel the University Library website frontend by transitions from jQuery and Bootstrap to Vanilla JS and CSS.",
-                "Taught 3D printing and introductory programming workshops twice per semester to classes of 40+ students.",
+                "Suggested and implemented changes that reduced page load time by 0.6 seconds and reduced CSS by 78% by removing unused and duplicate styles in favor of utility classes.",
+                "Collaborated with a team of three to remodel the University Library website frontend by transitioning from jQuery and Bootstrap to CSS and Vanilla JS.",
             ],
         },
     ];
