@@ -1,0 +1,33 @@
+import { AuthorCard } from "@/components/author-card";
+
+# Should we still read code?
+
+<AuthorCard />
+
+_2026-07-07_
+
+I've been able to spend about a week with Fable 5 and I'm left wondering: Do we still need to read the code?
+
+Depending on the project I'm working on and the model I'm using the code is as good as if I would have written myself. Once you have set patterns and frameworks for full-stack applications models like Fable 5, Opus 4.8, and GPT-5.5 are really good at following those patterns.
+
+This then begs the question, is it still worth reading code?
+
+## When agents started feeling good
+
+I remember when I started working with agents back in the Sonnet 4.5 phase it started feeling real. I could ask it for something and it would execute using existing patterns and flows. Add endpoints, frontend-end components, everything. Once Opus 4.5 was [released](https://www.anthropic.com/news/claude-opus-4-5) back in November of 2025 it finally felt completed.
+
+Opus 4.5 could handle new features, database migrations, agentic background work, computer use, and everything I would want out of an AI coding companion. It finally did most things the way that I would have. Was it perfect, no. Did it make mistakes, yes. Did it over engineer features, sometimes. Did it accelerate my development and feature delivery, 100%. I don't think I'd ever shipped so much production code in my life.
+
+## When can we stop reading the code?
+
+Back in the _old days_ before agents, when we would write all code by hand like cave men, life was good until you had to go back and read code that you wrote a year ago and haven't touched since. I always thought that having written the code that would have provided me some kind of advantage, but no.
+
+Back when I wrote the code I barely read it. I would write until something was working, then I would stop. I remember seeing online the meme "if it works, don't touch it."
+
+When code today is written by agents, maybe reviewed by a human, and then reviewed by an agent again, when is a review enough. When I review PRs from my coworkers I review most every line, test locally, and I always run a code review skill in the background while I do it. A lot of my comments are taste related, and minor security issues, and general nitpicks. My AI code review always catches things that I don't, and the occasionally flags things that are not really issues.
+
+## The problem becomes verification
+
+One thing that will never go away is responsibility. Who is responsible when a security issue is merged in, or when a critical client system does down? We'll never be able to blame the agent that wrote it, we hold responsible the developer who reviewed and merged in the code.
+
+Models like Fable are really good, but not good enough to shift blame from a developer.

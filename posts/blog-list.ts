@@ -1,5 +1,12 @@
 const slugs: Slug[] = [
     {
+        slug: "should-we-still-read-code",
+        title: "Should We Still Read Code?",
+        description: "In 2026 when we have ",
+        date: "2026-07-07",
+        hidden: false,
+    },
+    {
         slug: "reading-list",
         title: "Reading List",
         description:
