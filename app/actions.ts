@@ -40,9 +40,6 @@ export async function sendContactEmail(
 
         const resend = new Resend(process.env.RESEND_API_KEY);
 
-        // Render the email to HTML here instead of passing `react:` to Resend.
-        // Resend's own rendering relies on a dynamic import of
-        // @react-email/render, which is not bundled in the production build.
         const emailHtml = await render(
             ContactFormEmail({
                 name: safeName,
