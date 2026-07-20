@@ -52,7 +52,7 @@ export default function ProjectsPage() {
                 {projects.map((project, index) => (
                     <Card key={index}>
                         <CardHeader>
-                            <CardTitle className="text-lg text-[#0077b6] dark:text-white mb-2">
+                            <CardTitle className="text-lg text-primary dark:text-white mb-2">
                                 {project.name}
                             </CardTitle>
                             <CardDescription className="text-black dark:text-gray-300 leading-relaxed">
@@ -65,7 +65,7 @@ export default function ProjectsPage() {
                                     <Badge
                                         key={tech}
                                         variant="secondary"
-                                        className="bg-[#0077b659] hover:bg-[#0077b659] dark:bg-[#172190] hover:dark:bg-[#172190]"
+                                        className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground"
                                     >
                                         <span className="flex items-center gap-1">
                                             <TagIcon />

@@ -30,7 +30,7 @@ export default function Navbar() {
                                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200 ${
                                     pathname.split("/")[1] ===
                                     item.href.split("/")[1]
-                                        ? "border-primary text-primary"
+                                        ? "border-nav-active text-nav-active"
                                         : "border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300"
                                 }`}
                             >
