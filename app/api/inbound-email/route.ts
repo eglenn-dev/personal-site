@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { Webhook } from "svix";
+import { render } from "@react-email/components";
 import InvalidEmail from "@/react-email/emails/invalid-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -28,7 +29,7 @@ export const POST = async (request: NextRequest) => {
             from: `Email Delivery <${process.env.NO_REPLY_EMAIL || ""}>`,
             to: event.data.from,
             subject: `Re: ${event.data.subject}`,
-            react: InvalidEmail(),
+            html: await render(InvalidEmail()),
             text: `The email address you are trying to reach does not exist.`,
             headers: {
                 "In-Reply-To": event.data.message_id,

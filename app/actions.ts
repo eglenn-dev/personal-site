@@ -1,6 +1,7 @@
 "use server";
 import sanitizeHtml from "sanitize-html";
 import { Resend } from "resend";
+import { render } from "@react-email/components";
 import ContactFormEmail from "../react-email/emails/contact-form";
 
 export async function sendContactEmail(
@@ -39,27 +40,27 @@ export async function sendContactEmail(
 
         const resend = new Resend(process.env.RESEND_API_KEY);
 
+        const emailHtml = await render(
+            ContactFormEmail({
+                name: safeName,
+                email: userEmail,
+                message: safeReason,
+            })
+        );
+
         await resend.emails.send({
             from: `${safeName} Form Submission <${process.env.FROM_EMAIL || ""}>`,
             to: process.env.OWNER_EMAIL || "",
             replyTo: userEmail,
             subject: `Contact from ${safeName}`,
-            react: ContactFormEmail({
-                name: safeName,
-                email: userEmail,
-                message: safeReason,
-            }),
+            html: emailHtml,
         });
 
         await resend.emails.send({
             from: `Ethan Glenn <${process.env.FROM_EMAIL || ""}>`,
             to: userEmail,
             subject: `Thanks for reaching out!`,
-            react: ContactFormEmail({
-                name: safeName,
-                email: userEmail,
-                message: safeReason,
-            }),
+            html: emailHtml,
         });
 
         return true;
