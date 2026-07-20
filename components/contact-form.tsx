@@ -229,7 +229,7 @@ export default function ContactForm() {
                         </div>
                         <div className="w-full flex items-center justify-end gap-4">
                             <Button
-                                className="w-full"
+                                className="w-full shrink"
                                 onClick={() => {
                                     setAcceptTerms(true);
                                     setTermsOpen(false);
@@ -238,7 +238,10 @@ export default function ContactForm() {
                                 Accept
                             </Button>
                             <DialogClose asChild>
-                                <Button className="w-full" variant="secondary">
+                                <Button
+                                    className="w-full shrink"
+                                    variant="secondary"
+                                >
                                     Close
                                 </Button>
                             </DialogClose>
