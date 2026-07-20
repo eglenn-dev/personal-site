@@ -24,7 +24,16 @@ export async function sendContactEmail(
         }
     );
     const data = await response.json();
-    if (data.success && data.hostname === process.env.DOMAIN) {
+
+    const SCORE_THRESHOLD = 0.5;
+    const isHuman =
+        data.success &&
+        data.hostname === process.env.DOMAIN &&
+        typeof data.score === "number" &&
+        data.score >= SCORE_THRESHOLD &&
+        data.action === "contact";
+
+    if (isHuman) {
         const safeName = sanitizeHtml(name);
         const safeReason = sanitizeHtml(reason);
 

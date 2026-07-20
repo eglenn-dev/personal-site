@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,36 +14,33 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { sendContactEmail } from "@/app/actions";
-import { useTheme } from "next-themes";
 import Link from "next/link";
+
+interface ReCaptchaV3 {
+    ready: (cb: () => void) => void;
+    execute: (siteKey: string, options: { action: string }) => Promise<string>;
+}
+
+declare global {
+    interface Window {
+        grecaptcha?: ReCaptchaV3;
+    }
+}
 
 export default function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [error, setError] = useState<boolean>(false);
-    const [mounted, setMounted] = useState(false);
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [termsOpen, setTermsOpen] = useState(false);
-    const { theme } = useTheme();
 
     useEffect(() => {
         queueMicrotask(() => {
-            setMounted(true);
-            const storedSuccess = sessionStorage.getItem("contactFormSuccess");
-            if (storedSuccess === "true") {
+            if (sessionStorage.getItem("contactFormSuccess") === "true") {
                 setSubmitSuccess(true);
             }
         });
-
-        const script = document.createElement("script");
-        script.src = "https://www.google.com/recaptcha/api.js";
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-        return () => {
-            document.head.removeChild(script);
-        };
-    }, [error]);
+    }, []);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -52,11 +50,43 @@ export default function ContactForm() {
         const name = formData.get("name")?.toString() || "";
         const email = formData.get("email")?.toString() || "";
         const message = formData.get("message")?.toString() || "";
-        const responseToken =
-            formData.get("g-recaptcha-response")?.toString() || "";
 
-        if (!name || !email || !message || !responseToken) {
+        if (!name || !email || !message) {
             setIsSubmitting(false);
+            return;
+        }
+
+        const siteKey = process.env.NEXT_PUBLIC_CAPTCHA;
+        const captcha = window.grecaptcha;
+        const failWithError = () => {
+            setError(true);
+            setIsSubmitting(false);
+            setTimeout(() => setError(false), 5000);
+        };
+
+        if (!captcha || !siteKey) {
+            // Script not loaded yet (very fast submit) or misconfigured key.
+            failWithError();
+            return;
+        }
+
+        let responseToken = "";
+        try {
+            responseToken = await new Promise<string>((resolve, reject) => {
+                captcha.ready(() => {
+                    captcha
+                        .execute(siteKey, { action: "contact" })
+                        .then(resolve)
+                        .catch(reject);
+                });
+            });
+        } catch {
+            failWithError();
+            return;
+        }
+
+        if (!responseToken) {
+            failWithError();
             return;
         }
 
@@ -68,9 +98,7 @@ export default function ContactForm() {
         );
 
         if (!response) {
-            setError(true);
-            setIsSubmitting(false);
-            setTimeout(() => setError(false), 5000);
+            failWithError();
             return;
         }
 
@@ -114,6 +142,10 @@ export default function ContactForm() {
 
     return (
         <form className="space-y-5" onSubmit={handleSubmit}>
+            <Script
+                src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_CAPTCHA}`}
+                strategy="afterInteractive"
+            />
             <div className="space-y-1.5">
                 <label htmlFor="name" className="text-sm font-medium">
                     Name
@@ -214,16 +246,26 @@ export default function ContactForm() {
                     </DialogContent>
                 </Dialog>
             </div>
-            {mounted && (
-                <div
-                    className="g-recaptcha rounded-md"
-                    data-sitekey={process.env.NEXT_PUBLIC_CAPTCHA}
-                    data-theme={theme === "dark" ? "dark" : "light"}
-                ></div>
-            )}
             <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
+            <p className="text-xs text-muted-foreground">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <a
+                    href="https://policies.google.com/privacy"
+                    className="underline"
+                >
+                    Privacy Policy
+                </a>{" "}
+                and{" "}
+                <a
+                    href="https://policies.google.com/terms"
+                    className="underline"
+                >
+                    Terms of Service
+                </a>{" "}
+                apply.
+            </p>
         </form>
     );
 }
