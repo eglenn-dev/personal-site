@@ -87,7 +87,7 @@ export default async function Home() {
                 </div>
                 <div id="featured-project">
                     <h2 className="text-2xl font-semibold mb-4">Featured</h2>
-                    <div className="bg-zinc-200 dark:bg-muted p-4 rounded-lg">
+                    <div className="bg-zinc-200 dark:bg-muted p-4 rounded-2xl">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
                                 <span className="text-yellow-500">

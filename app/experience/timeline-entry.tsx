@@ -20,13 +20,13 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                     <div className="absolute left-[7px] top-3 bottom-0 w-px bg-border" />
                 )}
 
-                <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-[#0077b6] bg-background dark:border-white" />
+                <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-primary bg-background dark:border-white" />
 
                 <p className="md:hidden text-sm font-medium text-muted-foreground mb-1">
                     {experience.period}
                 </p>
 
-                <h3 className="text-lg font-semibold text-[#0077b6] dark:text-white">
+                <h3 className="text-lg font-semibold text-primary dark:text-white">
                     {experience.role}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-0.5">
@@ -38,7 +38,7 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                         <Badge
                             key={skill}
                             variant="secondary"
-                            className="bg-[#0077b659] hover:bg-[#0077b659] dark:bg-[#172190] hover:dark:bg-[#172190] text-xs"
+                            className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground text-xs"
                         >
                             {skill}
                         </Badge>

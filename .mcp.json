@@ -3,6 +3,12 @@
         "next-devtools": {
             "command": "bunx",
             "args": ["--bun", "next-devtools-mcp@latest"]
+        },
+        "playwright": {
+            "type": "stdio",
+            "command": "npx",
+            "args": ["-y", "@playwright/mcp@latest"],
+            "env": {}
         }
     }
 }

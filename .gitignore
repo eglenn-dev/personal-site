@@ -42,3 +42,5 @@ next-env.d.ts
 
 # AI
 CLAUDE.md
+# Playwright MCP artifacts
+.playwright-mcp/
