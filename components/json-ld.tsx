@@ -66,11 +66,13 @@ export function BlogPostingJsonLd({
     title,
     description,
     date,
+    updated,
     slug,
 }: {
     title: string;
     description: string;
     date: string;
+    updated?: string;
     slug: string;
 }) {
     const jsonLd = {
@@ -79,7 +81,7 @@ export function BlogPostingJsonLd({
         headline: title,
         description: description,
         datePublished: `${date}T00:00:00Z`,
-        dateModified: `${date}T00:00:00Z`,
+        dateModified: `${updated ?? date}T00:00:00Z`,
         url: `${SITE_URL}/blog/${slug}`,
         author: {
             "@type": "Person",

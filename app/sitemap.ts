@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const postSlugs = getPublicPosts();
     const blogPosts = postSlugs.map((post) => ({
         url: `https://ethanglenn.dev/blog/${post.slug}`,
-        lastModified: post.date,
+        lastModified: post.updated ?? post.date,
         changeFrequency: "monthly" as const,
         priority: 0.5,
     }));
