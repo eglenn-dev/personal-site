@@ -34,6 +34,7 @@ export default async function Page({
                 title={post.title}
                 description={post.description}
                 date={post.date}
+                updated={post.updated}
                 slug={post.slug}
             />
             <BreadcrumbJsonLd
@@ -103,7 +104,7 @@ export async function generateMetadata({
             url: postUrl,
             siteName: SITE_NAME,
             publishedTime: post.date,
-            modifiedTime: post.date,
+            modifiedTime: post.updated ?? post.date,
             authors: [SITE_NAME],
             images: [
                 {

@@ -5,6 +5,7 @@ const slugs: Slug[] = [
         description:
             "My reading list of articles, books, and papers related to software engineering.",
         date: "2026-05-13",
+        updated: "2026-08-21",
         hidden: false,
     },
     {
@@ -156,6 +157,7 @@ export interface Slug {
     slug: string;
     title: string;
     date: string;
+    updated?: string;
     description: string;
     hidden: boolean;
 }
