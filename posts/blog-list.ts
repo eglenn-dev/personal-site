@@ -17,13 +17,6 @@ const slugs: Slug[] = [
         hidden: false,
     },
     {
-        slug: "agents",
-        title: "My Agents.md",
-        description: "What my Agents.md file looks like.",
-        date: "2026-01-15",
-        hidden: false,
-    },
-    {
         slug: "2025-review",
         title: "A Year in Review: 2025",
         description:
@@ -72,27 +65,12 @@ const slugs: Slug[] = [
         hidden: false,
     },
     {
-        slug: "my-stack",
-        title: "My Stack",
-        description: "A list of the tools I use to build my projects.",
-        date: "2025-07-25",
-        hidden: false,
-    },
-    {
         slug: "mckay-db-search",
         title: "McKay Library AI Database Search",
         description:
             "Building a database search tool for the McKay Library using AI.",
         date: "2025-07-21",
         hidden: true,
-    },
-    {
-        slug: "gemini-tic-tac-toe",
-        title: "Vibe Coding with Gemini",
-        description:
-            "Building Tic Tac Toe with The Gemini CLI, and analyzing the results.",
-        date: "2025-07-16",
-        hidden: false,
     },
     {
         slug: "resumly",
@@ -114,20 +92,6 @@ const slugs: Slug[] = [
         description:
             "How I Built an AI to Help You Escape the Resume Black Hole",
         date: "2025-06-10",
-        hidden: false,
-    },
-    {
-        slug: "implementing-web-scraping",
-        title: "Implementing Web Scraping: Senior Project Update",
-        description: "A deep dive into the challenges of web scraping.",
-        date: "2025-05-22",
-        hidden: false,
-    },
-    {
-        slug: "senior-project-update",
-        title: "Senior Project Update",
-        description: "An AI-Powered Resume Assistant",
-        date: "2025-05-05",
         hidden: false,
     },
     {
