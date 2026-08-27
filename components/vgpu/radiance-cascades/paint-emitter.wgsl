@@ -21,8 +21,12 @@ struct Paint {
 @group(0) @binding(2) var name_tex: texture_2d<f32>;
 @group(0) @binding(3) var name_samp: sampler;
 
-/** Warm white: the name reads as a light source, not as a coloured shape. */
-const NAME_RADIANCE: vec3f = vec3f(3.8, 3.2, 2.4);
+/**
+ * Indigo drawn from the site's primary hue (oklch 265) and lifted until it reads as a
+ * light source. Kept off the pure primary: a fully saturated blue emitter lights the
+ * whole scene monochrome.
+ */
+const NAME_RADIANCE: vec3f = vec3f(0.39, 1.02, 4.20);
 
 @fragment
 fn fs_main(@location(0) uv: vec2f) -> @location(0) vec4f {

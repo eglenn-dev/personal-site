@@ -36,7 +36,7 @@ export default function NameHero({
 
     return (
         <div
-            className={`bg-radial from-orange-200/25 from-5% via-orange-900/15 via-30% to-black to-70% ${className ?? ""}`}
+            className={`bg-radial from-indigo-300/25 from-5% via-indigo-800/20 via-30% to-black to-70% ${className ?? ""}`}
         >
             <h1 className="absolute inset-0 flex items-center justify-center px-6 text-center text-4xl sm:text-6xl font-bold text-white">
                 {name}

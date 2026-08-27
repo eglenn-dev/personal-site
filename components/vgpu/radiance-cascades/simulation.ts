@@ -43,8 +43,14 @@ function resolveView(view: RadianceView, cascadeCount: number) {
   return { mode: 0, stopAt: 0 } as const;
 }
 
+// Painted light stays inside a cyan-to-violet arc so it belongs to the same blue as the
+// name rather than reading as a rainbow scribble.
+const STROKE_HUE_START = 0.5;
+const STROKE_HUE_SPAN = 0.28;
+
 function strokeRadiance(index: number): readonly [number, number, number] {
-  const hue = (index * 0.381966) % 1;
+  const hue =
+    STROKE_HUE_START + STROKE_HUE_SPAN * ((index * 0.381966) % 1);
   const channel = (offset: number) => {
     const value = Math.abs(((hue + offset) % 1) * 6 - 3) - 1;
     return (0.25 + 0.75 * Math.min(1, Math.max(0, value))) * 2.7;
