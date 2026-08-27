@@ -30,7 +30,6 @@ const HDR_FORMAT: GPUTextureFormat = "rgba16float";
 // Seeds store absolute pixel coordinates, which need f32 precision past 2048.
 const SEED_FORMAT: GPUTextureFormat = "rgba32float";
 const RC_INTERVAL0 = 2;
-const TRIANGLE_SCALE = 0.11;
 
 function resolveView(view: RadianceView, cascadeCount: number) {
   if (view === "emitters") return { mode: 1, stopAt: 0 } as const;
@@ -53,7 +52,11 @@ function strokeRadiance(index: number): readonly [number, number, number] {
   return [channel(0), channel(2 / 3), channel(1 / 3)];
 }
 
-export function createScene(gpu: Gpu, requestedSize: Vec2) {
+export function createScene(
+  gpu: Gpu,
+  requestedSize: Vec2,
+  nameTexture: GPUTexture
+) {
   const width = Math.max(1, Math.floor(requestedSize[0]));
   const height = Math.max(1, Math.floor(requestedSize[1]));
   const size: Vec2 = [width, height];
@@ -105,6 +108,7 @@ export function createScene(gpu: Gpu, requestedSize: Vec2) {
       gpu,
       size,
       atlas,
+      nameTexture,
       cascadeCount,
       jumps,
       emitter,
@@ -206,14 +210,11 @@ function buildChain(scene: RadianceScene, options: ChainOptions) {
         ? [segment.to[0] * size[0], segment.to[1] * size[1]]
         : [0, 0],
       color: [color[0], color[1], color[2], segment ? 1 : 0],
-      flags: [
-        options.keepPrevious ?? true ? 1 : 0,
-        Math.min(size[0], size[1]) * TRIANGLE_SCALE,
-        0,
-        0,
-      ],
+      flags: [options.keepPrevious ?? true ? 1 : 0, 0, 0, 0],
     },
     previous: emitterRead,
+    name_tex: scene.nameTexture,
+    name_samp: scene.sampler,
   });
   passes.push({ target: emitterWrite, effect: effects.paint });
   scene.emitter = [emitterWrite, emitterRead];

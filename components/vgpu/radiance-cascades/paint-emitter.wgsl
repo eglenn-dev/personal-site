@@ -1,6 +1,6 @@
-import { sdf_segment, sdf_triangle } from "./sdf-sample.wgsl";
+import { sdf_segment } from "./sdf-sample.wgsl";
 
-// Accumulates the emitter texture: the fixed triangle plus everything the pointer has
+// Accumulates the emitter texture: the fixed name glyphs plus everything the pointer has
 // painted so far. RGB is linear radiance, A is the occluder mask the jump flood seeds from.
 //
 // Strokes combine with a component-wise max instead of a sum: a slow drag deposits dozens
@@ -12,15 +12,17 @@ struct Paint {
   stroke_to: vec2f,
   /** RGB radiance and an active flag. */
   color: vec4f,
-  /** Keep-previous flag and triangle radius. */
+  /** Keep-previous flag in x; y..w unused. */
   flags: vec4f,
 };
 
 @group(0) @binding(0) var<uniform> paint: Paint;
 @group(0) @binding(1) var previous: texture_2d<f32>;
+@group(0) @binding(2) var name_tex: texture_2d<f32>;
+@group(0) @binding(3) var name_samp: sampler;
 
-/** Warm white: the triangle reads as a light source, not as a coloured shape. */
-const TRIANGLE_RADIANCE: vec3f = vec3f(3.8, 3.2, 2.4);
+/** Warm white: the name reads as a light source, not as a coloured shape. */
+const NAME_RADIANCE: vec3f = vec3f(3.8, 3.2, 2.4);
 
 @fragment
 fn fs_main(@location(0) uv: vec2f) -> @location(0) vec4f {
@@ -33,18 +35,23 @@ fn fs_main(@location(0) uv: vec2f) -> @location(0) vec4f {
     accumulated = textureLoad(previous, texel, 0);
   }
 
+  // Contain the name raster in the middle of the canvas, preserving its aspect.
   let centre = size * 0.5;
-  let r = paint.flags.y;
-  // Equilateral, apex up: uv.y grows downwards, so the apex is at -y.
-  let apex = centre + vec2f(0.0, -r);
-  let left = centre + vec2f(-r * 0.8660254, r * 0.5);
-  let right = centre + vec2f(r * 0.8660254, r * 0.5);
-  let triangle = 1.0 - smoothstep(
-    -1.0,
-    1.0,
-    sdf_triangle(pixel, apex, right, left),
-  );
-  accumulated = max(accumulated, vec4f(TRIANGLE_RADIANCE * triangle, triangle));
+  let name_size = vec2f(textureDimensions(name_tex));
+  let aspect = name_size.x / max(name_size.y, 1.0);
+  let quad_width = min(size.x * 0.78, size.y * 0.5 * aspect);
+  let quad = vec2f(quad_width, quad_width / aspect);
+  let local = (pixel - (centre - quad * 0.5)) / quad;
+  // Sampling stays uniform; the rectangle test masks the result instead of
+  // guarding the sample, so the gradient-dependent path is never divergent.
+  let inside = f32(all(local >= vec2f(0.0)) && all(local <= vec2f(1.0)));
+  let coverage = textureSampleLevel(
+    name_tex,
+    name_samp,
+    clamp(local, vec2f(0.0), vec2f(1.0)),
+    0.0,
+  ).a * inside;
+  accumulated = max(accumulated, vec4f(NAME_RADIANCE * coverage, coverage));
 
   if (paint.color.a > 0.5) {
     let stroke = 1.0 - smoothstep(

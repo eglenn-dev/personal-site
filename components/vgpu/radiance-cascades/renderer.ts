@@ -2,6 +2,7 @@ import GUI, { type Controller } from "lil-gui";
 import { surface, type Gpu, type Surface } from "vgpu";
 
 import { installLightPaintInput } from "./pointer-input";
+import { rasterizeName } from "./name-raster";
 import {
   createScene,
   destroyScene,
@@ -27,9 +28,17 @@ const RADIANCE_VIEWS: readonly {
 
 interface RendererOptions {
   readonly canvas: HTMLCanvasElement;
+  /** Text lit up in the middle of the canvas. */
+  readonly name?: string;
+  /** Set false to hide the lil-gui panel, e.g. when used as a page hero. */
+  readonly controls?: boolean;
 }
 
-export function createRenderer({ canvas }: RendererOptions) {
+export function createRenderer({
+  canvas,
+  name = "Ethan Glenn",
+  controls: showControls = true,
+}: RendererOptions) {
   let disposed = false;
   const controls: { view: RadianceView } = { view: "final" };
   let gpu: Gpu | undefined;
@@ -37,6 +46,7 @@ export function createRenderer({ canvas }: RendererOptions) {
   let scene: RadianceScene | undefined;
   let input: ReturnType<typeof installLightPaintInput> | undefined;
   let gui: GUI | undefined;
+  let nameTexture: GPUTexture | undefined;
   let viewController: Controller | undefined;
   let observer: ResizeObserver | undefined;
   let unsubscribeResize: (() => void) | undefined;
@@ -85,6 +95,7 @@ export function createRenderer({ canvas }: RendererOptions) {
       unsubscribeResize,
       () => input?.dispose(),
       () => gui?.destroy(),
+      () => nameTexture?.destroy(),
       () => gpu?.dispose(),
     ]) {
       try {
@@ -109,7 +120,7 @@ export function createRenderer({ canvas }: RendererOptions) {
     if (disposed || !gpu || !canvasSurface) return;
     rebuilding = true;
     try {
-      const next = createScene(gpu, canvasSurface.size);
+      const next = createScene(gpu, canvasSurface.size, nameTexture!);
       const previous = scene;
       scene = next;
       if (previous) destroyScene(previous);
@@ -190,21 +201,7 @@ export function createRenderer({ canvas }: RendererOptions) {
     animationFrame = requestAnimationFrame(tick);
   };
 
-  const initialize = async () => {
-    const { init } = await import("vgpu");
-    if (disposed) return;
-    const nextGpu = await init();
-    if (disposed) {
-      nextGpu.dispose();
-      return;
-    }
-    gpu = nextGpu;
-    canvasSurface = surface(gpu, canvas, { autoResize: false, dpr: [1, 2] });
-    scene = createScene(gpu, canvasSurface.size);
-    await prepareScene(scene, canvasSurface.format);
-    if (disposed) return;
-
-    input = installLightPaintInput(canvas);
+  const buildControls = (cascadeCount: number) => {
     gui = new GUI({
       title: "Radiance Cascades",
       container: canvas.parentElement ?? undefined,
@@ -217,7 +214,7 @@ export function createRenderer({ canvas }: RendererOptions) {
       zIndex: "10",
     });
     viewController = gui
-      .add(controls, "view", viewOptions(scene.cascadeCount))
+      .add(controls, "view", viewOptions(cascadeCount))
       .name("View")
       .onChange(() => {
         dirty = true;
@@ -233,6 +230,29 @@ export function createRenderer({ canvas }: RendererOptions) {
         "clear"
       )
       .name("Clear canvas");
+  };
+
+  const initialize = async () => {
+    const { init } = await import("vgpu");
+    if (disposed) return;
+    const nextGpu = await init();
+    if (disposed) {
+      nextGpu.dispose();
+      return;
+    }
+    gpu = nextGpu;
+    canvasSurface = surface(gpu, canvas, { autoResize: false, dpr: [1, 2] });
+
+    const raster = await rasterizeName(name);
+    if (disposed) return;
+    nameTexture = createNameTexture(gpu, raster);
+
+    scene = createScene(gpu, canvasSurface.size, nameTexture);
+    await prepareScene(scene, canvasSurface.format);
+    if (disposed) return;
+
+    input = installLightPaintInput(canvas);
+    if (showControls) buildControls(scene.cascadeCount);
 
     unsubscribeResize = canvasSurface.onResize(onSurfaceResize);
     observer =
@@ -250,4 +270,30 @@ export function createRenderer({ canvas }: RendererOptions) {
   });
 
   return { ready, dispose };
+}
+
+/** Uploads the rasterized name so the emitter pass can sample its coverage. */
+function createNameTexture(gpu: Gpu, source: HTMLCanvasElement): GPUTexture {
+  const texture = gpu.gpu.createTexture({
+    label: "radiance-cascades-name",
+    size: [source.width, source.height],
+    format: "rgba8unorm",
+    // COPY_DST | TEXTURE_BINDING | RENDER_ATTACHMENT
+    usage: 0x02 | 0x04 | 0x10,
+  });
+  try {
+    gpu.gpu.queue.copyExternalImageToTexture(
+      { source },
+      { texture },
+      [source.width, source.height]
+    );
+    return texture;
+  } catch (error) {
+    try {
+      texture.destroy();
+    } catch {
+      // Preserve the upload error after best-effort rollback.
+    }
+    throw error;
+  }
 }

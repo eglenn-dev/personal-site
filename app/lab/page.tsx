@@ -28,7 +28,7 @@ const demos: Demo[] = [
     {
         id: "black-hole",
         title: "Black Hole",
-        blurb: "Currently on the home page. Raymarched gravitational lensing with a Doppler-beamed accretion disk and an HDR bloom chain. Warm orange — the one palette outlier.",
+        blurb: "Raymarched gravitational lensing with a Doppler-beamed accretion disk and an HDR bloom chain. Warm orange — the one palette outlier.",
         rendering: "Continuous",
         files: 7,
         interaction: "Drag to orbit",
@@ -46,7 +46,7 @@ const demos: Demo[] = [
     {
         id: "radiance-cascades",
         title: "Radiance Cascades",
-        blurb: "Draw light with the pointer and watch it bounce: a jump-flooded distance field feeds six radiance cascades merged into 2D global illumination. Emitter colors are yours to pick.",
+        blurb: "Now on the home page. Draw light with the pointer and watch it bounce: a jump-flooded distance field feeds six radiance cascades merged into 2D global illumination. The name in the middle is the emitter, replacing the original triangle.",
         rendering: "Continuous",
         files: 12,
         interaction: "Drag to paint light",

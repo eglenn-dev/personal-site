@@ -16,7 +16,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
-import BlackHole from "@/components/vgpu/black-hole";
+import NameHero from "@/components/vgpu/name-hero";
 
 export default async function Home() {
     const techStack = getTechStack();
@@ -24,14 +24,17 @@ export default async function Home() {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="relative h-80 sm:h-[26rem] mb-12 overflow-hidden rounded-2xl">
-                <BlackHole className="absolute inset-0 h-full w-full" />
-                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6 sm:p-10 bg-linear-to-t from-black/80 to-transparent">
-                    <h1 className="text-4xl sm:text-6xl font-bold text-white">
-                        Ethan Glenn
-                    </h1>
+                <NameHero
+                    name="Ethan Glenn"
+                    className="absolute inset-0 h-full w-full"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 flex flex-row items-end justify-between gap-4 p-6 sm:p-10 bg-linear-to-t from-black/80 to-transparent">
                     <h2 className="text-xl sm:text-2xl font-semibold text-white/75">
                         Full-Stack Engineer
                     </h2>
+                    <p className="text-xs uppercase tracking-[.08em] text-white/40">
+                        Drag to paint light
+                    </p>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
