@@ -4,6 +4,14 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
     pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
     cacheComponents: true,
+    turbopack: {
+        rules: {
+            "*.wgsl": {
+                loaders: ["@vgpu/wgsl/loader-webpack"],
+                as: "*.js",
+            },
+        },
+    },
     async redirects() {
         return [
             {

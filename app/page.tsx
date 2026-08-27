@@ -16,18 +16,26 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
+import BlackHole from "@/components/vgpu/black-hole";
 
 export default async function Home() {
     const techStack = getTechStack();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div id="main" className="flex flex-col gap-4">
-                    <h1 className="text-4xl font-bold">Ethan Glenn</h1>
-                    <h2 className="text-2xl font-semibold">
+            <div className="relative h-80 sm:h-[26rem] mb-12 overflow-hidden rounded-2xl">
+                <BlackHole className="absolute inset-0 h-full w-full" />
+                <div className="absolute inset-x-0 bottom-0 flex flex-col gap-2 p-6 sm:p-10 bg-linear-to-t from-black/80 to-transparent">
+                    <h1 className="text-4xl sm:text-6xl font-bold text-white">
+                        Ethan Glenn
+                    </h1>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-white/75">
                         Full-Stack Engineer
                     </h2>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div id="main" className="flex flex-col gap-4">
                     <p className="text-base flex flex-row items-center gap-1">
                         <span>Building at</span>
                         <span className="flex flex-row items-center gap-1">
