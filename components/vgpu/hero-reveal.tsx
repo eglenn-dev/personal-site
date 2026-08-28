@@ -62,6 +62,11 @@ export function HeroBand() {
 /**
  * The heading, until the scene takes it over. Exactly one h1 is on the page in
  * either state: this one, or the one inside the band.
+ *
+ * The glow is text-shadow rather than a drop-shadow filter: filters re-rasterize
+ * the element every frame, and interpolating one from `none` steps rather than
+ * eases. Both ends declare the same two shadows so only colour and blur move,
+ * and the transition names just the two properties that change.
  */
 export function HeroName() {
     const { active, activate, name } = useReveal();
@@ -73,7 +78,7 @@ export function HeroName() {
                 type="button"
                 onClick={activate}
                 title="Turn on the light"
-                className="cursor-pointer rounded-lg outline-none transition duration-500 hover:text-indigo-100 hover:[filter:drop-shadow(0_0_10px_var(--color-indigo-400))_drop-shadow(0_0_34px_var(--color-indigo-500))] focus-visible:text-indigo-100 focus-visible:[filter:drop-shadow(0_0_10px_var(--color-indigo-400))_drop-shadow(0_0_34px_var(--color-indigo-500))]"
+                className="cursor-pointer rounded-lg outline-none text-shadow-[0_0_0_transparent,0_0_0_transparent] transition-[color,text-shadow] duration-300 ease-out hover:text-indigo-100 hover:text-shadow-[0_0_12px_var(--color-indigo-400),0_0_34px_var(--color-indigo-600)] focus-visible:text-indigo-100 focus-visible:text-shadow-[0_0_12px_var(--color-indigo-400),0_0_34px_var(--color-indigo-600)]"
             >
                 {name}
             </button>
