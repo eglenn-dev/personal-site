@@ -45,7 +45,7 @@ export default function NameHero({
                 className="relative block h-full w-full touch-none"
             />
             <p className="pointer-events-none absolute bottom-4 right-5 text-xs uppercase tracking-[.08em] text-white/40">
-                Drag to paint light
+                Drag to paint light with WebGPU
             </p>
         </div>
     );
