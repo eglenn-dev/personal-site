@@ -1,4 +1,3 @@
-import GUI, { type Controller } from "lil-gui";
 import { surface, type Gpu, type Surface } from "vgpu";
 
 import { installLightPaintInput } from "./pointer-input";
@@ -13,41 +12,25 @@ import {
   type RadianceView,
 } from "./simulation";
 
-const RADIANCE_VIEWS: readonly {
-  readonly value: RadianceView;
-  readonly label: string;
-}[] = [
-  { value: "final", label: "Final" },
-  { value: "emitters", label: "Emitters" },
-  { value: "sdf", label: "Distance field" },
-  ...Array.from({ length: 6 }, (_, index) => ({
-    value: `cascade-${index}` as RadianceView,
-    label: `Cascade ${index} atlas`,
-  })),
-];
-
 interface RendererOptions {
   readonly canvas: HTMLCanvasElement;
   /** Text lit up in the middle of the canvas. */
   readonly name?: string;
-  /** Set false to hide the lil-gui panel, e.g. when used as a page hero. */
-  readonly controls?: boolean;
 }
 
 export function createRenderer({
   canvas,
   name = "Ethan Glenn",
-  controls: showControls = true,
 }: RendererOptions) {
   let disposed = false;
-  const controls: { view: RadianceView } = { view: "final" };
+  // The debug views (emitters, distance field, cascade atlases) were only ever
+  // reachable from the lab page's panel, so only the composed view ships.
+  const VIEW: RadianceView = "final";
   let gpu: Gpu | undefined;
   let canvasSurface: Surface | undefined;
   let scene: RadianceScene | undefined;
   let input: ReturnType<typeof installLightPaintInput> | undefined;
-  let gui: GUI | undefined;
   let nameTexture: GPUTexture | undefined;
-  let viewController: Controller | undefined;
   let observer: ResizeObserver | undefined;
   let unsubscribeResize: (() => void) | undefined;
   let animationFrame = 0;
@@ -60,26 +43,6 @@ export function createRenderer({
   let rebuilding = false;
   let dirty = true;
   let clearRequested = false;
-
-  const viewOptions = (count: number) =>
-    Object.fromEntries(
-      RADIANCE_VIEWS.filter(
-        ({ value }) =>
-          !value.startsWith("cascade-") ||
-          Number(value.slice("cascade-".length)) < count
-      ).map(({ value, label }) => [label, value])
-    );
-
-  const updateViewOptions = (count: number) => {
-    if (
-      controls.view.startsWith("cascade-") &&
-      Number(controls.view.slice(8)) >= count
-    ) {
-      controls.view = `cascade-${count - 1}` as RadianceView;
-      dirty = true;
-    }
-    viewController = viewController?.options(viewOptions(count));
-  };
 
   const dispose = () => {
     if (disposed) return;
@@ -94,7 +57,6 @@ export function createRenderer({
     for (const cleanup of [
       unsubscribeResize,
       () => input?.dispose(),
-      () => gui?.destroy(),
       () => nameTexture?.destroy(),
       () => gpu?.dispose(),
     ]) {
@@ -124,7 +86,6 @@ export function createRenderer({
       const previous = scene;
       scene = next;
       if (previous) destroyScene(previous);
-      updateViewOptions(next.cascadeCount);
       clearRequested = true;
       dirty = true;
       void prepareScene(next, canvasSurface.format).catch((error: unknown) => {
@@ -188,48 +149,17 @@ export function createRenderer({
           runChain(scene, {
             segment,
             keepPrevious: !clearRequested,
-            view: controls.view,
+            view: VIEW,
           });
           clearRequested = false;
           dirty = false;
         }
-        presentScene(scene, canvasSurface, controls.view);
+        presentScene(scene, canvasSurface, VIEW);
       } catch (error) {
         fail(error);
       }
     }
     animationFrame = requestAnimationFrame(tick);
-  };
-
-  const buildControls = (cascadeCount: number) => {
-    gui = new GUI({
-      title: "Radiance Cascades",
-      container: canvas.parentElement ?? undefined,
-      width: 190,
-    });
-    Object.assign(gui.domElement.style, {
-      position: "absolute",
-      top: "16px",
-      right: "16px",
-      zIndex: "10",
-    });
-    viewController = gui
-      .add(controls, "view", viewOptions(cascadeCount))
-      .name("View")
-      .onChange(() => {
-        dirty = true;
-      });
-    gui
-      .add(
-        {
-          clear() {
-            clearRequested = true;
-            dirty = true;
-          },
-        },
-        "clear"
-      )
-      .name("Clear canvas");
   };
 
   const initialize = async () => {
@@ -252,7 +182,6 @@ export function createRenderer({
     if (disposed) return;
 
     input = installLightPaintInput(canvas);
-    if (showControls) buildControls(scene.cascadeCount);
 
     unsubscribeResize = canvasSurface.onResize(onSurfaceResize);
     observer =

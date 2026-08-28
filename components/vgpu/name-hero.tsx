@@ -28,7 +28,7 @@ export default function NameHero({
             return;
         }
 
-        const renderer = createRenderer({ canvas, name, controls: false });
+        const renderer = createRenderer({ canvas, name });
         renderer.ready.catch(() => {});
 
         return () => renderer.dispose();
