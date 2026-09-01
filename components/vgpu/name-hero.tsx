@@ -1,17 +1,16 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createRenderer } from "./radiance-cascades/renderer";
 
 /**
  * Radiance-cascades scene: the name is the emitter, and dragging paints extra
  * light that bounces off it.
  *
- * The heading sits underneath the canvas rather than over it, so it stays in the
- * document for crawlers and screen readers; once WebGPU is running, the canvas
- * paints opaque black across it and the shader's own glyphs take over.
- *
- * This only mounts once the reveal has been asked for, so it starts rendering
- * straight away.
+ * Bringing up WebGPU takes a moment -- adapter, name raster, shader compilation
+ * -- so the heading holds the frame while that happens and hands over once the
+ * first frame is ready, rather than leaving an empty panel and then popping.
+ * The heading also sits underneath the canvas rather than over it, so it stays
+ * in the document for crawlers and screen readers either way.
  */
 export default function NameHero({
     name,
@@ -21,30 +20,53 @@ export default function NameHero({
     className?: string;
 }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [lit, setLit] = useState(false);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         if (!navigator.gpu) return;
 
+        let live = true;
         const renderer = createRenderer({ canvas, name });
-        renderer.ready.catch(() => {});
+        renderer.ready
+            .then(() => {
+                if (live) setLit(true);
+            })
+            .catch(() => {});
 
-        return () => renderer.dispose();
+        return () => {
+            live = false;
+            renderer.dispose();
+        };
     }, [name]);
 
     return (
         <div
             className={`bg-radial from-indigo-300/25 from-5% via-indigo-800/20 via-30% to-black to-70% ${className ?? ""}`}
         >
-            <h1 className="absolute inset-0 flex items-center justify-center px-6 text-center text-4xl sm:text-6xl font-bold text-white">
-                {name}
+            {/* The pulse lives on the inner span: an animation driving opacity on
+                the same element would fight the fade-out and snap it. */}
+            <h1
+                className={`absolute inset-0 flex items-center justify-center px-6 text-center text-4xl sm:text-6xl font-bold text-white transition-all duration-700 ease-out ${
+                    lit ? "scale-110 opacity-0" : "scale-100 opacity-90"
+                }`}
+            >
+                <span className={lit ? "" : "motion-safe:animate-pulse"}>
+                    {name}
+                </span>
             </h1>
             <canvas
                 ref={canvasRef}
-                className="relative block h-full w-full touch-none"
+                className={`relative block h-full w-full touch-none transition-opacity duration-500 ease-out ${
+                    lit ? "opacity-100" : "opacity-0"
+                }`}
             />
-            <p className="pointer-events-none absolute bottom-4 right-5 text-xs uppercase tracking-[.08em] text-white/40">
+            <p
+                className={`pointer-events-none absolute bottom-4 right-5 text-xs uppercase tracking-[.08em] text-white/40 transition-opacity duration-500 delay-300 ${
+                    lit ? "opacity-100" : "opacity-0"
+                }`}
+            >
                 Drag to paint light with WebGPU
             </p>
         </div>

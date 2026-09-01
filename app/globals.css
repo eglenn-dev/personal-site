@@ -44,6 +44,7 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
+    --animate-hero-open: hero-open 520ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
@@ -174,6 +175,14 @@ html {
 
 .moonlight {
     animation: moonlight 3s infinite;
+}
+
+@keyframes hero-open {
+    from {
+        height: 0;
+        margin-bottom: 0;
+        opacity: 0;
+    }
 }
 
 @keyframes sunshines {

@@ -47,13 +47,19 @@ export function HeroReveal({
     );
 }
 
-/** The scene, once opened. Renders nothing until then. */
+/**
+ * The scene, once opened. Renders nothing until then.
+ *
+ * The band grows into place rather than appearing at full height, so the content
+ * below slides down instead of jumping. `to` is left implicit in the keyframes,
+ * which lets the responsive height utilities decide where it settles.
+ */
 export function HeroBand() {
     const { active, name } = useReveal();
     if (!active) return null;
 
     return (
-        <div className="relative h-80 sm:h-[26rem] mb-12 overflow-hidden rounded-2xl">
+        <div className="relative h-80 sm:h-[26rem] mb-12 overflow-hidden rounded-2xl motion-safe:animate-hero-open">
             <NameHero name={name} className="absolute inset-0 h-full w-full" />
         </div>
     );
