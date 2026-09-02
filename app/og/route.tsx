@@ -50,6 +50,18 @@ export async function GET(request: NextRequest) {
                     {description}
                 </div>
             </div>
+            <svg
+                width="88"
+                height="88"
+                viewBox="0 0 512 512"
+                style={{ position: "absolute", top: "60px", right: "80px" }}
+            >
+                {/* Slanted E brand mark, same glyph as app/icon.svg */}
+                <path
+                    d="M190.19 106H416.19L398.51 172H246.51L232.84 223H364.84L347.16 289H215.16L201.49 340H353.49L335.81 406H109.81Z"
+                    fill="#ffffff"
+                />
+            </svg>
             <div
                 style={{
                     display: "flex",
