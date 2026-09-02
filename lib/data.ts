@@ -6,10 +6,10 @@ import {
     MongoIcon,
     NextjsIcon,
     PrismaIcon,
-    TailWindIcon,
     TanstackIcon,
     FastApiIcon,
     GcpIcon,
+    AwsIcon,
     ClaudeIcon,
 } from "./icons";
 import type { Project, Experience, TechStack } from "./types";
@@ -216,11 +216,11 @@ export function getTechStack(): TechStack[] {
         { name: "FastAPI", icon: FastApiIcon },
         { name: "Next.js", icon: NextjsIcon },
         { name: "TanStack", icon: TanstackIcon },
-        { name: "Tailwind", icon: TailWindIcon },
         { name: "Postgres", icon: PostgresIcon },
         { name: "Prisma", icon: PrismaIcon },
         { name: "MongoDB", icon: MongoIcon },
         { name: "GCP", icon: GcpIcon },
+        { name: "AWS", icon: AwsIcon },
         { name: "Claude", icon: ClaudeIcon },
     ];
 }
