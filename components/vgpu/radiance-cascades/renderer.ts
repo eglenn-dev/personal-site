@@ -1,177 +1,140 @@
-import { surface, type Gpu, type Surface } from "vgpu";
+import { init, surface, type Gpu, type Surface } from "vgpu";
 
 import { installLightPaintInput } from "./pointer-input";
 import { rasterizeName } from "./name-raster";
 import {
   createScene,
-  destroyScene,
   prepareScene,
-  presentScene,
-  runChain,
+  renderScene,
+  resizeScene,
   type RadianceScene,
-  type RadianceView,
 } from "./simulation";
 
 interface RendererOptions {
   readonly canvas: HTMLCanvasElement;
   /** Text lit up in the middle of the canvas. */
-  readonly name?: string;
+  readonly name: string;
+  /** Called once when the scene cannot be brought up or cannot keep running. */
+  readonly onError: (error: unknown) => void;
 }
 
-export function createRenderer({
-  canvas,
-  name = "Ethan Glenn",
-}: RendererOptions) {
+// Simulating at full device resolution quadruples the cascade atlas and every
+// pass's fill for a scene that is mostly soft glow. 1.5x keeps the glyph edges
+// crisp on retina at under half the memory.
+const MAX_DPR = 1.5;
+// Dragging a window edge fires ResizeObserver every frame and each one recreates
+// every texture, so only the trailing edge is worth acting on.
+const RESIZE_SETTLE_MS = 150;
+
+export function createRenderer({ canvas, name, onError }: RendererOptions) {
   let disposed = false;
-  // The debug views (emitters, distance field, cascade atlases) were only ever
-  // reachable from the lab page's panel, so only the composed view ships.
-  const VIEW: RadianceView = "final";
   let gpu: Gpu | undefined;
   let canvasSurface: Surface | undefined;
   let scene: RadianceScene | undefined;
   let input: ReturnType<typeof installLightPaintInput> | undefined;
   let nameTexture: GPUTexture | undefined;
   let observer: ResizeObserver | undefined;
-  let unsubscribeResize: (() => void) | undefined;
   let animationFrame = 0;
-  let resizeFrame = 0;
-  let pendingSize:
-    | { readonly width: number; readonly height: number; readonly dpr: number }
-    | undefined;
-  let lastDpr = typeof window === "undefined" ? 1 : window.devicePixelRatio;
-  let sawInitialResize = false;
-  let rebuilding = false;
-  let dirty = true;
-  let clearRequested = false;
+  let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+  let lastDpr = window.devicePixelRatio;
+  // The first chain has no previous emitter to accumulate onto, and neither does
+  // the first one after a resize hands back cleared targets.
+  let clearRequested = true;
 
   const dispose = () => {
     if (disposed) return;
     disposed = true;
     if (animationFrame) cancelAnimationFrame(animationFrame);
-    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    if (resizeTimer) clearTimeout(resizeTimer);
     observer?.disconnect();
-    if (typeof window !== "undefined") {
-      window.removeEventListener("resize", onWindowResize);
+    window.removeEventListener("resize", onWindowResize);
+    try {
+      input?.dispose();
+      nameTexture?.destroy();
+      // Targets belong to the device, so this releases the whole scene with it.
+      gpu?.dispose();
+    } catch (error) {
+      // Teardown runs from React's cleanup, where throwing takes the unmount
+      // down with it.
+      console.error("Radiance cascades teardown failed.", error);
     }
-    let firstError: unknown;
-    for (const cleanup of [
-      unsubscribeResize,
-      () => input?.dispose(),
-      () => nameTexture?.destroy(),
-      () => gpu?.dispose(),
-    ]) {
-      try {
-        cleanup?.();
-      } catch (error) {
-        firstError ??= error;
-      }
-    }
-    if (firstError) throw firstError;
   };
 
-  const fail = (error: unknown): never => {
-    try {
-      dispose();
-    } catch {
-      // Keep the operation failure primary after best-effort teardown.
-    }
-    throw error;
+  const fail = (error: unknown) => {
+    if (disposed) return;
+    dispose();
+    onError(error);
   };
 
-  const rebuildScene = () => {
-    if (disposed || !gpu || !canvasSurface) return;
-    rebuilding = true;
+  /**
+   * One frame is one full chain plus its present. Nothing schedules the next
+   * one: the canvas keeps showing the last frame it was handed, so the loop only
+   * runs while the pointer is painting or a resize has invalidated the targets.
+   */
+  const tick = () => {
+    animationFrame = 0;
+    if (disposed || !canvasSurface || !scene || !input) return;
     try {
-      const next = createScene(gpu, canvasSurface.size, nameTexture!);
-      const previous = scene;
-      scene = next;
-      if (previous) destroyScene(previous);
-      clearRequested = true;
-      dirty = true;
-      void prepareScene(next, canvasSurface.format).catch((error: unknown) => {
-        if (!disposed && scene === next) fail(error);
+      renderScene(scene, canvasSurface, {
+        segment: input.take(),
+        keepPrevious: !clearRequested,
       });
+      clearRequested = false;
     } catch (error) {
       fail(error);
-    } finally {
-      rebuilding = false;
     }
   };
 
-  const onSurfaceResize = () => {
-    if (!sawInitialResize) {
-      sawInitialResize = true;
-      return;
-    }
-    if (!rebuilding) rebuildScene();
+  const requestRender = () => {
+    if (disposed || animationFrame) return;
+    animationFrame = requestAnimationFrame(tick);
   };
 
   const applyResize = () => {
-    resizeFrame = 0;
-    const size = pendingSize;
-    pendingSize = undefined;
-    if (disposed || !size || !canvasSurface) return;
+    resizeTimer = undefined;
+    if (disposed || !canvasSurface || !scene) return;
+    const { width, height } = canvas.getBoundingClientRect();
+    if (width <= 0 || height <= 0) return;
+    const dpr = Math.min(MAX_DPR, Math.max(1, window.devicePixelRatio || 1));
+    const pixels: [number, number] = [
+      Math.max(1, Math.round(width * dpr)),
+      Math.max(1, Math.round(height * dpr)),
+    ];
+    if (pixels[0] === scene.size[0] && pixels[1] === scene.size[1]) return;
     try {
-      canvasSurface.resize([
-        Math.max(1, Math.round(size.width * size.dpr)),
-        Math.max(1, Math.round(size.height * size.dpr)),
-      ]);
+      canvasSurface.resize(pixels);
+      resizeScene(scene, canvasSurface.size);
     } catch (error) {
       fail(error);
+      return;
     }
+    clearRequested = true;
+    requestRender();
   };
 
-  const measure = () => {
-    const { width, height } = canvas.getBoundingClientRect();
-    if (disposed || width <= 0 || height <= 0) return;
-    pendingSize = {
-      width,
-      height,
-      dpr: Math.min(2, Math.max(1, window.devicePixelRatio || 1)),
-    };
-    if (!resizeFrame) resizeFrame = requestAnimationFrame(applyResize);
+  const scheduleResize = () => {
+    if (disposed) return;
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyResize, RESIZE_SETTLE_MS);
   };
 
   function onWindowResize() {
     if (window.devicePixelRatio === lastDpr) return;
     lastDpr = window.devicePixelRatio;
-    measure();
+    scheduleResize();
   }
 
-  const tick = () => {
-    animationFrame = 0;
-    if (disposed) return;
-    if (!document.hidden && gpu && canvasSurface && scene && input) {
-      try {
-        const segment = input.take();
-        if (segment) dirty = true;
-        if (dirty) {
-          runChain(scene, {
-            segment,
-            keepPrevious: !clearRequested,
-            view: VIEW,
-          });
-          clearRequested = false;
-          dirty = false;
-        }
-        presentScene(scene, canvasSurface, VIEW);
-      } catch (error) {
-        fail(error);
-      }
-    }
-    animationFrame = requestAnimationFrame(tick);
-  };
-
   const initialize = async () => {
-    const { init } = await import("vgpu");
-    if (disposed) return;
     const nextGpu = await init();
     if (disposed) {
       nextGpu.dispose();
       return;
     }
     gpu = nextGpu;
-    canvasSurface = surface(gpu, canvas, { autoResize: false, dpr: [1, 2] });
+    canvasSurface = surface(gpu, canvas, {
+      autoResize: false,
+      dpr: [1, MAX_DPR],
+    });
 
     const raster = await rasterizeName(name);
     if (disposed) return;
@@ -181,22 +144,15 @@ export function createRenderer({
     await prepareScene(scene, canvasSurface.format);
     if (disposed) return;
 
-    input = installLightPaintInput(canvas);
-
-    unsubscribeResize = canvasSurface.onResize(onSurfaceResize);
-    observer =
-      typeof ResizeObserver === "undefined"
-        ? undefined
-        : new ResizeObserver(measure);
-    observer?.observe(canvas);
+    input = installLightPaintInput(canvas, requestRender);
+    observer = new ResizeObserver(scheduleResize);
+    observer.observe(canvas);
     window.addEventListener("resize", onWindowResize);
-    measure();
-    animationFrame = requestAnimationFrame(tick);
+    requestRender();
   };
 
-  const ready = initialize().catch((error: unknown) => {
-    if (!disposed) fail(error);
-  });
+  const ready = initialize();
+  ready.catch(fail);
 
   return { ready, dispose };
 }
@@ -207,22 +163,16 @@ function createNameTexture(gpu: Gpu, source: HTMLCanvasElement): GPUTexture {
     label: "radiance-cascades-name",
     size: [source.width, source.height],
     format: "rgba8unorm",
-    // COPY_DST | TEXTURE_BINDING | RENDER_ATTACHMENT
-    usage: 0x02 | 0x04 | 0x10,
+    usage:
+      GPUTextureUsage.COPY_DST |
+      GPUTextureUsage.TEXTURE_BINDING |
+      // copyExternalImageToTexture validates the destination for this too.
+      GPUTextureUsage.RENDER_ATTACHMENT,
   });
-  try {
-    gpu.gpu.queue.copyExternalImageToTexture(
-      { source },
-      { texture },
-      [source.width, source.height]
-    );
-    return texture;
-  } catch (error) {
-    try {
-      texture.destroy();
-    } catch {
-      // Preserve the upload error after best-effort rollback.
-    }
-    throw error;
-  }
+  gpu.gpu.queue.copyExternalImageToTexture(
+    { source },
+    { texture },
+    [source.width, source.height]
+  );
+  return texture;
 }

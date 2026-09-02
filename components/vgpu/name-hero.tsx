@@ -11,6 +11,11 @@ import { createRenderer } from "./radiance-cascades/renderer";
  * first frame is ready, rather than leaving an empty panel and then popping.
  * The heading also sits underneath the canvas rather than over it, so it stays
  * in the document for crawlers and screen readers either way.
+ *
+ * If the scene cannot run at all -- an adapter that reports itself and then
+ * refuses, a device lost mid-flight -- the heading simply settles instead of
+ * pulsing forever, leaving the same gradient banner a browser without WebGPU
+ * would have got.
  */
 export default function NameHero({
     name,
@@ -20,18 +25,26 @@ export default function NameHero({
     className?: string;
 }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [lit, setLit] = useState(false);
+    const [status, setStatus] = useState<"loading" | "lit" | "failed">(
+        "loading"
+    );
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        if (!navigator.gpu) return;
 
         let live = true;
-        const renderer = createRenderer({ canvas, name });
+        const renderer = createRenderer({
+            canvas,
+            name,
+            onError: (error) => {
+                console.error("The radiance cascades hero could not run.", error);
+                if (live) setStatus("failed");
+            },
+        });
         renderer.ready
             .then(() => {
-                if (live) setLit(true);
+                if (live) setStatus("lit");
             })
             .catch(() => {});
 
@@ -40,6 +53,8 @@ export default function NameHero({
             renderer.dispose();
         };
     }, [name]);
+
+    const lit = status === "lit";
 
     return (
         <div
@@ -52,7 +67,11 @@ export default function NameHero({
                     lit ? "scale-110 opacity-0" : "scale-100 opacity-90"
                 }`}
             >
-                <span className={lit ? "" : "motion-safe:animate-pulse"}>
+                <span
+                    className={
+                        status === "loading" ? "motion-safe:animate-pulse" : ""
+                    }
+                >
                     {name}
                 </span>
             </h1>

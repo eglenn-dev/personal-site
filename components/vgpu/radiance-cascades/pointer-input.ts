@@ -4,15 +4,22 @@ export interface PaintSegment {
   readonly stroke: number;
 }
 
-export function installLightPaintInput(canvas: HTMLCanvasElement) {
+/**
+ * Collects pointer drags into one coalesced segment per frame.
+ *
+ * `onPaint` fires whenever a segment is waiting, which is what drives the render
+ * loop -- there is no idle polling, so the scene costs nothing between strokes.
+ */
+export function installLightPaintInput(
+  canvas: HTMLCanvasElement,
+  onPaint: () => void
+) {
   let activePointer = -1;
   let stroke = 0;
   let last: [number, number] = [0.5, 0.5];
   let pending:
     | { from: [number, number]; to: [number, number]; stroke: number }
     | undefined;
-  const previousTouchAction = canvas.style.touchAction;
-  canvas.style.touchAction = "none";
 
   const point = (event: PointerEvent): [number, number] => {
     const rect = canvas.getBoundingClientRect();
@@ -31,15 +38,12 @@ export function installLightPaintInput(canvas: HTMLCanvasElement) {
   const extend = (from: [number, number], to: [number, number]) => {
     if (pending?.stroke === stroke) pending.to = to;
     else pending = { from, to, stroke };
+    onPaint();
   };
 
   const down = (event: PointerEvent) => {
     if (!event.isPrimary || activePointer !== -1) return;
-    try {
-      canvas.setPointerCapture?.(event.pointerId);
-    } catch {
-      // Synthetic pointers may not be capturable.
-    }
+    canvas.setPointerCapture(event.pointerId);
     activePointer = event.pointerId;
     stroke++;
     last = point(event);
@@ -53,16 +57,17 @@ export function installLightPaintInput(canvas: HTMLCanvasElement) {
     last = next;
   };
 
-  const up = (event: PointerEvent) => {
-    if (!event.isPrimary || event.pointerId !== activePointer) return;
-    try {
-      if (canvas.hasPointerCapture?.(activePointer)) {
-        canvas.releasePointerCapture(activePointer);
-      }
-    } catch {
-      // The browser may already have released capture.
+  const release = () => {
+    if (activePointer === -1) return;
+    if (canvas.hasPointerCapture(activePointer)) {
+      canvas.releasePointerCapture(activePointer);
     }
     activePointer = -1;
+  };
+
+  const up = (event: PointerEvent) => {
+    if (!event.isPrimary || event.pointerId !== activePointer) return;
+    release();
   };
 
   canvas.addEventListener("pointerdown", down);
@@ -81,16 +86,8 @@ export function installLightPaintInput(canvas: HTMLCanvasElement) {
       canvas.removeEventListener("pointermove", move);
       canvas.removeEventListener("pointerup", up);
       canvas.removeEventListener("pointercancel", up);
-      try {
-        if (activePointer !== -1 && canvas.hasPointerCapture?.(activePointer)) {
-          canvas.releasePointerCapture(activePointer);
-        }
-      } catch {
-        // Continue restoring DOM state after a capture cleanup failure.
-      }
-      activePointer = -1;
+      release();
       pending = undefined;
-      canvas.style.touchAction = previousTouchAction;
     },
   };
 }

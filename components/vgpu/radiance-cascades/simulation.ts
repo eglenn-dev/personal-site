@@ -5,7 +5,6 @@ import {
   target,
   type Effect,
   type Gpu,
-  type Surface,
   type Target,
 } from "vgpu";
 
@@ -17,31 +16,15 @@ import presentWgsl from "./present.wgsl";
 import radianceCascadeWgsl from "./radiance-cascade.wgsl";
 import sdfFinalizeWgsl from "./sdf-finalize.wgsl";
 
-type Output = Surface | Target;
 type Vec2 = readonly [number, number];
-
-export type RadianceView =
-  | "final"
-  | "emitters"
-  | "sdf"
-  | `cascade-${0 | 1 | 2 | 3 | 4 | 5}`;
 
 const HDR_FORMAT: GPUTextureFormat = "rgba16float";
 // Seeds store absolute pixel coordinates, which need f32 precision past 2048.
 const SEED_FORMAT: GPUTextureFormat = "rgba32float";
+// The tracer reads only .r, and 16-bit float targets are filterable where 32-bit
+// ones are not -- so the distance field costs an eighth of an HDR target.
+const SDF_FORMAT: GPUTextureFormat = "r16float";
 const RC_INTERVAL0 = 2;
-
-function resolveView(view: RadianceView, cascadeCount: number) {
-  if (view === "emitters") return { mode: 1, stopAt: 0 } as const;
-  if (view === "sdf") return { mode: 2, stopAt: 0 } as const;
-  if (view.startsWith("cascade-")) {
-    return {
-      mode: 3,
-      stopAt: Math.min(Number(view.slice(8)), cascadeCount - 1),
-    } as const;
-  }
-  return { mode: 0, stopAt: 0 } as const;
-}
 
 // Painted light stays inside a cyan-to-violet arc so it belongs to the same blue as the
 // name rather than reading as a rainbow scribble.
@@ -49,8 +32,7 @@ const STROKE_HUE_START = 0.5;
 const STROKE_HUE_SPAN = 0.28;
 
 function strokeRadiance(index: number): readonly [number, number, number] {
-  const hue =
-    STROKE_HUE_START + STROKE_HUE_SPAN * ((index * 0.381966) % 1);
+  const hue = STROKE_HUE_START + STROKE_HUE_SPAN * ((index * 0.381966) % 1);
   const channel = (offset: number) => {
     const value = Math.abs(((hue + offset) % 1) * 6 - 3) - 1;
     return (0.25 + 0.75 * Math.min(1, Math.max(0, value))) * 2.7;
@@ -58,14 +40,14 @@ function strokeRadiance(index: number): readonly [number, number, number] {
   return [channel(0), channel(2 / 3), channel(1 / 3)];
 }
 
-export function createScene(
-  gpu: Gpu,
-  requestedSize: Vec2,
-  nameTexture: GPUTexture
-) {
+/**
+ * Everything about the scene that follows from its pixel size: how deep the
+ * cascade hierarchy goes, how large an atlas holds it, and how many jump-flood
+ * rounds the distance field needs.
+ */
+function layoutFor(requestedSize: Vec2) {
   const width = Math.max(1, Math.floor(requestedSize[0]));
   const height = Math.max(1, Math.floor(requestedSize[1]));
-  const size: Vec2 = [width, height];
   const cascadeCount = Math.min(
     6,
     Math.max(
@@ -77,18 +59,32 @@ export function createScene(
     )
   );
   const spacing = 2 ** (cascadeCount - 1);
-  const atlas: Vec2 = [
-    Math.ceil(width / spacing) * spacing * 2,
-    Math.ceil(height / spacing) * spacing * 2,
-  ];
   const jumpCount = Math.ceil(Math.log2(Math.max(width, height, 2)));
-  const jumps = [
-    ...Array.from({ length: jumpCount }, (_, index) =>
-      Math.max(1, 2 ** (jumpCount - index - 1))
-    ),
-    1,
-    1,
-  ];
+  return {
+    size: [width, height] as Vec2,
+    atlas: [
+      Math.ceil(width / spacing) * spacing * 2,
+      Math.ceil(height / spacing) * spacing * 2,
+    ] as Vec2,
+    cascadeCount,
+    // Halving jumps down to 1, then two more 1-rounds: the standard JFA+2
+    // correction that cleans up the seeds a pure halving schedule misses.
+    jumps: [
+      ...Array.from({ length: jumpCount }, (_, index) =>
+        Math.max(1, 2 ** (jumpCount - index - 1))
+      ),
+      1,
+      1,
+    ],
+  };
+}
+
+export function createScene(
+  gpu: Gpu,
+  requestedSize: Vec2,
+  nameTexture: GPUTexture
+) {
+  const layout = layoutFor(requestedSize);
   const created: Target[] = [];
   const own = (resource: Target) => {
     created.push(resource);
@@ -97,37 +93,36 @@ export function createScene(
 
   try {
     const emitter: [Target, Target] = [
-      own(target(gpu, { size, format: HDR_FORMAT })),
-      own(target(gpu, { size, format: HDR_FORMAT })),
+      own(target(gpu, { size: layout.size, format: HDR_FORMAT })),
+      own(target(gpu, { size: layout.size, format: HDR_FORMAT })),
     ];
     const jfa: [Target, Target] = [
-      own(target(gpu, { size, format: SEED_FORMAT })),
-      own(target(gpu, { size, format: SEED_FORMAT })),
+      own(target(gpu, { size: layout.size, format: SEED_FORMAT })),
+      own(target(gpu, { size: layout.size, format: SEED_FORMAT })),
     ];
-    const sdf = own(target(gpu, { size, format: HDR_FORMAT }));
+    const sdf = own(target(gpu, { size: layout.size, format: SDF_FORMAT }));
     // Two atlases are recycled from the top of the hierarchy down.
     const cascades: [Target, Target] = [
-      own(target(gpu, { size: atlas, format: HDR_FORMAT })),
-      own(target(gpu, { size: atlas, format: HDR_FORMAT })),
+      own(target(gpu, { size: layout.atlas, format: HDR_FORMAT })),
+      own(target(gpu, { size: layout.atlas, format: HDR_FORMAT })),
     ];
     return {
       gpu,
-      size,
-      atlas,
       nameTexture,
-      cascadeCount,
-      jumps,
+      ...layout,
       emitter,
       jfa,
       sdf,
       cascades,
+      // Nothing here depends on the scene's size, so every effect outlives every
+      // resize and its pipeline is compiled exactly once.
       effects: {
         paint: effect(gpu, paintEmitterWgsl),
         jfaInit: effect(gpu, jfaInitWgsl),
         // Uniforms are uploaded immediately, so every encoded pass needs its own effect.
-        jfaSteps: jumps.map(() => effect(gpu, jfaPassWgsl)),
+        jfaSteps: layout.jumps.map(() => effect(gpu, jfaPassWgsl)),
         sdfFinalize: effect(gpu, sdfFinalizeWgsl),
-        cascade: Array.from({ length: cascadeCount }, () =>
+        cascade: Array.from({ length: layout.cascadeCount }, () =>
           effect(gpu, radianceCascadeWgsl)
         ),
         present: effect(gpu, presentWgsl),
@@ -140,16 +135,41 @@ export function createScene(
       }),
     };
   } catch (error) {
-    try {
-      destroyTargets(created);
-    } catch {
-      // Preserve the allocation error after best-effort rollback.
-    }
+    destroyTargets(created);
     throw error;
   }
 }
 
 export type RadianceScene = ReturnType<typeof createScene>;
+
+/**
+ * Resizes the targets in place rather than rebuilding the scene.
+ *
+ * vgpu recreates a target's textures on `resize` and rebinds them into every
+ * effect that referenced them, so the pipelines, bind groups and uniform buffers
+ * all survive. Only the per-pass effect counts can grow, and they never shrink:
+ * a spare effect costs a uniform buffer, whereas dropping one would throw away a
+ * pipeline the next resize is likely to want back.
+ */
+export function resizeScene(scene: RadianceScene, requestedSize: Vec2): void {
+  const layout = layoutFor(requestedSize);
+  scene.size = layout.size;
+  scene.atlas = layout.atlas;
+  scene.cascadeCount = layout.cascadeCount;
+  scene.jumps = layout.jumps;
+
+  for (const resource of [...scene.emitter, ...scene.jfa, scene.sdf]) {
+    resource.resize(layout.size);
+  }
+  for (const resource of scene.cascades) resource.resize(layout.atlas);
+
+  while (scene.effects.jfaSteps.length < layout.jumps.length) {
+    scene.effects.jfaSteps.push(effect(scene.gpu, jfaPassWgsl));
+  }
+  while (scene.effects.cascade.length < layout.cascadeCount) {
+    scene.effects.cascade.push(effect(scene.gpu, radianceCascadeWgsl));
+  }
+}
 
 export async function prepareScene(
   scene: RadianceScene,
@@ -161,7 +181,7 @@ export async function prepareScene(
     ...scene.effects.jfaSteps.map((shader) =>
       shader.compile({ colors: [SEED_FORMAT] })
     ),
-    scene.effects.sdfFinalize.compile({ colors: [HDR_FORMAT] }),
+    scene.effects.sdfFinalize.compile({ colors: [SDF_FORMAT] }),
     ...scene.effects.cascade.map((shader) =>
       shader.compile({ colors: [HDR_FORMAT] })
     ),
@@ -169,39 +189,19 @@ export async function prepareScene(
   ]);
 }
 
-export function destroyScene(scene: RadianceScene): void {
-  destroyTargets([
-    ...scene.emitter,
-    ...scene.jfa,
-    scene.sdf,
-    ...scene.cascades,
-  ]);
-}
-
 function destroyTargets(targets: readonly Target[]): void {
-  let firstError: unknown;
   for (let index = targets.length - 1; index >= 0; index--) {
-    try {
-      (targets[index] as Target & { destroy?: () => void }).destroy?.();
-    } catch (error) {
-      firstError ??= error;
-    }
+    (targets[index] as Target & { destroy?: () => void }).destroy?.();
   }
-  if (firstError) throw firstError;
 }
 
 export interface ChainOptions {
   readonly segment?: PaintSegment;
   readonly keepPrevious?: boolean;
-  readonly view?: RadianceView;
 }
 
 function buildChain(scene: RadianceScene, options: ChainOptions) {
   const { size, effects } = scene;
-  const stopAt = resolveView(
-    options.view ?? "final",
-    scene.cascadeCount
-  ).stopAt;
   const segment = options.segment;
   const passes: { readonly target: Target; readonly effect: Effect }[] = [];
 
@@ -246,7 +246,7 @@ function buildChain(scene: RadianceScene, options: ChainOptions) {
 
   let atlasWrite = scene.cascades[0];
   let atlasRead = scene.cascades[1];
-  for (let cascade = scene.cascadeCount - 1; cascade >= stopAt; cascade--) {
+  for (let cascade = scene.cascadeCount - 1; cascade >= 0; cascade--) {
     const shader = effects.cascade[cascade]!;
     shader.set({
       rc: {
@@ -265,11 +265,21 @@ function buildChain(scene: RadianceScene, options: ChainOptions) {
   return passes;
 }
 
-export function runChain(
+/**
+ * Runs the cascade chain and presents it in one submission. The canvas holds the
+ * last frame it was given, so nothing needs re-presenting until the scene
+ * actually changes.
+ */
+export function renderScene(
   scene: RadianceScene,
+  output: Target,
   options: ChainOptions = {}
 ): void {
   const passes = buildChain(scene, options);
+  scene.effects.present.set({
+    cascade_tex: scene.cascades[0],
+    emitter_tex: scene.emitter[0],
+  });
   frame(scene.gpu, (currentFrame) => {
     for (const pass of passes) {
       currentFrame.pass(
@@ -277,23 +287,6 @@ export function runChain(
         (encoder) => encoder.draw(pass.effect)
       );
     }
-  });
-}
-
-export function presentScene(
-  scene: RadianceScene,
-  output: Output,
-  view: RadianceView
-): void {
-  scene.effects.present.set({
-    present: {
-      view: [resolveView(view, scene.cascadeCount).mode, 0, 0, 0],
-    },
-    cascade_tex: scene.cascades[0],
-    emitter_tex: scene.emitter[0],
-    sdf_tex: scene.sdf,
-  });
-  frame(scene.gpu, (currentFrame) => {
     currentFrame.pass({ target: output, clear: [0, 0, 0, 1] }, (encoder) =>
       encoder.draw(scene.effects.present)
     );

@@ -1,6 +1,13 @@
 "use client";
 import { createContext, useContext, useState, type ReactNode } from "react";
-import NameHero from "./name-hero";
+import dynamic from "next/dynamic";
+
+// The scene only exists behind a click, so vgpu and every shader stay out of the
+// home page's bundle until someone opens the egg.
+const NameHero = dynamic(() => import("./name-hero"), { ssr: false });
+
+/** Shared so the band and the scene inside it cannot drift out of step. */
+const BAND_HEIGHT = "h-80 sm:h-[26rem]";
 
 /**
  * The home page reads as it always has until someone clicks the name, at which
@@ -53,14 +60,21 @@ export function HeroReveal({
  * The band grows into place rather than appearing at full height, so the content
  * below slides down instead of jumping. `to` is left implicit in the keyframes,
  * which lets the responsive height utilities decide where it settles.
+ *
+ * The scene inside is given that final height outright and clipped as the band
+ * opens, rather than being stretched with it. A canvas that grows across the
+ * animation is a canvas that resizes once per frame of it, and every one of
+ * those reallocates the whole target set.
  */
 export function HeroBand() {
     const { active, name } = useReveal();
     if (!active) return null;
 
     return (
-        <div className="relative h-80 sm:h-[26rem] mb-12 overflow-hidden rounded-2xl motion-safe:animate-hero-open">
-            <NameHero name={name} className="absolute inset-0 h-full w-full" />
+        <div
+            className={`${BAND_HEIGHT} mb-12 overflow-hidden rounded-2xl motion-safe:animate-hero-open`}
+        >
+            <NameHero name={name} className={`relative w-full ${BAND_HEIGHT}`} />
         </div>
     );
 }
