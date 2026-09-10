@@ -145,9 +145,9 @@ export function getExperiences(): Experience[] {
                 "GCP",
             ],
             responsibilities: [
-                "Built and maintained an order management platform serving 115 medical practices and processing ~900 orders per month and over $4 million in annual order volume, including custom ecommerce and shipment fulfillment workflows for each practice. (React, Python, FastAPI, Postgres)",
+                "Built and maintained a high-volume order management platform for a network of medical practices, including custom ecommerce and shipment fulfillment workflows for each practice. (React, Python, FastAPI, Postgres)",
                 "Designed and shipped an in-platform telephony system letting practices call and text patients and partners directly, with HIPAA/PCI-compliant encrypted call recordings, call transferring, a custom call routing algorithm, and analytics for managing patient relationships.",
-                "Developed an internal contractor management tool for time tracking, invoicing, and client tracking, giving leadership clear visibility into the performance of 74 contractors. (Next.js, Postgres, GCP)",
+                "Developed an internal contractor management tool for time tracking, invoicing, and client tracking, giving leadership clear visibility into contractor performance across the company. (Next.js, Postgres, GCP)",
                 "Used AI coding agents (Claude Code, Codex) daily to accelerate feature delivery while maintaining a high standard of code quality.",
             ],
         },
