@@ -4,7 +4,6 @@ import {
     ReactIcon,
     TypeScriptIcon,
     MongoIcon,
-    BrainIcon,
     NextjsIcon,
     AwardIcon,
     XIcon,
@@ -25,17 +24,8 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div id="main" className="flex flex-col gap-4">
                     <h1 className="text-4xl font-bold">Ethan Glenn</h1>
-                    <h2 className="text-2xl font-semibold">
-                        Full-Stack Engineer
-                    </h2>
                     <p className="text-base flex flex-row items-center gap-1">
-                        <span>Building at</span>
-                        <span className="flex flex-row items-center gap-1">
-                            <span className="mb-px">
-                                <BrainIcon />
-                            </span>{" "}
-                            DataThink
-                        </span>
+                        Full-Stack Engineer at DataThink
                     </p>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
