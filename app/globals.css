@@ -386,3 +386,53 @@ mark.text-highlight {
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.552 0.016 285.938);
 }
+
+/* Git Graph Animations */
+@keyframes drawLine {
+    0% {
+        stroke-dashoffset: 100;
+    }
+    45% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeInCommit {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.git-line {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawLine 3.8s ease-out infinite;
+}
+
+.git-commit {
+    opacity: 0;
+    transform-origin: center;
+    animation: fadeInCommit 3.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .git-line,
+    .git-commit {
+        animation: none !important;
+        opacity: 1 !important;
+        stroke-dashoffset: 0 !important;
+        transform: scale(1) !important;
+    }
+}
