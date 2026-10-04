@@ -44,4 +44,3 @@ next-env.d.ts
 CLAUDE.md
 # Playwright MCP artifacts
 .playwright-mcp/
-package-lock.json
