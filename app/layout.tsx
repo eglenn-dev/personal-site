@@ -101,14 +101,15 @@ export default function RootLayout({
                             enableSystem
                             disableTransitionOnChange
                         >
-                            <div className="flex flex-col min-h-screen">
-                                <Navbar />
-                                <CommandPaletteProvider />
-                                <main className="grow">{children}</main>
-                                <Suspense fallback={<FooterSkeleton />}>
-                                    <Footer />
-                                </Suspense>
-                            </div>
+                            <CommandPaletteProvider>
+                                <div className="flex flex-col min-h-screen">
+                                    <Navbar />
+                                    <main className="grow">{children}</main>
+                                    <Suspense fallback={<FooterSkeleton />}>
+                                        <Footer />
+                                    </Suspense>
+                                </div>
+                            </CommandPaletteProvider>
                         </ThemeProvider>
                         {process.env.NODE_ENV === "production" && (
                             <>

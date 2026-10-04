@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
@@ -26,6 +26,7 @@ import {
 import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
 import type { Project } from "@/lib/types";
 import type { Slug } from "@/posts/blog-list";
+import { useCommandPalette } from "@/components/command-palette-provider-context";
 
 const navItems = [
     { href: "/", label: "Home", icon: Home },
@@ -59,7 +60,7 @@ interface CommandPaletteProps {
 }
 
 export function CommandPalette({ posts, projects }: CommandPaletteProps) {
-    const [open, setOpen] = useState(false);
+    const { open, setOpen } = useCommandPalette();
     const router = useRouter();
     const { theme, setTheme } = useTheme();
 
@@ -73,27 +74,30 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
 
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, []);
+    }, [setOpen]);
 
     const handleNavigate = useCallback(
         (href: string) => {
             setOpen(false);
             router.push(href);
         },
-        [router],
+        [router, setOpen],
     );
 
-    const handleExternalLink = useCallback((href: string) => {
-        setOpen(false);
-        window.open(href, "_blank", "noopener,noreferrer");
-    }, []);
+    const handleExternalLink = useCallback(
+        (href: string) => {
+            setOpen(false);
+            window.open(href, "_blank", "noopener,noreferrer");
+        },
+        [setOpen],
+    );
 
     const handleThemeToggle = useCallback(() => {
         const newTheme = theme === "dark" ? "light" : "dark";
         setTheme(newTheme);
         setOpen(false);
         toast.success(`Switched to ${newTheme} mode`);
-    }, [theme, setTheme]);
+    }, [theme, setTheme, setOpen]);
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
