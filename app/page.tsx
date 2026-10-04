@@ -24,12 +24,14 @@ export default async function Home() {
                     <p className="text-base flex flex-row items-center gap-1">
                         Full-Stack Engineer at DataThink
                     </p>
-                    <p className="text-sm text-muted-foreground flex flex-row items-center gap-1.5">
-                        <span className="text-yellow-500">
-                            <AwardIcon width={16} height={16} />
-                        </span>
-                        2x 1st place, BYU-Idaho Hackathon
-                    </p>
+                    <Link href="/blog/i-hack-25">
+                        <p className="text-sm text-muted-foreground flex flex-row items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
+                            <span className="text-yellow-500">
+                                <AwardIcon width={16} height={16} />
+                            </span>
+                            2x 1st place, BYU-Idaho Hackathon
+                        </p>
+                    </Link>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
                             <Button className="group">
