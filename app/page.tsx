@@ -24,12 +24,14 @@ export default async function Home() {
                     <h1 className="text-4xl font-bold">Ethan Glenn</h1>
                     <p className="text-base flex flex-row items-center gap-2 flex-wrap">
                         Full-Stack Engineer at DataThink
-                        <Badge variant="secondary" className="flex items-center gap-1 text-xs">
-                            <span className="text-yellow-500">
-                                <AwardIcon width={14} height={14} />
-                            </span>
-                            2x 1st place, BYU-Idaho Hackathon
-                        </Badge>
+                        <Link href="/blog/i-hack-25">
+                            <Badge variant="secondary" className="flex items-center gap-1 text-xs cursor-pointer hover:opacity-80 transition-opacity">
+                                <span className="text-yellow-500">
+                                    <AwardIcon width={14} height={14} />
+                                </span>
+                                2x 1st place, BYU-Idaho Hackathon
+                            </Badge>
+                        </Link>
                     </p>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
