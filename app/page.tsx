@@ -1,20 +1,17 @@
 import {
     GithubIcon,
     LinkedInIcon,
-    ReactIcon,
-    TypeScriptIcon,
-    MongoIcon,
-    NextjsIcon,
     AwardIcon,
     XIcon,
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
+import { TerminalAnimation } from "@/components/terminal-animation";
 
 export default async function Home() {
     const techStack = getTechStack();
@@ -24,8 +21,14 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div id="main" className="flex flex-col gap-4">
                     <h1 className="text-4xl font-bold">Ethan Glenn</h1>
-                    <p className="text-base flex flex-row items-center gap-1">
-                        Full-Stack Engineer at DataThink
+                    <p className="text-base flex flex-col gap-1">
+                        <span>Full-Stack Engineer at DataThink</span>
+                        <Link href="/blog/i-hack-25" className="text-sm text-muted-foreground flex items-center gap-1.5 hover:text-foreground transition-colors w-fit">
+                            <span className="text-yellow-500">
+                                <AwardIcon width={14} height={14} />
+                            </span>
+                            2x 1st place, BYU-Idaho Hackathon
+                        </Link>
                     </p>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
@@ -77,36 +80,7 @@ export default async function Home() {
                 </div>
                 <div id="featured-project">
                     <h2 className="text-2xl font-semibold mb-4">Featured</h2>
-                    <div className="bg-zinc-200 dark:bg-muted p-4 rounded-2xl">
-                        <div className="flex flex-row items-center justify-between mb-2">
-                            <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
-                                <span className="text-yellow-500">
-                                    <AwardIcon width={25} height={25} />
-                                </span>
-                                2x Hackathon Winner
-                            </h3>
-                            <div className="flex flex-row gap-2">
-                                <TypeScriptIcon width={20} height={20} />
-                                <ReactIcon width={20} height={20} />
-                                <NextjsIcon width={20} height={20} />
-                                <MongoIcon width={20} height={20} />
-                            </div>
-                        </div>
-                        <p className="text-base mb-2">
-                            I placed first at the 2024 and 2025 BYU-Idaho
-                            hackathons! Two different teams, two different
-                            projects, and two different solutions.
-                        </p>
-                        <Link href="/blog/i-hack-25">
-                            <Button variant="outline" className="group">
-                                <span>More </span>
-                                <ChevronRight
-                                    size={16}
-                                    className="transition-transform group-hover:translate-x-1"
-                                />
-                            </Button>
-                        </Link>
-                    </div>
+                    <TerminalAnimation />
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
