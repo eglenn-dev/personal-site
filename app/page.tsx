@@ -24,10 +24,13 @@ export default async function Home() {
                         <p className="text-base">
                             Full-Stack Engineer at DataThink
                         </p>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Link
+                            href="/blog/i-hack-25"
+                            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
+                        >
                             <Award className="h-4 w-4 text-yellow-500 shrink-0" />
                             <span>2x 1st place, BYU-Idaho Hackathon</span>
-                        </div>
+                        </Link>
                     </div>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
