@@ -1,5 +1,13 @@
 const slugs: Slug[] = [
     {
+        slug: "keephours-tanstack-start",
+        title: "Moving KeepHours from Next.js to TanStack Start",
+        description:
+            "How we migrated KeepHours from Next.js to TanStack Start and oRPC, and what it did for build times and cold starts.",
+        date: "2026-10-25",
+        hidden: false,
+    },
+    {
         slug: "reading-list",
         title: "Reading List",
         description:

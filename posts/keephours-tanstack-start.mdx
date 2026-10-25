@@ -1,0 +1,61 @@
+import { AuthorCard } from "@/components/author-card";
+
+# Moving KeepHours from Next.js to TanStack Start
+
+<AuthorCard />
+
+_2026-10-25_
+
+> TL;DR: We moved KeepHours from Next.js to TanStack Start and oRPC. The app works exactly the same, cold starts dropped from about 1.2s to 0.6s, and deploys are about 37% faster. After switching to pnpm a day later, builds take roughly half as long as they used to.
+
+[KeepHours](https://keephours.com) is a time tracking and invoicing app. It started on Next.js with the App Router and server actions, and it runs on Firebase App Hosting (Cloud Run under the hood). Last week we finished moving the whole thing to [TanStack Start](https://tanstack.com/start). Here's how it went.
+
+## Why TanStack Start
+
+Next.js treated us well, but I kept wanting things to be more explicit. With TanStack Start, routes, loaders, and server calls are all plain code you can follow, and the types flow from the database all the way to the component. It's built on Vite, so the dev server is fast, and the production build is just a Node server. TanStack Router and TanStack Query became favorites of mine, and Start brings them together in one framework.
+
+## Why oRPC
+
+I love server functions, but they are challenging to call outside of the codebase, like if we wanted to use the same backend for a mobile app. [oRPC](https://orpc.dev) turns all of those server functions into a single typed router of procedures, and three things made it worth it:
+
+- **Shared middleware.** Signing in, checking the organization, and reporting errors to Sentry all live in one place, and every procedure gets them by default. When a check fails, the error says where to send the user (the login page, onboarding, and so on), and the client handles the redirect once for the whole app.
+- **One client that works on the server and in the browser.** During server rendering, procedures are called directly in the same process, so there's no extra HTTP round trip. In the browser, the same calls go over HTTP to `/api/rpc`. Components don't know or care which one is happening, and `@orpc/tanstack-query` turns any procedure into a TanStack Query query or mutation.
+- **The procedures can be called from anywhere.** When we added an MCP server so AI assistants could log time in KeepHours, the MCP tools just call the same procedures the web app uses. There was no second API to build and no second set of rules to keep in sync.
+
+## How we migrated
+
+It was one big pull request: 437 files changed, about 27,000 lines in and out, over about a month from PR creation to merge. The main pieces:
+
+- **Server actions became oRPC procedures.** Every server action moved into a typed procedure served from `/api/rpc`.
+- **Data loading moved to route loaders and TanStack Query.** A single global invalidate after each mutation replaced all of our `revalidatePath` calls.
+- **Middleware moved over.** KeepHours gives each organization its own subdomain. That logic lived in a Next.js `proxy.ts`, and it is now a TanStack Start request middleware.
+- **Every public URL stayed the same.** Auth, cron jobs, PDF downloads, and OG images all became server routes at their old paths, so nothing outside the app had to change.
+- **Firebase App Hosting now builds it as a plain Node app.** Vite and Nitro produce a `node-server` build, and production simply runs `node .output/server/index.mjs`.
+- **Claude Code (Opus 5.5) handled much of the repetitive work**, like moving server actions into oRPC procedures and reorganizing pages into TanStack Start's file-based routing structure.
+
+Before merging, we compared 50 pages side by side against the Next.js version, and made sure to test all user roles. The text, page titles, and redirects were identical. We also did extensive E2E testing over the course of a few weeks to ensure no regressions crept in.
+
+## The numbers
+
+These come from our Cloud Build and Cloud Run metrics.
+
+- **Deploy builds:** 254s on Next.js, 161s on TanStack Start (37% faster), and 132s after the move to pnpm (48% faster). Most of that improvement came from the framework change, and pnpm accounts for the rest.
+- **Install and build step:** about 230s before, 117–157s on TanStack Start, and 83s with pnpm.
+- **Cold starts:** about 1.2s before, about 0.6s now.
+- **Memory:** unchanged, at about 65% of the 512 MiB limit on average.
+
+These numbers are early, but the cold start improvement was noticeable right away. At 1.2 seconds, I'd sometimes wonder if my internet had dropped before the page finally loaded. People open KeepHours to log time or check something quickly, and most of them are developers, so slow loads get noticed fast.
+
+Now that the migration work is done, the team and I can work on more optimizations to bring memory usage down.
+
+## What was hard
+
+Honestly, not much, and that's part of why I wanted to write this. Between TanStack Start mapping cleanly onto how the app was already structured and Claude Code handling the repetitive work, it went much smoother than I expected. I kind of wish there was some big hurdle to write about, but there wasn't.
+
+The first deploy still failed. It took 8 seconds: `npm ci` found that the lockfile didn't match `package.json`. The fix went out three minutes later, and every deploy since has been clean. A day later we also moved from npm to pnpm.
+
+## Thank you, TanStack
+
+Huge thanks to [Tanner Linsley](https://x.com/tannerlinsley) and the TanStack team. Start is fast, predictable, and type safe without a lot of magic. If you've been curious about it, a real migration was, and I can't emphasize this enough, much smoother than I expected. Give it a try.
+
+P.S. I still think Next.js is great, and I would still reach for it for a marketing site or small project, but for larger applications, TanStack wins for manageability and developer experience.
