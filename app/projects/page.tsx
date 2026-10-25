@@ -100,7 +100,7 @@ export default function ProjectsPage() {
                                         }
                                     >
                                         <Button variant="secondary">
-                                            <span>View</span>
+                                            <span>More</span>
                                             <OpenIcon />
                                         </Button>
                                     </Link>

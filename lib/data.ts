@@ -17,6 +17,50 @@ import type { Project, Experience, TechStack } from "./types";
 export function getProjects(): Project[] {
     return [
         {
+            name: "Legrande Health Web App",
+            description:
+                "Full-stack health services web application supporting practices and fulfillment centers, built through DataThink.",
+            technologies: ["TypeScript", "React", "Python"],
+            link: "https://legrandehealth.com",
+        },
+        {
+            name: "Ember Health AI Companion",
+            description:
+                "Full-stack AI chat app with custom tools to help cancer patients and their families through their care journey, built through DataThink.",
+            technologies: [
+                "TypeScript",
+                "React",
+                "TanStack Start",
+                "PostgreSQL",
+            ],
+            link: "https://emberhealth.ai",
+        },
+        {
+            name: "KeepHours",
+            description:
+                "Time tracking, invoicing, and expense management for contractors, developed at DataThink. Includes a PWA mode and an MCP server for agent access.",
+            technologies: [
+                "TypeScript",
+                "React",
+                "TanStack Start",
+                "Prisma",
+                "PostgreSQL",
+            ],
+            link: "https://keephours.com",
+        },
+        {
+            name: "Gospel Help",
+            description:
+                "Build a API that allows users to search over 137,000 indexed historical records using natural language queries, and built a very nice frontend to facilitate study and research.",
+            technologies: [
+                "Python",
+                "Sentence Transformers",
+                "FAISS (vector database)",
+                "FastAPI",
+            ],
+            article: "/blog/bible-search",
+        },
+        {
             name: "I-Hack Winner 2025",
             description:
                 "My team placed first in the 'Human Progress' category at the BYU-Idaho 2025 hackathon. We created a full-stack mock interview platform called 'Olin'. ",
@@ -28,20 +72,6 @@ export function getProjects(): Project[] {
                 "Google Gemini",
             ],
             article: "/blog/i-hack-25",
-        },
-        {
-            name: "Legrande Health Web App",
-            description:
-                "Full-stack health services web application servicing over 100 medical practices across the mainland U.S. Built in an Agile environment with a team of seven developers.",
-            technologies: [
-                "TypeScript",
-                "React",
-                "Python",
-                "FastAPI",
-                "PostgreSQL",
-                "Docker",
-            ],
-            article: "/blog/legrande-health",
         },
         {
             name: "Resumly.pro",
@@ -56,13 +86,6 @@ export function getProjects(): Project[] {
             ],
             link: "https://resumly.pro/",
             article: "/blog/resumly",
-        },
-        {
-            name: "Skills CLI",
-            description:
-                "A command-line interface for managing and installing AI Agent skills locally inside your local repo. No need to install anything new, just use `npx` to run the CLI and manage your skills.",
-            technologies: ["TypeScript", "Node.js", "npm"],
-            link: "https://eglenn-dev.github.io/dt-skills/",
         },
         {
             name: "I-Hack Winner 2024",
@@ -85,46 +108,6 @@ export function getProjects(): Project[] {
             ],
             link: "https://git-rewind.com/",
             article: "/blog/git-rewind",
-        },
-        {
-            name: "Bible Search",
-            description:
-                "Build a API that allows users to search the Bible using natural language queries. The API uses a vector database to store and retrieve verses based on their semantic meaning.",
-            technologies: [
-                "Python",
-                "Sentence Transformers",
-                "FAISS (vector database)",
-                "FastAPI",
-            ],
-            article: "/blog/bible-search",
-        },
-        {
-            name: "Pull Request Dashboard",
-            description:
-                "A dashboard to track contributors to a GitHub repo, and show how many pull-requests they have assigned to them, and how many they have reviewed in the last week.",
-            technologies: ["Next.js", "Tailwind", "GitHub API", "shadcn/ui"],
-            link: "https://pr-dash.eglenn.dev/",
-            article: "/blog/pr-dashboard",
-        },
-        {
-            name: "3D Print Request System",
-            description:
-                "A fully custom web application for managing 3D print request from students at BYU-Idaho to the school's print lab. Created a front-end application, and a REST API running on a Node.js server.",
-            technologies: ["React", "TypeScript", "Next.js", "Firebase"],
-            article: "/blog/3d-print-queue",
-        },
-        {
-            name: "This Portfolio",
-            description:
-                "My personal portfolio website built with Next.js, TypeScript, and Tailwind CSS. Third party services include Vercel for serverless hosting, and Resend for email handling.",
-            technologies: [
-                "Next.js",
-                "TypeScript",
-                "Vercel",
-                "Resend",
-                "Tailwind",
-            ],
-            link: "https://github.com/eglenn-dev/personal-site",
         },
     ];
 }
