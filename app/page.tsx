@@ -3,19 +3,19 @@ import {
     LinkedInIcon,
     ReactIcon,
     TypeScriptIcon,
-    MongoIcon,
-    NextjsIcon,
-    AwardIcon,
+    TanstackIcon,
+    PostgresIcon,
     XIcon,
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
 import { getLatestPost } from "@/posts/blog-list";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Home() {
     const techStack = getTechStack();
@@ -81,34 +81,53 @@ export default async function Home() {
                     <h2 className="text-2xl font-semibold mb-4">Featured</h2>
                     <div className="bg-zinc-200 dark:bg-muted p-4 rounded-2xl">
                         <div className="flex flex-row items-center justify-between mb-2">
-                            <h3 className="text-xl font-semibold flex flex-row items-center gap-2">
-                                <span className="text-yellow-500">
-                                    <AwardIcon width={25} height={25} />
-                                </span>
-                                2x Hackathon Winner
+                            <h3>
+                                <Image
+                                    src="/keephours-email-logo.png"
+                                    alt="KeepHours"
+                                    width={126}
+                                    height={24}
+                                    className="h-6 w-auto dark:brightness-0 dark:invert"
+                                />
                             </h3>
                             <div className="flex flex-row gap-2">
                                 <TypeScriptIcon width={20} height={20} />
                                 <ReactIcon width={20} height={20} />
-                                <NextjsIcon width={20} height={20} />
-                                <MongoIcon width={20} height={20} />
+                                <TanstackIcon width={20} height={20} />
+                                <PostgresIcon width={20} height={20} />
                             </div>
                         </div>
                         <p className="text-base mb-2">
-                            Won first place at BYU-Idaho&apos;s I-Hack in both
-                            2024 and 2025, each time with a new team. Most
-                            recently we built Olin, an AI mock interviewer that
-                            asks questions out loud and scores your answers.
+                            Time tracking, invoicing, and expenses for
+                            contractors, built at DataThink. It&apos;s a PWA
+                            and has an MCP server, so AI agents can log time
+                            directly. We recently moved it from Next.js to
+                            TanStack Start.
                         </p>
-                        <Link href="/blog/i-hack-25">
-                            <Button variant="outline" className="group">
-                                <span>More </span>
-                                <ChevronRight
-                                    size={16}
-                                    className="transition-transform group-hover:translate-x-1"
-                                />
-                            </Button>
-                        </Link>
+                        <div className="flex flex-row flex-wrap gap-2">
+                            <a
+                                href="https://keephours.com"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <Button variant="outline" className="group">
+                                    <span>Visit KeepHours</span>
+                                    <ArrowUpRight
+                                        size={16}
+                                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                    />
+                                </Button>
+                            </a>
+                            <Link href="/blog/keephours-tanstack-start">
+                                <Button variant="outline" className="group">
+                                    <span>Read the migration story</span>
+                                    <ChevronRight
+                                        size={16}
+                                        className="transition-transform group-hover:translate-x-1"
+                                    />
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
