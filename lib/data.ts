@@ -55,10 +55,10 @@ export function getProjects(): Project[] {
             technologies: [
                 "Python",
                 "Sentence Transformers",
-                "FAISS (vector database)",
                 "FastAPI",
+                "React",
             ],
-            article: "/blog/bible-search",
+            link: "https://gospel.help",
         },
         {
             name: "I-Hack Winner 2025",
