@@ -10,6 +10,7 @@ import {
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
+import { getLatestPost } from "@/posts/blog-list";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
@@ -18,6 +19,7 @@ import Link from "next/link";
 
 export default async function Home() {
     const techStack = getTechStack();
+    const latestPost = getLatestPost();
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -37,9 +39,9 @@ export default async function Home() {
                                 />
                             </Button>
                         </Link>
-                        <Link href={`/blog/what-ai-cant-build`}>
+                        <Link href={`/blog/${latestPost.slug}`}>
                             <Button variant="outline" className="group">
-                                <span>Featured Article</span>
+                                <span>Latest Article</span>
                                 <ArrowRight
                                     className="ml-1 transition-transform group-hover:translate-x-1"
                                     size={16}
