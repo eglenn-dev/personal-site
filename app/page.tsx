@@ -95,9 +95,10 @@ export default async function Home() {
                             </div>
                         </div>
                         <p className="text-base mb-2">
-                            I placed first at the 2024 and 2025 BYU-Idaho
-                            hackathons! Two different teams, two different
-                            projects, and two different solutions.
+                            Won first place at BYU-Idaho&apos;s I-Hack in both
+                            2024 and 2025, each time with a new team. Most
+                            recently we built Olin, an AI mock interviewer that
+                            asks questions out loud and scores your answers.
                         </p>
                         <Link href="/blog/i-hack-25">
                             <Button variant="outline" className="group">
