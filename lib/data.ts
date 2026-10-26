@@ -17,13 +17,6 @@ import type { Project, Experience, TechStack } from "./types";
 export function getProjects(): Project[] {
     return [
         {
-            name: "Legrande Health Web App",
-            description:
-                "Full-stack health services web application supporting practices and fulfillment centers, built through DataThink.",
-            technologies: ["TypeScript", "React", "Python"],
-            link: "https://legrandehealth.com",
-        },
-        {
             name: "Ember Health AI Companion",
             description:
                 "Full-stack AI chat app with custom tools to help cancer patients and their families through their care journey, built through DataThink.",
@@ -47,6 +40,13 @@ export function getProjects(): Project[] {
                 "PostgreSQL",
             ],
             link: "https://keephours.com",
+        },
+        {
+            name: "Legrande Health Web App",
+            description:
+                "Full-stack health services web application supporting practices and fulfillment centers, built through DataThink.",
+            technologies: ["TypeScript", "React", "Python"],
+            link: "https://legrandehealth.com",
         },
         {
             name: "Gospel Help",
