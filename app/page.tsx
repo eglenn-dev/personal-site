@@ -31,8 +31,15 @@ export default async function Home() {
                         <a
                             href="https://datathink.dev"
                             target="_blank"
-                            className="underline"
+                            className="relative inline-flex items-center gap-1 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-current after:transition-transform hover:after:translate-y-px"
                         >
+                            <Image
+                                src="/datathink_logo.svg"
+                                alt=""
+                                width={16}
+                                height={16}
+                                className="size-4 dark:invert"
+                            />
                             DataThink
                         </a>
                     </p>
