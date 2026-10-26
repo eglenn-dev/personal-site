@@ -27,7 +27,14 @@ export default async function Home() {
                 <div id="main" className="flex flex-col gap-4">
                     <h1 className="text-4xl font-bold">Ethan Glenn</h1>
                     <p className="text-base flex flex-row items-center gap-1">
-                        Full-Stack Engineer at DataThink
+                        Full-Stack Engineer at{" "}
+                        <a
+                            href="https://datathink.dev"
+                            target="_blank"
+                            className="underline"
+                        >
+                            DataThink
+                        </a>
                     </p>
                     <div className="flex flex-row gap-4">
                         <Link href="/projects">
@@ -99,8 +106,8 @@ export default async function Home() {
                         </div>
                         <p className="text-base mb-2">
                             Time tracking, invoicing, and expenses for
-                            contractors, built at DataThink. It&apos;s a PWA
-                            and has an MCP server, so AI agents can log time
+                            contractors, built at DataThink. It&apos;s a PWA and
+                            has an MCP server, so AI agents can log time
                             directly. We recently moved it from Next.js to
                             TanStack Start.
                         </p>
