@@ -390,14 +390,18 @@ mark.text-highlight {
     pointer-events: none;
 }
 
+::view-transition-group(root) {
+    animation-duration: 150ms;
+}
+
 ::view-transition-old(.page-exit) {
-    animation: 120ms ease-in both page-fade reverse;
+    animation: 70ms ease-in both page-fade reverse;
 }
 
 ::view-transition-new(.page-enter) {
     animation:
-        200ms ease-out 80ms both page-fade,
-        320ms cubic-bezier(0.2, 0.8, 0.2, 1) both page-rise;
+        120ms ease-out 40ms both page-fade,
+        180ms cubic-bezier(0.2, 0.8, 0.2, 1) both page-rise;
 }
 
 @keyframes page-fade {
