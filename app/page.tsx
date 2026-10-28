@@ -35,7 +35,7 @@ export default async function Home() {
                         >
                             <Image
                                 src="/datathink_logo.svg"
-                                alt=""
+                                alt="DataThink Logo"
                                 width={16}
                                 height={16}
                                 className="size-4 dark:invert"

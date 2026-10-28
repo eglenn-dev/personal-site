@@ -1,4 +1,5 @@
 import { AuthorCard } from "@/components/author-card";
+import Image from "next/image";
 
 # Moving KeepHours from Next.js to TanStack Start
 
@@ -6,7 +7,10 @@ import { AuthorCard } from "@/components/author-card";
 
 _2026-10-25_
 
-> TL;DR: We moved KeepHours from Next.js to TanStack Start and oRPC. The app works exactly the same, cold starts dropped from about 1.2s to 0.6s, and deploys are about 37% faster. After switching to pnpm a day later, builds take roughly half as long as they used to.
+> TL;DR: We moved KeepHours from Next.js to TanStack Start and oRPC. The app works exactly the same, cold starts dropped from about 1.2s to 0.6s, and deploys are about 33% faster. After switching to pnpm a day later, builds take roughly half as long as they used to.
+
+> 2026-10-28 Update:
+> I updated some of the numbers in the [numbers](#the-numbers) section since we have more data. Almost all the numbers improved. Also, [Tanner approved](#thank-you,-tanstack) of the article!
 
 [KeepHours](https://keephours.com) is a time tracking and invoicing app. It started on Next.js with the App Router and server actions, and it runs on Firebase App Hosting (Cloud Run under the hood). Last week we finished moving the whole thing to [TanStack Start](https://tanstack.com/start). Here's how it went.
 
@@ -39,12 +43,12 @@ Before merging, we compared 50 pages side by side against the Next.js version, a
 
 These come from our Cloud Build and Cloud Run metrics.
 
-- **Deploy builds:** 254s on Next.js, 161s on TanStack Start (37% faster), and 132s after the move to pnpm (48% faster). Most of that improvement came from the framework change, and pnpm accounts for the rest.
-- **Install and build step:** about 230s before, 117–157s on TanStack Start, and 83s with pnpm.
-- **Cold starts:** about 1.2s before, about 0.6s now.
-- **Memory:** unchanged, at about 65% of the 512 MiB limit on average.
+- **Deploy builds:** 239s on Next.js, 161s on TanStack Start (33% faster), and 95s after the move to pnpm (60% faster). The framework change and pnpm each account for about half of that improvement.
+- **Install and build step:** about 214s before, 117–157s on TanStack Start, and 72s with pnpm.
+- **Cold starts:** about 1.5s before, about 0.6s now.
+- **Memory:** about the same, at roughly 340 MiB on Next.js and 320 MiB on TanStack Start on average.
 
-These numbers are early, but the cold start improvement was noticeable right away. At 1.2 seconds, I'd sometimes wonder if my internet had dropped before the page finally loaded. People open KeepHours to log time or check something quickly, and most of them are developers, so slow loads get noticed fast.
+These numbers are early, but the improvement on the slowest cold starts was noticeable right away. At 1.5 seconds, I'd sometimes wonder if my internet had dropped before the page finally loaded. People open KeepHours to log time or check something quickly, and most of them are developers, so slow loads get noticed fast.
 
 Now that the migration work is done, the team and I can work on more optimizations to bring memory usage down.
 
@@ -57,5 +61,16 @@ The first deploy still failed. It took 8 seconds: `npm ci` found that the lockfi
 ## Thank you, TanStack
 
 Huge thanks to [Tanner Linsley](https://x.com/tannerlinsley) and the TanStack team. Start is fast, predictable, and type safe without a lot of magic. If you've been curious about it, a real migration was, and I can't emphasize this enough, much smoother than I expected. Give it a try.
+
+<Image
+    src="/blog/tanner-repost.png"
+    alt="X.com screenshot"
+    width={591}
+    height={307}
+    loading="eager"
+    className="mx-auto"
+/>
+
+[Source](https://x.com/tannerlinsley/status/2114745985914261981?a=AE8W5ztDFxoR6kv2Tqg&s=20)
 
 P.S. I still think Next.js is great, and I would still reach for it for a marketing site or small project, but for larger applications, TanStack wins for manageability and developer experience.

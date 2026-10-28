@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllSlugs, getAllPosts } from "@/posts/blog-list";
+import { getAllSlugs, getPost } from "@/posts/blog-list";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
@@ -22,17 +22,10 @@ export default async function Page({
 }) {
     const { slug } = await params;
 
-    const validSlugs = getAllSlugs();
-    if (!validSlugs.includes(slug)) {
-        notFound();
-    }
-
-    const posts = getAllPosts();
-    const post = posts.find((p) => p.slug === slug);
+    const post = getPost(slug);
     if (!post) {
         notFound();
     }
-    const { default: Post } = await import(`@/posts/${slug}.mdx`);
     const headings = getPostHeadings(slug);
     const showTableOfContents = headings.length > 1;
 
@@ -78,7 +71,7 @@ export default async function Page({
                         </div>
                     )}
                     <div className="prose prose-lg dark:prose-invert max-w-none">
-                        <Post />
+                        <post.Component />
                     </div>
                     <TextHighlightButton />
                 </article>
@@ -106,8 +99,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { slug } = await params;
 
-    const posts = getAllPosts();
-    const post = posts.find((post) => post.slug === slug);
+    const post = getPost(slug);
 
     if (!post) {
         return {
