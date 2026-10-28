@@ -7,7 +7,13 @@ import { Button } from "@/components/ui/button";
 import { CopyUrlButton } from "@/components/copy-url-button";
 import { TextHighlightButton } from "@/components/text-highlight-button";
 import { BlogPostingJsonLd, BreadcrumbJsonLd } from "@/components/json-ld";
+import {
+    TableOfContents,
+    MobileTableOfContents,
+} from "@/components/table-of-contents";
+import { getPostHeadings } from "@/lib/post-headings";
 import { SITE_URL, SITE_NAME, TWITTER_HANDLE } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
 export default async function Page({
     params,
@@ -27,6 +33,8 @@ export default async function Page({
         notFound();
     }
     const { default: Post } = await import(`@/posts/${slug}.mdx`);
+    const headings = getPostHeadings(slug);
+    const showTableOfContents = headings.length > 1;
 
     return (
         <>
@@ -47,21 +55,39 @@ export default async function Page({
                     },
                 ]}
             />
-            <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-                <div className="mb-8 flex items-center justify-between">
-                    <Link href="/blog" className="group">
-                        <Button variant="outline" className="mb-1 -ml-2">
-                            <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-                            <span>Back</span>
-                        </Button>
-                    </Link>
-                    <CopyUrlButton />
-                </div>
-                <div className="prose prose-lg dark:prose-invert max-w-none">
-                    <Post />
-                </div>
-                <TextHighlightButton />
-            </article>
+            <div
+                className={cn(
+                    "max-w-4xl mx-auto px-4 sm:px-6 py-8",
+                    showTableOfContents &&
+                        "xl:max-w-6xl xl:grid xl:grid-cols-[minmax(0,1fr)_14rem] xl:gap-12",
+                )}
+            >
+                <article className="min-w-0">
+                    <div className="mb-8 flex items-center justify-between">
+                        <Link href="/blog" className="group">
+                            <Button variant="outline" className="mb-1 -ml-2">
+                                <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+                                <span>Back</span>
+                            </Button>
+                        </Link>
+                        <CopyUrlButton />
+                    </div>
+                    {showTableOfContents && (
+                        <div className="xl:hidden">
+                            <MobileTableOfContents headings={headings} />
+                        </div>
+                    )}
+                    <div className="prose prose-lg dark:prose-invert max-w-none">
+                        <Post />
+                    </div>
+                    <TextHighlightButton />
+                </article>
+                {showTableOfContents && (
+                    <aside className="hidden xl:block">
+                        <TableOfContents headings={headings} />
+                    </aside>
+                )}
+            </div>
         </>
     );
 }
