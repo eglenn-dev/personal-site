@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
 import { DuckGame } from "@/components/duck-game";
 
 export const metadata: Metadata = {
@@ -26,15 +23,9 @@ export default function NotFound() {
             <p className="text-sm text-muted-foreground mt-1 mb-6">
                 While you&apos;re here, help the duck dodge some broken links.
             </p>
-            <div className="mb-8 flex w-full justify-center">
+            <div className="flex w-full justify-center">
                 <DuckGame />
             </div>
-            <Link href="/">
-                <Button>
-                    <Home className="mr-1" />
-                    Return to Home
-                </Button>
-            </Link>
         </div>
     );
 }
