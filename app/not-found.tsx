@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
+import { DuckGame } from "@/components/duck-game";
 
 export const metadata: Metadata = {
     title: "Not Found",
@@ -20,16 +20,15 @@ export default function NotFound() {
                 <span className="text-xl text-gray-400 sm:text-2xl">404</span>
                 <span>Page Not Found</span>
             </h1>
-            <Image
-                src="/duck.webp"
-                alt="404 page duck"
-                width={100}
-                height={100}
-                className="my-4 select-none pointer-events-none"
-            />
-            <p className="text-md sm:text-xl mb-8">
+            <p className="text-md sm:text-xl">
                 The page you are looking for does not exist.
             </p>
+            <p className="text-sm text-muted-foreground mt-1 mb-6">
+                While you&apos;re here, help the duck dodge some broken links.
+            </p>
+            <div className="mb-8 flex w-full justify-center">
+                <DuckGame />
+            </div>
             <Link href="/">
                 <Button>
                     <Home className="mr-1" />

@@ -1,58 +1,69 @@
 import type { MDXComponents } from "mdx/types";
 import Image, { ImageProps } from "next/image";
 import Link from "next/link";
+import { isValidElement, type ReactNode } from "react";
 import { CodeBlock } from "@/components/code-block";
+import { headingId } from "@/lib/utils";
 
-function generateID(text: string): string {
-    return text.toLowerCase().replace(/\s+/g, "-").replace(/[()]/g, "");
+function getTextContent(node: ReactNode): string {
+    if (typeof node === "string" || typeof node === "number") {
+        return String(node);
+    }
+    if (Array.isArray(node)) {
+        return node.map(getTextContent).join("");
+    }
+    if (isValidElement<{ children?: ReactNode }>(node)) {
+        return getTextContent(node.props.children);
+    }
+    return "";
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: ({ children }) => (
             <h1
-                className="mt-10 mb-4 text-4xl font-bold leading-10"
-                id={generateID(children?.toString() || "")}
+                className="mt-10 mb-4 text-4xl font-bold leading-10 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h1>
         ),
         h2: ({ children }) => (
             <h2
-                className="mt-10 mb-3 text-3xl font-semibold leading-9"
-                id={generateID(children?.toString() || "")}
+                className="mt-10 mb-3 text-3xl font-semibold leading-9 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h2>
         ),
         h3: ({ children }) => (
             <h3
-                className="mt-6 mb-2 text-2xl font-medium leading-8"
-                id={generateID(children?.toString() || "")}
+                className="mt-6 mb-2 text-2xl font-medium leading-8 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h3>
         ),
         h4: ({ children }) => (
             <h4
-                className="mt-4 mb-2 text-xl font-medium leading-7"
-                id={generateID(children?.toString() || "")}
+                className="mt-4 mb-2 text-xl font-medium leading-7 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h4>
         ),
         h5: ({ children }) => (
             <h5
-                className="mt-3 mb-2 text-lg font-medium leading-6"
-                id={generateID(children?.toString() || "")}
+                className="mt-3 mb-2 text-lg font-medium leading-6 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h5>
         ),
         h6: ({ children }) => (
             <h6
-                className="mt-2 mb-2 text-base font-medium leading-6"
-                id={generateID(children?.toString() || "")}
+                className="mt-2 mb-2 text-base font-medium leading-6 scroll-mt-24"
+                id={headingId(getTextContent(children))}
             >
                 {children}
             </h6>
