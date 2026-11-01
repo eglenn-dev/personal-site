@@ -101,10 +101,6 @@ export default function RootLayout({
                             enableSystem
                             disableTransitionOnChange
                         >
-                            <div
-                                aria-hidden
-                                className="ambient-backdrop pointer-events-none fixed inset-0 -z-10"
-                            />
                             <div className="flex flex-col min-h-screen">
                                 <Navbar />
                                 <CommandPaletteProvider />

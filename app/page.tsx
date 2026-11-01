@@ -172,9 +172,9 @@ function TechStack() {
                 {techStack.map((tech) => (
                     <div
                         key={tech.name}
-                        className="group flex flex-col items-center gap-2"
+                        className="flex flex-col items-center gap-2"
                     >
-                        <div className="glass flex size-16 items-center justify-center rounded-[22px] transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-105 sm:size-[72px]">
+                        <div className="glass flex size-16 items-center justify-center rounded-[22px] sm:size-[72px]">
                             <tech.icon />
                         </div>
                         <h3 className="text-xs font-medium text-muted-foreground">

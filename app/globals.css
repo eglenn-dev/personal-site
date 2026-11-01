@@ -92,25 +92,6 @@
     --glass-blur: 32px;
 }
 
-.ambient-backdrop {
-    background-image:
-        radial-gradient(
-            42rem 36rem at 8% -6%,
-            var(--ambient-1),
-            transparent 65%
-        ),
-        radial-gradient(
-            36rem 32rem at 96% 8%,
-            var(--ambient-2),
-            transparent 65%
-        ),
-        radial-gradient(
-            48rem 40rem at 60% 108%,
-            var(--ambient-3),
-            transparent 65%
-        );
-}
-
 [data-sonner-toast] {
     -webkit-backdrop-filter: blur(32px) saturate(180%);
     backdrop-filter: blur(32px) saturate(180%);
@@ -196,10 +177,6 @@ mark.text-highlight {
     --glass-shadow:
         0 0 0 0.5px oklch(0 0 0 / 0.06), 0 1px 2px oklch(0 0 0 / 0.04),
         0 10px 30px -8px oklch(0.3 0.05 260 / 0.14);
-
-    --ambient-1: oklch(0.82 0.11 250 / 0.55);
-    --ambient-2: oklch(0.86 0.09 330 / 0.45);
-    --ambient-3: oklch(0.88 0.09 180 / 0.45);
 }
 
 .dark {
@@ -248,8 +225,4 @@ mark.text-highlight {
     );
     --glass-shadow:
         0 1px 2px oklch(0 0 0 / 0.3), 0 12px 36px -10px oklch(0 0 0 / 0.6);
-
-    --ambient-1: oklch(0.45 0.17 262 / 0.4);
-    --ambient-2: oklch(0.42 0.16 310 / 0.3);
-    --ambient-3: oklch(0.45 0.1 200 / 0.28);
 }
