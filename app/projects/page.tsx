@@ -46,16 +46,19 @@ export default function ProjectsPage() {
     const projects = getProjects();
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-4xl font-bold mb-6">My Projects</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-10">My Projects</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {projects.map((project, index) => (
-                    <Card key={index}>
+                    <Card
+                        key={index}
+                        className="transition-colors duration-150 hover:border-foreground/25"
+                    >
                         <CardHeader>
-                            <CardTitle className="text-lg text-primary dark:text-white mb-2">
+                            <CardTitle className="text-xl font-bold mb-1">
                                 {project.name}
                             </CardTitle>
-                            <CardDescription className="text-black dark:text-gray-300 leading-relaxed">
+                            <CardDescription className="text-foreground/80 leading-relaxed">
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
@@ -64,8 +67,8 @@ export default function ProjectsPage() {
                                 {project.technologies.map((tech) => (
                                     <Badge
                                         key={tech}
-                                        variant="secondary"
-                                        className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground"
+                                        variant="outline"
+                                        className="font-mono text-[11px] font-medium text-muted-foreground bg-muted/50"
                                     >
                                         <span className="flex items-center gap-1">
                                             <TagIcon />

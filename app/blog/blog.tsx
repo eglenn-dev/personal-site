@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
 import { useQueryState } from "nuqs";
 
 function formatDate(dateString: string) {
@@ -61,37 +62,41 @@ export default function BlogPage({ posts }: BlogPageProps) {
     }, []);
 
     return (
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-            <div className="mb-10">
-                <h1 className="text-3xl font-bold tracking-tight mb-2">Blog</h1>
-                <p className="text-muted-foreground mb-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+            <div className="mb-10 text-center">
+                <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-3">Blog</h1>
+                <p className="text-lg text-muted-foreground mb-8">
                     Insights, lessons, and discoveries from my projects and
                     interests.
                 </p>
-                <Input
-                    type="text"
-                    placeholder="Search posts..."
-                    value={searchTerm ?? ""}
-                    ref={searchInputRef}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <div className="relative text-left">
+                    <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        type="text"
+                        placeholder="Search posts..."
+                        value={searchTerm ?? ""}
+                        ref={searchInputRef}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="h-10 pl-9"
+                    />
+                </div>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border border-t">
                 {filteredPosts.length > 0 ? (
                     filteredPosts.map((post) => (
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className="group block py-5 first:pt-0"
+                            className="group block py-5"
                         >
                             <article>
                                 <div className="flex items-baseline justify-between gap-4 mb-1">
-                                    <h2 className="font-medium group-hover:text-primary transition-colors">
+                                    <h2 className="text-lg font-bold tracking-tight group-hover:text-brand transition-colors">
                                         {post.title}
                                     </h2>
                                     <time
                                         dateTime={post.date}
-                                        className="text-sm text-muted-foreground shrink-0"
+                                        className="font-mono text-xs uppercase tracking-wider text-muted-foreground shrink-0"
                                     >
                                         {formatDate(post.date)}
                                     </time>

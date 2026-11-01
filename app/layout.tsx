@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
@@ -20,7 +20,15 @@ import {
     TWITTER_HANDLE,
 } from "@/lib/site-config";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const bricolage = Bricolage_Grotesque({
+    subsets: ["latin"],
+    variable: "--font-bricolage",
+});
+const jetbrainsMono = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--font-jetbrains-mono",
+});
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -92,7 +100,9 @@ export default function RootLayout({
                 <PersonJsonLd />
                 <WebSiteJsonLd />
             </head>
-            <body className={inter.className}>
+            <body
+                className={`${inter.variable} ${bricolage.variable} ${jetbrainsMono.variable} font-sans`}
+            >
                 <NuqsAdapter>
                     <TooltipProvider delayDuration={400}>
                         <ThemeProvider

@@ -21,7 +21,7 @@ function HeadingLinks({
                             "-ml-px block border-l py-1 pl-3 leading-snug transition-colors",
                             heading.level === 3 && "pl-6",
                             heading.id === activeId
-                                ? "border-foreground text-foreground"
+                                ? "border-brand text-primary font-medium"
                                 : "border-transparent text-muted-foreground hover:text-foreground",
                         )}
                     >
@@ -57,7 +57,9 @@ export function TableOfContents({ headings }: { headings: PostHeading[] }) {
 
     return (
         <nav aria-label="Table of contents" className="sticky top-24">
-            <p className="mb-3 text-sm font-medium">On this page</p>
+            <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                On this page
+            </p>
             <div className="max-h-[calc(100vh-10rem)] overflow-y-auto">
                 <HeadingLinks headings={headings} activeId={activeId} />
             </div>
@@ -71,7 +73,7 @@ export function MobileTableOfContents({
     headings: PostHeading[];
 }) {
     return (
-        <details className="group mb-6 rounded-xl border px-4 py-3">
+        <details className="group mb-6 rounded-xl border bg-card px-4 py-3">
             <summary className="flex cursor-pointer list-none items-center gap-1 text-sm font-medium select-none [&::-webkit-details-marker]:hidden">
                 <ChevronRight className="size-4 transition-transform group-open:rotate-90" />
                 On this page

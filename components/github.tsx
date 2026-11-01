@@ -12,14 +12,14 @@ export default async function GithubStats({ data }: GithubStatsProps) {
     return (
         <Tooltip>
             <TooltipTrigger className="cursor-default w-fit">
-                <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+                <div className="mb-4 w-fit select-none inline-flex items-center gap-3 px-4 py-2 bg-card rounded-lg border shadow-xs font-mono text-[13px] font-medium">
                     <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
                         <GitCommit className="h-5 w-5" />
                         {data.yearContributions} contributions
                     </div>
                     {data.topLanguage && (
                         <>
-                            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+                            <div className="h-4 w-px bg-border"></div>
                             <div className="flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
                                 <Code className="h-4 w-4" />
                                 {data.topLanguage}
@@ -37,13 +37,13 @@ export default async function GithubStats({ data }: GithubStatsProps) {
 
 export function GithubStatsSkeleton() {
     return (
-        <div className="w-fit mb-4 inline-flex items-center gap-3 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 rounded-full border border-zinc-200 dark:border-zinc-800 shadow-sm text-sm font-medium">
+        <div className="w-fit mb-4 inline-flex items-center gap-3 px-4 py-2 bg-card rounded-lg border shadow-xs font-mono text-[13px] font-medium">
             <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
                 <GitCommit className="h-5 w-5" />
                 <span>...</span>
             </div>
 
-            <div className="h-4 w-px bg-zinc-200 dark:bg-zinc-700"></div>
+            <div className="h-4 w-px bg-border"></div>
             <div className="flex items-center gap-1.5 text-zinc-400 animate-pulse">
                 <Code className="h-4 w-4" />
                 <span>...</span>

@@ -87,7 +87,7 @@ export function GitHubHeatmap({ data }: GitHubHeatmapProps) {
     });
 
     return (
-        <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+        <div className="p-4 bg-card rounded-xl border shadow-xs">
             <ScrollArea ref={scrollRef} className="w-full">
                 <div className="flex flex-col gap-1 w-fit">
                     {gridData.map((row, rowIndex) => (
@@ -96,7 +96,7 @@ export function GitHubHeatmap({ data }: GitHubHeatmapProps) {
                                 <Tooltip key={`${rowIndex}-${colIndex}`}>
                                     <TooltipTrigger asChild>
                                         <div
-                                            className={`w-3 h-3 rounded-sm ${day ? colorScale(day.contributionCount) : "bg-gray-200 dark:bg-zinc-800"} transition-colors`}
+                                            className={`w-3 h-3 rounded-[3px] ${day ? colorScale(day.contributionCount) : "bg-gray-200 dark:bg-zinc-800"} transition-colors`}
                                         />
                                     </TooltipTrigger>
                                     {day && (
@@ -127,7 +127,7 @@ export function GitHubHeatmapSkeleton() {
     );
 
     return (
-        <div className="p-4 bg-zinc-100 dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm animate-pulse">
+        <div className="p-4 bg-card rounded-xl border shadow-xs animate-pulse">
             <div className="overflow-hidden w-full">
                 <div className="flex flex-col gap-1 w-fit ml-auto">
                     {grid.map((row, rowIndex) => (
@@ -135,7 +135,7 @@ export function GitHubHeatmapSkeleton() {
                             {row.map((_, colIndex) => (
                                 <div
                                     key={`${rowIndex}-${colIndex}`}
-                                    className="w-3 h-3 bg-gray-200 dark:bg-zinc-800 rounded-sm"
+                                    className="w-3 h-3 bg-gray-200 dark:bg-zinc-800 rounded-[3px]"
                                 />
                             ))}
                         </div>

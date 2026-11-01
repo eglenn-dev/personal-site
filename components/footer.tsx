@@ -22,19 +22,19 @@ const socialLinks = [
 
 function FooterContent({ year }: { year: string }) {
     return (
-        <footer className="border-t">
-            <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <footer className="border-t bg-muted/30">
+            <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                         &copy; {year} Ethan Glenn
                     </p>
-                    <div className="flex space-x-6 align-center items-center justify-center">
+                    <div className="flex gap-1 items-center justify-center">
                         {socialLinks.map(({ name, href, Icon }) => (
                             <a
                                 key={name}
                                 href={href}
                                 target="_blank"
-                                className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
+                                className="text-muted-foreground hover:text-primary hover:bg-muted transition-colors duration-150 rounded-md p-2"
                             >
                                 <span className="sr-only">{name}</span>
                                 <Icon />
