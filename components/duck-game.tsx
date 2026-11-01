@@ -197,7 +197,7 @@ export function DuckGame() {
             ref={canvasRef}
             tabIndex={0}
             aria-label="Duck jumping game. Press space or tap to jump over obstacles."
-            className="aspect-10/3 w-full max-w-xl cursor-pointer touch-manipulation select-none rounded-xl border outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="aspect-10/3 w-full max-w-xl cursor-pointer touch-manipulation select-none rounded-[28px] glass outline-none focus-visible:ring-2 focus-visible:ring-ring"
         />
     );
 }

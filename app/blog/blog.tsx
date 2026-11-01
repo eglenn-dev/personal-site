@@ -5,6 +5,7 @@ import type { Slug } from "@/posts/blog-list";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useQueryState } from "nuqs";
+import { ChevronRight, Search } from "lucide-react";
 
 function formatDate(dateString: string) {
     const [year, month, day] = dateString.split("-").map(Number);
@@ -61,61 +62,68 @@ export default function BlogPage({ posts }: BlogPageProps) {
     }, []);
 
     return (
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-            <div className="mb-10">
-                <h1 className="text-3xl font-bold tracking-tight mb-2">Blog</h1>
-                <p className="text-muted-foreground mb-6">
+        <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
+            <div className="mb-8">
+                <h1 className="mb-2 text-4xl font-semibold tracking-tight sm:text-5xl">
+                    Blog
+                </h1>
+                <p className="mb-6 text-lg text-muted-foreground">
                     Insights, lessons, and discoveries from my projects and
                     interests.
                 </p>
-                <Input
-                    type="text"
-                    placeholder="Search posts..."
-                    value={searchTerm ?? ""}
-                    ref={searchInputRef}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <div className="relative">
+                    <Search className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        type="text"
+                        placeholder="Search posts..."
+                        value={searchTerm ?? ""}
+                        ref={searchInputRef}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="h-11 rounded-full pl-10"
+                    />
+                </div>
             </div>
-            <div className="divide-y divide-border">
-                {filteredPosts.length > 0 ? (
-                    filteredPosts.map((post) => (
+            {filteredPosts.length > 0 ? (
+                <div className="glass divide-y divide-border overflow-hidden rounded-[28px]">
+                    {filteredPosts.map((post) => (
                         <Link
                             key={post.slug}
                             href={`/blog/${post.slug}`}
-                            className="group block py-5 first:pt-0"
+                            className="group flex items-center gap-3 px-5 py-4 transition-colors duration-200 hover:bg-foreground/4"
                         >
-                            <article>
-                                <div className="flex items-baseline justify-between gap-4 mb-1">
-                                    <h2 className="font-medium group-hover:text-primary transition-colors">
+                            <article className="min-w-0 flex-1">
+                                <div className="mb-1 flex items-baseline justify-between gap-4">
+                                    <h2 className="font-semibold tracking-tight transition-colors group-hover:text-primary">
                                         {post.title}
                                     </h2>
                                     <time
                                         dateTime={post.date}
-                                        className="text-sm text-muted-foreground shrink-0"
+                                        className="shrink-0 text-sm text-muted-foreground"
                                     >
                                         {formatDate(post.date)}
                                     </time>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-sm leading-relaxed text-muted-foreground">
                                     {post.description}
                                 </p>
                             </article>
+                            <ChevronRight className="size-4 shrink-0 text-muted-foreground/60 transition-transform group-hover:translate-x-0.5" />
                         </Link>
-                    ))
-                ) : (
-                    <div className="text-center text-muted-foreground py-12">
-                        <p>No posts found.</p>
-                        <Button
-                            className="mt-4"
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => setSearchTerm("")}
-                        >
-                            View All Posts
-                        </Button>
-                    </div>
-                )}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="glass rounded-[28px] py-12 text-center text-muted-foreground">
+                    <p>No posts found.</p>
+                    <Button
+                        className="mt-4"
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => setSearchTerm("")}
+                    >
+                        View All Posts
+                    </Button>
+                </div>
+            )}
         </div>
     );
 }

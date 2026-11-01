@@ -22,25 +22,23 @@ const socialLinks = [
 
 function FooterContent({ year }: { year: string }) {
     return (
-        <footer className="border-t">
-            <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center">
-                    <p className="text-sm text-muted-foreground">
-                        &copy; {year} Ethan Glenn
-                    </p>
-                    <div className="flex space-x-6 align-center items-center justify-center">
-                        {socialLinks.map(({ name, href, Icon }) => (
-                            <a
-                                key={name}
-                                href={href}
-                                target="_blank"
-                                className="text-muted-foreground hover:text-foreground transition-all duration-300 hover:shadow-md hover:shadow-accent/50 rounded-full p-2"
-                            >
-                                <span className="sr-only">{name}</span>
-                                <Icon />
-                            </a>
-                        ))}
-                    </div>
+        <footer className="px-4 pt-16 pb-24 sm:px-6 md:pb-6 lg:px-8">
+            <div className="glass mx-auto flex max-w-7xl items-center justify-between rounded-full py-1.5 pr-1.5 pl-5">
+                <p className="text-sm text-muted-foreground">
+                    &copy; {year} Ethan Glenn
+                </p>
+                <div className="flex items-center gap-1">
+                    {socialLinks.map(({ name, href, Icon }) => (
+                        <a
+                            key={name}
+                            href={href}
+                            target="_blank"
+                            className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-[background-color,color,transform] duration-300 hover:bg-foreground/6 hover:text-foreground active:scale-95"
+                        >
+                            <span className="sr-only">{name}</span>
+                            <Icon />
+                        </a>
+                    ))}
                 </div>
             </div>
         </footer>

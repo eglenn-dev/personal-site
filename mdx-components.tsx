@@ -22,7 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: ({ children }) => (
             <h1
-                className="mt-10 mb-4 text-4xl font-bold leading-10 scroll-mt-24"
+                className="mt-10 mb-4 text-4xl font-semibold leading-tight tracking-tight scroll-mt-24 sm:text-5xl"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -30,7 +30,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h2: ({ children }) => (
             <h2
-                className="mt-10 mb-3 text-3xl font-semibold leading-9 scroll-mt-24"
+                className="mt-12 mb-3 text-3xl font-semibold leading-9 tracking-tight scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -38,7 +38,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h3: ({ children }) => (
             <h3
-                className="mt-6 mb-2 text-2xl font-medium leading-8 scroll-mt-24"
+                className="mt-8 mb-2 text-2xl font-semibold leading-8 tracking-tight scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -93,7 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
                     >
                         {children}
                     </a>
@@ -102,7 +102,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 return (
                     <Link
                         href={href}
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
                         target={href.includes("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
                     >
@@ -122,16 +122,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         hr: () => (
-            <hr className="my-6 border-t border-gray-300 dark:border-gray-700" />
+            <hr className="my-8 border-t border-border" />
         ),
         pre: (props) => <CodeBlock {...props} />,
         code: ({ children }) => (
-            <code className="inline-flex max-w-full overflow-x-auto rounded-sm border border-gray-300 px-1.5 py-0.5 text-sm dark:border-gray-700">
+            <code className="inline-flex max-w-full overflow-x-auto rounded-md bg-foreground/6 px-1.5 py-0.5 text-[0.875em]">
                 {children}
             </code>
         ),
         blockquote: ({ children }) => (
-            <blockquote className="my-6 border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-600 dark:text-gray-400">
+            <blockquote className="glass my-6 rounded-[22px] border-l-4 border-primary/50 px-5 py-1 italic text-muted-foreground">
                 {children}
             </blockquote>
         ),

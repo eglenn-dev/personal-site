@@ -34,14 +34,15 @@ export function CodeBlock(props: React.ComponentProps<"pre">) {
         <div className="group relative">
             <pre
                 ref={preRef}
-                className="mb-4 rounded-md border border-gray-300 bg-gray-50 p-4 dark:border-gray-700 dark:bg-zinc-900 [&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0"
+                className="glass mb-4 overflow-x-auto rounded-[20px] p-5 text-sm leading-relaxed [&_code]:bg-transparent [&_code]:p-0"
                 {...props}
             />
             <Tooltip open={isCopied}>
                 <TooltipTrigger asChild>
                     <Button
                         variant="outline"
-                        className="absolute top-2 right-2 h-8 w-8 opacity-0 transition-opacity group-hover:opacity-100"
+                        size="icon-sm"
+                        className="absolute top-2.5 right-2.5 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
                         onClick={onClickCopy}
                     >
                         <span className="sr-only">Copy code</span>

@@ -110,7 +110,7 @@ export default function ContactForm() {
     if (error) {
         return (
             <div>
-                <p className="text-red-600 mt-4">
+                <p className="text-destructive">
                     An error occurred while sending your message. Please try
                     again later.
                 </p>
@@ -120,7 +120,7 @@ export default function ContactForm() {
 
     if (submitSuccess) {
         return (
-            <div className="py-8">
+            <div>
                 <h3 className="text-lg font-semibold mb-2">Message sent</h3>
                 <p className="text-muted-foreground mb-6">
                     Thanks for reaching out. I&apos;ll get back to you as soon
@@ -128,10 +128,10 @@ export default function ContactForm() {
                 </p>
                 <div className="flex gap-3">
                     <Link href="/blog">
-                        <Button size="sm">View Blog</Button>
+                        <Button>View Blog</Button>
                     </Link>
                     <Link href="/projects">
-                        <Button size="sm" variant="secondary">
+                        <Button variant="outline">
                             View Projects
                         </Button>
                     </Link>
@@ -178,7 +178,7 @@ export default function ContactForm() {
                     id="message"
                     name="message"
                     placeholder="Your message"
-                    className="h-32"
+                    className="min-h-36"
                     required
                 />
             </div>
@@ -196,16 +196,16 @@ export default function ContactForm() {
                         <Button
                             variant="link"
                             type="button"
-                            className="p-0 h-auto underline text-sm"
+                            className="h-auto p-0 text-sm underline"
                         >
                             Privacy Policy
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-[90vw] sm:max-w-lg">
+                    <DialogContent className="max-w-[calc(100%-2rem)] sm:max-w-lg">
                         <DialogHeader>
                             <DialogTitle>Privacy Policy</DialogTitle>
                         </DialogHeader>
-                        <div className="py-4">
+                        <div>
                             <p className="mb-6">
                                 By submitting this form, you agree to the
                                 following:
@@ -227,7 +227,7 @@ export default function ContactForm() {
                                 </li>
                             </ul>
                         </div>
-                        <div className="w-full flex items-center justify-end gap-4">
+                        <div className="w-full flex items-center justify-end gap-3">
                             <Button
                                 className="w-full shrink"
                                 onClick={() => {
@@ -249,7 +249,7 @@ export default function ContactForm() {
                     </DialogContent>
                 </Dialog>
             </div>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" size="lg" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
             <p className="text-xs text-muted-foreground">

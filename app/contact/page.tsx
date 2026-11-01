@@ -36,12 +36,16 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
     return (
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">Contact</h1>
-            <p className="text-muted-foreground mb-8">
+        <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-16">
+            <h1 className="mb-2 text-4xl font-semibold tracking-tight sm:text-5xl">
+                Contact
+            </h1>
+            <p className="mb-8 text-lg text-muted-foreground">
                 Get in touch for new opportunities and collaborations.
             </p>
-            <ContactForm />
+            <div className="glass rounded-[32px] p-6 sm:p-8">
+                <ContactForm />
+            </div>
         </div>
     );
 }

@@ -46,35 +46,34 @@ export default function ProjectsPage() {
     const projects = getProjects();
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-4xl font-bold mb-6">My Projects</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <h1 className="mb-8 text-4xl font-semibold tracking-tight sm:text-5xl">
+                My Projects
+            </h1>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => (
-                    <Card key={index}>
+                    <Card
+                        key={index}
+                        className="transition-transform duration-300 ease-out hover:-translate-y-1"
+                    >
                         <CardHeader>
-                            <CardTitle className="text-lg text-primary dark:text-white mb-2">
+                            <CardTitle className="text-lg">
                                 {project.name}
                             </CardTitle>
-                            <CardDescription className="text-black dark:text-gray-300 leading-relaxed">
+                            <CardDescription className="text-[15px] leading-relaxed">
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-wrap gap-2 mb-4">
+                        <CardContent className="mt-auto">
+                            <div className="mb-5 flex flex-wrap gap-1.5">
                                 {project.technologies.map((tech) => (
-                                    <Badge
-                                        key={tech}
-                                        variant="secondary"
-                                        className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground"
-                                    >
-                                        <span className="flex items-center gap-1">
-                                            <TagIcon />
-                                            <span>{tech}</span>
-                                        </span>
+                                    <Badge key={tech}>
+                                        <TagIcon />
+                                        <span>{tech}</span>
                                     </Badge>
                                 ))}
                             </div>
-                            <div className="flex flex-row gap-2 justify-end">
+                            <div className="flex flex-row justify-end gap-2">
                                 {project.article && (
                                     <Link
                                         href={project.article}
@@ -86,7 +85,7 @@ export default function ProjectsPage() {
                                     >
                                         <Button variant="outline">
                                             <span>Read</span>
-                                            <ArticleIcon />
+                                            <ArticleIcon width={16} height={16} />
                                         </Button>
                                     </Link>
                                 )}
@@ -99,9 +98,9 @@ export default function ProjectsPage() {
                                                 : "_self"
                                         }
                                     >
-                                        <Button variant="secondary">
+                                        <Button>
                                             <span>More</span>
-                                            <OpenIcon />
+                                            <OpenIcon width={16} height={16} />
                                         </Button>
                                     </Link>
                                 )}

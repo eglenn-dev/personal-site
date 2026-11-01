@@ -32,7 +32,7 @@ export function CopyUrlButton() {
             <TooltipTrigger asChild>
                 <Button
                     variant="outline"
-                    className="h-8 w-8"
+                    size="icon"
                     onClick={onClickCopy}
                 >
                     <span className="sr-only">Copy URL</span>

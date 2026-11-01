@@ -12,17 +12,17 @@ function HeadingLinks({
     activeId?: string;
 }) {
     return (
-        <ul className="flex flex-col border-l text-sm">
+        <ul className="flex flex-col gap-0.5 text-sm">
             {headings.map((heading) => (
                 <li key={heading.id}>
                     <a
                         href={`#${heading.id}`}
                         className={cn(
-                            "-ml-px block border-l py-1 pl-3 leading-snug transition-colors",
+                            "block rounded-xl px-3 py-1.5 leading-snug transition-colors duration-200",
                             heading.level === 3 && "pl-6",
                             heading.id === activeId
-                                ? "border-foreground text-foreground"
-                                : "border-transparent text-muted-foreground hover:text-foreground",
+                                ? "bg-foreground/8 font-medium text-foreground"
+                                : "text-muted-foreground hover:bg-foreground/4 hover:text-foreground",
                         )}
                     >
                         {heading.text}
@@ -56,9 +56,14 @@ export function TableOfContents({ headings }: { headings: PostHeading[] }) {
     }, [headings]);
 
     return (
-        <nav aria-label="Table of contents" className="sticky top-24">
-            <p className="mb-3 text-sm font-medium">On this page</p>
-            <div className="max-h-[calc(100vh-10rem)] overflow-y-auto">
+        <nav
+            aria-label="Table of contents"
+            className="glass sticky top-20 rounded-[24px] p-3"
+        >
+            <p className="mb-2 px-3 pt-1 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                On this page
+            </p>
+            <div className="max-h-[calc(100vh-11rem)] overflow-y-auto">
                 <HeadingLinks headings={headings} activeId={activeId} />
             </div>
         </nav>
@@ -71,7 +76,7 @@ export function MobileTableOfContents({
     headings: PostHeading[];
 }) {
     return (
-        <details className="group mb-6 rounded-xl border px-4 py-3">
+        <details className="glass group mb-6 rounded-[22px] px-4 py-3">
             <summary className="flex cursor-pointer list-none items-center gap-1 text-sm font-medium select-none [&::-webkit-details-marker]:hidden">
                 <ChevronRight className="size-4 transition-transform group-open:rotate-90" />
                 On this page

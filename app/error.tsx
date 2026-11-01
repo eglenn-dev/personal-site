@@ -7,8 +7,8 @@ import { Home } from "lucide-react";
 export default function Error() {
     return (
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] px-4 text-center">
-            <h1 className="text-4xl font-bold mb-4 flex flex-col items-center justify-center gap-2">
-                <span className="text-xl text-gray-400 sm:text-2xl">500</span>
+            <h1 className="mb-4 flex flex-col items-center justify-center gap-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+                <span className="glass rounded-full px-4 py-1 text-base font-medium text-muted-foreground">500</span>
                 <span>There was an error</span>
             </h1>
             <Image
@@ -18,12 +18,12 @@ export default function Error() {
                 height={100}
                 className="my-4 select-none pointer-events-none"
             />
-            <p className="text-md sm:text-lg mb-4">
+            <p className="mb-6 text-lg text-muted-foreground">
                 Sorry, something went wrong on our end.
             </p>
             <Link href="/">
-                <Button>
-                    <Home className="mr-1" />
+                <Button size="lg">
+                    <Home />
                     Return to Home
                 </Button>
             </Link>

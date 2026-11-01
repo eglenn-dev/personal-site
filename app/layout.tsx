@@ -20,7 +20,7 @@ import {
     TWITTER_HANDLE,
 } from "@/lib/site-config";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
     metadataBase: new URL(SITE_URL),
@@ -92,7 +92,7 @@ export default function RootLayout({
                 <PersonJsonLd />
                 <WebSiteJsonLd />
             </head>
-            <body className={inter.className}>
+            <body className={`${inter.variable} font-sans`}>
                 <NuqsAdapter>
                     <TooltipProvider delayDuration={400}>
                         <ThemeProvider
@@ -101,6 +101,10 @@ export default function RootLayout({
                             enableSystem
                             disableTransitionOnChange
                         >
+                            <div
+                                aria-hidden
+                                className="ambient-backdrop pointer-events-none fixed inset-0 -z-10"
+                            />
                             <div className="flex flex-col min-h-screen">
                                 <Navbar />
                                 <CommandPaletteProvider />

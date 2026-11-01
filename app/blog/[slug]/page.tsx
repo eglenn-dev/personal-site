@@ -50,7 +50,7 @@ export default async function Page({
             />
             <div
                 className={cn(
-                    "max-w-4xl mx-auto px-4 sm:px-6 py-8",
+                    "max-w-4xl mx-auto px-4 sm:px-6 py-10",
                     showTableOfContents &&
                         "xl:max-w-6xl xl:grid xl:grid-cols-[minmax(0,1fr)_14rem] xl:gap-12",
                 )}
@@ -58,7 +58,7 @@ export default async function Page({
                 <article className="min-w-0">
                     <div className="mb-8 flex items-center justify-between">
                         <Link href="/blog" className="group">
-                            <Button variant="outline" className="mb-1 -ml-2">
+                            <Button variant="outline" className="pl-3">
                                 <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
                                 <span>Back</span>
                             </Button>
