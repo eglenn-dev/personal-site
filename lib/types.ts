@@ -24,9 +24,15 @@ export interface Project {
     article?: string;
 }
 
+export interface ExperienceLogo {
+    src: string;
+    invertInDark?: boolean;
+}
+
 export interface Experience {
     role: string;
     company: string;
+    logo: ExperienceLogo;
     period: string;
     skills: string[];
     responsibilities?: string[];
