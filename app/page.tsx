@@ -19,7 +19,7 @@ import Image from "next/image";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
     return (
-        <h2 className="mb-6 flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        <h2 className="mb-6 flex items-center gap-3 text-xl font-bold tracking-tight">
             {children}
             <span aria-hidden className="h-px grow bg-border" />
         </h2>
