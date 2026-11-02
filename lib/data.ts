@@ -12,7 +12,7 @@ import {
     AwsIcon,
     ClaudeIcon,
 } from "./icons";
-import type { Project, Experience, TechStack } from "./types";
+import type { Project, Experience, ExperienceLogo, TechStack } from "./types";
 
 export function getProjects(): Project[] {
     return [
@@ -112,11 +112,18 @@ export function getProjects(): Project[] {
     ];
 }
 
+const DATATHINK_LOGO: ExperienceLogo = {
+    src: "/datathink_logo.svg",
+    invertInDark: true,
+};
+const BYUI_LOGO: ExperienceLogo = { src: "/byui_logo.png" };
+
 export function getExperiences(): Experience[] {
     return [
         {
             role: "Full-Stack Engineer",
             company: "DataThink",
+            logo: DATATHINK_LOGO,
             period: "Dec 2025 - Present",
             skills: [
                 "React",
@@ -137,6 +144,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Software Engineer Intern",
             company: "DataThink",
+            logo: DATATHINK_LOGO,
             period: "Aug 2025 - Dec 2025",
             skills: ["React", "TypeScript", "Python", "FastAPI", "PostgreSQL"],
             responsibilities: [
@@ -148,6 +156,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Team Lead & Web Developer",
             company: "David O. McKay Library - BYU-Idaho",
+            logo: BYUI_LOGO,
             period: "Jul 2024 - Aug 2025",
             skills: [
                 "Team Leadership",
@@ -165,6 +174,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Applied Calculus Teaching Assistant",
             company: "Department of Mathematics - BYU-Idaho",
+            logo: BYUI_LOGO,
             period: "Apr 2024 - Apr 2025",
             skills: ["R", "RStudio", "Data Analysis", "Calculus", "Teaching"],
             responsibilities: [
@@ -175,6 +185,7 @@ export function getExperiences(): Experience[] {
         {
             role: "Lab Technician & Front-End Developer",
             company: "David O. McKay Library - BYU-Idaho",
+            logo: BYUI_LOGO,
             period: "Jun 2023 - Jul 2024",
             skills: [
                 "Front-End Development",
