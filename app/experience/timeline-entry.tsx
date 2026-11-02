@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import type { Experience } from "@/lib/types";
 
@@ -26,12 +27,23 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                     {experience.period}
                 </p>
 
-                <h3 className="text-xl font-bold tracking-tight">
-                    {experience.role}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                    {experience.company}
-                </p>
+                <div className="flex items-center gap-3">
+                    <Image
+                        src={experience.logo.src}
+                        alt=""
+                        width={32}
+                        height={32}
+                        className={`size-8 shrink-0 rounded-md ${experience.logo.invertInDark ? "dark:invert" : ""}`}
+                    />
+                    <div>
+                        <h3 className="text-xl font-bold tracking-tight">
+                            {experience.role}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mt-0.5">
+                            {experience.company}
+                        </p>
+                    </div>
+                </div>
 
                 <div className="flex flex-wrap gap-1.5 mt-3">
                     {experience.skills.map((skill) => (
