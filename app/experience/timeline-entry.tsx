@@ -31,9 +31,9 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                     <Image
                         src={experience.logo.src}
                         alt=""
-                        width={40}
-                        height={40}
-                        className={`size-10 shrink-0 rounded-md ${experience.logo.invertInDark ? "dark:invert" : ""}`}
+                        width={32}
+                        height={32}
+                        className={`size-8 shrink-0 rounded-md ${experience.logo.invertInDark ? "dark:invert" : ""}`}
                     />
                     <div>
                         <h3 className="text-lg font-semibold text-primary dark:text-white">
