@@ -6,9 +6,8 @@ import {
     CardDescription,
     CardContent,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { getProjects } from "@/lib/data";
-import { OpenIcon, TagIcon, ArticleIcon } from "@/lib/icons";
+import { OpenIcon, ArticleIcon, techIcons } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -63,19 +62,21 @@ export default function ProjectsPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {project.technologies.map((tech) => (
-                                    <Badge
-                                        key={tech}
-                                        variant="outline"
-                                        className="font-mono text-[11px] font-medium text-muted-foreground bg-muted/50"
-                                    >
-                                        <span className="flex items-center gap-1">
-                                            <TagIcon />
-                                            <span>{tech}</span>
-                                        </span>
-                                    </Badge>
-                                ))}
+                            <div className="flex flex-wrap gap-x-1 gap-y-3 mb-4">
+                                {project.technologies.map((tech) => {
+                                    const Icon = techIcons[tech];
+                                    return (
+                                        <div
+                                            key={tech}
+                                            className="flex w-min min-w-16 flex-col items-center gap-1.5 text-center"
+                                        >
+                                            <Icon width={28} height={28} />
+                                            <span className="text-[11px] font-medium leading-tight text-muted-foreground">
+                                                {tech}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
                             </div>
                             <div className="flex flex-row gap-2 justify-end">
                                 {project.article && (

@@ -224,22 +224,6 @@ export function MongoIcon({ width = 40, height = 40 }: IconProps) {
     );
 }
 
-export function TagIcon({ width = 12, height = 12 }: IconProps) {
-    return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={width}
-            height={height}
-            viewBox="0 0 24 24"
-        >
-            <path
-                fill="currentColor"
-                d="m21.41 11.58l-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42M13 20l-9-9V4h7l9 9M6.5 5A1.5 1.5 0 1 1 5 6.5A1.5 1.5 0 0 1 6.5 5"
-            ></path>
-        </svg>
-    );
-}
-
 export function MySqlIcon({ width = 40, height = 40 }: IconProps) {
     return (
         <svg
@@ -607,3 +591,72 @@ export function TanstackIcon({ width = 40, height = 40 }: IconProps) {
         </svg>
     );
 }
+
+export function TailwindIcon({ width = 40, height = 40 }: IconProps) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="#06B6D4"
+                d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"
+            ></path>
+        </svg>
+    );
+}
+
+export function GraphqlIcon({ width = 40, height = 40 }: IconProps) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="#E10098"
+                d="M12.002 0a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.54 4.931a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm0 9.862a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm-8.54 4.931a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.276zm-8.542-4.93a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.277zm0-9.863a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.542-3.378L2.953 6.777v10.448l9.049 5.224 9.047-5.224V6.777zm0 1.601 7.66 13.27H4.34zm-1.387.371L3.97 15.037V7.363zm2.774 0 6.646 3.838v7.674zM5.355 17.44h13.293l-6.646 3.836z"
+            ></path>
+        </svg>
+    );
+}
+
+export function GeminiIcon({ width = 40, height = 40 }: IconProps) {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={width}
+            height={height}
+            viewBox="0 0 24 24"
+        >
+            <path
+                fill="#8E75B2"
+                d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"
+            ></path>
+        </svg>
+    );
+}
+
+export const techIcons = {
+    TypeScript: TypeScriptIcon,
+    React: ReactIcon,
+    Python: PythonIcon,
+    FastAPI: FastApiIcon,
+    "Next.js": NextjsIcon,
+    "TanStack Start": TanstackIcon,
+    PostgreSQL: PostgresIcon,
+    Prisma: PrismaIcon,
+    MongoDB: MongoIcon,
+    Firebase: FirebaseIcon,
+    Docker: DockerIcon,
+    Tailwind: TailwindIcon,
+    GraphQL: GraphqlIcon,
+    "Google Gemini": GeminiIcon,
+    "GitHub API": GithubIcon,
+    "Sentence Transformers": BrainIcon,
+} satisfies Record<string, React.ComponentType<IconProps>>;
+
+export type Technology = keyof typeof techIcons;

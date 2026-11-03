@@ -1,3 +1,5 @@
+import type { Technology } from "./icons";
+
 export interface LanguageData {
     [key: string]: number;
 }
@@ -19,7 +21,7 @@ export interface CombinedStats {
 export interface Project {
     name: string;
     description: string;
-    technologies: string[];
+    technologies: Technology[];
     link?: string;
     article?: string;
 }
