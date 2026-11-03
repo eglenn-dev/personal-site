@@ -68,9 +68,9 @@ export default function ProjectsPage() {
                                     return (
                                         <div
                                             key={tech}
-                                            className="flex w-min min-w-16 flex-col items-center gap-1.5 text-center"
+                                            className="flex w-min min-w-16 flex-col items-center gap-1 text-center"
                                         >
-                                            <Icon width={28} height={28} />
+                                            <Icon width={20} height={20} />
                                             <span className="text-[11px] font-medium leading-tight text-muted-foreground">
                                                 {tech}
                                             </span>
