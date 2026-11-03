@@ -56,9 +56,9 @@ export async function GET(request: NextRequest) {
                 viewBox="0 0 512 512"
                 style={{ position: "absolute", top: "60px", right: "80px" }}
             >
-                {/* Slanted E brand mark, same glyph as app/icon.svg */}
+                {/* E brand mark, same glyph as app/icon.svg */}
                 <path
-                    d="M190.19 106H416.19L398.51 172H246.51L232.84 223H364.84L347.16 289H215.16L201.49 340H353.49L335.81 406H109.81Z"
+                    d="M379.85 412H132.15V100H378.44V160.98H208.73V227.16H355.75V282.47H208.73V350.55H379.85Z"
                     fill="#ffffff"
                 />
             </svg>
