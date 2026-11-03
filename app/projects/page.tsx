@@ -6,6 +6,11 @@ import {
     CardDescription,
     CardContent,
 } from "@/components/ui/card";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getProjects } from "@/lib/data";
 import { OpenIcon, ArticleIcon, techIcons } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
@@ -66,14 +71,22 @@ export default function ProjectsPage() {
                                 {project.technologies.map((tech) => {
                                     const Icon = techIcons[tech];
                                     return (
-                                        <div
-                                            key={tech}
-                                            role="img"
-                                            aria-label={tech}
-                                            title={tech}
-                                        >
-                                            <Icon width={20} height={20} />
-                                        </div>
+                                        <Tooltip key={tech}>
+                                            <TooltipTrigger asChild>
+                                                <div
+                                                    role="img"
+                                                    aria-label={tech}
+                                                >
+                                                    <Icon
+                                                        width={20}
+                                                        height={20}
+                                                    />
+                                                </div>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                {tech}
+                                            </TooltipContent>
+                                        </Tooltip>
                                     );
                                 })}
                             </div>
