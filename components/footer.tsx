@@ -22,10 +22,10 @@ const socialLinks = [
 
 function FooterContent({ year }: { year: string }) {
     return (
-        <footer className="border-t bg-muted/30">
+        <footer className="border-t">
             <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center">
-                    <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                         &copy; {year} Ethan Glenn
                     </p>
                     <div className="flex gap-1 items-center justify-center">
