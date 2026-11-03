@@ -164,12 +164,12 @@ export default async function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-12">
                 <div id="tech-stack">
-                    <SectionHeading>My Tech Stack</SectionHeading>
+                    <SectionHeading>Tech Stack</SectionHeading>
                     <div className="flex flex-row flex-wrap gap-3 justify-center md:justify-start">
                         {techStack.map((tech) => (
                             <Card
                                 key={tech.name}
-                                className="flex flex-col items-center justify-center p-4 w-19 sm:w-20 transition-all duration-150 hover:-translate-y-0.5 hover:border-foreground/25"
+                                className="flex flex-col items-center justify-center p-4 w-19 sm:w-20"
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
