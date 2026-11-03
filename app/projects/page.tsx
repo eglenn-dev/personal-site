@@ -62,16 +62,16 @@ export default function ProjectsPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex flex-wrap gap-x-1 gap-y-3 mb-4">
+                            <div className="flex flex-wrap gap-x-1 gap-y-2 mb-4">
                                 {project.technologies.map((tech) => {
                                     const Icon = techIcons[tech];
                                     return (
                                         <div
                                             key={tech}
-                                            className="flex w-min min-w-16 flex-col items-center gap-1 text-center"
+                                            className="flex w-min min-w-14 flex-col items-center gap-1 text-center"
                                         >
                                             <Icon width={20} height={20} />
-                                            <span className="text-[11px] font-medium leading-tight text-muted-foreground">
+                                            <span className="text-[10px] font-medium leading-tight text-muted-foreground">
                                                 {tech}
                                             </span>
                                         </div>
