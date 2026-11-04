@@ -56,7 +56,6 @@ export default function ProjectsPage() {
                 {projects.map((project, index) => (
                     <Card
                         key={index}
-                        className="transition-colors duration-150 hover:border-foreground/25"
                     >
                         <CardHeader>
                             <CardTitle className="text-xl font-bold mb-1">
@@ -66,7 +65,7 @@ export default function ProjectsPage() {
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="mt-auto">
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {project.technologies.map((tech) => {
                                     const Icon = techIcons[tech];
