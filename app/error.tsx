@@ -8,7 +8,7 @@ export default function Error() {
     return (
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] px-4 text-center">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] mb-4 flex flex-col items-center justify-center gap-2">
-                <span className="text-base font-semibold text-brand">500</span>
+                <span className="text-base font-semibold tracking-normal text-brand">500</span>
                 <span>There was an error</span>
             </h1>
             <Image
