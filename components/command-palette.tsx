@@ -66,6 +66,8 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            // Desktop only: matches the navbar button's sm breakpoint.
+            if (!window.matchMedia("(min-width: 40rem)").matches) return;
             if ((e.metaKey || e.ctrlKey) && e.key === "k") {
                 e.preventDefault();
                 setOpen((prev) => !prev);
