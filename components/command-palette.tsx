@@ -62,7 +62,7 @@ interface CommandPaletteProps {
 export function CommandPalette({ posts, projects }: CommandPaletteProps) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -90,11 +90,11 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
     }, []);
 
     const handleThemeToggle = useCallback(() => {
-        const newTheme = theme === "dark" ? "light" : "dark";
+        const newTheme = resolvedTheme === "dark" ? "light" : "dark";
         setTheme(newTheme);
         setOpen(false);
         toast.success(`Switched to ${newTheme} mode`);
-    }, [theme, setTheme]);
+    }, [resolvedTheme, setTheme]);
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
@@ -176,13 +176,14 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
 
                 <CommandGroup heading="Actions">
                     <CommandItem onSelect={handleThemeToggle}>
-                        {theme === "dark" ? (
+                        {resolvedTheme === "dark" ? (
                             <Sun className="mr-2 h-4 w-4" />
                         ) : (
                             <Moon className="mr-2 h-4 w-4" />
                         )}
                         <span>
-                            Switch to {theme === "dark" ? "Light" : "Dark"} Mode
+                            Switch to{" "}
+                            {resolvedTheme === "dark" ? "Light" : "Dark"} Mode
                         </span>
                     </CommandItem>
                 </CommandGroup>

@@ -16,7 +16,7 @@ const navItems = [
 
 export default function Navbar() {
     const pathname = usePathname();
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     return (
         <nav className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-background/75">
@@ -64,7 +64,9 @@ export default function Navbar() {
                             aria-label="Toggle theme"
                             className="text-muted-foreground hover:text-primary"
                             onClick={() =>
-                                setTheme(theme === "dark" ? "light" : "dark")
+                                setTheme(
+                                    resolvedTheme === "dark" ? "light" : "dark",
+                                )
                             }
                         >
                             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
