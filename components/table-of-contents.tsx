@@ -57,7 +57,7 @@ export function TableOfContents({ headings }: { headings: PostHeading[] }) {
 
     return (
         <nav aria-label="Table of contents" className="sticky top-24">
-            <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            <p className="mb-3 text-sm font-medium text-muted-foreground">
                 On this page
             </p>
             <div className="max-h-[calc(100vh-10rem)] overflow-y-auto">

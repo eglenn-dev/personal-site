@@ -96,7 +96,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                                     </h2>
                                     <time
                                         dateTime={post.date}
-                                        className="font-mono text-xs uppercase tracking-wider text-muted-foreground shrink-0"
+                                        className="text-sm text-muted-foreground shrink-0"
                                     >
                                         {formatDate(post.date)}
                                     </time>

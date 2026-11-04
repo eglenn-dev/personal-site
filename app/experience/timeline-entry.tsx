@@ -11,7 +11,7 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
     return (
         <div className="grid grid-cols-[1fr] md:grid-cols-[160px_1fr] gap-x-8">
             <div className="hidden md:block pt-1 text-right">
-                <span className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+                <span className="text-sm text-muted-foreground">
                     {experience.period}
                 </span>
             </div>
@@ -23,7 +23,7 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
 
                 <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-brand bg-background shadow-[0_0_0_4px_var(--background)]" />
 
-                <p className="md:hidden font-mono text-xs uppercase tracking-wider text-muted-foreground mb-1">
+                <p className="md:hidden text-sm text-muted-foreground mb-1">
                     {experience.period}
                 </p>
 
