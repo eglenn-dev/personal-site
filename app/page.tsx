@@ -36,6 +36,10 @@ export default async function Home() {
                 <div id="main" className="flex flex-col gap-5">
                     <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.02] tracking-[-0.03em]">
                         Ethan Glenn
+                        <span
+                            aria-hidden
+                            className="ml-[0.06em] inline-block size-[0.16em] rounded-full bg-brand"
+                        />
                     </h1>
                     <p className="text-lg text-muted-foreground flex flex-row items-center gap-1.5">
                         Full-Stack Engineer at{" "}
