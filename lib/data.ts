@@ -51,7 +51,7 @@ export function getProjects(): Project[] {
         {
             name: "Gospel Help",
             description:
-                "Build a API that allows users to search over 137,000 indexed historical records using natural language queries, and built a very nice frontend to facilitate study and research.",
+                "Built an API that allows users to search over 137,000 indexed historical records using natural language queries, and built a very nice frontend to facilitate study and research.",
             technologies: [
                 "Python",
                 "Sentence Transformers",
@@ -76,7 +76,7 @@ export function getProjects(): Project[] {
         {
             name: "Resumly.pro",
             description:
-                "A full stack web app the generates resumes based on a user provided job posting URL. Custom Python backend scraps important data from the job posting, and Gemini API is used to generate a tailored resume.",
+                "A full stack web app that generates resumes based on a user provided job posting URL. Custom Python backend scrapes important data from the job posting, and Gemini API is used to generate a tailored resume.",
             technologies: [
                 "Python",
                 "TypeScript",

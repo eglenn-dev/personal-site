@@ -22,7 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h1: ({ children }) => (
             <h1
-                className="mt-10 mb-4 text-4xl font-bold leading-10 scroll-mt-24"
+                className="mt-10 mb-4 text-4xl sm:text-5xl font-extrabold leading-[1.05] tracking-[-0.03em] scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -30,7 +30,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h2: ({ children }) => (
             <h2
-                className="mt-10 mb-3 text-3xl font-semibold leading-9 scroll-mt-24"
+                className="mt-12 mb-3 text-3xl font-bold leading-9 tracking-tight scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -38,7 +38,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h3: ({ children }) => (
             <h3
-                className="mt-6 mb-2 text-2xl font-medium leading-8 scroll-mt-24"
+                className="mt-8 mb-2 text-2xl font-bold leading-8 tracking-tight scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -46,7 +46,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h4: ({ children }) => (
             <h4
-                className="mt-4 mb-2 text-xl font-medium leading-7 scroll-mt-24"
+                className="mt-4 mb-2 font-display text-xl font-semibold leading-7 text-primary scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -54,7 +54,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h5: ({ children }) => (
             <h5
-                className="mt-3 mb-2 text-lg font-medium leading-6 scroll-mt-24"
+                className="mt-3 mb-2 font-display text-lg font-semibold leading-6 text-primary scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -62,7 +62,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         ),
         h6: ({ children }) => (
             <h6
-                className="mt-2 mb-2 text-base font-medium leading-6 scroll-mt-24"
+                className="mt-2 mb-2 font-display text-base font-semibold leading-6 text-primary scroll-mt-24"
                 id={headingId(getTextContent(children))}
             >
                 {children}
@@ -93,7 +93,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="font-medium text-brand underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
                     >
                         {children}
                     </a>
@@ -102,7 +102,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 return (
                     <Link
                         href={href}
-                        className="text-blue-500 underline dark:text-blue-400"
+                        className="font-medium text-brand underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
                         target={href.includes("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
                     >
@@ -122,16 +122,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         hr: () => (
-            <hr className="my-6 border-t border-gray-300 dark:border-gray-700" />
+            <hr className="my-10 border-t border-border" />
         ),
         pre: (props) => <CodeBlock {...props} />,
         code: ({ children }) => (
-            <code className="inline-flex max-w-full overflow-x-auto rounded-sm border border-gray-300 px-1.5 py-0.5 text-sm dark:border-gray-700">
+            <code className="inline-flex max-w-full overflow-x-auto rounded-md border bg-muted/60 px-1.5 py-0.5 font-mono text-[0.85em]">
                 {children}
             </code>
         ),
         blockquote: ({ children }) => (
-            <blockquote className="my-6 border-l-4 border-gray-300 pl-4 italic text-gray-700 dark:border-gray-600 dark:text-gray-400">
+            <blockquote className="my-6 rounded-r-lg border-l-4 border-brand bg-muted/40 py-1 pl-4 pr-3 text-foreground/80">
                 {children}
             </blockquote>
         ),

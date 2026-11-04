@@ -34,7 +34,7 @@ export function CodeBlock(props: React.ComponentProps<"pre">) {
         <div className="group relative">
             <pre
                 ref={preRef}
-                className="mb-4 rounded-md border border-gray-300 bg-gray-50 p-4 dark:border-gray-700 dark:bg-zinc-900 [&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0"
+                className="mb-4 overflow-x-auto rounded-xl border bg-muted/40 p-4 font-mono text-sm leading-relaxed dark:bg-card [&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-[length:inherit]"
                 {...props}
             />
             <Tooltip open={isCopied}>

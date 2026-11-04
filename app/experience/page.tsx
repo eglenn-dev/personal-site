@@ -36,11 +36,9 @@ export default function ExperiencePage() {
     const experiences = getExperiences();
 
     return (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-3xl font-bold tracking-tight mb-2">
-                Experience
-            </h1>
-            <p className="text-muted-foreground mb-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-3">Experience</h1>
+            <p className="text-lg text-muted-foreground mb-12">
                 My professional journey as a software engineer and developer.
             </p>
             <div className="relative">

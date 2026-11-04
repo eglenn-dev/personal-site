@@ -9,9 +9,9 @@ interface TimelineEntryProps {
 
 export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
     return (
-        <div className="grid grid-cols-[1fr] md:grid-cols-[140px_1fr] gap-x-8">
+        <div className="grid grid-cols-[1fr] md:grid-cols-[160px_1fr] gap-x-8">
             <div className="hidden md:block pt-1 text-right">
-                <span className="text-sm font-medium text-muted-foreground">
+                <span className="text-sm text-muted-foreground">
                     {experience.period}
                 </span>
             </div>
@@ -21,9 +21,9 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                     <div className="absolute left-[7px] top-3 bottom-0 w-px bg-border" />
                 )}
 
-                <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-primary bg-background dark:border-white" />
+                <div className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-2 border-brand bg-background shadow-[0_0_0_4px_var(--background)]" />
 
-                <p className="md:hidden text-sm font-medium text-muted-foreground mb-1">
+                <p className="md:hidden text-sm text-muted-foreground mb-1">
                     {experience.period}
                 </p>
 
@@ -36,7 +36,7 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                         className={`size-8 shrink-0 rounded-md ${experience.logo.invertInDark ? "dark:invert" : ""}`}
                     />
                     <div>
-                        <h3 className="text-lg font-semibold text-primary dark:text-white">
+                        <h3 className="text-xl font-bold tracking-tight">
                             {experience.role}
                         </h3>
                         <p className="text-sm text-muted-foreground mt-0.5">
@@ -49,8 +49,8 @@ export function TimelineEntry({ experience, isLast }: TimelineEntryProps) {
                     {experience.skills.map((skill) => (
                         <Badge
                             key={skill}
-                            variant="secondary"
-                            className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground text-xs"
+                            variant="outline"
+                            className="font-mono text-[11px] font-medium text-muted-foreground bg-muted/50"
                         >
                             {skill}
                         </Badge>

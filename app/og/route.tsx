@@ -17,8 +17,6 @@ export async function GET(request: NextRequest) {
                 justifyContent: "center",
                 padding: "60px 80px",
                 backgroundColor: "#0a0a0a",
-                backgroundImage:
-                    "radial-gradient(circle at 25% 25%, #1a1a2e 0%, transparent 50%), radial-gradient(circle at 75% 75%, #16213e 0%, transparent 50%)",
             }}
         >
             <div
@@ -32,7 +30,7 @@ export async function GET(request: NextRequest) {
                     style={{
                         fontSize: 72,
                         fontWeight: 700,
-                        color: "#ffffff",
+                        color: "#ece6d8",
                         lineHeight: 1.1,
                         letterSpacing: "-0.02em",
                     }}
@@ -42,7 +40,7 @@ export async function GET(request: NextRequest) {
                 <div
                     style={{
                         fontSize: 32,
-                        color: "#94a3b8",
+                        color: "#a49e91",
                         lineHeight: 1.4,
                         maxWidth: "80%",
                     }}
@@ -56,11 +54,12 @@ export async function GET(request: NextRequest) {
                 viewBox="0 0 512 512"
                 style={{ position: "absolute", top: "60px", right: "80px" }}
             >
-                {/* Slanted E brand mark, same glyph as app/icon.svg */}
+                {/* E and dot brand mark, same shapes as app/icon.svg */}
                 <path
-                    d="M190.19 106H416.19L398.51 172H246.51L232.84 223H364.84L347.16 289H215.16L201.49 340H353.49L335.81 406H109.81Z"
-                    fill="#ffffff"
+                    d="M326.49 406L88.31 406L88.31 106L325.13 106L325.13 164.63L161.95 164.63L161.95 228.27L303.31 228.27L303.31 281.45L161.95 281.45L161.95 346.91L326.49 346.91Z"
+                    fill="#ece6d8"
                 />
+                <circle cx="387.69" cy="370" r="36" fill="#fc701f" />
             </svg>
             <div
                 style={{
@@ -77,7 +76,7 @@ export async function GET(request: NextRequest) {
                         width: "40px",
                         height: "40px",
                         borderRadius: "50%",
-                        backgroundColor: "#0077b6",
+                        backgroundColor: "#262626",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -98,7 +97,7 @@ export async function GET(request: NextRequest) {
                 <div
                     style={{
                         fontSize: 24,
-                        color: "#64748b",
+                        color: "#a49e91",
                     }}
                 >
                     {CLEAN_SITE_URL}

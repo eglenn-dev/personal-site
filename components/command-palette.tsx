@@ -12,6 +12,7 @@ import {
     CommandItem,
     CommandList,
     CommandSeparator,
+    CommandShortcut,
 } from "@/components/ui/command";
 import {
     Home,
@@ -61,10 +62,12 @@ interface CommandPaletteProps {
 export function CommandPalette({ posts, projects }: CommandPaletteProps) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            // Desktop only: matches the navbar button's sm breakpoint.
+            if (!window.matchMedia("(min-width: 40rem)").matches) return;
             if ((e.metaKey || e.ctrlKey) && e.key === "k") {
                 e.preventDefault();
                 setOpen((prev) => !prev);
@@ -89,11 +92,11 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
     }, []);
 
     const handleThemeToggle = useCallback(() => {
-        const newTheme = theme === "dark" ? "light" : "dark";
+        const newTheme = resolvedTheme === "dark" ? "light" : "dark";
         setTheme(newTheme);
         setOpen(false);
         toast.success(`Switched to ${newTheme} mode`);
-    }, [theme, setTheme]);
+    }, [resolvedTheme, setTheme]);
 
     return (
         <CommandDialog open={open} onOpenChange={setOpen}>
@@ -156,19 +159,17 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
                         >
                             <FolderOpen className="mr-2 h-4 w-4 shrink-0" />
                             <div className="flex flex-col flex-1 overflow-hidden">
-                                <div className="flex items-center gap-2">
-                                    <span className="truncate">
-                                        {project.name}
-                                    </span>
-                                    {project.link &&
-                                        !project.article?.startsWith("/") && (
-                                            <ExternalLink className="h-3 w-3 text-muted-foreground shrink-0" />
-                                        )}
-                                </div>
+                                <span className="truncate">{project.name}</span>
                                 <span className="text-xs text-muted-foreground truncate">
                                     {project.description}
                                 </span>
                             </div>
+                            {project.link &&
+                                !project.article?.startsWith("/") && (
+                                    <CommandShortcut>
+                                        <ExternalLink />
+                                    </CommandShortcut>
+                                )}
                         </CommandItem>
                     ))}
                 </CommandGroup>
@@ -177,13 +178,14 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
 
                 <CommandGroup heading="Actions">
                     <CommandItem onSelect={handleThemeToggle}>
-                        {theme === "dark" ? (
+                        {resolvedTheme === "dark" ? (
                             <Sun className="mr-2 h-4 w-4" />
                         ) : (
                             <Moon className="mr-2 h-4 w-4" />
                         )}
                         <span>
-                            Switch to {theme === "dark" ? "Light" : "Dark"} Mode
+                            Switch to{" "}
+                            {resolvedTheme === "dark" ? "Light" : "Dark"} Mode
                         </span>
                     </CommandItem>
                 </CommandGroup>
@@ -200,7 +202,9 @@ export function CommandPalette({ posts, projects }: CommandPaletteProps) {
                                 <link.icon width={16} height={16} />
                             </span>
                             <span>{link.label}</span>
-                            <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground" />
+                            <CommandShortcut>
+                                <ExternalLink />
+                            </CommandShortcut>
                         </CommandItem>
                     ))}
                 </CommandGroup>

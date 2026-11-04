@@ -16,22 +16,22 @@ const navItems = [
 
 export default function Navbar() {
     const pathname = usePathname();
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     return (
-        <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+        <nav className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-background/75">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
-                    <div className="flex gap-2 sm:gap-4">
+                <div className="flex justify-between items-center h-14">
+                    <div className="flex items-center gap-0.5 sm:gap-1">
                         {navItems.map((item) => (
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200 ${
+                                className={`inline-flex items-center rounded-md px-1.5 py-1.5 text-[13px] font-semibold transition-colors duration-150 sm:px-3 ${
                                     pathname.split("/")[1] ===
                                     item.href.split("/")[1]
-                                        ? "border-nav-active text-nav-active"
-                                        : "border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300"
+                                        ? "bg-muted text-primary"
+                                        : "text-muted-foreground hover:bg-muted/60 hover:text-primary"
                                 }`}
                             >
                                 {item.label}
@@ -40,10 +40,10 @@ export default function Navbar() {
                     </div>
                     <div className="flex items-center gap-1">
                         <Button
-                            variant="ghost"
+                            variant="outline"
                             size="sm"
                             aria-label="Open command palette"
-                            className="hidden sm:flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                            className="hidden sm:flex items-center gap-2 w-48 justify-start bg-muted/40 font-medium text-muted-foreground hover:text-foreground"
                             onClick={() => {
                                 window.dispatchEvent(
                                     new KeyboardEvent("keydown", {
@@ -56,19 +56,21 @@ export default function Navbar() {
                         >
                             <Search className="h-4 w-4" />
                             <span className="text-sm">Search</span>
-                            <Kbd>⌘K</Kbd>
+                            <Kbd className="ml-auto">⌘K</Kbd>
                         </Button>
                         <Button
                             variant="ghost"
                             size="icon"
                             aria-label="Toggle theme"
-                            className="transition-transform transform hover:scale-110"
+                            className="text-muted-foreground hover:text-primary"
                             onClick={() =>
-                                setTheme(theme === "dark" ? "light" : "dark")
+                                setTheme(
+                                    resolvedTheme === "dark" ? "light" : "dark",
+                                )
                             }
                         >
-                            <Sun className="h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                            <Moon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                             <span className="sr-only">Toggle theme</span>
                         </Button>
                     </div>

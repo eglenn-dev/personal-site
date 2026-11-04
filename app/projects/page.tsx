@@ -6,9 +6,13 @@ import {
     CardDescription,
     CardContent,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { getProjects } from "@/lib/data";
-import { OpenIcon, TagIcon, ArticleIcon } from "@/lib/icons";
+import { OpenIcon, ArticleIcon, techIcons } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -46,33 +50,44 @@ export default function ProjectsPage() {
     const projects = getProjects();
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <h1 className="text-4xl font-bold mb-6">My Projects</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-10">My Projects</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {projects.map((project, index) => (
-                    <Card key={index}>
+                    <Card
+                        key={index}
+                    >
                         <CardHeader>
-                            <CardTitle className="text-lg text-primary dark:text-white mb-2">
+                            <CardTitle className="text-xl font-bold mb-1">
                                 {project.name}
                             </CardTitle>
-                            <CardDescription className="text-black dark:text-gray-300 leading-relaxed">
+                            <CardDescription className="text-foreground/80 leading-relaxed">
                                 {project.description}
                             </CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="mt-auto">
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {project.technologies.map((tech) => (
-                                    <Badge
-                                        key={tech}
-                                        variant="secondary"
-                                        className="bg-primary/20 hover:bg-primary/20 dark:bg-primary dark:hover:bg-primary dark:text-primary-foreground"
-                                    >
-                                        <span className="flex items-center gap-1">
-                                            <TagIcon />
-                                            <span>{tech}</span>
-                                        </span>
-                                    </Badge>
-                                ))}
+                                {project.technologies.map((tech) => {
+                                    const Icon = techIcons[tech];
+                                    return (
+                                        <Tooltip key={tech}>
+                                            <TooltipTrigger asChild>
+                                                <div
+                                                    role="img"
+                                                    aria-label={tech}
+                                                >
+                                                    <Icon
+                                                        width={20}
+                                                        height={20}
+                                                    />
+                                                </div>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                {tech}
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    );
+                                })}
                             </div>
                             <div className="flex flex-row gap-2 justify-end">
                                 {project.article && (

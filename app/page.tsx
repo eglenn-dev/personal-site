@@ -17,21 +17,36 @@ import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
 import Link from "next/link";
 import Image from "next/image";
 
+function SectionHeading({ children }: { children: React.ReactNode }) {
+    return (
+        <h2 className="mb-6 flex items-center gap-3 text-xl font-bold tracking-tight">
+            {children}
+            <span aria-hidden className="h-px grow bg-border" />
+        </h2>
+    );
+}
+
 export default async function Home() {
     const techStack = getTechStack();
     const latestPost = getLatestPost();
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div id="main" className="flex flex-col gap-4">
-                    <h1 className="text-4xl font-bold">Ethan Glenn</h1>
-                    <p className="text-base flex flex-row items-center gap-1">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-16">
+                <div id="main" className="flex flex-col gap-5">
+                    <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.02] tracking-[-0.03em]">
+                        Ethan Glenn
+                        <span
+                            aria-hidden
+                            className="ml-[0.06em] inline-block size-[0.16em] rounded-full bg-brand"
+                        />
+                    </h1>
+                    <p className="text-lg text-muted-foreground flex flex-row items-center gap-1.5">
                         Full-Stack Engineer at{" "}
                         <a
                             href="https://datathink.dev"
                             target="_blank"
-                            className="relative inline-flex items-center gap-1 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:bg-current after:transition-transform hover:after:translate-y-px"
+                            className="inline-flex items-center gap-1.5 font-medium text-foreground underline-offset-4 hover:underline"
                         >
                             <Image
                                 src="/datathink_logo.svg"
@@ -43,7 +58,7 @@ export default async function Home() {
                             DataThink
                         </a>
                     </p>
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row gap-3 mt-1">
                         <Link href="/projects">
                             <Button className="group">
                                 <span>My Projects</span>
@@ -63,7 +78,7 @@ export default async function Home() {
                             </Button>
                         </Link>
                     </div>
-                    <div className="flex flex-row gap-4 mb-4">
+                    <div className="flex flex-row gap-4 mb-4 text-muted-foreground [&>a]:transition-colors [&>a:hover]:text-primary">
                         <a
                             href="https://github.com/eglenn-dev"
                             target="_blank"
@@ -92,8 +107,8 @@ export default async function Home() {
                     </div>
                 </div>
                 <div id="featured-project">
-                    <h2 className="text-2xl font-semibold mb-4">Featured</h2>
-                    <div className="bg-zinc-200 dark:bg-muted p-4 rounded-2xl">
+                    <SectionHeading>Featured</SectionHeading>
+                    <div className="relative overflow-hidden rounded-2xl border bg-linear-to-b from-sky-200 via-indigo-100 to-pink-100 p-5 shadow-sm dark:from-sky-950/80 dark:via-zinc-900 dark:to-fuchsia-950/50">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3>
                                 <Image
@@ -111,7 +126,7 @@ export default async function Home() {
                                 <PostgresIcon width={20} height={20} />
                             </div>
                         </div>
-                        <p className="text-base mb-2">
+                        <p className="text-base leading-relaxed text-zinc-800 dark:text-foreground mt-3 mb-4">
                             Time tracking, invoicing, and expenses for
                             contractors, built at DataThink. It&apos;s a PWA and
                             has an MCP server, so AI agents can log time
@@ -124,7 +139,10 @@ export default async function Home() {
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                <Button variant="outline" className="group">
+                                <Button
+                                    variant="outline"
+                                    className="group bg-background/70 dark:bg-background/40"
+                                >
                                     <span>Visit KeepHours</span>
                                     <ArrowUpRight
                                         size={16}
@@ -133,7 +151,10 @@ export default async function Home() {
                                 </Button>
                             </a>
                             <Link href="/blog/keephours-tanstack-start">
-                                <Button variant="outline" className="group">
+                                <Button
+                                    variant="outline"
+                                    className="group bg-background/70 dark:bg-background/40"
+                                >
                                     <span>Read the migration story</span>
                                     <ChevronRight
                                         size={16}
@@ -145,12 +166,10 @@ export default async function Home() {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-12">
                 <div id="tech-stack">
-                    <h2 className="text-2xl font-semibold mb-6">
-                        My Tech Stack
-                    </h2>
-                    <div className="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
+                    <SectionHeading>Tech Stack</SectionHeading>
+                    <div className="flex flex-row flex-wrap gap-3 justify-center md:justify-start">
                         {techStack.map((tech) => (
                             <Card
                                 key={tech.name}
@@ -158,7 +177,7 @@ export default async function Home() {
                             >
                                 <CardContent className="text-center flex flex-col items-center justify-center p-0">
                                     <tech.icon />
-                                    <h3 className="text-xs sm:text-sm font-medium mt-0.5">
+                                    <h3 className="text-xs sm:text-sm font-semibold mt-1">
                                         {tech.name}
                                     </h3>
                                 </CardContent>
@@ -167,7 +186,7 @@ export default async function Home() {
                     </div>
                 </div>
                 <div id="stats">
-                    <h2 className="text-2xl font-semibold mb-6">Stats</h2>
+                    <SectionHeading>Stats</SectionHeading>
                     <div className="flex flex-col">
                         <Suspense fallback={<HomeStatsSkeleton />}>
                             <HomeStats />
