@@ -37,7 +37,7 @@ export async function StatsQuip() {
 
     return (
         <Tooltip>
-            <TooltipTrigger className="mt-4 w-fit cursor-default text-left">
+            <TooltipTrigger className="mb-4 w-fit cursor-default text-left">
                 <div className="flex items-start gap-2 px-4 py-2 bg-card rounded-lg border shadow-xs font-mono text-[13px] font-medium text-zinc-700 dark:text-zinc-300">
                     <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                     {quip}
@@ -52,7 +52,7 @@ export async function StatsQuip() {
 
 export function StatsQuipSkeleton() {
     return (
-        <div className="mt-4 w-fit flex items-center gap-2 px-4 py-2 bg-card rounded-lg border shadow-xs font-mono text-[13px] font-medium text-zinc-400 animate-pulse">
+        <div className="mb-4 w-fit flex items-center gap-2 px-4 py-2 bg-card rounded-lg border shadow-xs font-mono text-[13px] font-medium text-zinc-400 animate-pulse">
             <Sparkles className="h-4 w-4" />
             <span>...</span>
         </div>

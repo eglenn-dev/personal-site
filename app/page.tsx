@@ -190,10 +190,11 @@ export default async function Home() {
                     <SectionHeading>Stats</SectionHeading>
                     <div className="flex flex-col">
                         <Suspense fallback={<HomeStatsSkeleton />}>
-                            <HomeStats />
-                        </Suspense>
-                        <Suspense fallback={<StatsQuipSkeleton />}>
-                            <StatsQuip />
+                            <HomeStats>
+                                <Suspense fallback={<StatsQuipSkeleton />}>
+                                    <StatsQuip />
+                                </Suspense>
+                            </HomeStats>
                         </Suspense>
                     </div>
                 </div>
