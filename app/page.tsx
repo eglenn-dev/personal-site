@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
+import { StatsQuip, StatsQuipSkeleton } from "@/components/stats-quip";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -190,6 +191,9 @@ export default async function Home() {
                     <div className="flex flex-col">
                         <Suspense fallback={<HomeStatsSkeleton />}>
                             <HomeStats />
+                        </Suspense>
+                        <Suspense fallback={<StatsQuipSkeleton />}>
+                            <StatsQuip />
                         </Suspense>
                     </div>
                 </div>
