@@ -12,6 +12,7 @@ const navItems = [
     { href: "/experience", label: "Experience" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" },
+    { href: "/five-nines", label: "Game", desktopOnly: true },
 ];
 
 export default function Navbar() {
@@ -27,7 +28,11 @@ export default function Navbar() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`inline-flex items-center rounded-md px-1.5 py-1.5 text-[13px] font-semibold transition-colors duration-150 sm:px-3 ${
+                                className={`items-center rounded-md px-1.5 py-1.5 text-[13px] font-semibold transition-colors duration-150 sm:px-3 ${
+                                    item.desktopOnly
+                                        ? "hidden sm:inline-flex"
+                                        : "inline-flex"
+                                } ${
                                     pathname.split("/")[1] ===
                                     item.href.split("/")[1]
                                         ? "bg-muted text-primary"
