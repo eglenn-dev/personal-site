@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import HomeButton from "@/components/home-button";
 
 export const metadata: Metadata = {
     title: ".env",
@@ -32,10 +31,9 @@ export default function EnvPage() {
             <p className="text-sm text-muted-foreground mt-1 mb-6">
                 Here are all my secrets. Spend them wisely.
             </p>
-            <pre className="mb-6 w-full max-w-md overflow-x-auto rounded-xl border bg-muted/40 p-4 text-left font-mono text-sm leading-relaxed dark:bg-card">
+            <pre className="w-full max-w-md overflow-x-auto rounded-xl border bg-muted/40 p-4 text-left font-mono text-sm leading-relaxed dark:bg-card">
                 <code>{FAKE_ENV}</code>
             </pre>
-            <HomeButton />
         </div>
     );
 }
