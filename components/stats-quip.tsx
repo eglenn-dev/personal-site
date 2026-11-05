@@ -17,17 +17,20 @@ export async function StatsQuip() {
     // OpenWeather error responses are valid JSON without any weather in them.
     if (!github || typeof weather?.main?.temp !== "number") return null;
 
+    // The history is keyed by calendar date, so look up today where the weather
+    // is. Going by UTC would read as zero commits every evening.
+    const today = new Date((weather.dt + weather.timezone) * 1000)
+        .toISOString()
+        .slice(0, 10);
+
     const quip = await getStatsQuip({
         city: weather.name,
         temperatureF: Math.trunc(weather.main.temp),
         conditions: weather.weather[0].description,
         isNight: weather.dt < weather.sys.sunrise || weather.dt > weather.sys.sunset,
-        contributionsThisYear: github.yearContributions,
-        contributionsThisMonth: github.monthContributions,
-        contributionsThisWeek: github.contributionHistory
-            .slice(-7)
-            .reduce((sum, day) => sum + day.contributionCount, 0),
-        topLanguage: github.topLanguage,
+        commitsToday:
+            github.contributionHistory.find((day) => day.date === today)
+                ?.contributionCount ?? 0,
     });
 
     if (!quip) return null;
@@ -41,7 +44,7 @@ export async function StatsQuip() {
                 </div>
             </TooltipTrigger>
             <TooltipContent>
-                Written by Claude Haiku 5.5 from the stats above
+                Written by Claude Haiku 5.5 from today&apos;s weather and commits
             </TooltipContent>
         </Tooltip>
     );
