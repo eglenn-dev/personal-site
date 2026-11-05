@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Tailwind's automatic source detection skips the .env route folder */
+@source "./.env";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
