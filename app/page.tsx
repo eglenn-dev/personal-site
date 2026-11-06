@@ -105,6 +105,18 @@ export default async function Home() {
                             <XIcon height={30} width={30} />
                         </a>
                     </div>
+                    <Link
+                        href="/five-nines"
+                        className="group inline-flex w-fit items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                    >
+                        <span>
+                            Think you can keep production up? Play Five Nines
+                        </span>
+                        <ArrowRight
+                            size={14}
+                            className="transition-transform group-hover:translate-x-1"
+                        />
+                    </Link>
                 </div>
                 <div id="featured-project">
                     <SectionHeading>Featured</SectionHeading>

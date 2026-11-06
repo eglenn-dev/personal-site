@@ -43,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "monthly" as const,
             priority: 0.6,
         },
+        {
+            url: "https://ethanglenn.dev/five-nines",
+            lastModified: BUILD_DATE,
+            changeFrequency: "monthly" as const,
+            priority: 0.6,
+        },
     ];
 
     return [...main, ...blogPosts];

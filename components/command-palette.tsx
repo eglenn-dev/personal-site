@@ -23,6 +23,7 @@ import {
     Moon,
     Sun,
     ExternalLink,
+    Gamepad2,
 } from "lucide-react";
 import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
 import type { Project } from "@/lib/types";
@@ -34,6 +35,7 @@ const navItems = [
     { href: "/experience", label: "Experience", icon: Briefcase },
     { href: "/blog", label: "Blog", icon: FileText },
     { href: "/contact", label: "Contact", icon: Mail },
+    { href: "/five-nines", label: "Five Nines (game)", icon: Gamepad2 },
 ];
 
 const externalLinks = [
