@@ -108,7 +108,7 @@ export default async function Home() {
                 </div>
                 <div id="featured-project">
                     <SectionHeading>Featured</SectionHeading>
-                    <div className="relative overflow-hidden rounded-2xl border bg-linear-to-b from-sky-200 via-indigo-100 to-pink-100 p-5 shadow-sm dark:from-sky-950/80 dark:via-zinc-900 dark:to-fuchsia-950/50">
+                    <div className="relative overflow-hidden rounded-2xl border border-[#53a640]/40 bg-linear-to-br from-[#53a640]/40 via-[#53a640]/15 to-[#1e293b]/25 p-5 shadow-sm dark:border-[#53a640]/25 dark:from-[#53a640]/40 dark:via-[#1e293b]/70 dark:to-[#1e293b]">
                         <div className="flex flex-row items-center justify-between mb-2">
                             <h3>
                                 <Image
