@@ -61,8 +61,8 @@ export default function ContactForm() {
         const failWithError = () => {
             setError(true);
             setIsSubmitting(false);
-            setTimeout(() => setError(false), 5000);
         };
+        setError(false);
 
         if (!captcha || !siteKey) {
             // Script not loaded yet (very fast submit) or misconfigured key.
@@ -95,7 +95,7 @@ export default function ContactForm() {
             email,
             message,
             responseToken,
-        );
+        ).catch(() => false);
 
         if (!response) {
             failWithError();
@@ -107,17 +107,6 @@ export default function ContactForm() {
         sessionStorage.setItem("contactFormSuccess", "true");
     }
 
-    if (error) {
-        return (
-            <div>
-                <p className="text-red-600 mt-4">
-                    An error occurred while sending your message. Please try
-                    again later.
-                </p>
-            </div>
-        );
-    }
-
     if (submitSuccess) {
         return (
             <div className="py-8">
@@ -126,15 +115,24 @@ export default function ContactForm() {
                     Thanks for reaching out. I&apos;ll get back to you as soon
                     as possible.
                 </p>
-                <div className="flex gap-3">
-                    <Link href="/blog">
-                        <Button size="sm">View Blog</Button>
-                    </Link>
-                    <Link href="/projects">
-                        <Button size="sm" variant="secondary">
-                            View Projects
-                        </Button>
-                    </Link>
+                <div className="flex flex-wrap gap-3">
+                    <Button size="sm" asChild>
+                        <Link href="/blog">View Blog</Link>
+                    </Button>
+                    <Button size="sm" variant="secondary" asChild>
+                        <Link href="/projects">View Projects</Link>
+                    </Button>
+                    <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => {
+                            sessionStorage.removeItem("contactFormSuccess");
+                            setAcceptTerms(false);
+                            setSubmitSuccess(false);
+                        }}
+                    >
+                        Send another message
+                    </Button>
                 </div>
             </div>
         );
@@ -249,6 +247,12 @@ export default function ContactForm() {
                     </DialogContent>
                 </Dialog>
             </div>
+            {error && (
+                <p role="alert" className="text-sm text-destructive">
+                    Something went wrong sending your message. Nothing was
+                    lost, so please try again in a moment.
+                </p>
+            )}
             <Button type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
             </Button>

@@ -13,7 +13,7 @@ export default function Error() {
             </h1>
             <Image
                 src="/duck.webp"
-                alt="404 page duck"
+                alt=""
                 width={100}
                 height={100}
                 className="my-4 select-none pointer-events-none"
@@ -21,12 +21,12 @@ export default function Error() {
             <p className="text-md sm:text-lg mb-4">
                 Sorry, something went wrong on our end.
             </p>
-            <Link href="/">
-                <Button>
+            <Button asChild>
+                <Link href="/">
                     <Home className="mr-1" />
                     Return to Home
-                </Button>
-            </Link>
+                </Link>
+            </Button>
         </div>
     );
 }

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { getAllSlugs, getPost } from "@/posts/blog-list";
+import { getAdjacentPosts, getAllSlugs, getPost } from "@/posts/blog-list";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CopyUrlButton } from "@/components/copy-url-button";
 import { TextHighlightButton } from "@/components/text-highlight-button";
@@ -11,8 +11,14 @@ import {
     TableOfContents,
     MobileTableOfContents,
 } from "@/components/table-of-contents";
-import { getPostHeadings } from "@/lib/post-headings";
-import { SITE_URL, SITE_NAME, TWITTER_HANDLE } from "@/lib/site-config";
+import { PostFooter } from "@/components/post-footer";
+import { getPostHeadings, getPostReadingMinutes } from "@/lib/post-headings";
+import {
+    SITE_URL,
+    SITE_NAME,
+    TWITTER_HANDLE,
+    RSS_ALTERNATE,
+} from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 export default async function Page({
@@ -28,6 +34,8 @@ export default async function Page({
     }
     const headings = getPostHeadings(slug);
     const showTableOfContents = headings.length > 1;
+    const readingMinutes = getPostReadingMinutes(slug);
+    const { newer, older } = getAdjacentPosts(slug);
 
     return (
         <>
@@ -57,13 +65,23 @@ export default async function Page({
             >
                 <article className="min-w-0">
                     <div className="mb-8 flex items-center justify-between">
-                        <Link href="/blog" className="group">
-                            <Button variant="outline" className="mb-1 -ml-2">
+                        <Button
+                            asChild
+                            variant="outline"
+                            className="group mb-1 -ml-2"
+                        >
+                            <Link href="/blog">
                                 <ChevronLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
                                 <span>Back</span>
-                            </Button>
-                        </Link>
-                        <CopyUrlButton />
+                            </Link>
+                        </Button>
+                        <div className="flex items-center gap-3">
+                            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                                <Clock className="size-3.5" aria-hidden />
+                                {readingMinutes} min read
+                            </span>
+                            <CopyUrlButton />
+                        </div>
                     </div>
                     {showTableOfContents && (
                         <div className="xl:hidden">
@@ -74,6 +92,7 @@ export default async function Page({
                         <post.Component />
                     </div>
                     <TextHighlightButton />
+                    <PostFooter newer={newer} older={older} />
                 </article>
                 {showTableOfContents && (
                     <aside className="hidden xl:block">
@@ -142,6 +161,7 @@ export async function generateMetadata({
         },
         alternates: {
             canonical: postUrl,
+            types: RSS_ALTERNATE,
         },
     };
 }

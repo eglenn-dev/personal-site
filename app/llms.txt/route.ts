@@ -6,6 +6,7 @@ import {
     JOB_TITLE,
     ORGANIZATION,
     SOCIAL_LINKS,
+    RSS_PATH,
 } from "@/lib/site-config";
 
 export function GET() {
@@ -32,6 +33,7 @@ ${SITE_NAME} is a ${JOB_TITLE} at ${ORGANIZATION}, specializing in building effi
 - GitHub: ${SOCIAL_LINKS.github}
 - LinkedIn: ${SOCIAL_LINKS.linkedin}
 - X/Twitter: ${SOCIAL_LINKS.twitter}
+- RSS: ${SITE_URL}${RSS_PATH}
 
 ## Pages
 

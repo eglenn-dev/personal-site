@@ -14,7 +14,15 @@ export default function Time() {
     }, []);
 
     const getTimeOfDayColor = (time: Date) => {
-        const hour = time.getHours();
+        // Match the timezone the clock displays, not the visitor's own.
+        const hour =
+            Number(
+                new Intl.DateTimeFormat("en-US", {
+                    timeZone: process.env.NEXT_PUBLIC_TIMEZONE,
+                    hour: "numeric",
+                    hourCycle: "h23",
+                }).format(time),
+            ) % 24;
 
         if (hour >= 6 && hour < 12) {
             return "text-sky-500 dark:text-sky-400";

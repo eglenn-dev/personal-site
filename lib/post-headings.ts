@@ -8,11 +8,26 @@ export type PostHeading = {
     level: 2 | 3;
 };
 
-export function getPostHeadings(slug: string): PostHeading[] {
-    const source = fs.readFileSync(
+function readPostSource(slug: string): string {
+    return fs.readFileSync(
         path.join(process.cwd(), "posts", `${slug}.mdx`),
         "utf8",
     );
+}
+
+const WORDS_PER_MINUTE = 225;
+
+export function getPostReadingMinutes(slug: string): number {
+    const prose = readPostSource(slug)
+        .replace(/^import .*$/gm, "")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1");
+    const words = prose.split(/\s+/).filter((word) => /\w/.test(word)).length;
+    return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
+
+export function getPostHeadings(slug: string): PostHeading[] {
+    const source = readPostSource(slug);
     const sourceWithoutCodeBlocks = source.replace(/^```[\s\S]*?^```/gm, "");
 
     return Array.from(
