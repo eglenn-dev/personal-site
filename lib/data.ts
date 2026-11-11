@@ -40,6 +40,7 @@ export function getProjects(): Project[] {
                 "PostgreSQL",
             ],
             link: "https://keephours.com",
+            article: "/blog/keephours-tanstack-start",
         },
         {
             name: "Legrande Health Web App",
@@ -47,6 +48,7 @@ export function getProjects(): Project[] {
                 "Full-stack health services web application supporting practices and fulfillment centers, built through DataThink.",
             technologies: ["TypeScript", "React", "Python"],
             link: "https://legrandehealth.com",
+            article: "/blog/legrande-health",
         },
         {
             name: "Gospel Help",

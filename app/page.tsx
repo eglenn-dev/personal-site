@@ -9,8 +9,10 @@ import {
 } from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 import { getTechStack } from "@/lib/data";
-import { getLatestPost } from "@/posts/blog-list";
+import { getRecentPosts } from "@/posts/blog-list";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { formatPostDate } from "@/lib/utils";
 import { ArrowRight, ArrowUpRight, ChevronRight } from "lucide-react";
 import { Suspense } from "react";
 import { HomeStats, HomeStatsSkeleton } from "@/components/home-stats";
@@ -28,12 +30,20 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default async function Home() {
     const techStack = getTechStack();
-    const latestPost = getLatestPost();
+    const recentPosts = getRecentPosts(3);
+    const latestPost = recentPosts[0];
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-16">
                 <div id="main" className="flex flex-col gap-5">
+                    <Avatar className="size-16">
+                        <AvatarImage
+                            src="https://github.com/eglenn-dev.png"
+                            alt="Ethan Glenn"
+                        />
+                        <AvatarFallback>EG</AvatarFallback>
+                    </Avatar>
                     <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.02] tracking-[-0.03em]">
                         Ethan Glenn
                         <span
@@ -46,6 +56,7 @@ export default async function Home() {
                         <a
                             href="https://datathink.dev"
                             target="_blank"
+                            rel="noreferrer"
                             className="inline-flex items-center gap-1.5 font-medium text-foreground underline-offset-4 hover:underline"
                         >
                             <Image
@@ -58,25 +69,32 @@ export default async function Home() {
                             DataThink
                         </a>
                     </p>
-                    <div className="flex flex-row gap-3 mt-1">
-                        <Link href="/projects">
-                            <Button className="group">
+                    <p className="max-w-prose text-base leading-relaxed text-foreground/80">
+                        I build full-stack web apps with TypeScript, React, and
+                        Python. Lately that has meant an order management
+                        platform for medical practices, an AI companion for
+                        cancer patients, and KeepHours. I write here about what
+                        I learn shipping them.
+                    </p>
+                    <div className="flex flex-row flex-wrap gap-3 mt-1">
+                        <Button asChild className="group">
+                            <Link href="/projects">
                                 <span>My Projects</span>
                                 <ArrowRight
                                     className="ml-1 transition-transform group-hover:translate-x-1"
                                     size={16}
                                 />
-                            </Button>
-                        </Link>
-                        <Link href={`/blog/${latestPost.slug}`}>
-                            <Button variant="outline" className="group">
+                            </Link>
+                        </Button>
+                        <Button asChild variant="outline" className="group">
+                            <Link href={`/blog/${latestPost.slug}`}>
                                 <span>Latest Article</span>
                                 <ArrowRight
                                     className="ml-1 transition-transform group-hover:translate-x-1"
                                     size={16}
                                 />
-                            </Button>
-                        </Link>
+                            </Link>
+                        </Button>
                     </div>
                     <div className="flex flex-row gap-4 mb-4 text-muted-foreground [&>a]:transition-colors [&>a:hover]:text-primary">
                         <a
@@ -134,38 +152,75 @@ export default async function Home() {
                             TanStack Start.
                         </p>
                         <div className="flex flex-row flex-wrap gap-2">
-                            <a
-                                href="https://keephours.com"
-                                target="_blank"
-                                rel="noreferrer"
+                            <Button
+                                asChild
+                                variant="outline"
+                                className="group bg-background/70 dark:bg-background/40"
                             >
-                                <Button
-                                    variant="outline"
-                                    className="group bg-background/70 dark:bg-background/40"
+                                <a
+                                    href="https://keephours.com"
+                                    target="_blank"
+                                    rel="noreferrer"
                                 >
                                     <span>Visit KeepHours</span>
                                     <ArrowUpRight
                                         size={16}
                                         className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                                     />
-                                </Button>
-                            </a>
-                            <Link href="/blog/keephours-tanstack-start">
-                                <Button
-                                    variant="outline"
-                                    className="group bg-background/70 dark:bg-background/40"
-                                >
+                                </a>
+                            </Button>
+                            <Button
+                                asChild
+                                variant="outline"
+                                className="group bg-background/70 dark:bg-background/40"
+                            >
+                                <Link href="/blog/keephours-tanstack-start">
                                     <span>Read the migration story</span>
                                     <ChevronRight
                                         size={16}
                                         className="transition-transform group-hover:translate-x-1"
                                     />
-                                </Button>
-                            </Link>
+                                </Link>
+                            </Button>
                         </div>
                     </div>
                 </div>
             </div>
+            <section id="recent-writing" className="mb-16">
+                <SectionHeading>Recent Writing</SectionHeading>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    {recentPosts.map((post) => (
+                        <Link
+                            key={post.slug}
+                            href={`/blog/${post.slug}`}
+                            className="group flex flex-col gap-2 rounded-xl border bg-card p-5 shadow-xs transition-colors hover:border-foreground/30"
+                        >
+                            <time
+                                dateTime={post.date}
+                                className="text-xs font-medium text-muted-foreground"
+                            >
+                                {formatPostDate(post.date)}
+                            </time>
+                            <h3 className="text-lg font-bold leading-snug tracking-tight transition-colors group-hover:text-brand">
+                                {post.title}
+                            </h3>
+                            <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                                {post.description}
+                            </p>
+                        </Link>
+                    ))}
+                </div>
+                <Link
+                    href="/blog"
+                    className="group mt-5 inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+                >
+                    All posts
+                    <ArrowRight
+                        size={14}
+                        className="transition-transform group-hover:translate-x-1"
+                    />
+                </Link>
+            </section>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mb-12">
                 <div id="tech-stack">
                     <SectionHeading>Tech Stack</SectionHeading>

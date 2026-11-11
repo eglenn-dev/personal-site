@@ -81,37 +81,28 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <li className="mb-0.5 text-base leading-7">{children}</li>
         ),
         a: ({ children, href }) => {
-            if (
-                href &&
-                (href.startsWith("http") ||
-                    href.startsWith("https") ||
-                    href.startsWith("mailto") ||
-                    href.startsWith("www"))
-            ) {
+            const className =
+                "font-medium text-brand underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand";
+            if (!href) {
+                return <span>{children}</span>;
+            }
+            if (/^(https?:|mailto:|www\.)/.test(href)) {
                 return (
                     <a
-                        href={href}
+                        href={href.startsWith("www.") ? `https://${href}` : href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-brand underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
+                        className={className}
                     >
                         {children}
                     </a>
                 );
-            } else if ((href && href.startsWith("/")) || href.startsWith("#")) {
-                return (
-                    <Link
-                        href={href}
-                        className="font-medium text-brand underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
-                        target={href.includes("http") ? "_blank" : undefined}
-                        rel="noopener noreferrer"
-                    >
-                        {children}
-                    </Link>
-                );
-            } else {
-                return <span></span>;
             }
+            return (
+                <Link href={href} className={className}>
+                    {children}
+                </Link>
+            );
         },
         img: (props) => (
             <Image

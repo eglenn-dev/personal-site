@@ -184,7 +184,7 @@ const posts: (Slug & { Component: MDXContent })[] = [
         Component: MarkNoteUpdate,
         title: "MarkNote.one Update",
         description: "Things just keep getting better!",
-        date: "2025-02-29",
+        date: "2025-02-28",
         hidden: true,
     },
     {
@@ -239,7 +239,20 @@ export function getPublicPosts(): Slug[] {
     return publicPosts;
 }
 
-export function getLatestPost(): Slug {
-    const publicPosts = slugs.filter((slug) => !slug.hidden);
-    return publicPosts[0];
+export function getRecentPosts(count: number): Slug[] {
+    return getPublicPosts().slice(0, count);
+}
+
+// Posts are listed newest first, so the newer neighbour sits one index up.
+export function getAdjacentPosts(slug: string): {
+    newer?: Slug;
+    older?: Slug;
+} {
+    const publicPosts = getPublicPosts();
+    const index = publicPosts.findIndex((post) => post.slug === slug);
+    if (index === -1) return {};
+    return {
+        newer: publicPosts[index - 1],
+        older: publicPosts[index + 1],
+    };
 }

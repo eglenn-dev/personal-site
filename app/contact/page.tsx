@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/contact-form";
+import { SOCIAL_LINKS } from "@/lib/site-config";
+
+const otherChannels = [
+    { name: "LinkedIn", href: SOCIAL_LINKS.linkedin },
+    { name: "X", href: SOCIAL_LINKS.twitter },
+    { name: "GitHub", href: SOCIAL_LINKS.github },
+];
 
 export const metadata: Metadata = {
     title: "Contact",
@@ -42,6 +49,26 @@ export default function ContactPage() {
                 Get in touch for new opportunities and collaborations.
             </p>
             <ContactForm />
+            <p className="mt-10 border-t pt-6 text-sm text-muted-foreground">
+                Rather not use a form? Reach me on{" "}
+                {otherChannels.map(({ name, href }, index) => (
+                    <span key={name}>
+                        {index > 0 &&
+                            (index === otherChannels.length - 1
+                                ? ", or "
+                                : ", ")}
+                        <a
+                            href={href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-medium text-foreground underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
+                        >
+                            {name}
+                        </a>
+                    </span>
+                ))}
+                .
+            </p>
         </div>
     );
 }

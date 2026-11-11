@@ -19,24 +19,29 @@ export default function Navbar() {
     const { resolvedTheme, setTheme } = useTheme();
 
     return (
-        <nav className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-background/75">
+        <nav aria-label="Main" className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur-md supports-backdrop-filter:bg-background/75">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-14">
                     <div className="flex items-center gap-0.5 sm:gap-1">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={`inline-flex items-center rounded-md px-1.5 py-1.5 text-[13px] font-semibold transition-colors duration-150 sm:px-3 ${
-                                    pathname.split("/")[1] ===
-                                    item.href.split("/")[1]
-                                        ? "bg-muted text-primary"
-                                        : "text-muted-foreground hover:bg-muted/60 hover:text-primary"
-                                }`}
-                            >
-                                {item.label}
-                            </Link>
-                        ))}
+                        {navItems.map((item) => {
+                            const isActive =
+                                pathname.split("/")[1] ===
+                                item.href.split("/")[1];
+                            return (
+                                <Link
+                                    key={item.href}
+                                    href={item.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    className={`inline-flex items-center rounded-md px-1.5 py-2.5 text-[13px] font-semibold transition-colors duration-150 sm:px-3 sm:py-1.5 ${
+                                        isActive
+                                            ? "bg-muted text-primary"
+                                            : "text-muted-foreground hover:bg-muted/60 hover:text-primary"
+                                    }`}
+                                >
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </div>
                     <div className="flex items-center gap-1">
                         <Button

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getPublicPosts } from "@/posts/blog-list";
 import BlogPage from "./blog";
 import { Suspense } from "react";
+import { RSS_ALTERNATE } from "@/lib/site-config";
 
 export const metadata: Metadata = {
     title: "Blog",
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     },
     alternates: {
         canonical: "/blog",
+        types: RSS_ALTERNATE,
     },
 };
 

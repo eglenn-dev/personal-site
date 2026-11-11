@@ -9,18 +9,22 @@ export default async function WeatherCard() {
 
     try {
         data = await getWeather();
+        // The API answers errors (bad key, rate limit) with a JSON body, so a
+        // resolved fetch still needs checking before it is shown.
+        if (
+            !data?.sys ||
+            typeof data?.main?.temp !== "number" ||
+            !data?.weather?.[0]?.description
+        ) {
+            return null;
+        }
         const sunrise = new Date(data.sys.sunrise * 1000);
         const sunset = new Date(data.sys.sunset * 1000);
         const currentTime = new Date();
         isNight = currentTime < sunrise || currentTime > sunset;
     } catch (error) {
         console.log("Failed to fetch weather data:", error);
-        data = {
-            name: "Unknown",
-            main: { temp: 0 },
-            weather: [{ main: "Unknown", description: "Unknown" }],
-            sys: { sunrise: 0, sunset: 0 },
-        };
+        return null;
     }
 
     const weatherIcon = isNight ? (

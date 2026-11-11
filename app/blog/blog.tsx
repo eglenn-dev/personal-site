@@ -6,15 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { useQueryState } from "nuqs";
-
-function formatDate(dateString: string) {
-    const [year, month, day] = dateString.split("-").map(Number);
-    return new Date(year, month - 1, day).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-    });
-}
+import { formatPostDate } from "@/lib/utils";
 
 interface BlogPageProps {
     posts: Slug[];
@@ -43,9 +35,16 @@ export default function BlogPage({ posts }: BlogPageProps) {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
+            const target = event.target as HTMLElement | null;
+            const isTyping =
+                target?.isContentEditable ||
+                ["INPUT", "TEXTAREA", "SELECT"].includes(target?.tagName ?? "");
             if (
-                (event.ctrlKey && event.key === "f") ||
-                (event.metaKey && event.key === "f")
+                event.key === "/" &&
+                !isTyping &&
+                !event.metaKey &&
+                !event.ctrlKey &&
+                !event.altKey
             ) {
                 event.preventDefault();
                 searchInputRef.current?.focus();
@@ -73,6 +72,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                     <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         type="text"
+                        aria-label="Search posts"
                         placeholder="Search posts..."
                         value={searchTerm ?? ""}
                         ref={searchInputRef}
@@ -98,7 +98,7 @@ export default function BlogPage({ posts }: BlogPageProps) {
                                         dateTime={post.date}
                                         className="text-sm text-muted-foreground shrink-0"
                                     >
-                                        {formatDate(post.date)}
+                                        {formatPostDate(post.date)}
                                     </time>
                                 </div>
                                 <p className="text-sm text-muted-foreground leading-relaxed">

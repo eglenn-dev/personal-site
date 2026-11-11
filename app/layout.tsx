@@ -18,6 +18,7 @@ import {
     SITE_NAME,
     SITE_DESCRIPTION,
     TWITTER_HANDLE,
+    RSS_ALTERNATE,
 } from "@/lib/site-config";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -86,6 +87,7 @@ export const metadata: Metadata = {
     },
     alternates: {
         canonical: SITE_URL,
+        types: RSS_ALTERNATE,
     },
 };
 
@@ -112,9 +114,21 @@ export default function RootLayout({
                             disableTransitionOnChange
                         >
                             <div className="flex flex-col min-h-screen">
+                                <a
+                                    href="#content"
+                                    className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-md focus:border focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:shadow-sm"
+                                >
+                                    Skip to content
+                                </a>
                                 <Navbar />
                                 <CommandPaletteProvider />
-                                <main className="grow">{children}</main>
+                                <main
+                                    id="content"
+                                    tabIndex={-1}
+                                    className="grow outline-none"
+                                >
+                                    {children}
+                                </main>
                                 <Suspense fallback={<FooterSkeleton />}>
                                     <Footer />
                                 </Suspense>

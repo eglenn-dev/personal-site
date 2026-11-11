@@ -1,6 +1,8 @@
 "use client";
 
+import { Rss } from "lucide-react";
 import { GithubIcon, LinkedInIcon, XIcon } from "@/lib/icons";
+import { RSS_PATH } from "@/lib/site-config";
 
 const socialLinks = [
     {
@@ -34,12 +36,20 @@ function FooterContent({ year }: { year: string }) {
                                 key={name}
                                 href={href}
                                 target="_blank"
+                                rel="noreferrer"
                                 className="text-muted-foreground hover:text-primary hover:bg-muted transition-colors duration-150 rounded-md p-2"
                             >
                                 <span className="sr-only">{name}</span>
                                 <Icon />
                             </a>
                         ))}
+                        <a
+                            href={RSS_PATH}
+                            className="text-muted-foreground hover:text-primary hover:bg-muted transition-colors duration-150 rounded-md p-2"
+                        >
+                            <span className="sr-only">RSS feed</span>
+                            <Rss className="size-5" aria-hidden />
+                        </a>
                     </div>
                 </div>
             </div>

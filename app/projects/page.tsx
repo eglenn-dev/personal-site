@@ -46,6 +46,12 @@ export const metadata: Metadata = {
     },
 };
 
+function externalLinkProps(href: string) {
+    return href.startsWith("http")
+        ? { target: "_blank", rel: "noreferrer" }
+        : {};
+}
+
 export default function ProjectsPage() {
     const projects = getProjects();
 
@@ -53,10 +59,8 @@ export default function ProjectsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
             <h1 className="text-4xl sm:text-5xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-10">My Projects</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {projects.map((project, index) => (
-                    <Card
-                        key={index}
-                    >
+                {projects.map((project) => (
+                    <Card key={project.name}>
                         <CardHeader>
                             <CardTitle className="text-xl font-bold mb-1">
                                 {project.name}
@@ -89,36 +93,42 @@ export default function ProjectsPage() {
                                     );
                                 })}
                             </div>
-                            <div className="flex flex-row gap-2 justify-end">
+                            <div className="flex flex-row flex-wrap gap-2 justify-end">
                                 {project.article && (
-                                    <Link
-                                        href={project.article}
-                                        target={
-                                            project.article.startsWith("http")
-                                                ? "_blank"
-                                                : "_self"
-                                        }
-                                    >
-                                        <Button variant="outline">
-                                            <span>Read</span>
+                                    <Button asChild variant="outline">
+                                        <Link
+                                            href={project.article}
+                                            {...externalLinkProps(
+                                                project.article,
+                                            )}
+                                        >
+                                            <span>
+                                                Read write-up
+                                                <span className="sr-only">
+                                                    {" "}
+                                                    about {project.name}
+                                                </span>
+                                            </span>
                                             <ArticleIcon />
-                                        </Button>
-                                    </Link>
+                                        </Link>
+                                    </Button>
                                 )}
                                 {project.link && (
-                                    <Link
-                                        href={project.link}
-                                        target={
-                                            project.link.startsWith("http")
-                                                ? "_blank"
-                                                : "_self"
-                                        }
-                                    >
-                                        <Button variant="secondary">
-                                            <span>More</span>
+                                    <Button asChild variant="secondary">
+                                        <Link
+                                            href={project.link}
+                                            {...externalLinkProps(project.link)}
+                                        >
+                                            <span>
+                                                Visit site
+                                                <span className="sr-only">
+                                                    {" "}
+                                                    for {project.name}
+                                                </span>
+                                            </span>
                                             <OpenIcon />
-                                        </Button>
-                                    </Link>
+                                        </Link>
+                                    </Button>
                                 )}
                             </div>
                         </CardContent>
